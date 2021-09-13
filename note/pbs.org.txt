@@ -1,0 +1,72 @@
+
+* Script
+** Options
+   - #PBS –V: 현재 환경변수 유지
+   - #PBS –N: 작업 이름 설정
+   - #PBS –q: 작업을 실행할 큐
+   - #PBS –l: 작업에 사용할 리소스 설정
+   - #PBS –A: 사용 프로그램 정보(통계 목적)
+     e.g. inhouse(직접 작성한 코드), etc, pytorch, tf, ...
+
+   e.g.
+   #+begin_src bash
+   # PBS -l select=4:ncpus=64:mpiprocs=64:ompthreads=1
+   # ==> total 4 nodes, 256 cpus and 256 processes
+   #+end_src
+** Resource
+   - select: 사용할 노드 수
+   - ncpus: 사용할 CPU 코어 수 (≥ 한 노드당 프로세스 수 * 스레드 수)
+   - mpiprocs: 사용할 한 노드당 프로세스 수
+   - ompthreads: 사용할 OMP 스레드 수 (사용하지 않을 경우 기술 하지 않거나, ompthreads=1 로 표기)
+   - walltime: 작업 실행 시간
+     e.g. hours:minutes:seconds
+     e.g. days:hours:minutes:seconds
+** Example
+   #+begin_src bash
+
+   #!/bin/sh
+   #PBS -N IntelMPI_job
+   #PBS -V
+   #PBS -q normal
+   #PBS -A {PBS 옵션 이름}  # Application별 PBS 옵션 이름표 참고
+   #PBS -l select=4:ncpus=64:mpiprocs=64:ompthreads=1
+   #PBS -l walltime=04:00:00
+   
+   cd $PBS_O_WORKDIR
+   
+   module purge  # unload all modules
+   module load craype-mic-knl intel/18.0.3 impi/18.0.3
+   
+   mpirun ./test_mpi.exe
+
+   #+end_src
+
+* mpirun
+  $ mpirun python hello.py
+
+* qsub
+  qsub command submits a task defined by a batch script
+
+  $ qsub train.sh
+
+* qstat
+  qstat command shows job informations
+
+  $ qstat -u username
+
+** Task state
+   R: running
+   Q: waiting in the queue
+
+* qdel
+  qdel cancels a task
+
+  $ qdel task-id
+
+* showq
+  show queue's information
+
+* Reference
+  - https://www.ksc.re.kr/gsjw/jcs/hd
+  - https://www.youtube.com/channel/UCBf0k9ygNnaBJUTg58IY--A/videos
+  - https://confluence.columbia.edu/confluence/display/rcs/Yeti+-+Submitting+Jobs
