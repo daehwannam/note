@@ -1,0 +1,13 @@
+
+# emacs temporary files
+*~
+\#*#
+
+# python temporary file
+*.pyc
+
+# ignore temporary files
+_tmp_*
+
+# latex preview image directory name
+ltximg
