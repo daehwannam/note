@@ -1,9 +1,14 @@
 * Initial setup
-  You can refer configuration files in "~/.emacs.d/note/config-scripts/"
-  1. Install conda: [[file:conda.org.txt::*Install conda][Install conda]]
+  You can refer configuration files in "~/record/config-scripts/"
+  1. Clone the record repository
+     #+begin_src bash
+     cd ~ 
+     git clone https://github.com/daehwannam/record.git
+     #+end_src
+  2. Install conda: [[file:conda.org.txt::*Install conda][Install conda]]
      - make the default environment
-  2. Install emacs via conda
-  3. Emacs config setup
+  3. Install emacs via conda
+  4. Emacs config setup
      - Clone emacs-config
        #+begin_src bash
        cd ~
@@ -15,20 +20,20 @@
             (machine-id elpy-setup miniconda-env programming basic)
             (machine-id lsp-mode min-elpy-setup miniconda-env programming basic)
      - (Optional) Install elpy: [[file:elpy.org.txt::*Setup][Setup]]
-  4. Install tmux via conda
-     - copy ~/.tmux.conf from "~/.emacs.d/note/config-scripts/.tmux.conf"
+  5. Install tmux via conda
+     - copy ~/.tmux.conf from "~/record/config-scripts/.tmux.conf"
      - (Optional) install logging plugin: [[file:tmux.org.txt::*logging][logging]]
-  5. Install screen via conda
-     - copy ~/.screenrc from "~/.emacs.d/note/config-scripts/.screenrc"
-  6. (Optional) Install the latest nvidia driver: [[*NVIDIA Driver][NVIDIA Driver]]
-  7. (Optional) Install cudatoolkit & cudnn: [[*install guides][install guides]]
+  6. Install screen via conda
+     - copy ~/.screenrc from "~/record/config-scripts/.screenrc"
+  7. (Optional) Install the latest nvidia driver: [[*NVIDIA Driver][NVIDIA Driver]]
+  8. (Optional) Install cudatoolkit & cudnn: [[*install guides][install guides]]
      1) CUDA driver: [[*manual install][manual install]]
      2) CUDA toolkit
         - Download: [[*download][download]]
         - Install: [[*install toolkit only, without extraction (recommended)][install toolkit only, without extraction (recommended)]]
      3) cuDNN: [[*cuDNN install][cuDNN install]]
      4) path setup: [[*Multiple CUDAs (CUDA toolkits)][Multiple CUDAs (CUDA toolkits)]]
-  8. (Optional) Install others via conda
+  9. (Optional) Install others via conda
      - git
      - ...
 
