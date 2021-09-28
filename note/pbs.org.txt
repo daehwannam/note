@@ -28,7 +28,7 @@
    #PBS -N IntelMPI_job
    #PBS -V
    #PBS -q normal
-   #PBS -A {PBS 옵션 이름}  # Application별 PBS 옵션 이름표 참고
+   #PBS -A {PBS 옵션 이름}  # etc, pytorch, cafe, ... (Application별 PBS 옵션 이름표 참고)
    #PBS -l select=4:ncpus=64:mpiprocs=64:ompthreads=1
    #PBS -l walltime=04:00:00
    
