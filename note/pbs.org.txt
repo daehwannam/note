@@ -49,10 +49,17 @@
 
   $ qsub train.sh
 
+** interactive
+   e.g.
+   #+begin_src bash
+   cd /scratch
+   qsub -I -l select=1:ncpus=1:ompthreads=1 -l walltime=12:00:00 -q debug -A etc
+   #+end_src
+
 * qstat
   qstat command shows job informations
 
-  $ qstat -u username
+  $ qstat -u [username]
 
 ** Task state
    R: running
@@ -61,7 +68,7 @@
 * qdel
   qdel cancels a task
 
-  $ qdel task-id
+  $ qdel [task-id]
 
 * showq
   show queue's information

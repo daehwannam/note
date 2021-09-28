@@ -1,3 +1,6 @@
+* Agenda
+  - j (org-agenda-goto-date): make agenda starting from the date
+
 * Calendar
   - M-x calendar
   - org-calendar-goto-agenda: type "c"
@@ -51,3 +54,9 @@
 
   - C-c C-e l p: export to pdf
   - C-c C-e l o: export to pdf and open it
+
+* Link
+  https://orgmode.org/manual/Handling-links.html
+  - C-c l     (org-store-link)
+  - C-c C-l     (org-insert-link)
+  - C-c C-o     (org-open-at-point)
