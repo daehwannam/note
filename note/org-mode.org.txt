@@ -60,3 +60,8 @@
   - C-c l     (org-store-link)
   - C-c C-l     (org-insert-link)
   - C-c C-o     (org-open-at-point)
+
+* Table
+** Install Inconsolata font for org-mode tables with CJK characters
+   $ sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
+   or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
