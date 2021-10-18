@@ -36,6 +36,9 @@
   9. (Optional) Install others via conda
      - git
      - ...
+  10. (Optional) Install Inconsolata font for org-mode tables
+      $ sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
+      or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
 
 * Bash
 ** make empty file
@@ -321,6 +324,19 @@
      https://askubuntu.com/questions/505929/shutdown-after-a-certain-time
      $ date  # to check the current time
      $ sudo shutdown -P 8:30
+** zip & unzip
+*** zip
+    - compress a directory
+      $ zip -r compressed.zip path/to/dir
+    - compress multiple directories
+      $ zip -r compressed.zip path/to/dir1 path/to/dir2 path/to/dir3
+    - add a file to the existing .zip file
+      $ zip compressed.zip path/to/file
+*** unzip
+    - list files in .zip file
+      $ unzip -l compressed.zip
+    - uncompressing .zip file
+      $ unzip compressed.zip
 
 * NVIDIA GPU & CUDA
 ** components

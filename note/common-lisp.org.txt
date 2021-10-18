@@ -32,10 +32,16 @@
 ** run a script file in command line
    $ sbcl --script source.lisp
 
-* SLIME commands
-  - slime
-  - slime-repl-quit
-  - slime-quit-lisp
+* SLIME
+** SLIME commands
+   - slime : runs REPL
+   - slime-repl-quit
+   - slime-quit-lisp
+   - M-. : go to definition from slime REPL
+
+** Debugging
+   - (error "message" ...): shows backtrace
+   - (break): go into a debugger
 
 * CFFI
   - tutorial: https://www.youtube.com/watch?v=lvHi5LyhxGk
@@ -59,3 +65,8 @@
 
 ** Macro
    - examples: https://lispcookbook.github.io/cl-cookbook/macros.html
+
+* Lisp functions
+** (load "file-path.ext")
+** (apropos "some-substring")
+   search for interned symbols whose names contain the substring

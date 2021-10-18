@@ -16,7 +16,7 @@
 
    [Details]
    - There exist 5 partitions, where each partition has several nodes
-   - Information of CPUS indicates Allocated/Idle/Other/Total
+   - Information of CPUS indicates Allocated/Idle/Other/Total (A/I/O/T)
    - TIMELIMIT indicate the maximum allowed time for each job (e.g. 3 days)
 
 ** squeue
