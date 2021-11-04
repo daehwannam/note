@@ -1,5 +1,37 @@
 
+* Setup (texlive)
+** Install
+   https://www.how2shout.com/linux/install-tex-live-on-ubuntu-20-04-lts-a-free-typesetting-system/
+   #+begin_src bash
+   sudo apt update
+   sudo apt install texlive-full
+   #+end_src
+** Bash update examples (if necessary)
+   - /usr/local/texlive
+     #+begin_src bash
+     TEXLIVE_VERSION=2018
+     export PATH=/usr/local/texlive/${TEXLIVE_VERSION}/bin/x86_64-linux:$PATH
+     #+end_src
+   - /usr/share/texlive
+     (It may be installed by "apt install texlive-full")
+     ==> No need for path setting?
+
+* Error fix
+** ! Undefined control sequence. \pgfsys@svg@newline ->\Hnewline
+   https://tex.stackexchange.com/a/232739
+
+   1. Open /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-tex4ht.def
+   2. Find line with:
+      \def\pgfsys@svg@newline{\Hnewline}
+   3. Replace the line with:
+      \def\pgfsys@svg@newline{^^J}
+
 * TikZ
+** Manual
+   https://tex.stackexchange.com/a/147101
+   - CTAN: https://ctan.org/pkg/pgf
+   - Direct pdf link: https://pgf-tikz.github.io/pgf/pgfmanual.pdf
+
 ** Externalizing
    https://olezfdtd.wordpress.com/2012/03/28/precompile-pgfplots-using-tikzexternalize/
    http://www.maths.adelaide.edu.au/anthony.roberts/LaTeX/pgfplotBasics.pdf
@@ -19,6 +51,8 @@
 
 ** GUI tools
    - tikzit: https://tikzit.github.io/
+*** GUI tool comparison
+    https://www.canterbury.ac.nz/media/documents/research/latex_figures.pdf
 
 * pdfcrop
   https://tex.stackexchange.com/questions/434404/remove-only-top-and-bottom-margins-using-pdfcrop

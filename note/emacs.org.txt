@@ -19,6 +19,10 @@
    M-x package-autoremove
 ** rectangle-mark-mode
    https://stackoverflow.com/a/25068794
+** cua-selection-mode
+   mode for visible rectangle region
+   - cua-set-rectangle-mark (C-RET): enagle/disable rectangle-mark
+
 ** Finding files depending of old cl package
    https://github.com/hlissner/doom-emacs/issues/3372
    (require 'loadhist)
@@ -38,6 +42,9 @@
    - it's bound to "C-x ."
    - Then, "M-j" (default-indent-new-line) fills the new line with the prefix
    - To cancel the effect, move the cursor to the beginning of the current line, then call 'set-fill-prefix
+** indent-rigidly
+   https://emacs.stackexchange.com/a/9467
+   indent-rigidly (C-x TAB)
 
 * My command
 ** xah-open-in-external-app

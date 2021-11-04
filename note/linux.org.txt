@@ -127,6 +127,14 @@
     You should first run update, then upgrade. Neither of them automatically runs the other.
     https://askubuntu.com/a/94104
 
+** dpkg
+*** package install location
+    https://askubuntu.com/a/408785
+    dpkg -L <packagename>
+*** package version
+    https://unix.stackexchange.com/a/89590
+    $ dpkg -s <package> | grep Version
+
 ** Creating a new user
    $ sudo adduser username
 
@@ -334,6 +342,12 @@
       $ unzip -l compressed.zip
     - uncompressing .zip file
       $ unzip compressed.zip
+** terminal spreadsheets
+   https://www.reddit.com/r/emacs/comments/kxinju/org_tables_for_big_spreadsheets/
+   - emacs SES
+   - emacs org-mode table
+   - visidata
+   - python pandas + org-mode
 
 * NVIDIA GPU & CUDA
 ** components

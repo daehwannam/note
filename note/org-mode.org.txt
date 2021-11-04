@@ -1,3 +1,4 @@
+
 * Agenda
   - j (org-agenda-goto-date): make agenda starting from the date
 
@@ -33,6 +34,10 @@
 ** dynamically enable/disable latex preview
    org-fragtog-mode
 
+* Mark an unit
+  - org-mark-element (M-h)
+  - org-babel-mark-block (C-c C-v C-M-h)
+
 * code block with org-babel
   https://orgmode.org/manual/Literal-Examples.html
   - type "<s" then press <TAB>
@@ -65,3 +70,21 @@
 ** Install Inconsolata font for org-mode tables with CJK characters
    $ sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
    or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
+** transpose
+   - org-table-transpose-table-at-point
+
+* Mobile
+  https://orgmode.org/worg/org-tutorials/
+** Orgzly
+** Organice
+   - App: https://organice.200ok.ch/
+   - Github: https://github.com/200ok-ch/organice
+   - Documentation: https://organice.200ok.ch/documentation.html
+
+* Indentation setting per each file(buffer)
+  https://www.reddit.com/r/emacs/comments/97naje/comment/e49rzvi/?utm_source=share&utm_medium=web2x&context=3
+  https://orgmode.org/manual/In_002dbuffer-Settings.html#DOCF151
+
+  Start the org file with the following in-buffer settings
+  - #+STARTUP: indent
+  - #+STARTUP: noindent
