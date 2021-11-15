@@ -41,8 +41,8 @@
 * code block with org-babel
   https://orgmode.org/manual/Literal-Examples.html
   - type "<s" then press <TAB>
-  - type "<e" then press <TAB> for untyped example
-** write the result of standard output
+  - type "<e" then press <TAB> for untyped example (literal examples)
+** writing the result of standard output
    #+begin_src python :results output
    # indentation
    import sys
@@ -51,6 +51,12 @@
 
    #+RESULTS:
    : hello world
+** displaying other file's content
+   https://emacs.stackexchange.com/a/36643
+   #+BEGIN_SRC sh :results output drawer
+   # cat data.csv  # print all cotents
+   head -n 3 ~/.bashrc  # print first 5 lines
+   #+END_SRC
 ** python virtual environment
    Change python environment before evaluating code block by "M-x pyvenv-workon"
 
@@ -88,3 +94,30 @@
   Start the org file with the following in-buffer settings
   - #+STARTUP: indent
   - #+STARTUP: noindent
+
+* Beamer
+** Example
+   https://orgmode.org/manual/A-Beamer-example.html
+
+* Miscellaneous
+** Tagging for heading
+   Type 'C-c C-c' on the line of heading
+   Then, you can insert a tag
+** Insert properties
+   type 'C-c C-x p' to insert properties in a specific heading
+
+* File local variable
+  https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
+  https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions
+
+  - With the first line:
+    #+begin_example
+    # -*- eval: (message "foo"); -*-
+    #+end_example
+
+  - Or starts with "Local Variables"
+    #+begin_example
+    # Local Variables:
+    # eval: (message "foo")
+    # End:
+    #+end_example

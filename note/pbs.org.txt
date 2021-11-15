@@ -7,11 +7,12 @@
    - #PBS –l: 작업에 사용할 리소스 설정
    - #PBS –A: 사용 프로그램 정보(통계 목적)
      e.g. inhouse(직접 작성한 코드), etc, pytorch, tf, ...
+   - #PBS -W sandbox=PRIVATE: PBS에 의해 생성되는 STDOUT / STDERR를 작업 실행 중 확인할 수 있는 키워드(/home01/[user] 에 파일 생성)
 
    e.g.
    #+begin_src bash
-   # PBS -l select=4:ncpus=64:mpiprocs=64:ompthreads=1
-   # ==> total 4 nodes, 256 cpus and 256 processes
+   #PBS -l select=4:ncpus=64:mpiprocs=64:ompthreads=1
+   #==> total 4 nodes, 256 cpus and 256 processes
    #+end_src
 ** Resource
    - select: 사용할 노드 수
@@ -22,23 +23,24 @@
      e.g. hours:minutes:seconds
      e.g. days:hours:minutes:seconds
 ** Example
+   The below code is the content of "/home/user/project/src/bash/pbs_search_random.sh"
+
    #+begin_src bash
 
    #!/bin/sh
-   #PBS -N IntelMPI_job
+   #PBS -N OfflineSearch
    #PBS -V
    #PBS -q normal
-   #PBS -A {PBS 옵션 이름}  # etc, pytorch, cafe, ... (Application별 PBS 옵션 이름표 참고)
-   #PBS -l select=4:ncpus=64:mpiprocs=64:ompthreads=1
-   #PBS -l walltime=04:00:00
-   
-   cd $PBS_O_WORKDIR
-   
-   module purge  # unload all modules
-   module load craype-mic-knl intel/18.0.3 impi/18.0.3
-   
-   mpirun ./test_mpi.exe
+   #PBS -A etc
+   #PBS -l select=1:ncpus=64:mpiprocs=64:ompthreads=1
+   #PBS -l walltime=24:00:00
+   #PBS -W sandbox=PRIVATE
 
+   source $(dirname $(which conda))/../etc/profile.d/conda.sh
+   conda activate my_env
+
+   cd /home/user/project/src
+   bash /home/user/project/src/bash/search_random.sh
    #+end_src
 
 * mpirun
@@ -48,6 +50,13 @@
   qsub command submits a task defined by a batch script
 
   $ qsub train.sh
+
+  The command may need to be executed in a specific directory.
+  e.g.
+  #+begin_src bash
+  cd /scratch
+  qsub /home/user/project/src/bash/pbs_search_random.sh
+  #+end_src
 
 ** interactive
    e.g.
@@ -59,7 +68,15 @@
 * qstat
   qstat command shows job informations
 
-  $ qstat -u [username]
+  - user's jobs
+    $ qstat -u [username]
+  - job info per node
+    $ qstat -Q
+  - job info per server
+    $ qstat -B
+  - option -f
+    Showing detailed information
+    $ qstat -f -u [username]
 
 ** Task state
    R: running

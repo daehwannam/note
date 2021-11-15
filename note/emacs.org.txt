@@ -45,6 +45,10 @@
 ** indent-rigidly
    https://emacs.stackexchange.com/a/9467
    indent-rigidly (C-x TAB)
+** window configuration
+   https://emacs.stackexchange.com/a/2714/26068
+   - window-configuration-to-register (C-x r w <char>): save window configuration
+   - jump-to-register (C-x r j <char>): apply the configuration
 
 * My command
 ** xah-open-in-external-app
@@ -68,14 +72,31 @@
 #      - make sure it's not font-lock problem. M-x fundamental-mode and or M-x font-lock-mode to turn it off.
 #      - linum-mode makes emacs super slow. Turn it off.
 #      - lots rare unicode characters in buffer makes emacs slow.
-** directory-local
-   https://blog.allardhendriksen.nl/posts/tracking-project-virtual-environments-with-pyvenv-tracking-mode/
-   https://endlessparentheses.com/a-quick-guide-to-directory-local-variables.html
+** Local variable
+*** directory-local
+    https://blog.allardhendriksen.nl/posts/tracking-project-virtual-environments-with-pyvenv-tracking-mode/
+    https://endlessparentheses.com/a-quick-guide-to-directory-local-variables.html
 
-   - Move to the project root
-   - M-x add-dir-local-variable
-     - python-mode
-     - pyvenv-workon --> some-python-environment
+    - Move to the project root
+    - M-x add-dir-local-variable
+      - python-mode
+      - pyvenv-workon --> some-python-environment
+*** file local variable
+    https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
+    https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions
+
+    Example of local varaible setup for org-mode:
+    - With the first line:
+      #+begin_example
+      # -*- eval: (message "foo"); -*-
+      #+end_example
+
+    - Or starts with "Local Variables"
+      #+begin_example
+      # Local Variables:
+      # eval: (message "foo")
+      # End:
+      #+end_example
 
 * Emacs Lisp
 ** Key binding to function
@@ -224,6 +245,8 @@
    - install
      1) M-x package-install pdf-tools
      2) M-x pdf-tools-install
+   - Fit Height / Width / Page
+     H / W / P
 
 * KeyChanges
 ** Windows: auto-hot key

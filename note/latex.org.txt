@@ -62,3 +62,29 @@
 
 * References
   - arrows: http://www.sascha-frank.com/Arrow/latex-arrows.html
+
+* Grammar
+** \newcommand
+   https://ko.overleaf.com/learn/latex/Commands
+   It's used to define new command with its parameters and optional parameters
+
+** Arguments and optional arguments
+*** Arguments
+    arguments are passed into curly brackets '{}'.
+    e.g.
+    #+begin_src latex
+    \binom{n}{k} = \frac{n!}{k!(n-k)!}
+    #+end_src
+*** Optional arguments
+    optional arguments are passed into square brackets '[]'.
+    the square brackets can be skipped.
+    #+begin_src latex
+    \begin{itemize}
+    \item This is my first point
+    \item Another point I want to make 
+    \item[!] A point to exclaim something!
+    \item[$\blacksquare$] Make the point fair and square.
+    \item[NOTE] This entry has no bullet
+    \item[] A blank label?
+    \end{itemize}
+    #+end_src

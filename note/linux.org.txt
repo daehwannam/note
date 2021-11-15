@@ -84,6 +84,7 @@
      $ export PATH="$PATH:$HOME/command"
 
 * Configuration of ~/.bashrc
+  #+begin_src bash
   # added by Anaconda3 4.4.0 installer
   # export PATH="/home/dhnam/bin/anaconda3/bin:$PATH"
   # source activate default  # after installing "conda create -n default python=3 anaconda"
@@ -110,6 +111,9 @@
 
   export PATH="/home/dhnam/program/anaconda3/envs/default/bin:$PATH"
   source activate default  # after installing "conda create -n default python=3 anaconda"
+  #+end_src
+
+  #+RESULTS:
 
 * Ubuntu
 ** .Trash location
@@ -254,6 +258,15 @@
      $ du -hs .[^.]*
 
 ** find
+*** options
+    -o: or
+    -name: file name
+    -type: whether file is directory(d) or regular files(f) or files of other types
+           (regular files don't include directories)
+    -exec: run command with the found files as arguments which is represented as {}
+           https://unix.stackexchange.com/a/12904
+    -delete: remove found files
+    -print: print the found files (default action)    
 *** remove found files
     https://stackoverflow.com/a/41386937
     $ find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
@@ -262,6 +275,20 @@
 
     e.g. change permissions of files whose names start with .#
     $ find . -type f -name '.#*' -exec chmod +w {} \;
+*** parenthesis
+    parenthesis group target files then you can apply them with the same action
+
+    e.g. take delete action for all found files
+    #+begin_src bash
+    find . -type f \( -name '*.aux' -o -name '*.bbl' -o
+    -name '*.blg' -o -name '*.spl' -o -name '*.log' -o -name '*.pdf' \) -delete
+    #+end_src
+
+** xargs
+   xargs sends the standard input as arguments of another command
+
+   e.g.
+   $ find . -name '*.aux' -o '*.log' | xargs rm -f
 
 ** chmod
    https://en.wikipedia.org/wiki/Chmod
@@ -337,6 +364,8 @@
       $ zip -r compressed.zip path/to/dir1 path/to/dir2 path/to/dir3
     - add a file to the existing .zip file
       $ zip compressed.zip path/to/file
+    - zip silently (-q option)
+      $ zip -rq compressed.zip path/to/dir
 *** unzip
     - list files in .zip file
       $ unzip -l compressed.zip
