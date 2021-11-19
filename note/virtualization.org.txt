@@ -1,0 +1,60 @@
+* VirtualBox
+** Mount command
+   linux command: sudo mount -t vboxsf my_data ~/my_data
+   - vboxsf my_data: shared folder in host os (os installed in real pc)
+   - ~/my_data: folder in guest os (os from virtual image)
+
+** Port forwarding for SSH
+   - Way 1: VBox command: VBoxManage modifyvm myserver --natpf1 "ssh,tcp,,<port for guest ssh server>,,22"
+   - Way 2
+     - Settings -> Network -> Adapter 1 -> Advanced -> Port Forwarding
+     - Insert "ssh / TCP / / 61112 / / 22
+
+** Remote desktop to Guest: Remote display
+   Settings -> Display -> Remote Display -> Enagle Server & change Server Port & Authentication=External 
+*** Connection problem of Windows host
+    https://www.virtualbox.org/ticket/4406
+    check "save credentials"
+
+** Copy image
+   https://srackham.wordpress.com/cloning-and-copying-virtualbox-virtual-machines/
+   File -> Virtual Media Manager 
+
+** Slow booting
+   - https://askubuntu.com/a/1038939
+
+
+* KVM
+  Kernel-based Virtual Machine
+
+** Setup
+*** Check if virtualization is supported
+    https://welcome1208.tistory.com/63
+    https://hiseon.me/server/ubuntu-kvm-install/
+*** install
+    https://hiseon.me/server/ubuntu-kvm-install/
+    - install
+      $ sudo apt-get install qemu-kvm libvirt-daemon-system virtinst bridge-utils cpu-checker
+    - add an user to the group named kvm for convenient use of kvm
+      $ sudo adduser some-user kvm
+    - check installation
+      $ kvm-ok
+    - list virtual machines
+      https://welcome1208.tistory.com/63
+      $ virsh list --all
+*** bridged mode setup (optional)
+    - NAT vs Bridged mode
+      https://developerin.tistory.com/18
+      https://superuser.com/questions/227505/what-is-the-difference-between-nat-bridged-host-only-networking
+    - setup methods
+      - https://linux.systemv.pe.kr/kvm%EC%97%90-bridge-network-%EC%84%A4%EC%A0%95/
+      - https://hiseon.me/server/ubuntu-kvm-install/ and https://hiseon.me/linux/ubuntu/bridge-configuration/
+*** virt-manager setup
+    https://hiseon.me/server/how-to-use-virt-manager/
+    https://welcome1208.tistory.com/65
+
+    It's a GUI tool for managing virtual machines, although kvm commands can do too
+    - install
+      $ sudo apt install virt-manager
+    - run
+      $ virt-manager

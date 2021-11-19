@@ -258,8 +258,45 @@
     2. Press Win+R to open the Run dialog, then enter shell:startup and click OK or Enter. This will open the Startup folder for the current user. To instead open the folder for all users, enter shell:common startup (however, in that case you must be an administrator to proceed).
     3. Right click inside the window, and click "Paste Shortcut". The shortcut to the script should now be in the Startup folder.
 ** Linux
-   - xmodemap
-   - autokey
+*** Ubuntu
+**** Keyboard configuration with XKBOPTIONS
+     https://askubuntu.com/a/418773
+     - Update "/etc/default/keyboard"
+       #+begin_example
+       XKBOPTIONS="ctrl:swapcaps"
+       #+end_example
+     - Reconfigure
+       $ sudo dpkg-reconfigure keyboard-configuration
+**** gnome-tweak-tool (CapsLock as Ctrl - Not swapping)
+     - install gnome-tweak-tool
+       $ sudo apt-get install gnome-tweak-tool
+     - run gnome-tweak-tool
+       $ gnome-tweaks
+       $ # or
+       $ gnome-tweak-tool
+     - Keyboard & Mouse -> Keyboard -> Additional Layout Options -> Caps Lock behavior
+*** xmodemap
+    https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/
+
+    - Configuration file: ~/.Xmodmap
+      #+begin_example
+      ! swap Caps_Lock and Control_R
+      !
+      remove Lock = Caps_Lock
+      remove Control = Control_R
+      keysym Control_R = Caps_Lock
+      keysym Caps_Lock = Control_R
+      add Lock = Caps_Lock
+      add Control = Control_R
+      #+end_example
+
+    - Running Xmodemap
+      $ xmodmap ~/.Xmodmap
+
+    - Startup setting
+      (todo)
+*** others
+    - autokey
 
 * Bug fix
 ** Server socket permission denied

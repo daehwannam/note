@@ -1,4 +1,39 @@
-* Initial setup
+* Initial Ubuntu setup
+** optimize linux laptop battery life with 'tlp'
+   https://pstudio411.tistory.com/entry/Ubuntu-2004-%EB%85%B8%ED%8A%B8%EB%B6%81%EC%97%94-%ED%95%84%EC%88%98-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC
+*** tlp
+    - install
+      #+begin_src sh
+      sudo add-apt-repository ppa:linrunner/tlp
+      sudo apt update
+      sudo apt install tlp tlp-rdw
+
+      sudo tlp start
+      #+end_src
+    - configuration file path
+      /etc/tlp.conf
+    - check status
+      $ tlp-stat -s
+** swap CapsLock with Ctrl
+   [[file:emacs.org.txt::*Keyboard configuration with XKBOPTIONS][Keyboard configuration with XKBOPTIONS]]
+*** Slimbook Battery
+    https://itlearningcenter.tistory.com/entry/%E3%80%90Ubuntu-2004-LTS%E3%80%91%EB%85%B8%ED%8A%B8%EB%B6%81-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC-%EB%8F%84%EA%B5%AC-%EC%84%A4%EC%B9%98
+    "Slimbook Battery" is tlp-based GUI tool
+
+    - install
+      #+begin_src bash
+      sudo add-apt-repaository ppa:slimbook/slimbook
+      sudo apt-get update
+      sudo apt-get install slimbookbattery
+      #+end_src
+    - run "Slimbook Battery" application
+    - enable the option "Autostart application"
+** Korean keyboard setting
+   https://pstudio411.tistory.com/entry/Ubuntu-2004-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%EB%B0%A9%EB%B2%95
+   remove "Korean" from "Installed Languages" and reinstall it
+   if "Hangul" cannot be added to ibus's Input Method
+
+* Initial Development setup
   You can refer configuration files in "~/record/config-scripts/"
   1. Clone the record repository
      #+begin_src bash
@@ -8,23 +43,31 @@
   2. Install conda: [[file:conda.org.txt::*Install conda][Install conda]]
      - make the default environment
   3. Install emacs via conda
+     $ conda install -c conda-forge emacs
   4. Emacs config setup
      - Clone emacs-config
        #+begin_src bash
        cd ~
        git clone https://github.com/daehwannam/emacs-config.git
-       mv emacs-config ~/.emacs.d
+       if [ -d ~/.emacs.d ]; then
+           echo '~/.emacs.d exists already'
+       else
+           mv emacs-config ~/.emacs.d
+       fi
        #+end_src
      - Update "~/.emacs.d/config/options.txt"
        e.g. (machine-id eglot-setup min-elpy-setup miniconda-env python-setup programming basic)
             (machine-id elpy-setup miniconda-env programming basic)
             (machine-id lsp-mode min-elpy-setup miniconda-env programming basic)
+     - (Optional) Install eglot: [[file:eglot.org::*Setup][Setup]]
      - (Optional) Install elpy: [[file:elpy.org.txt::*Setup][Setup]]
   5. Install tmux via conda
      - copy ~/.tmux.conf from "~/record/config-scripts/.tmux.conf"
+       $ cp ~/record/config-scripts/.tmux.conf ~/.tmux.conf
      - (Optional) install logging plugin: [[file:tmux.org.txt::*logging][logging]]
   6. Install screen via conda
      - copy ~/.screenrc from "~/record/config-scripts/.screenrc"
+       $ cp ~/record/config-scripts/.screenrc ~/.screenrc
   7. (Optional) Install the latest nvidia driver: [[*NVIDIA Driver][NVIDIA Driver]]
   8. (Optional) Install cudatoolkit & cudnn: [[*install guides][install guides]]
      1) CUDA driver: [[*manual install][manual install]]
@@ -121,16 +164,13 @@
    /home/$USER/.local/share/Trash
    or
    /home/$USER/.local/share/Trash/files/
-
 ** Upgrade ubuntu version
    type "do-release-upgrade" in shell
    - apt-get update & upgrade may procede
-
 ** apt-get
 *** update vs upgrade
     You should first run update, then upgrade. Neither of them automatically runs the other.
     https://askubuntu.com/a/94104
-
 ** dpkg
 *** package install location
     https://askubuntu.com/a/408785
@@ -138,20 +178,16 @@
 *** package version
     https://unix.stackexchange.com/a/89590
     $ dpkg -s <package> | grep Version
-
 ** Creating a new user
    $ sudo adduser username
-
 ** Add a sudo user to sudo group
    $ sudo usermod -aG sudo username  # for Ubuntu
    $ usermod -aG wheel username  # for Red Hat
-
 ** Login as another user
    https://askubuntu.com/questions/222984/can-i-log-in-with-other-users-account
    - $ su username
    - $ login username
    - $ sudo -u username
-
 ** unicode output setting
    https://emacs.stackexchange.com/questions/10223/how-to-display-unicode-utf-8-as-unicode
 
@@ -163,7 +199,6 @@
    $ export LC_ALL=en_US.UTF-8
    $ export LANG=en_US.UTF-8
    $ export LANGUAGE=en_US.UTF-8
-
 ** Change hostname
    https://www.cyberciti.biz/faq/ubuntu-change-hostname-command/
    1. Type the following command to edit /etc/hostname using nano or vi text editor:
@@ -174,10 +209,24 @@
       Replace any occurrence of the existing computer name with your new one.
    3. Reboot the system to changes take effect:
       $ sudo reboot
-
 ** Ubuntu version
    https://askubuntu.com/questions/686239/how-do-i-check-the-version-of-ubuntu-i-am-running
    $ lsb_release -a
+** Network
+*** MAC address
+    $ cat /sys/class/net/enp1s0/address
+*** Wifi WPA2/PEAP conneciton
+    Check "No CA certificate is required"
+** ModuleNotFoundError: No module named 'distro'
+   https://stackoverflow.com/a/62635184
+   $ pip install distro
+** Change terminal color
+   https://www.linuxfordevices.com/tutorials/ubuntu/change-ubuntu-terminal-color
+   1. make new profile
+      Colors -> Palette -> XTerm (or other schemes)
+   2. apply the profile
+      - use "Set as default" for newly created terminals
+      - or mouse right click -> Profiles -> select your profile
 
 * Utilities
 ** ssh
@@ -377,6 +426,20 @@
    - emacs org-mode table
    - visidata
    - python pandas + org-mode
+** xkill
+   https://koreaubuntu.wordpress.com/2009/08/19/%EC%9A%B0%EB%B6%84%ED%88%AC%EC%9D%98-ctrlaltdel%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/
+   In GUI, you can kill a program by clicking its window after running 'xkill'
+   $ xkill
+** remote connections
+*** Remote Desktop Protocol (RDP)
+    RDP is developed by Microsoft and used for MS Windows
+
+    There are a few linux clients of RDP:
+    - rdesktop: it had been developed for long time,
+                but the project is stopped until a new maintainer appears
+    - freerdp: it's been developed from 2015
+
+    Both clients support seamless mode
 
 * NVIDIA GPU & CUDA
 ** components
