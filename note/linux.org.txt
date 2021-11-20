@@ -179,6 +179,26 @@
       export VISUAL=emacsclient
       #+end_src
 
+** wait until all background jobs are finished
+   https://stackoverflow.com/a/1131511
+
+   use "wait $(jobs -rp)"
+
+   - jobs options
+     https://www.cyberciti.biz/faq/unix-linux-jobs-command-examples-usage-syntax/
+     -r : display only running jobs
+     -p : display only PIDs
+
+   e.g. waiting until 3 jobs are finished
+   #+begin_src bash
+   sleep 7 && echo "done 1st" &
+   sleep 2 && echo "done 2nd" &
+   sleep 3 && echo "done 3rd" &
+
+   wait $(jobs -rp)
+   echo "after wait"
+   #+end_src
+
 * Configuration of ~/.bashrc
   #+begin_src bash
   # added by Anaconda3 4.4.0 installer
