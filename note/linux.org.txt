@@ -32,6 +32,9 @@
    https://pstudio411.tistory.com/entry/Ubuntu-2004-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%EB%B0%A9%EB%B2%95
    remove "Korean" from "Installed Languages" and reinstall it
    if "Hangul" cannot be added to ibus's Input Method
+** Some shortcuts needed to be disabled for emacs
+   Settings -> Keyboard Shortcuts
+   - Alt+Space
 
 * Initial Development setup
   You can refer configuration files in "~/record/config-scripts/"
@@ -125,6 +128,56 @@
      If you want them to have lower priorities:
 
      $ export PATH="$PATH:$HOME/command"
+
+** keep running a process although its terminals is closed
+   https://unix.stackexchange.com/a/4006
+
+   #+begin_src sh
+   emacs &
+   disown
+   #+end_src
+   or
+   #+begin_src sh
+   emacs & disown
+   #+end_src
+
+   if you want terminal as soon as the program starts,
+   #+begin_src sh
+   emacs & disown && exit
+   #+end_src
+
+** editing with emacs
+   This option is useful when a program (e.g. git) rerquires external editor to modify text
+*** EDITOR vs. VISUAL
+    https://unix.stackexchange.com/a/4861    
+*** EDITOR variable
+    https://unix.stackexchange.com/a/502691
+    $ EDITOR=emacs virsh edit win10
+    $ EDITOR=emacsclient virsh edit win10
+    $ EDITOR="emacs -nw" virsh edit win10
+
+    You can also export the default editor in ~/.bashrc
+    $ export EDITOR=emacs
+    $ export EDITOR=emacsclient
+    $ export EDITOR="emacs -nw"
+*** VISUAL variable
+    https://stackoverflow.com/a/116570
+
+    - GUI version
+      #+begin_src sh
+      emacs --daemon  # M-x server-start
+      emacsclient
+      VISUAL=emacsclient virsh edit win10
+      export VISUAL=emacsclient
+      #+end_src
+
+    - Terminal version
+      #+begin_src sh
+      emacs --daemon  # M-x server-start
+      emacsclient -t
+      VISUAL=emacsclient virsh edit win10  # don't add [-t] option
+      export VISUAL=emacsclient
+      #+end_src
 
 * Configuration of ~/.bashrc
   #+begin_src bash
@@ -220,14 +273,50 @@
 ** ModuleNotFoundError: No module named 'distro'
    https://stackoverflow.com/a/62635184
    $ pip install distro
-** Change terminal color
-   https://www.linuxfordevices.com/tutorials/ubuntu/change-ubuntu-terminal-color
-   1. make new profile
-      Colors -> Palette -> XTerm (or other schemes)
-   2. apply the profile
-      - use "Set as default" for newly created terminals
-      - or mouse right click -> Profiles -> select your profile
+** Terminal
+*** Change terminal color
+    https://www.linuxfordevices.com/tutorials/ubuntu/change-ubuntu-terminal-color
+    1. make new profile
+       Colors -> Palette -> XTerm (or other schemes)
+    2. apply the profile
+       - use "Set as default" for newly created terminals
+       - or mouse right click -> Profiles -> select your profile
+*** copy/paste text from/to terminal
+    - Copy: Ctrl+Shift+c (or drag region with mouse)
+    - Paste: Ctrl+Shift+v (or Shift+<insert>)
+** Workspace
+*** Ubuntu 20.04
+    - setup
+      $ sudo apt install gnome-tweaks
+    - run
+      $ gnome-tweaks
+**** bindings
+     - overview
+       <super>
+     - switch
+       - Ctrl-Alt-<arrow>  ; <arrow> is one of <up>, <down>, <left> and <right>
+     - switching with moving the current window
+       - Ctrl-Alt-Shift-<arrow>
+** Add program to application
+   https://askubuntu.com/a/141247
 
+   make a file named ~/.local/share/applications/$your_app.desktop
+   #+begin_src sh
+   [Desktop Entry]
+   Type=Application
+   Terminal=false  # or true when the program output into terminal
+   Name="Your Application Name"
+   Icon=/path/to/icon/icon.svg
+   Exec=/path/to/file/program
+   #+end_src
+*** Run ~/.bashrc initially
+    https://askubuntu.com/a/498718
+
+    run the program with -c option
+    #+begin_src sh
+    Exec=bash -ic "emacs"
+    #+end_src
+   
 * Utilities
 ** ssh
 *** SSH multiple port setup

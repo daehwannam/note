@@ -20,3 +20,7 @@
 
 * Startup folder
   - Windows + R --> shell:startup
+
+* Disable Windows update
+  https://badstorage.tistory.com/86
+  https://itshareit.tistory.com/3

@@ -58,3 +58,54 @@
       $ sudo apt install virt-manager
     - run
       $ virt-manager
+*** resize image's capacity
+    https://maunium.net/blog/resizing-qcow2-images/
+
+    $ qemu-img resize $IMAGE.qcow2 +$SIZE
+    e.g. qemu-img resize win10.qcow2 +10G
+*** enable screen resize ability
+    https://stackoverflow.com/a/41990601
+
+    - download 'spice-guest-tools'('spice-vdagent') for window(linux) guest:
+      https://www.spice-space.org/download.html#guest
+    - install the program
+    - QEMU/KVM menu -> View -> Scale Display -> Auto resize VM with window
+*** switching from guest to host
+    https://superuser.com/a/1452377
+    
+    - the default key: Ctrl+Alt
+    - Change grab key:
+      run virt-manager -> menu -> Edit -> Preferences -> "Console" -> "Grab keys"
+    - e.g. use grab key to switch workspace
+      Ctrl+Alt, Ctrl+Alt+<up> : switch to upperside workspace
+*** path of virtual machine image
+    "Show virtual hardware details" -> "IDE Disk 1" -> "Details" -> "Source path"
+*** create virtual machines with existing image
+    You can "Create a new virtual machine" with "Import existing disk image" option
+*** copy virtual machines into other computers
+    https://www.youtube.com/watch?v=0Ny0__uTGfM
+
+    you can copy your image (.qcow2 file) into another computer,
+    then create the same virtual machine.
+
+    before create the image on the other machine, you may need to change the permission:
+    $ sudo chmod 777 my_image.qcow2
+*** edit guest VM's XML configuration
+    https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-managing_guest_virtual_machines_with_virsh-editing_a_guest_virtual_machines_configuration_file
+
+    - list VMs then edit
+      $ virsh list --all  # list all VMs
+      $ virsh edit <VM's name>
+
+    - editing with emacs:
+      https://unix.stackexchange.com/a/502691
+      $ EDITOR=emacs virsh edit win10
+      $ EDITOR=emacsclient virsh edit win10
+      $ EDITOR="emacs -nw" virsh edit win10
+
+      You can also export the default editor in ~/.bashrc
+      $ export EDITOR=emacs
+      $ export EDITOR=emacsclient
+      $ export EDITOR="emacs -nw"
+*** sharing folder of host linux with guest windows
+    https://unix.stackexchange.com/a/635636
