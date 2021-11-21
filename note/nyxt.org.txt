@@ -2,6 +2,9 @@
 * Install
   https://nyxt.atlas.engineer/download
   Ubuntu package is supported
+** Youtube video fix
+   # https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
+   $ sudo apt-get install gstreamer1.0-libav
 ** config setup
    #+begin_src sh
    git clone https://github.com/daehwannam/nyxt-config.git
@@ -12,6 +15,11 @@
        mv nyxt-config /home/$USER/.config/nyxt
    fi
    #+end_src
+
+* Usage
+** search with secific engine
+   - run 'set-url
+   - insert "<engine-name> key words"
 
 * Configuration
 ** config file
