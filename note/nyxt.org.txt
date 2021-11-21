@@ -4,6 +4,8 @@
   Ubuntu package is supported
 ** Youtube video fix
    # https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
+
+   'gstreamer1.0-libav' need to be installed
    $ sudo apt-get install gstreamer1.0-libav
 ** config setup
    #+begin_src sh
