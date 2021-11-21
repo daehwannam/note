@@ -247,6 +247,21 @@
      2) M-x pdf-tools-install
    - Fit Height / Width / Page
      H / W / P
+** Emacs application framework
+   https://github.com/emacs-eaf/emacs-application-framework
+*** Setup
+    # Install python dependencies
+    # #+begin_src sh
+    # pip install PyQt5 PyQt5-sip PyQtWebEngine pygit2
+    # #+end_src
+
+    install emacs-application-framework
+    #+begin_src sh
+    git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/package/emacs-application-framework/
+    wcd ~/.emacs.d/package/emacs-application-framework/
+    chmod +x ./install-eaf.py
+    ./install-eaf.py --install-all-apps
+    #+end_src
 
 * KeyChanges
 ** Windows: auto-hot key

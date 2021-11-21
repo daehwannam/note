@@ -1,0 +1,87 @@
+
+* Install
+  https://github.com/stumpwm/stumpwm#build--start-stumpwm
+** Install SBCL
+   - Install common lisp: [[file:common-lisp.org.txt::*Install][Common Lisp Install]]
+   - Install dependencies
+     run repl (by "sbcl" command in shell or by "M-x slime")
+     then install dependencies
+     #+begin_src lisp
+     (ql:quickload "clx")
+     (ql:quickload "cl-ppcre")
+     (ql:quickload "alexandria")
+     #+end_src
+** Build StumpWM
+   #+begin_src sh
+   git clone https://github.com/stumpwm/stumpwm.git
+   cd stumpwm
+
+   if ! command -v autoconf &> /dev/null
+   then
+       # install autoconf first, if it's not installed
+       conda install -c conda-forge autoconf
+   fi
+   ./autogen.sh
+
+   if ! command -v makeinfo &> /dev/null
+   then
+       sudo apt install texinfo
+       # conda install -c conda-forge texinfo
+   fi
+   ./configure
+
+   if ! command -v make &> /dev/null
+   then
+       sudo apt install make
+       # conda install -c anaconda make
+   fi
+   make
+   sudo make install
+
+   # echo $(which stumpwm) >> ~/.xinitrc
+   # startx
+   #+end_src
+** make ~/.xinitrc
+   https://www.youtube.com/watch?v=ol_FuovYoBs
+   https://wiki.manjaro.org/index.php/Proper_~/.xinitrc_Filehttps://wiki.manjaro.org/index.php/Proper_~/.xinitrc_File
+
+   #+begin_src bash
+   #!/bin/sh
+   #
+   # ~/.xinitrc
+   #
+   # Executed by startx (run your window manager from here)
+
+   if [ -d /etc/X11/xinit/xinitrc.d ]; then
+     for f in /etc/X11/xinit/xinitrc.d/*; do
+       [ -x "$f" ] && . "$f"
+     done
+     unset f
+   fi
+
+   exec /usr/local/bin/stumpwm  # path by "which stumpwm"
+   #+end_src
+
+   then, make the file executable
+   $ chmod +x ~/.xinitrc
+** (optional) check default display manager in Ubuntu
+   $ cat /etc/X11/default-display-manager
+   # /usr/sbin/gdm3 is the output in Ubuntu 20.04
+** Add desktop entry of StumpWM for login
+   - You can check the current login desktop file
+     $ ls /usr/share/xsessions
+
+   - Make /usr/share/xsessions/stumpwm.desktop
+     #+begin_src sh
+     [Desktop Entry]
+     Name=StumpWM
+     Comment=This session logs you into StumpWM
+     Exec=/home/dhnam/.xinitrc
+     TryExec=stumpwm
+     Type=Application
+     DesktopNames=StumpWM
+     #+end_src
+** Login with StumpWM
+   - logout from Ubuntu,
+   - In the login screen, click the circular button on the lower left corner
+   - select StumpWM then login

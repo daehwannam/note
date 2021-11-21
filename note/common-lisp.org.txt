@@ -2,7 +2,9 @@
 * Install
   https://askubuntu.com/questions/670304/what-is-the-install-routine-for-common-lisp-slime-sbcl-quicklisp-on-ubuntu
 ** install sbcl
-   sudo apt-get install sbcl
+   $ sudo apt-get install sbcl
+   or
+   $ conda install -c conda-forge sbcl
 ** install quicklisp
    https://www.quicklisp.org/
    copy and past the code in the gray box of the website (https://www.quicklisp.org/)
@@ -26,7 +28,7 @@
    - To use, add this to your ~/.emacs:
      (load (expand-file-name "~/quicklisp/slime-helper.el"))
      ;; Replace "sbcl" with the path to your implementation
-     (setq inferior-lisp-program "sbcl")
+     (setq inferior-lisp-program "path/to/sbcl")
    - you can get the path by "which sbcl"
 ** M-x slime
 ** run a script file in command line

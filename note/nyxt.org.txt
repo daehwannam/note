@@ -1,0 +1,18 @@
+
+* Install
+  https://nyxt.atlas.engineer/download
+  Ubuntu package is supported
+** config setup
+   #+begin_src sh
+   git clone https://github.com/daehwannam/nyxt-config.git
+   
+   if [ -d /home/$USER/.config/nyxt ]; then
+       echo "/home/$USER/.config/nyxt exists already"
+   else
+       mv nyxt-config /home/$USER/.config/nyxt
+   fi
+   #+end_src
+
+* Configuration
+** config file
+   /home/$USER/.config/nyxt/init.lisp
