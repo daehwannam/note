@@ -353,6 +353,9 @@
     #+begin_src sh
     Exec=bash -ic "emacs"
     #+end_src
+** Change default applications
+   https://help.ubuntu.com/stable/ubuntu-help/net-default-browser.html.en
+   Settings -> Default Applications
    
 * Utilities
 ** ssh
