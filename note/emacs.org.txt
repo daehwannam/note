@@ -49,7 +49,25 @@
    https://emacs.stackexchange.com/a/2714/26068
    - window-configuration-to-register (C-x r w <char>): save window configuration
    - jump-to-register (C-x r j <char>): apply the configuration
-
+** python commands
+*** run-python
+    - 'run-python is mapped to C-c C-p in *.py file
+    - when the command is initially executed,
+      python process's working directory is the path of *.py file
+    - when the python processe is terminated, but the buffer is not killed,
+      the buffer keeps its working directory,
+      and newly-created process inherits the working directory
+*** python-shell-switch-to-shell
+    - 'python-shell-switch-to-shell is mapepd to C-c C-z in *.py file
+    - it switches to the buffer of python shell executed by 'run-python
+*** python-shell-send-buffer
+    - 'python-shell-send-buffer is mapepd to C-c C-c in *.py file
+    - the command sends the entire code of the current buffer
+*** python-shell-send-region
+    - 'python-shell-send-buffer is mapepd to C-c C-r in *.py file
+    - the command sends the code of the current region
+*** miscellaneous
+    there are other commands whose names start with "python-shell-"
 * My command
 ** xah-open-in-external-app
    it opens a file with an external program within dired-mode.
