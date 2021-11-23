@@ -33,8 +33,15 @@
 
    [Details]
    - State: running/pendding/cg
-     - pendding: Job is waiting to run
+     https://ubccr.freshdesk.com/support/solutions/articles/5000686861-how-do-i-check-the-status-of-my-job-s-
+     - running: job is running
+     - pendding: job is waiting to run
      - cg: The job is done. It disappears soon
+
+   - Nodelist (reason)
+     https://slurm.schedmd.com/quickstart.html
+     - recources: waiting for resources (it runs as soon as resources are freed)
+     - priority: the job is behind a higher priority job
 
    [Other commands]
    $ scontrol show job [job_id]
