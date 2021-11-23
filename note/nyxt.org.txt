@@ -37,6 +37,22 @@
 ** search with secific engine
    - run 'set-url
    - insert "<engine-name> key words"
+** bookmark
+*** add url to bookmark
+    commands like 'bookmark-current-url add url to bookmark
+    where multiple tags can be added
+    1. type tags with seperators (space, comma, ...)
+    2. type C-SPC (in emacs-mode) to add the tag which the current cursor indicate
+*** default bookmark location
+    ~/.local/share/nyxt/bookmarks.lisp
+*** change bookmark location
+    https://github.com/atlas-engineer/nyxt/blob/master/source/manual.lisp
+
+    #+begin_src lisp
+    (define-configuration buffer
+        ((bookmarks-path (make-instance 'bookmarks-data-path
+                                        :basename "~/personal/bookmarks/bookmarks.lisp"))))
+    #+end_src
 
 * Configuration
 ** config file
