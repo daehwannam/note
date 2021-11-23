@@ -53,10 +53,13 @@
 *** run-python
     - 'run-python is mapped to C-c C-p in *.py file
     - when the command is initially executed,
-      python process's working directory is the path of *.py file
+      python process's working directory is the path of the current buffer
     - when the python processe is terminated, but the buffer is not killed,
       the buffer keeps its working directory,
       and newly-created process inherits the working directory
+    - run-python can make multiple python shells with a prefix argument (e.g. C-u M-x run-python)
+      where you should say "yes" about the prompt "Make dedicated process?"
+      however, dedicated process cannot interactively work with buffers of python files
 *** python-shell-switch-to-shell
     - 'python-shell-switch-to-shell is mapepd to C-c C-z in *.py file
     - it switches to the buffer of python shell executed by 'run-python
