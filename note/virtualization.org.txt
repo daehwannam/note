@@ -34,6 +34,7 @@
 *** install
     https://hiseon.me/server/ubuntu-kvm-install/
     - install
+      $ sudo apt-get update
       $ sudo apt-get install qemu-kvm libvirt-daemon-system virtinst bridge-utils cpu-checker
     - add an user to the group named kvm for convenient use of kvm
       $ sudo adduser some-user kvm
@@ -42,6 +43,28 @@
     - list virtual machines
       https://welcome1208.tistory.com/63
       $ virsh list --all
+*** install the latest KVM (optional)
+    https://www.qemu.org/download/#source
+    - prerequisite
+      #+begin_src sh
+      sudo apt-get install -y ninja-build
+      #+end_src
+    - build
+      #+begin_src sh
+      git clone https://gitlab.com/qemu-project/qemu.git
+      cd qemu
+      git submodule init
+      git submodule update --recursive
+      ./configure
+      make  # or 'make install' directly
+      #+end_src
+    - output directory: ./build
+    - check version
+      $ ./build/qemu-x86_64 --version
+    - install
+      $ make install
+    - version check
+      $ kvm --version
 *** bridged mode setup (optional)
     - NAT vs Bridged mode
       https://developerin.tistory.com/18
@@ -107,5 +130,38 @@
       $ export EDITOR=emacs
       $ export EDITOR=emacsclient
       $ export EDITOR="emacs -nw"
-*** sharing folder of host linux with guest windows
+*** sharing via samba
+    https://unix.stackexchange.com/a/183609
+    https://unix.stackexchange.com/a/86083
+
+*** sharing folder of host linux with guest windows (optional)
     https://unix.stackexchange.com/a/635636
+**** unknown fs driver type 'virtiofs'
+     # https://lists.gnu.org/archive/html/qemu-devel/2020-08/msg05866.html
+     # virtiofsd needs a higher version
+     # $ virtiofsd --version
+
+     https://virtio-fs.gitlab.io/
+     qemu-kvm needs a higher version
+     $ kvm --version
+**** update VM's XML config
+     https://libvirt.org/kbase/virtiofs.html
+     #+begin_src xml
+     <domain>
+       ...
+       <memoryBacking>
+         <source type='memfd'/>
+         <access mode='shared'/>
+       </memoryBacking>
+       ...
+       <devices>
+         ...
+         <filesystem type='mount' accessmode='passthrough'>
+           <driver type='virtiofs'/>
+           <source dir='/path'/>
+           <target dir='mount_tag'/>
+         </filesystem>
+         ...
+       </devices>
+     </domain>
+     #+end_src

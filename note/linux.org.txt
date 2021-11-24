@@ -215,7 +215,6 @@
    fi
    #+end_src
 
-
 * Configuration of ~/.bashrc
   #+begin_src bash
   # added by Anaconda3 4.4.0 installer
@@ -258,6 +257,12 @@
    type "do-release-upgrade" in shell
    - apt-get update & upgrade may procede
 ** apt-get
+*** install latested package
+    https://askubuntu.com/a/303547
+
+    'apt-get update' updates the package lists from repositories
+    $ apt-get update
+    $ apt-get install <package-name>
 *** update vs upgrade
     You should first run update, then upgrade. Neither of them automatically runs the other.
     https://askubuntu.com/a/94104
@@ -569,6 +574,33 @@
     - freerdp: it's been developed from 2015
 
     Both clients support seamless mode
+*** freerdp
+**** install
+     https://www.youtube.com/watch?v=Tpw75B5fOIY
+     $ sudo apt install freerdp2-x11 freerdp2-shadow-x11
+**** connect
+     https://www.youtube.com/watch?v=Tpw75B5fOIY
+     #+begin_src sh
+     xfreerdp /f /u:USERNAME /p:PASSWORD /v:HOST[:PORT]
+     # or
+     xfreerdp /f /u:USERNAME /v:HOST[:PORT]  # without passwd in the command
+     #+end_src
+
+     /f is option means to open the remote desktop in full screen mode
+     /u:USERNAME is a name of the account on the computer to which we are connecting
+     /p:PASSWORD is a password of the specified account
+     /v:HOST[:PORT] is an IP address or name of the computer to which the remote table is connected. PORT optional (recommended: “Windows Computer name: how to change and use”)
+**** usage
+     - toogle between client and server
+       Ctrl+Alt+Enter
+** make
+*** make process
+    https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install
+    #+begin_src sh
+    ./configure
+    make
+    make install
+    #+end_src
 
 * NVIDIA GPU & CUDA
 ** components

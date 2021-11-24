@@ -53,6 +53,10 @@
         ((bookmarks-path (make-instance 'bookmarks-data-path
                                         :basename "~/personal/bookmarks/bookmarks.lisp"))))
     #+end_src
+** visual mode
+   mouseless text selection
+   - run command 'visual-mode
+   - back to the normal mode by ESC or C-g (only for emacs-mode)
 
 * Configuration
 ** config file
