@@ -134,6 +134,48 @@
     https://unix.stackexchange.com/a/183609
     https://unix.stackexchange.com/a/86083
 
+**** samba setup
+     https://psychoria.tistory.com/678
+     - install
+       #+begin_src sh
+       # install samba
+       sudo apt install samba
+
+       # add user account to samba
+       sudo smbpasswd -a <user>
+       #+end_src
+
+     - update /etc/samba/smb.conf
+       add the following information to the bottom of the config file:
+       #+begin_example
+       [shared network folder name]
+       comment = multimedia directory
+       path = /data/Multimedia
+       valid users = id1,id2
+       writeable = yes
+       read only = no
+       create mode = 0777
+       directory mode = 0777
+       #+end_example
+
+     - restart to apply config
+       $ sudo service smbd restart
+**** connect to samba from windows guest
+     https://www.techrepublic.com/article/how-to-connect-to-linux-samba-shares-from-windows-10/
+     - right mouse click on PC
+     - select "Add a network location"
+     - check "Reconnect" and "Use different credentials"
+       (not to forget credentials - https://superuser.com/a/262598 )
+     - type "\\<IP address>\<shared network folder name>" for as network folder
+       where 10.0.2.2 means host machine's IP
+       e.g. "\\192.168.122.1\shared data"
+       - you can find ip address of host for virtual machines :
+         $ ip addr  # type this command in the host terminal
+         you can get IP from a network driver such as 'virbr0'
+     - input user's id and samba's password
+       and check "Remember credentials"
+       (not to forget credentials - https://superuser.com/a/262598 )
+
 *** sharing folder of host linux with guest windows (optional)
     https://unix.stackexchange.com/a/635636
 **** unknown fs driver type 'virtiofs'
