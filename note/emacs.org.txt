@@ -295,6 +295,15 @@
     3. Right click inside the window, and click "Paste Shortcut". The shortcut to the script should now be in the Startup folder.
 ** Linux
 *** Ubuntu
+**** gnome-tweak-tool (CapsLock as Ctrl - Not swapping)
+     - install gnome-tweak-tool
+       $ sudo apt-get install gnome-tweak-tool
+     - run gnome-tweak-tool
+       $ gnome-tweaks
+       $ # or
+       $ gnome-tweak-tool
+     - Keyboard & Mouse -> Keyboard -> Additional Layout Options
+       -> Ctrl position (or Caps Lock behavior)
 **** remapping key for virtual console (tty terminal)
      https://askubuntu.com/a/44125
 ***** simple version
@@ -328,14 +337,6 @@
        #+end_example
      - Reconfigure
        $ sudo dpkg-reconfigure keyboard-configuration
-**** gnome-tweak-tool (CapsLock as Ctrl - Not swapping)
-     - install gnome-tweak-tool
-       $ sudo apt-get install gnome-tweak-tool
-     - run gnome-tweak-tool
-       $ gnome-tweaks
-       $ # or
-       $ gnome-tweak-tool
-     - Keyboard & Mouse -> Keyboard -> Additional Layout Options -> Caps Lock behavior
 *** xmodemap
     https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/
 
