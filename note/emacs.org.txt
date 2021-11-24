@@ -330,6 +330,7 @@
         $ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
 **** Keyboard configuration with XKBOPTIONS
      https://askubuntu.com/a/418773
+     https://superuser.com/a/623453
      - Update "/etc/default/keyboard"
        (initial option -> XKBOPTIONS="")
        #+begin_example
@@ -338,18 +339,22 @@
      - Reconfigure
        $ sudo dpkg-reconfigure keyboard-configuration
 *** xmodemap
+    https://unix.stackexchange.com/questions/107566/how-to-swap-ctrl-and-capslock-using-xmodmap
     https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/
 
     - Configuration file: ~/.Xmodmap
       #+begin_example
-      ! swap Caps_Lock and Control_R
+      !
+      ! Swap Caps_Lock and Control_L
       !
       remove Lock = Caps_Lock
-      remove Control = Control_R
-      keysym Control_R = Caps_Lock
-      keysym Caps_Lock = Control_R
+      remove Control = Control_L
+      remove Lock = Control_L
+      remove Control = Caps_Lock
+      keysym Control_L = Caps_Lock
+      keysym Caps_Lock = Control_L
       add Lock = Caps_Lock
-      add Control = Control_R
+      add Control = Control_L
       #+end_example
 
     - Running Xmodemap
