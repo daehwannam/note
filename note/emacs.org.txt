@@ -270,14 +270,6 @@
      H / W / P
 ** Emacs application framework
    https://github.com/emacs-eaf/emacs-application-framework
-** EWW
-*** eww
-    https://gnu.huihoo.org/emacs/manual/eww/Basics.html
-    open url or search keywords
-    change 'eww-search-prefix with another value to chagne the default search engine
-    - open in another buffer
-      use prefix argument to open web page in another buffer
-      e.g. C-u M-x eww
 *** Setup
     # Install python dependencies
     # #+begin_src sh
@@ -290,7 +282,27 @@
     wcd ~/.emacs.d/package/emacs-application-framework/
     chmod +x ./install-eaf.py
     ./install-eaf.py --install-all-apps
-    #+end_src
+    #+end_src** EWW
+** eww
+   https://gnu.huihoo.org/emacs/manual/eww/Basics.html
+   open url or search keywords
+   change 'eww-search-prefix with another value to chagne the default search engine
+   - open in another buffer
+     use prefix argument to open web page in another buffer
+     e.g. C-u M-x eww
+** exwm
+*** setup
+    - copy exwm-*/xinitrc to ~/.xinitrc
+      https://github.com/ch11ng/exwm/wiki#bootstrap
+      e.g.
+      $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
+    - create a file /usr/share/xsessions/emacs.desktop
+      #+begin_example
+      [Desktop Entry]
+      Name=Emacs
+      Exec=emacs
+      Type=Application
+      #+end_example
 
 * KeyChanges
 ** Windows: auto-hot key
