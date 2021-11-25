@@ -75,6 +75,10 @@ nn
 
    M-x magit-find-file
 
+* initialize upstream repository
+  https://emacs.stackexchange.com/a/6023
+  C-x g b u
+
 * git clone shallowly
   $ git clone --depth=1 user@github.com:joe/hello-world.git
 
