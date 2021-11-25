@@ -82,10 +82,24 @@
     - run
       $ virt-manager
 *** resize image's capacity
+    https://superuser.com/a/375847
+    $ qemu-img resize $IMAGE.qcow2 +$TOTAL_SIZE
+    where $IMAGE.qcow2 is the VM's image path ( [[*path of virtual machine image][path of virtual machine image]] )
+    
     https://maunium.net/blog/resizing-qcow2-images/
-
-    $ qemu-img resize $IMAGE.qcow2 +$SIZE
+    $ qemu-img resize $IMAGE.qcow2 +$ADDITIONAL_SIZE
     e.g. qemu-img resize win10.qcow2 +10G
+
+    https://superuser.com/a/1174602
+    Then you should update guest os's disk
+    e.g. in Windows 10, use "Disk Management" to extend C driver's volume
+**** reducing image's size
+     http://woshub.com/kvm-expand-shrink-vm-disk/
+
+     [Caution]
+     Shrinking VM's can remove data in your image
+     $ sudo qemu-img resize --shrink $IMAGE.qcow2 40G
+     $ sudo qemu-img resize --shrink $IMAGE.qcow2 -20G
 *** enable screen resize ability
     https://stackoverflow.com/a/41990601
 
@@ -207,3 +221,15 @@
        </devices>
      </domain>
      #+end_src
+
+** Usage
+*** using USB device connected to host
+    https://www.youtube.com/watch?v=SSQxrgE_rjg
+    https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest
+
+    - shutdown VM
+    - click "Show virtual hardware details"
+    - click "Add Hardware" at the left bottom
+    - click "USB Host Device" and select your device
+    - run VM
+    - clic "Virtual Machine" -> "Redirect USB device" -> select device

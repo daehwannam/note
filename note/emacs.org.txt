@@ -270,6 +270,14 @@
      H / W / P
 ** Emacs application framework
    https://github.com/emacs-eaf/emacs-application-framework
+** EWW
+*** eww
+    https://gnu.huihoo.org/emacs/manual/eww/Basics.html
+    open url or search keywords
+    change 'eww-search-prefix with another value to chagne the default search engine
+    - open in another buffer
+      use prefix argument to open web page in another buffer
+      e.g. C-u M-x eww
 *** Setup
     # Install python dependencies
     # #+begin_src sh
