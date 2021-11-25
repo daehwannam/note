@@ -18,6 +18,11 @@
   For the consistent path without version, use the following path:
        C:\Application\emacs-27.2-x86_64\bin\runemacs.exe
 
+* Environment variables for emacs
+  - add "C:\Application\emacs-27.2-x86_64\bin" to PATH environment variable
+  - add "C:\home" to HOME environment variable
+    ( https://www.reddit.com/r/emacs/comments/a6ka23/change_home_folder_location_windows/ )
+
 * Startup folder
   - Windows + R --> shell:startup
 

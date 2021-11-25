@@ -361,6 +361,11 @@
 ** Change default applications
    https://help.ubuntu.com/stable/ubuntu-help/net-default-browser.html.en
    Settings -> Default Applications
+** Show installed packages
+   https://askubuntu.com/a/17829
+
+   The command print all installed package whose name contain "libwebkit2gtk"
+   $ apt list --installed | grep libwebkit2gtk
    
 * Utilities
 ** ssh
