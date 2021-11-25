@@ -187,3 +187,8 @@ map <a-F> moveTabRight
 
 # Similar to Emacs help commands.
 map <c-h> showHelp
+
+# close other tabs
+map <c-q>k* closeOtherTabs
+map <c-q>k( closeTabsOnLeft
+map <c-q>k) closeTabsOnRight
