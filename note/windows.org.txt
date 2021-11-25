@@ -20,7 +20,7 @@
 
 * Environment variables for emacs
   - add "C:\Application\emacs-27.2-x86_64\bin" to PATH environment variable
-  - add "C:\home" to HOME environment variable
+  - add "C:\home" to HOME environment variable (and it should be the only value)
     ( https://www.reddit.com/r/emacs/comments/a6ka23/change_home_folder_location_windows/ )
 
 * Startup folder
