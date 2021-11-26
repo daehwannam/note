@@ -81,6 +81,13 @@
       $ sudo apt install virt-manager
     - run
       $ virt-manager
+*** install guest Windows
+    https://www.youtube.com/watch?v=RLy1zozJ9W0
+    https://dennisnotes.com/note/20180614-ubuntu-18.04-qemu-setup/
+    - qcow2 vs. rwa(.img)
+      - qcow2 support features like live snapshots
+      - raw format is faster
+    
 *** resize image's capacity
     https://superuser.com/a/375847
     $ qemu-img resize $IMAGE.qcow2 +$TOTAL_SIZE
@@ -221,6 +228,73 @@
        </devices>
      </domain>
      #+end_src
+
+** Optimization
+   http://m.todaysppc.com/renewal/view.php?id=free&no=423466
+   https://www.youtube.com/watch?v=RLy1zozJ9W0
+
+   - "Show virtual hardware details"
+   - CPUs
+     - check "Copy host CPU configuration"
+     - check Manually et CPU topology
+       - Sockets = 1
+       - Cores = N
+       - Threads = N
+   - Memory: increase memory if necessary
+   - IDE Disk 1 (VirtIO DISK 1)
+     - Cache mode = none (for the best stability)
+     # - Cache mode = writeback (this option could occupy much memory)
+     - (VirtIO DISK is preferable but chaging type from IDE to VirtIO could raise error in guest OS)
+   - NIC
+     - Device model = virtio
+*** Change IDE to VirtIO disk for Windows
+    https://unix.stackexchange.com/a/223890
+    - Add a CD-ROM with [[https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso][virtio-win.iso]]
+      (if CD-ROM is already exist, just set the path to .iso file)
+    - Add a new dummy(empty) VirtIO disk
+      - "Add Hardware" -> "Storage" -> 'Bus type" -> "VirtIO"
+    - boot Windows guest and open CD drive folder then run "virtio-win-gt-x64.msi"
+    - Change "Disk bus" from "IDE" to "VirtIO"
+    - Remove dummpy disk
+      - before removing by virt-manager, check its path and remove the file by 'sudo rm path/to/img'
+
+** Convert qcow2 to raw format
+   https://easyengine.io/tutorials/kvm/convert-qcow2-to-raw-format/
+
+   - backup VM config
+     $ virsh dumpxml <vmname> > ~/path/to/vmname.xml
+   - image conversion
+     - run the following command
+       $virsh dumpxml <vmname> | grep file
+     - then the output is like the following
+       #+begin_example
+       <disk type='file' device='disk'>
+         <source file='path/to/vmname.qcow2'/>
+       #+end_example
+     - convert
+       $ sudo qemu-img convert path/to/vmname.qcow2 path/to/vmname.raw
+     - edit VM config
+       $ EDITOR=emacsclient virsh edit <vmname>
+       - find lines like below
+         #+begin_example
+         <disk type='file' device='disk'>
+           <driver name='qemu' type='qcow2'/>
+           <source file='path/to/vmname.qcow2'/>
+           <target dev='vda' bus='virtio'/>
+           <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+         </disk>
+         #+end_example
+       - replace 'qcow2' with 'raw'
+         #+begin_example
+         <disk type='file' device='disk'>
+           <driver name='qemu' type='raw'/>
+           <source file='path/to/vmname.raw'/>
+           <target dev='vda' bus='virtio'/>
+           <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+         </disk>
+         #+end_example
+     - start vm with virsh
+       $ virsh start <vmname>
 
 ** Usage
 *** using USB device connected to host

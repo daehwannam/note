@@ -494,6 +494,10 @@
    show cpu information
    $ lscpu
 
+** free
+   show memory usage
+   $ free -h
+
 ** date
    - changing current time manually (sudo is required)
      https://www.sharedit.co.kr/posts/2504
