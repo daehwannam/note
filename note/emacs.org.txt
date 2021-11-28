@@ -306,6 +306,11 @@
       Exec=emacs --exwm  # --exwm option is added by my customization
       Type=Application
       #+end_example
+*** using application's key binding
+    https://emacs.stackexchange.com/a/52248/26068
+
+    run exwm-input-send-next-key (C-c C-q) then type application's key binding
+    e.g. C-c C-q C-c --> copy text in web browser
 
 * KeyChanges
 ** Windows: auto-hot key
