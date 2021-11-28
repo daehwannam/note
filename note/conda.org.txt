@@ -22,6 +22,11 @@
     export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
     conda activate default
     #+end_src
+  - (optional) Update ~/.profile
+    #+begin_src bash
+    CONDA=miniconda3  # anaconda3 or miniconda3 or ...
+    export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
+    #+end_src
 
 ** Install packages
    - install pip

@@ -215,6 +215,10 @@
    fi
    #+end_src
 
+** Bash vs. profile
+   https://serverfault.com/a/500071
+   - .profile should also be loaded when starting a graphical desktop session.
+
 * Configuration of ~/.bashrc
   #+begin_src bash
   # added by Anaconda3 4.4.0 installer
@@ -366,6 +370,16 @@
 
    The command print all installed package whose name contain "libwebkit2gtk"
    $ apt list --installed | grep libwebkit2gtk
+** Enable touch pad
+   https://askubuntu.com/a/624929
+   https://askubuntu.com/a/1308399/820403
+
+   - show names and IDs of devices
+     $ xinput list
+   - enable touch pad
+     $ xinput set-prop <ID of touchpat> "Device Enabled" 1
+   - eanble touch pad's tap-to-click
+     $ xinput set-prop "Name of touchpad" "libinput Tapping Enabled" 1 
    
 * Utilities
 ** ssh

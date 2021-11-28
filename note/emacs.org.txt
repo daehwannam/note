@@ -10,6 +10,9 @@
    $ emacsclient -t -s workspaceN
 *** list daemons
     $ ps -fu dhnam | grep "emacs --daemon"
+** user-defined command-line arguments
+   https://stackoverflow.com/a/2112346/6710003
+   https://stackoverflow.com/questions/10909738/emacs-custom-command-line-arguments
 
 * Command
 ** Esc-=: count lines
@@ -299,8 +302,8 @@
     - create a file /usr/share/xsessions/emacs.desktop
       #+begin_example
       [Desktop Entry]
-      Name=Emacs
-      Exec=emacs
+      Name=EXWM
+      Exec=emacs --exwm  # --exwm option is added by my customization
       Type=Application
       #+end_example
 
