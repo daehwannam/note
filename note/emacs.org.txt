@@ -74,6 +74,29 @@
     - the command sends the code of the current region
 *** miscellaneous
     there are other commands whose names start with "python-shell-"
+** See running processes
+*** emacs internal processes
+    https://emacs.stackexchange.com/a/28066
+    M-x list-processes
+*** list system processes
+    https://emacs.stackexchange.com/a/48285
+    M-x proced
+** Async-shell-command shell command
+   M-x async-shell-command
+   or
+   M-&
+** Exception handling
+   https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/
+** Debug with Edebug
+   https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
+*** eval-defun (C-M-x)
+    - move cursor after a function call (or a s-expression)
+    - type C-M-x, then debugger starts inside the function
+    - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
+*** edebug-all-defs
+    - M-x edebug-all-defs toggles the value of the variable edebug-all-defs
+    - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
+
 * My command
 ** xah-open-in-external-app
    it opens a file with an external program within dired-mode.
@@ -121,34 +144,10 @@
       # eval: (message "foo")
       # End:
       #+end_example
-
-* Emacs Lisp
 ** Key binding to function
    https://stackoverflow.com/a/15647443
 ** Code Characters for interactive
    https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes
-** Exception handling
-   https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/
-** Debug with Edebug
-   https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
-*** eval-defun (C-M-x)
-    - move cursor after a function call (or a s-expression)
-    - type C-M-x, then debugger starts inside the function
-    - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
-*** edebug-all-defs
-    - M-x edebug-all-defs toggles the value of the variable edebug-all-defs
-    - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
-** See running processes
-*** emacs internal processes
-    https://emacs.stackexchange.com/a/28066
-    M-x list-processes
-*** list system processes
-    https://emacs.stackexchange.com/a/48285
-    M-x proced
-** Async-shell-command shell command
-   M-x async-shell-command
-   or
-   M-&
 
 * Install Emacs
 ** Emacs 25
@@ -302,8 +301,8 @@
     - create a file /usr/share/xsessions/emacs.desktop
       #+begin_example
       [Desktop Entry]
-      Name=EXWM
-      Exec=emacs --exwm  # --exwm option is added by my customization
+      Name=Emacs
+      Exec=emacs --exwm  # exwm is defined in ~/.emacs.d
       Type=Application
       #+end_example
 *** using application's key binding
@@ -311,6 +310,9 @@
 
     run exwm-input-send-next-key (C-c C-q) then type application's key binding
     e.g. C-c C-q C-c --> copy text in web browser
+*** emacs inside exwm
+    - exwm-input-release-keyboard (C-c C-k): exwm releases keys
+    - exwm-reset (s-r): exwm catches keys
 
 * KeyChanges
 ** Windows: auto-hot key
