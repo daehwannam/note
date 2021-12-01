@@ -77,10 +77,10 @@ map <c-g><c-i> enterInsertMode
 map <c-g><c-f> focusInput
 
 # Similar to Emacs `find-file`.
-map ql LinkHints.activateMode  # map <c-x><c-f> LinkHints.activateMode
-map qL LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
+map qj LinkHints.activateMode  # map <c-x><c-f> LinkHints.activateMode
+map ql LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
 map qo LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
-map qA LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
+map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
