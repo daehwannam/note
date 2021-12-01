@@ -215,9 +215,13 @@
    fi
    #+end_src
 
-** Bash vs. profile
+** .bashrc vs. profile
    https://serverfault.com/a/500071
    - .profile should also be loaded when starting a graphical desktop session.
+   - .profile is executed in login shell
+     https://unix.stackexchange.com/a/29811
+     $ su -l <id>
+     "su <id>" doesn't execute .profile
 
 * Configuration of ~/.bashrc
   #+begin_src bash
@@ -379,7 +383,7 @@
    - enable touch pad
      $ xinput set-prop <ID of touchpat> "Device Enabled" 1
    - eanble touch pad's tap-to-click
-     $ xinput set-prop "Name of touchpad" "libinput Tapping Enabled" 1 
+     $ xinput set-prop "Name of touchpad" "libinput Tapping Enabled" 1
    
 * Utilities
 ** ssh
@@ -627,6 +631,21 @@
     make
     make install
     #+end_src
+** nohup
+   https://joonyon.tistory.com/98
+   https://unix.stackexchange.com/a/45915
+   https://stackoverflow.com/a/10408906
+
+   nohup = no hang up
+
+   - nohup in background
+     $ nohup command &
+   - redirect stdout(1>) and stderr(2>)
+     $ nohup command 1> result.out 2> result.err &
+   - redirect stdout(1>) and stderr(2>) into the same file
+     $ nohup command > result.log 2>&1 &
+   - without nohup.out
+     $ nohup command > /dev/null 2>&1   # doesn't create nohup.out
 
 * NVIDIA GPU & CUDA
 ** components

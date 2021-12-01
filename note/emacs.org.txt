@@ -313,6 +313,13 @@
 *** emacs inside exwm
     - exwm-input-release-keyboard (C-c C-k): exwm releases keys
     - exwm-reset (s-r): exwm catches keys
+*** ibus setup
+    - add the following code into ~/.profile
+      #+begin_src sh
+      # enable ibus
+      nohup ibus-daemon > /dev/null 2>&1 &
+      #+end_src
+    - if switch language doesn't work, run "M-x toggle-input-method"
 
 * KeyChanges
 ** Windows: auto-hot key
