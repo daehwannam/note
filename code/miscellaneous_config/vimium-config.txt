@@ -25,8 +25,8 @@ unmapAll # Use Emacs-style bindings only.
 #########################################
 
 ## Similar to Emacs `(next|previous)-line`.
-map <a-n> scrollDown  # map <c-n> scrollDown
-map <a-p> scrollUp  # map <c-p> scrollUp
+map <c-v> scrollDown  # map <c-n> scrollDown
+map <a-v> scrollUp  # map <c-p> scrollUp
 
 # Similar to Emacs `(backward|forward)-char`.
 # map <c-b> scrollLeft
@@ -138,13 +138,13 @@ map p performBackwardsFind  # map <c-r> performBackwardsFind  # similar to Shift
 # Not implemented in Emacs.
 # Similar to Emacs `(backward|forward)-char`.
 # However, this uses capitals w/ the shift key.
-# map <c-b> goBack  # map <c-B> goBack
-# map <c-f> goForward  # map <c-F> goForward
+map <a-b> goBack  # map <c-B> goBack
+map <a-f> goForward  # map <c-F> goForward
 
 # Not implemented in Emacs.
 # Similar to Emacs `(previous|next)-buffer`.
-map <a-b> previousTab  # map <c-x><left> previousTab  # default: <c-<pageup>>
-map <a-f> nextTab  # map <c-x><right> nextTab  # default: <c-<pagedown>>
+map <a-p> previousTab  # map <c-x><left> previousTab  # default: <c-<pageup>>
+map <a-n> nextTab  # map <c-x><right> nextTab  # default: <c-<pagedown>>
 
 # Not implemented in Emacs.
 # Similar to Emacs `(previous|next)-buffer`.
