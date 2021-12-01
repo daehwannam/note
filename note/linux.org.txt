@@ -649,6 +649,11 @@
      $ nohup command > result.log 2>&1 &
    - without nohup.out
      $ nohup command > /dev/null 2>&1   # doesn't create nohup.out
+** acpi
+   - install
+     $ sudo apt-get install acpi
+   - battery infomation
+     $ acpi
 
 * NVIDIA GPU & CUDA
 ** components
