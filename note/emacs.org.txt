@@ -320,6 +320,8 @@
       nohup ibus-daemon > /dev/null 2>&1 &
       #+end_src
     - if switch language doesn't work, run "M-x toggle-input-method"
+*** usage
+    - exwm-workspace-move-window: it can move an X window to another workspace
 
 * KeyChanges
 ** Windows: auto-hot key

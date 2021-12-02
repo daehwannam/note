@@ -138,8 +138,8 @@ map p performBackwardsFind  # map <c-r> performBackwardsFind  # similar to Shift
 # Not implemented in Emacs.
 # Similar to Emacs `(backward|forward)-char`.
 # However, this uses capitals w/ the shift key.
-map <a-b> goBack  # map <c-B> goBack
-map <a-f> goForward  # map <c-F> goForward
+map <a-[> goBack  # map <a-b> goBack  # map <c-B> goBack
+map <a-]> goForward  # map <a-f> goForward  # map <c-F> goForward
 
 # Not implemented in Emacs.
 # Similar to Emacs `(previous|next)-buffer`.
