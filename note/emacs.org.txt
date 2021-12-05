@@ -293,18 +293,28 @@
      use prefix argument to open web page in another buffer
      e.g. C-u M-x eww
 ** exwm
-*** setup
+*** GUI login option
+    create a file /usr/share/xsessions/emacs.desktop
+    #+begin_example
+    [Desktop Entry]
+    Name=Emacs
+    Exec=emacs --exwm  # --exwm is defined in ~/.emacs.d
+    Type=Application
+    #+end_example
+*** Virtual console start option
+    https://github.com/ch11ng/exwm/wiki#bootstrap
     - copy exwm-*/xinitrc to ~/.xinitrc
-      https://github.com/ch11ng/exwm/wiki#bootstrap
       e.g.
-      $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
-    - create a file /usr/share/xsessions/emacs.desktop
+      $ cp "~/.emacs.d/elpa/exwm-0.26/xinitrc" "~/.xinitrc"
+    - change emacs's command line options in "~/.xinitrc"
       #+begin_example
-      [Desktop Entry]
-      Name=Emacs
-      Exec=emacs --exwm  # exwm is defined in ~/.emacs.d
-      Type=Application
+      emacs --exwm
       #+end_example
+    - run from virtual console
+      - change to virtual console by "Ctrl + Alt + F2" where function can be changed
+      - then runn the following command
+        $ xinit -- vt02  # where 02 is the number of function key
+
 *** using application's key binding
     https://emacs.stackexchange.com/a/52248/26068
 
@@ -314,12 +324,43 @@
     - exwm-input-release-keyboard (C-c C-k): exwm releases keys
     - exwm-reset (s-r): exwm catches keys
 *** ibus setup
-    - add the following code into ~/.profile
+    https://askubuntu.com/questions/389903/ibus-doesnt-seem-to-restart
+    - add the following code into some startup script
       #+begin_src sh
       # enable ibus
-      nohup ibus-daemon > /dev/null 2>&1 &
+      ibus-daemon -d  # -d is daemon start optoin
       #+end_src
     - if switch language doesn't work, run "M-x toggle-input-method"
+*** slock
+    - install
+      $ sudo apt-get install slock
+    - run
+      $ slock
+    - enter passwd to unlock screen
+*** xbacklight
+    xbacklight adjusts brightness of screen
+    - install
+      $ sudo apt install xbacklight
+*** polybar setup
+    https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Desktop-05.org
+    https://www.youtube.com/watch?v=usCfMstCZ7E
+**** installing polybar
+     [[file:polybar.org.txt::*Install][Install]]
+*** startup scripts example
+    - ~/.profile
+       #+begin_src sh
+       # conda path setting
+       CONDA=miniconda3  # anaconda3 or miniconda3 or ...
+       export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
+
+       if ! pgrep dropbox >/dev/null 2>&1
+       then
+           nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1
+       fi
+       #+end_src
+    - gui-init.sh
+      [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
+      
 *** usage
     - exwm-workspace-move-window: it can move an X window to another workspace
 

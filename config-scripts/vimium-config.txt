@@ -59,7 +59,7 @@ map <a-s> toggleViewSource
 map <c-x>0 removeTab
 
 # Not implemented in Emacs.
-map <c-g><c-u> copyCurrentUrl
+map qy copyCurrentUrl  # map <c-g><c-u> copyCurrentUrl
 map <c-g><c-l> LinkHints.activateModeToCopyLinkUrl
 
 # Not implemented in Emacs.
@@ -78,8 +78,8 @@ map <c-g><c-f> focusInput
 
 # Similar to Emacs `find-file`.
 map qj LinkHints.activateMode  # map <c-x><c-f> LinkHints.activateMode
-map ql LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
-map qo LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
+map qo LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
+map ql LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
 map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
 
 # Similar to Emacs `list-directory`.
@@ -153,7 +153,7 @@ map <c-x><down> lastTab
 
 # Similar to Emacs `generate-new-buffer`.
 # No KBD shortcut in Emacs by default.
-map <c-g><c-t> createTab
+# map <c-g><c-t> createTab
 
 # Similar to `clone-indirect-buffer-other-window`.
 # The correct mapping is `<c-x>4c`, but not possible.
@@ -188,7 +188,10 @@ map <a-F> moveTabRight
 # Similar to Emacs help commands.
 map <c-h> showHelp
 
-# close other tabs
-map <c-q>k* closeOtherTabs
-map <c-q>k( closeTabsOnLeft
-map <c-q>k) closeTabsOnRight
+# Tab opeations
+map <a-q>o createTab
+map <a-q>k. removeTab
+map <a-q>k/ restoreTab
+map <a-q>k* closeOtherTabs
+map <a-q>k( closeTabsOnLeft
+map <a-q>k) closeTabsOnRight

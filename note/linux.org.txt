@@ -258,6 +258,28 @@
 
   #+RESULTS:
 
+* General Linux
+** init.d vs. systemd
+   https://uace.github.io/learning/init-vs-systemd-what-is-an-init-daemon
+
+   |                   | init.d      | systemd             |
+   |-------------------+-------------+---------------------|
+   | service directory | /etc/init.d | /etc/systemd/system |
+   | command           | service     | systemctl           |
+   | parallelism       | no          | yes                 |
+** startup execution for daemons
+   https://www.baeldung.com/linux/run-script-on-startup
+** startup script
+*** crontab
+    https://stackoverflow.com/a/46924468
+
+    - enter cron
+      $ EDITOR=emacsclient crontab -e
+    - add the following line
+      #+begin_example
+      @reboot sh /absolute/path/to/the/script
+      #+end_example
+
 * Ubuntu
 ** .Trash location
    https://askubuntu.com/questions/102099/where-is-the-trash-folder
@@ -387,6 +409,34 @@
      $ xinput set-prop <ID of touchpat> "Device Enabled" 1
    - eanble touch pad's tap-to-click
      $ xinput set-prop "Name of touchpad" "libinput Tapping Enabled" 1
+** start GUI session in virtual console
+   https://askubuntu.com/a/562808
+
+   - type Ctrl + Alt + F3        (or other function key)
+   - run command in virtual console
+     $ startx -- :3              (3 is the function key number)
+
+   starting EXWM from virtual console would not work
+   if there's already EXWM running.
+** boot in virtual console
+   https://askubuntu.com/a/859637
+
+   - update "/etc/default/grub"
+     #+begin_src sh
+     GRUB_CMDLINE_LINUX_DEFAULT="text"
+     GRUB_TERMINAL=console
+     #+end_src
+   - run the commands below
+     #+begin_src sh
+     sudo update-grub
+     sudo systemctl enable multi-user.target --force
+     sudo systemctl set-default multi-user.target
+     #+end_src
+   - undoing text-mode
+     #+begin_src sh
+     sudo systemctl enable graphical.target --force
+     sudo systemctl set-default graphical.target 
+     #+end_src
    
 * Utilities
 ** ssh
@@ -654,6 +704,35 @@
      $ sudo apt-get install acpi
    - battery infomation
      $ acpi
+** xset
+   - chnage keyboard speed
+     "xset r rate [delay [rate]]"
+     e.g.
+     $ xset r rate 250 60
+** xbacklight
+*** install and usage
+    https://askubuntu.com/a/149265
+
+    - install
+      $ sudo apt-get install xbacklight
+    - increase brightness
+      $ xbacklight -inc 10
+    - decrease brightness
+      $ xbacklight -dec 10 
+    
+*** error of "No outputs have backlight property"
+    https://askubuntu.com/a/1060843
+
+    if you can find "intel_backlight" in "/sys/class/backlight",
+    update "/etc/X11/xorg.conf" with the following content
+
+    #+begin_example
+    Section "Device"
+        Identifier  "Intel Graphics" 
+        Driver      "intel"
+        Option      "Backlight"  "intel_backlight"
+    EndSection
+    #+end_example
 
 * NVIDIA GPU & CUDA
 ** components
