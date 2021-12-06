@@ -3,7 +3,8 @@
   https://github.com/palantir/python-language-server
 
   Install pyls in global environment:
-  $ conda install python-language-server
+  $ pip install python-language-server
+  # $ conda install python-language-server
 
 * Configuration
   https://github.com/palantir/python-language-server#configuration

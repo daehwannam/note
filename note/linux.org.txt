@@ -63,7 +63,7 @@
        fi
        #+end_src
      - Update "~/.emacs.d/config/options.txt"
-       e.g. (machine-id eglot-setup min-elpy-setup miniconda-env python-setup programming basic)
+       e.g. (machine-id eglot-setup miniconda-env python-setup programming basic)
             (machine-id min-elpy-setup miniconda-env programming basic)
             (machine-id elpy-setup miniconda-env programming basic)
             (machine-id lsp-mode min-elpy-setup miniconda-env programming basic)
@@ -279,6 +279,192 @@
       #+begin_example
       @reboot sh /absolute/path/to/the/script
       #+end_example
+** change partition mount
+   https://askubuntu.com/a/45618
+
+   - check partitions
+     $ sudo blkid
+   - modify "/etc/fstab"
+     - e.g. mount partition to an user's folder and change ownership:
+       #+begin_example
+       UUID=C6289E13289E029B /home/dhnam/ntfsdata ntfs defaults,umask=007,uid=1000,gid=1000 0 0
+       #+end_example
+       where
+       - uid and gid can be obtained by:
+         $ id
+       - umask=007 make its permission as "drwxrwx---"
+   - reboot
+** get gid from group name
+   https://askubuntu.com/a/639998
+   $ cut -d: -f3 < <(getent group $GROUP_NAME)
+
+* Remote protocols
+** Remote Desktop Protocol (RDP)
+   RDP is developed by Microsoft and used for MS Windows
+
+   There are a few linux clients of RDP:
+   - rdesktop: it had been developed for long time,
+               but the project is stopped until a new maintainer appears
+   - freerdp: it's been developed from 2015
+
+   Both clients support seamless mode
+*** freerdp
+**** install
+     https://www.youtube.com/watch?v=Tpw75B5fOIY
+     $ sudo apt install freerdp2-x11 freerdp2-shadow-x11
+**** connect
+     https://www.youtube.com/watch?v=Tpw75B5fOIY
+     #+begin_src sh
+     xfreerdp /f /u:USERNAME /p:PASSWORD /v:HOST[:PORT]
+     # or
+     xfreerdp /f /u:USERNAME /v:HOST[:PORT]  # without passwd in the command
+     #+end_src
+
+     /f is option means to open the remote desktop in full screen mode
+     /u:USERNAME is a name of the account on the computer to which we are connecting
+     /p:PASSWORD is a password of the specified account
+     /v:HOST[:PORT] is an IP address or name of the computer to which the remote table is connected. PORT optional (recommended: “Windows Computer name: how to change and use”)
+**** usage
+     - toogle between client and server
+       Ctrl+Alt+Enter
+*** xrdp
+    https://ko.linux-console.net/?p=393
+    xrdp is a server program for rdp
+
+    - install
+      $ sudo apt install xrdp
+    - check if rdp server is running (active)
+      $ sudo systemctl status xrdp
+    - add user xrdp to ssl-cert group
+      $ sudo adduser xrdp ssl-cert
+    - (optional) change rdp port
+      - update config
+        $ sudo vi /etc/xrdp/xrdp.ini
+        #+begin_example 
+        [globals]
+
+        port=61110 ; default value is 3389
+        #+end_example
+      - restart xrdp
+        $ sudo service xrdp restart
+        $ sudo systemctl status xrdp
+    - add firewall rule
+      $ sudo ufw allow from 192.168.2.0/24 to any port 61110
+    - reload firewall
+      $ sudo ufw reload
+      $ sudo ufw status
+    - (optional) if firewall is inactive
+      $ sudo ufw enable
+    # - (optional) you may want to disable firewall
+    #   $ sudo ufw status
+*** fix error of black screen in xrdp
+    - edit "/etc/xrdp/startwm.sh"
+      add below lines after "/etc/profile" is used
+      #+begin_example
+      unset DBUS_SESSION_BUS_ADDRESS
+      unset XDG_RUNTIME_DIR
+      #+end_example
+    - restart xrdp
+      $ sudo service xrdp restart
+
+** Samba
+   https://psychoria.tistory.com/678
+*** samba install
+    #+begin_src sh
+    # install samba
+    sudo apt install samba
+
+    # add user account to samba
+    sudo smbpasswd -a <user>
+    #+end_src
+*** setting a shared folder
+    https://adrianmejia.com/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows/
+    update /etc/samba/smb.conf
+    add the following information to the bottom of the config file:
+
+    #+begin_example
+    [shared network folder name]
+    comment = multimedia directory
+    path = /data/Multimedia
+    valid users = id1,id2
+    writeable = yes
+    read only = no
+    create mode = 0777
+    directory mode = 0777
+    #+end_example
+
+    you can skip some information
+*** change samba password
+    $ smbpasswd
+*** run samba
+    $ sudo service smbd restart
+*** connect to samba from linux
+    https://askubuntu.com/a/1050499
+    https://www.linuxfordevices.com/tutorials/linux/linux-samba
+
+    - install smbclient
+      $ sudo apt install smbclient
+    - install cifs-utils (and nfs-kernel-server)
+      https://askubuntu.com/a/946133
+      $ sudo apt install cifs-utils  # for winows file system
+      # $ sudo apt install nfs-kernel-server  # for unix file system
+    - list server's shared folders
+      $ smbclient -L //myServerIpAdress
+    - make empy directory and mount the shared directory to it
+      $ sudo mkdir /mnt/myFolder
+      $ sudo mount -vt cifs -o username=serverUserName //myServerIpAdress/shareName /path/to/client/folder
+      (-v option is for verbose output)
+    - you can unmount samba by
+      $ sudo umount /path/to/client/folder
+*** write to the shared folder wihtout 777 permision
+    https://unix.stackexchange.com/a/206310
+
+    - configuration (server side)
+      #+begin_example
+      [share name]
+      comment = linux data
+      path = /home/dhnam/data
+      writeable = yes
+      read only = no
+      browseable = yes
+      public = yes
+      force user = someuser
+      #+end_example
+    - restart (server side)
+      $ sudo service smbd restart
+    - mount (client side)
+      $ sudo mount -t cifs -o username=serverUserName,uid=1000,gid=1000 //myServerIpAdress/shareName /path/to/client/folder
+      where you should insert correct uid and gid of 'someuser'
+      the IDs can be found by
+      $ id someuser
+
+** NFS (Caution: NFS doesn't support password)
+   https://www.tecmint.com/install-nfs-server-on-ubuntu/
+   https://www.nemonein.xyz/2020/09/4260/
+*** server side
+    - install
+      $ sudo apt install nfs-kernel-server
+    - update config
+      edit "/etc/exports"
+      #+begin_example
+      /path/to/data  192.168.43.0/24(rw,sync,no_subtree_check)
+      #+end_example
+      where the subnet means the range of clients
+      all clients in the subnet 24 can access this host
+    - expor
+      $ sudo exportfs -a
+      $ sudo systemctl restart nfs-kernel-server
+    - allow nfs access through the firewall
+      $ sudo ufw allow from 192.168.43.0/24 to any port nfs
+      $ sudo ufw enable
+      $ sudo ufw status
+** client side
+   - install
+     $ sudo apt install nfs-common
+   - make mount point
+     $ mkdir /path/to/mount
+   - mount
+     $ sudo mount 192.168.43.21:/path/to/data /path/to/mount
 
 * Ubuntu
 ** .Trash location
@@ -375,7 +561,7 @@
 ** Add program to application
    https://askubuntu.com/a/141247
 
-   make a file named ~/.local/share/applications/$your_app.desktop
+   make a file named ~/.local/share/applications/${your_app}.desktop
    #+begin_src sh
    [Desktop Entry]
    Type=Application
@@ -437,7 +623,16 @@
      sudo systemctl enable graphical.target --force
      sudo systemctl set-default graphical.target 
      #+end_src
-   
+** keyboard layout changes
+   https://tolovefeels.tistory.com/58
+
+   - update "/etc/default/keyboard"
+     #+begin_example
+     XKBVARIANT="kr(kr104)
+     #+end_example
+   - Reconfigure
+     $ sudo dpkg-reconfigure keyboard-configuration
+
 * Utilities
 ** ssh
 *** SSH multiple port setup
@@ -647,35 +842,6 @@
    https://koreaubuntu.wordpress.com/2009/08/19/%EC%9A%B0%EB%B6%84%ED%88%AC%EC%9D%98-ctrlaltdel%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/
    In GUI, you can kill a program by clicking its window after running 'xkill'
    $ xkill
-** remote connections
-*** Remote Desktop Protocol (RDP)
-    RDP is developed by Microsoft and used for MS Windows
-
-    There are a few linux clients of RDP:
-    - rdesktop: it had been developed for long time,
-                but the project is stopped until a new maintainer appears
-    - freerdp: it's been developed from 2015
-
-    Both clients support seamless mode
-*** freerdp
-**** install
-     https://www.youtube.com/watch?v=Tpw75B5fOIY
-     $ sudo apt install freerdp2-x11 freerdp2-shadow-x11
-**** connect
-     https://www.youtube.com/watch?v=Tpw75B5fOIY
-     #+begin_src sh
-     xfreerdp /f /u:USERNAME /p:PASSWORD /v:HOST[:PORT]
-     # or
-     xfreerdp /f /u:USERNAME /v:HOST[:PORT]  # without passwd in the command
-     #+end_src
-
-     /f is option means to open the remote desktop in full screen mode
-     /u:USERNAME is a name of the account on the computer to which we are connecting
-     /p:PASSWORD is a password of the specified account
-     /v:HOST[:PORT] is an IP address or name of the computer to which the remote table is connected. PORT optional (recommended: “Windows Computer name: how to change and use”)
-**** usage
-     - toogle between client and server
-       Ctrl+Alt+Enter
 ** make
 *** make process
     https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install

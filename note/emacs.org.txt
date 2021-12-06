@@ -305,7 +305,7 @@
     https://github.com/ch11ng/exwm/wiki#bootstrap
     - copy exwm-*/xinitrc to ~/.xinitrc
       e.g.
-      $ cp "~/.emacs.d/elpa/exwm-0.26/xinitrc" "~/.xinitrc"
+      $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
     - change emacs's command line options in "~/.xinitrc"
       #+begin_example
       emacs --exwm
@@ -360,7 +360,15 @@
        #+end_src
     - gui-init.sh
       [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
-      
+*** multiple monitor setup
+    - find monitors
+      $ xrandr
+    - find devices noted as "connected"
+      #+begin_example
+      DVI-I-1 connected primary 1920x1080+1920+0 (normal left inverted right x axis y axis) 598mm x 336mm
+      HDMI-4 connected 1920x1080+3840+0 (normal left inverted right x axis y axis) 598mm x 336mm
+      HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm
+      #+end_example
 *** usage
     - exwm-workspace-move-window: it can move an X window to another workspace
 

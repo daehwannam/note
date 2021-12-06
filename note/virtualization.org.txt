@@ -43,6 +43,7 @@
     - list virtual machines
       https://welcome1208.tistory.com/63
       $ virsh list --all
+    - reboot to run libvirt daemon (libvirtd -d)
 *** install the latest KVM (optional)
     https://www.qemu.org/download/#source
     - prerequisite
@@ -89,6 +90,14 @@
       - raw format is faster
 
 ** Configuration    
+*** using multiple screens (monitors)
+    - "Show virtual hardware details"
+    - "Add Hardware" -> "Video" -> "Finish"
+       repeat it as many as the number of additional screens
+    - connect to the VM via remote-viewer
+      $ remote-viewer spice://localhost:5900
+      - where the port number 5900 can be found from:
+        "Show virtual hardware details" -> "Display Spice"
 *** resize image's capacity
     https://superuser.com/a/375847
     $ qemu-img resize $IMAGE.qcow2 +$TOTAL_SIZE
@@ -151,14 +160,7 @@
 **** samba setup
      https://psychoria.tistory.com/678
      - install
-       #+begin_src sh
-       # install samba
-       sudo apt install samba
-
-       # add user account to samba
-       sudo smbpasswd -a <user>
-       #+end_src
-
+       [[file:linux.org.txt::*samba install][samba install]]
      - update /etc/samba/smb.conf
        add the following information to the bottom of the config file:
        #+begin_example
@@ -171,7 +173,6 @@
        create mode = 0777
        directory mode = 0777
        #+end_example
-
      - restart to apply config
        $ sudo service smbd restart
 **** connect to samba from windows guest
@@ -190,7 +191,38 @@
        and check "Remember credentials"
        (not to forget credentials - https://superuser.com/a/262598 )
 
-*** sharing folder of host linux with guest windows (optional)
+*** sharing folder via filesystem passthrough
+    http://www.linux-kvm.org/page/9p_virtio
+
+    - "Show virtual hardware details"
+    - "Add Hardware"
+    - "Filesystem"
+    - Set "Driver" as "Path"
+    - Fill "Source path" in host and "Target path" in guest
+      (the filesystem on "Source path" may need to have permission 777,
+      or change the group id as kvm's?)
+
+*** sharing folder via partition
+    https://forums.unraid.net/topic/46634-passthrough-hard-drive-to-vm/?do=findComment&comment=459683
+
+    It's working with windows
+
+    - find UUID of filesystem
+      $ sudo blkid
+    - list VMs
+      $ virsh list --all
+    - Edit XML config to add a disk
+      $ virsh edit <VM name>
+      #+begin_example
+      <disk type='block' device='disk'>
+        <driver name='qemu' type='raw' cache='writeback'/>
+        <source dev='/dev/disk/by-uuid/ata-WDC_WD7500BPKX-00HPJT0_WD-WXL1E84AK1MK'/>
+        <target dev='hdd' bus='virtio'/>
+      </disk>
+      #+end_example
+      where you should change UUID of the example
+
+*** sharing folder of host linux with guest windows via virtiofs (optional)
     https://unix.stackexchange.com/a/635636
 **** unknown fs driver type 'virtiofs'
      # https://lists.gnu.org/archive/html/qemu-devel/2020-08/msg05866.html
@@ -268,10 +300,10 @@
    - "Show virtual hardware details"
    - CPUs
      - check "Copy host CPU configuration"
-     - check Manually et CPU topology
-       - Sockets = 1
-       - Cores = N
-       - Threads = N
+     # - check Manually et CPU topology
+     #   - Sockets = 1
+     #   - Cores = N
+     #   - Threads = N
    - Memory: increase memory if necessary
    - IDE Disk 1 (VirtIO DISK 1)
      - Cache mode = none (for the best stability)
