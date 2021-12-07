@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#!/usr/bin/sh
 
 # # polybar
 # alias polybar='polybar-git'

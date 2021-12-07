@@ -369,6 +369,22 @@
       HDMI-4 connected 1920x1080+3840+0 (normal left inverted right x axis y axis) 598mm x 336mm
       HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm
       #+end_example
+    - dual monitor config example
+      - with left-of
+        #+begin_src sh
+        xrandr --output DVI-I-1 --left-of HDMI-4 --auto
+        #+end_src
+      - with right-of
+        #+begin_src 
+        xrandr --output DVI-I-1 --right-of HDMI-1-1 --auto
+        #+end_src
+    - triple monitor config example
+      #+begin_src sh
+      xrandr --output DVI-I-1 --auto \
+             --output HDMI-1-1 --auto --left-of DVI-I-1 \
+             --output HDMI-4 --auto --right-of DVI-I-1
+      #+end_src
+      layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
 *** usage
     - exwm-workspace-move-window: it can move an X window to another workspace
 
