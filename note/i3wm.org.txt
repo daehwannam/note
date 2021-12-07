@@ -1,3 +1,7 @@
 
+* tutorial
+  https://fedoramagazine.org/getting-started-i3-window-manager/
+
+
 * install
-  https://kifarunix.com/install-and-setup-i3-windows-manager-on-ubuntu-20-04/
+  $ sudo apt install i3

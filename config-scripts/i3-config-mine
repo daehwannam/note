@@ -1,0 +1,4 @@
+
+# my i3 config
+exec bash ~/gui-init.sh
+exec bash ~/data/utility/xrandr-init.sh

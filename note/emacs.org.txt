@@ -328,8 +328,12 @@
     - add the following code into some startup script
       #+begin_src sh
       # enable ibus
-      ibus-daemon -d  # -d is daemon start optoin
+      https://unix.stackexchange.com/a/471615
+      ibus-daemon -d --xim
       #+end_src
+      where
+      * -d is daemon start optoin
+      * --xim enable multiple users(tty sesssions) use ibus
     - if switch language doesn't work, run "M-x toggle-input-method"
 *** slock
     - install
@@ -355,7 +359,7 @@
 
        if ! pgrep dropbox >/dev/null 2>&1
        then
-           nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1
+           nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1 &
        fi
        #+end_src
     - gui-init.sh
@@ -387,6 +391,8 @@
       layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
 *** usage
     - exwm-workspace-move-window: it can move an X window to another workspace
+    - exwm-input-move-event: super & left-mouse-click
+    - exwm-input-resize-event: super & right-mouse-click
 
 * KeyChanges
 ** Windows: auto-hot key

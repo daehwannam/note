@@ -98,6 +98,19 @@
       $ remote-viewer spice://localhost:5900
       - where the port number 5900 can be found from:
         "Show virtual hardware details" -> "Display Spice"
+*** connecting to VM remotely
+    https://techienotes.blog/2014/12/17/how-to-connect-to-a-vm-hosted-on-qemu-remotely-using-virt-viewer/
+    $ virt-viewer --connect qemu+ssh://aamr@hobba/system winVM
+
+    where
+    * virt-viewer: the command itself
+    * --connect: the parameter telling the command to connect
+    * qemu+ssh: telling virt-viewer that this host is reachable via SSH and QEMU is used for virtualization (since it supports Xen as well)
+    * aamr: the SSH username
+    * hobba: the remote server name
+    * system: a static word, just type it as it is!
+    * winVM: the name you gave to the Virtual Machine
+    
 *** resize image's capacity
     https://superuser.com/a/375847
     $ qemu-img resize $IMAGE.qcow2 +$TOTAL_SIZE
