@@ -1,0 +1,111 @@
+
+* exwm
+** GUI login option
+   create a file /usr/share/xsessions/emacs.desktop
+   #+begin_example
+   [Desktop Entry]
+   Name=Emacs
+   Exec=emacs --exwm  # --exwm is defined in ~/.emacs.d
+   Type=Application
+   #+end_example
+** Virtual console start option
+   https://github.com/ch11ng/exwm/wiki#bootstrap
+   - copy exwm-*/xinitrc to ~/.xinitrc
+     e.g.
+     $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
+   - change emacs's command line options in "~/.xinitrc"
+     #+begin_example
+     emacs --exwm
+     #+end_example
+   - run from virtual console
+     - change to virtual console by "Ctrl + Alt + F2" where function can be changed
+     - then runn the following command
+       $ xinit -- vt02  # where 02 is the number of function key
+
+** using application's key binding
+   https://emacs.stackexchange.com/a/52248/26068
+
+   run exwm-input-send-next-key (C-c C-q) then type application's key binding
+   e.g. C-c C-q C-c --> copy text in web browser
+** emacs inside exwm
+   - exwm-input-release-keyboard (C-c C-k): exwm releases keys
+   - exwm-reset (s-r): exwm catches keys
+** ibus setup
+   https://askubuntu.com/questions/389903/ibus-doesnt-seem-to-restart
+   - add the following code into some startup script
+     #+begin_src sh
+     # enable ibus
+     https://unix.stackexchange.com/a/471615
+     ibus-daemon -d --xim
+     #+end_src
+     where
+     * -d is daemon start optoin
+     * --xim enable multiple users(tty sesssions) use ibus
+   - if switch language doesn't work, run "M-x toggle-input-method"
+** slock
+   - install
+     $ sudo apt-get install slock
+   - run
+     $ slock
+   - enter passwd to unlock screen
+** xbacklight
+   xbacklight adjusts brightness of screen
+   - install
+     $ sudo apt install xbacklight
+** polybar setup
+   https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Desktop-05.org
+   https://www.youtube.com/watch?v=usCfMstCZ7E
+*** installing polybar
+    [[file:polybar.org.txt::*Install][Install]]
+** startup scripts example
+   - ~/.profile
+      #+begin_src sh
+      # conda path setting
+      CONDA=miniconda3  # anaconda3 or miniconda3 or ...
+      export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
+
+      if ! pgrep dropbox >/dev/null 2>&1
+      then
+          nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1 &
+      fi
+      #+end_src
+   - gui-init.sh
+     [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
+** multiple monitor setup
+   - find monitors
+     $ xrandr
+   - find devices noted as "connected"
+     #+begin_example
+     DVI-I-1 connected primary 1920x1080+1920+0 (normal left inverted right x axis y axis) 598mm x 336mm
+     HDMI-4 connected 1920x1080+3840+0 (normal left inverted right x axis y axis) 598mm x 336mm
+     HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm
+     #+end_example
+   - dual monitor config example
+     - with left-of
+       #+begin_src sh
+       xrandr --output DVI-I-1 --left-of HDMI-4 --auto
+       #+end_src
+     - with right-of
+       #+begin_src 
+       xrandr --output DVI-I-1 --right-of HDMI-1-1 --auto
+       #+end_src
+   - triple monitor config example
+     #+begin_src sh
+     xrandr --output DVI-I-1 --auto \
+            --output HDMI-1-1 --auto --left-of DVI-I-1 \
+            --output HDMI-4 --auto --right-of DVI-I-1
+     #+end_src
+     layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
+** usage
+   - exwm-workspace-move-window: it can move an X window to another workspace
+   - exwm-input-move-event: super & left-mouse-click
+   - exwm-input-resize-event: super & right-mouse-click
+
+* i3
+** tutorial
+   https://fedoramagazine.org/getting-started-i3-window-manager/
+** install
+   $ sudo apt install i3
+
+* Xephyr
+  running window managers in other window managers
