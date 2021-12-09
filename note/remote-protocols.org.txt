@@ -7,6 +7,10 @@
   - freerdp: it's been developed from 2015
 
   Both clients support seamless mode
+*** Windows 10
+    https://varins.com/library/server/virtual-machine-qemu-kvm/
+    Windows 10 should enable "Remote Desktop"
+    설정 -> 시스템 -> 원격 데스크톱 -> 원격 데스크톱 활성화
 ** freerdp
 *** install
     https://www.youtube.com/watch?v=Tpw75B5fOIY
@@ -23,6 +27,15 @@
     /u:USERNAME is a name of the account on the computer to which we are connecting
     /p:PASSWORD is a password of the specified account
     /v:HOST[:PORT] is an IP address or name of the computer to which the remote table is connected. PORT optional (recommended: “Windows Computer name: how to change and use”)
+*** multiple monitors
+    - list monitor numbers(IDs)
+      $ xfreerdp /monitor-list
+    - using one monitor
+      $ xfreerdp /monitors:2 /multimon /v:<host>
+    - using multiple monitors
+      e.g.
+      $ xfreerdp /monitors:2,1,0 /multimon /v:<host>
+      $ xfreerdp /monitors:2,1,0 /multimon /u:some-user  /v:192.168.111.100
 *** usage
     - toogle between client and server
       Ctrl+Alt+Enter

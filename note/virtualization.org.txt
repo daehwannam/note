@@ -306,6 +306,7 @@
         $ virsh start <vmname>
 
 ** Optimization
+   https://unix.stackexchange.com/a/48584
    https://dennisnotes.com/note/20180614-ubuntu-18.04-qemu-setup/
    http://m.todaysppc.com/renewal/view.php?id=free&no=423466
    https://www.youtube.com/watch?v=RLy1zozJ9W0
@@ -354,3 +355,14 @@
     - click "USB Host Device" and select your device
     - run VM
     - clic "Virtual Machine" -> "Redirect USB device" -> select device
+*** find guest's IP
+    https://www.cyberciti.biz/faq/find-ip-address-of-linux-kvm-guest-virtual-machine/
+    #+begin_src sh
+    virsh net-list
+    virsh net-info default
+    virsh net-dhcp-leases default
+    #+end_src
+
+    or run commands guest OS
+    - "ipconfig" for windows
+    - "ifconfig" for linux
