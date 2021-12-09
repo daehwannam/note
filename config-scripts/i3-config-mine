@@ -1,4 +1,12 @@
 
-# my i3 config
-exec bash ~/gui-init.sh
-exec bash ~/data/utility/xrandr-init.sh
+# - This is my i3 
+# - Setup
+#   - Copy my config
+#     $ cp ~/record/config-scripts/i3-config-mine ~/.config/i3/i3-config-mine
+#   - Update paths in ~/.config/i3/i3-config-mine
+#     e.g. gui-init.sh or xrandr_setting.sh
+#   - Add the following line into /home/dhnam/.config/i3/config
+#     >>> include ~/record/config-scripts/i3-config
+
+exec bash /home/dhnam/data/init/gui-init.sh
+exec bash /home/dhnam/data/init/xrandr-init.sh

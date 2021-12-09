@@ -96,6 +96,8 @@
 *** edebug-all-defs
     - M-x edebug-all-defs toggles the value of the variable edebug-all-defs
     - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
+** toggle-menu-bar-mode-from-frame
+   enable/disable menu-bar
 
 * My command
 ** xah-open-in-external-app
@@ -148,6 +150,13 @@
    https://stackoverflow.com/a/15647443
 ** Code Characters for interactive
    https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes
+** change entire font size
+   https://stackoverflow.com/a/296316
+   (set-face-attribute 'default nil :height 120)
+** running custom shell commands
+   https://stackoverflow.com/a/12228646
+   alias, script or custom command defined in ~/.bashrc can be used once BASH_ENV is set to the config
+   $ BASH_ENV=~/.bashrc emacs
 
 * Install Emacs
 ** Emacs 25
@@ -171,6 +180,39 @@
      wget https://github.com/emacs-mirror/emacs/archive/emacs-25.3.zip
      unzip emacs-25.3.zip
      cp -R emacs-emacs-25.3/lisp/* /usr/share/emacs/25.3/lisp
+** Install emacs with snap
+   - install snap
+     $ sudo apt update
+     $ sudo apt install snapd
+   - install emacs
+     $ sudo snap install emacs --edge --classic
+   - uninstall
+     $ sudo snap remove <package>
+   - path to the emacs: "/snap/emacs/current/usr/bin/emacs"
+** build emacs
+   https://sangwoo-joh.github.io/emacs-native-comp
+   #+begin_src sh
+   git clone git://git.savannah.gnu.org/emacs.git --depth=1
+   cd emacs
+   #+end_src
+
+   #+begin_src sh
+   sudo apt install autoconf
+   sudo apt-get install texinfo
+   sudo apt install libgtk-3-dev
+   sudo apt install libxpm-dev libgif-dev libungif-bin gnutls-bin
+   #+end_src
+
+   #+begin_src sh
+   sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+   sudo apt-get install gcc-10 g++-10 libgccjit0 libgccjit-10-dev libjansson4 libjansson-dev
+   export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+   ./autogen.sh
+   ./configure --with-nativecomp
+   make -jN
+   sudo make install
+   emacs --version  # shows GNU Emacs 28.0.50
+   #+end_src
 
 * Package install
 ** Manual install

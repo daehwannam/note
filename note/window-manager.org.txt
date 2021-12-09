@@ -68,6 +68,11 @@
       then
           nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1 &
       fi
+
+      if timeout 1s xset q &>/dev/null; then
+          xset r rate 250 50
+          # ibus-daemon -d --xim  # it's unnecessary if you use fcitx
+      fi
       #+end_src
    - gui-init.sh
      [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
@@ -96,6 +101,11 @@
             --output HDMI-4 --auto --right-of DVI-I-1
      #+end_src
      layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
+** Google chrome setting
+   - make profile directory
+     $ mkdir -p ~/profile/google-chrome-user
+   - make desktop entry
+     [[*Chrome browser for multiple tty sessions][Chrome browser for multiple tty sessions]]
 ** usage
    - exwm-workspace-move-window: it can move an X window to another workspace
    - exwm-input-move-event: super & left-mouse-click
@@ -109,3 +119,98 @@
 
 * Xephyr
   running window managers in other window managers
+** install
+   $ sudo apt-get install xserver-xephyr
+** Usage
+   http://egloos.zum.com/seoz/v/3677520
+   https://www.dedoimedo.com/computers/xephyr.html
+*** command
+    - basic usage
+      $ Xephyr -ac -screen <resolution> -br -reset -terminate 2> /dev/null :1 &
+      -ac = disables access control restrictions
+      -screen = screen size
+      -br = background color to black or chosen one
+      -reset -terminate = Xephyr closes automatically after the last X session has be killed
+      >2 /dev/null = redirect error messages
+      :1 = display number
+      & = Xephyr running background
+
+    - other options
+      -fullscreen : try to lunch Xephyr with full screen
+      -noreset
+*** example
+    - running Xephyr
+      $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+    - connect
+      $ DISPLAY=:3 emacs
+** EXWM wiin Xephyr
+*** Chrome browser for multiple tty sessions
+    https://superuser.com/a/647363
+    distinguised chromes are needed for exwm emacsclients
+    - make a directory for chrome user's profile
+      $ mkdir -p ~/profile/google-chrome-user-1
+    - make chrome execution command "~/script/gchrome1"
+      #+begin_src sh
+      google-chrome --user-data-dir=~/profile/google-chrome-user-1
+      #+end_src
+    - chmod +x ~/script/gchrome1
+    - update "~/.profile"
+      #+begin_src sh
+      export PATH="/home/dhnam/script:$PATH"
+      #+end_src
+    - make desktop entry
+      e.g. ~/.local/share/applications/gchrome1.desktop
+      #+begin_src sh
+      [Desktop Entry]
+      Type=Application
+      Terminal=false  # or true when the program output into terminal
+      Name="G-chrome 1"
+      Icon=/path/to/icon/icon.svg
+      Exec=/home/dhnam/script/gchrome1
+      #+end_src
+    - repeat as many as the number of emacsclients
+*** run Xephyr
+    $ Xephyr -host-cursor -screen 1200x800 -noreset :1 &
+    $ Xephyr -host-cursor -screen 1200x800 -noreset :2 &
+    $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+*** run emacs daemon
+    $ emacs --daemon --exwm  # --exwm is defined by me
+*** change emacs's font size
+    https://stackoverflow.com/a/296316
+    #+begin_src elisp
+    (set-face-attribute 'default nil :height 120)
+    #+end_src
+*** run the first emacs client
+    $ DISPLAY=:1 emacsclient -c
+
+    then evaluate the following code to make next frames fullscreen
+    #+begin_src elisp
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+    #+end_src
+*** run other emacs clients
+    $ DISPLAY=:2 emacsclient -c
+    $ DISPLAY=:3 emacsclient -c
+
+* Pop Shell: Gnome extension
+  https://github.com/pop-os/shell
+v** install
+   https://www.linuxuprising.com/2020/05/how-to-install-pop-shell-tiling.html
+
+   #+begin_src sh
+   sudo apt install node-typescript make git
+
+   cd ~/program
+   git clone https://github.com/pop-os/shell
+   cd shell
+   make local-install
+   #+end_src
+** remove
+   - disable pop shell
+     $ gnome-tweaks
+     then, open "Extensions" and disable "Pop shell"
+   - remove pop-shell directory
+     $ rm -r ~/.local/share/gnome-shell/extensions/pop-shell@system76.com
+   - reset keyboard shortcuts
+     "Settings" -> "Keyboard Shortcuts" -> "Reset All..."
+   - (optional) if you've installed the Pop Shell Shortcuts, you can remove this
+     $ sudo rm /usr/local/bin/pop-shell-shortcuts

@@ -32,10 +32,18 @@
     - modify screen brightness for Saving/Balanced/Maximum modes
 ** swap CapsLock with Ctrl
    [[file:emacs.org.txt::*Keyboard configuration with XKBOPTIONS][Keyboard configuration with XKBOPTIONS]]
-** Korean keyboard setting
+** ibus korean keyboard setting
    https://pstudio411.tistory.com/entry/Ubuntu-2004-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%EB%B0%A9%EB%B2%95
    remove "Korean" from "Installed Languages" and reinstall it
    if "Hangul" cannot be added to ibus's Input Method
+** fcitx korean settting
+   https://velog.io/@yujo/Ubuntu-20.04%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5%EA%B8%B0-%EC%84%A4%EC%B9%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+   - install
+     $ sudo apt-get update
+     $ sudo apt-get install fcitx-hangul
+   - "Setting" -> "Region & Language" -> "Manage installed Languages"
+      -> "Keyboard input method system" -> "fcitx"
+   - reboot
 ** Some shortcuts needed to be disabled for emacs
    Settings -> Keyboard Shortcuts
    - Alt+Space
@@ -297,6 +305,13 @@
 ** get gid from group name
    https://askubuntu.com/a/639998
    $ cut -d: -f3 < <(getent group $GROUP_NAME)
+** check if X server is running or not
+   #+begin_src sh
+   if ! timeout 1s xset q &>/dev/null; then
+       echo "No X server at \$DISPLAY [$DISPLAY]" >&2
+       exit 1
+   fi
+   #+end_src
 
 * Ubuntu
 ** .Trash location
@@ -407,6 +422,7 @@
    Icon=/path/to/icon/icon.svg
    Exec=/path/to/file/program
    #+end_src
+   The "Name" of application should be different with others
 *** Run ~/.bashrc initially
     https://askubuntu.com/a/498718
 
@@ -469,6 +485,12 @@
      #+end_example
    - Reconfigure
      $ sudo dpkg-reconfigure keyboard-configuration
+** disable sleep / suspend / hibernate
+   https://askubuntu.com/questions/473037/how-to-permanently-disable-sleep-suspend
+   $ sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+** Ubuntu auto-log out disable
+   https://linuxconfig.org/disable-turn-off-lock-screen-on-ubuntu-20-04-focal-fossa-linux
+   "Settings" -> "Privacy" -> "Screen Lock" -> disable "Automatic Screen Lock"
 
 * Utilities
 ** ssh
@@ -481,6 +503,10 @@
 ** using x11 forwarding from linux
    https://askubuntu.com/a/436751/820403
    $ ssh -X remote_login@192.168.1.12
+** making firewall allow ssh port
+   https://www.cyberciti.biz/faq/ufw-allow-incoming-ssh-connections-from-a-specific-ip-address-subnet-on-ubuntu-debian/
+   $ sudo ufw allow 61112/tcp
+   where 61112 is the port number
 
 ** ls
 *** Explanation for "ls -l"
