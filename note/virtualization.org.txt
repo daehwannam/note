@@ -325,6 +325,9 @@
      - (VirtIO DISK is preferable but chaging type from IDE to VirtIO could raise error in guest OS)
    - NIC
      - Device model = virtio
+   - Video
+     - Model: Virtio
+     - then, change resolution in host OS
 *** Change IDE to VirtIO disk for Windows
     https://unix.stackexchange.com/a/223890
     - Add a CD-ROM with [[https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso][virtio-win.iso]]

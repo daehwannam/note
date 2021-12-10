@@ -59,7 +59,7 @@ map <a-s> toggleViewSource
 map <c-x>0 removeTab
 
 # Not implemented in Emacs.
-map qy copyCurrentUrl  # map <c-g><c-u> copyCurrentUrl
+map qu copyCurrentUrl  # map <c-g><c-u> copyCurrentUrl
 map <c-g><c-l> LinkHints.activateModeToCopyLinkUrl
 
 # Not implemented in Emacs.

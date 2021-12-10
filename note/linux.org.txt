@@ -491,6 +491,28 @@
 ** Ubuntu auto-log out disable
    https://linuxconfig.org/disable-turn-off-lock-screen-on-ubuntu-20-04-focal-fossa-linux
    "Settings" -> "Privacy" -> "Screen Lock" -> disable "Automatic Screen Lock"
+** fix screen brightness 1
+   https://www.youtube.com/watch?v=WeMuvjgM2U0
+   - open "/etc/default/grub"
+   - add "GRUB_CMDLINE_LINUX_DEFAULT" options "pcie_aspm=force acpi_backlight_native"
+     e.g.
+     #+begin_src sh
+     GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pcie_aspm=force acpi_backlight_native"
+     #+end_src
+** fix screen brightness 2
+   https://www.youtube.com/watch?v=PQqvKnalipM
+   https://www.bobjohnson.com/blog/adventures-with-linux-installing-ubuntu-on-a-panasonic-toughbook-cf31/
+** change printer protocol
+   https://askubuntu.com/a/1267529
+   - stop cups
+     $ sudo systemctl stop cups
+   - change a printer's DeviceURI from "/etc/cups/printers.conf"
+     e.g.
+     #+begin_example
+     DeviceURI lpd://141.223.91.249:9100  # lpb is used for LDP/LPR protocold
+     #+end_example
+   - restart cups
+     $ sudo systemctl restart cups
 
 * Utilities
 ** ssh
@@ -762,6 +784,8 @@
         Option      "Backlight"  "intel_backlight"
     EndSection
     #+end_example
+
+    then reboot
 
 * NVIDIA GPU & CUDA
 ** components

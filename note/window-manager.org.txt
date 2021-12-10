@@ -144,31 +144,9 @@
     - connect
       $ DISPLAY=:3 emacs
 ** EXWM wiin Xephyr
-*** Chrome browser for multiple tty sessions
-    https://superuser.com/a/647363
-    distinguised chromes are needed for exwm emacsclients
-    - make a directory for chrome user's profile
-      $ mkdir -p ~/profile/google-chrome-user-1
-    - make chrome execution command "~/script/gchrome1"
-      #+begin_src sh
-      google-chrome --user-data-dir=~/profile/google-chrome-user-1
-      #+end_src
-    - chmod +x ~/script/gchrome1
-    - update "~/.profile"
-      #+begin_src sh
-      export PATH="/home/dhnam/script:$PATH"
-      #+end_src
-    - make desktop entry
-      e.g. ~/.local/share/applications/gchrome1.desktop
-      #+begin_src sh
-      [Desktop Entry]
-      Type=Application
-      Terminal=false  # or true when the program output into terminal
-      Name="G-chrome 1"
-      Icon=/path/to/icon/icon.svg
-      Exec=/home/dhnam/script/gchrome1
-      #+end_src
-    - repeat as many as the number of emacsclients
+   Xephyr cannot concurrently run the same application
+   therefore, you should prepare multiple similar programs
+   e.g. google-chrome profile for each Xephyr connection
 *** run Xephyr
     $ Xephyr -host-cursor -screen 1200x800 -noreset :1 &
     $ Xephyr -host-cursor -screen 1200x800 -noreset :2 &
@@ -214,3 +192,55 @@ v** install
      "Settings" -> "Keyboard Shortcuts" -> "Reset All..."
    - (optional) if you've installed the Pop Shell Shortcuts, you can remove this
      $ sudo rm /usr/local/bin/pop-shell-shortcuts
+
+* same of similar application for each session
+** Chrome browser for multiple tty sessions
+   https://superuser.com/a/647363
+   distinguised chromes are needed for exwm emacsclients
+
+   first, make a directory for chrome user's profile
+   $ mkdir -p ~/profile/google-chrome-user-1
+*** Desktop Entry
+    make desktop entry
+    e.g. ~/.local/share/applications/gchrome1.desktop
+    #+begin_src sh
+    [Desktop Entry]
+    Type=Application
+    Terminal=false  # or true when the program output into terminal
+    Name="Google-chrome 1"  # Its name should be different with "Google Chrome". Desktop entries with the same names are not allowed.
+    Icon=/path/to/icon/icon.svg
+    Exec=google-chrome --user-data-dir=profile/google-chrome-user-1
+    #+end_src
+    where 'user-data-dir' means a path form user's home directory
+    e.g. "profile/google-chrome-user-1" becomes "/home/user/profile/google-chrome-user-1"
+*** Bash command (optional)
+    - make chrome execution command "~/script/command/gchrome1"
+      #+begin_src sh
+      google-chrome --user-data-dir=profile/google-chrome-user-1
+      #+end_src
+    - chmod +x ~/script/gchrome1
+    - update "~/.bashrc"
+      #+begin_src sh
+      export PATH="/home/dhnam/script/command:$PATH"
+      #+end_src
+** Alacritty
+   terminal program to repace gnome-terminal
+** install
+   https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
+   #+begin_src sh
+   sudo add-apt-repository ppa:aslatter/ppa
+   sudo apt install alacritty
+   #+end_src
+** uninstall
+   #+begin_src sh
+   sudo apt remove --auto-remove alacritty
+   sudo add-apt-repository --remove ppa:aslatter/ppa
+   #+end_src
+** change theme
+   https://github.com/eendroroy/alacritty-theme
+
+   Update "~/.config/alacritty/alacritty.yml" with one of themes in
+   https://github.com/eendroroy/alacritty-theme/tree/master/themes
+** 256 colors
+   update "~/.bashrc" with the following line for Alacritty to apply 256 colors to the programs it launches
+   $ export TERM=xterm-256color

@@ -302,6 +302,19 @@
    - Raw-string match
      Use the below command during ivy search.
      M-r: ivy-toggle-regexp-quote
+** ido
+*** using command without id
+    https://stackoverflow.com/questions/6771664/disable-ido-mode-for-specific-commands
+    ido is disabled in come commands by repeatedly hitting the last key.
+    
+    ido-magic-forward-char (C-f) disables ido
+    e.g.
+    - C-x C-b ... C-f  switch to ‘ido-find-file’.
+    - C-x C-f ... C-f  fallback to non-Ido ‘find-file’.
+    - C-x C-d ... C-f  fallback to non-Ido brief ‘dired’.
+    - C-x d ... C-f    fallback to non-Ido ‘dired’.
+
+    ido-copy-current-file-name changes 'ido-write-file' to write-file'
 ** Flyspell
    - aspell for Windows
      - http://aspell.net/win32/

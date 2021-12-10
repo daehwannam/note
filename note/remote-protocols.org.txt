@@ -11,10 +11,33 @@
     https://varins.com/library/server/virtual-machine-qemu-kvm/
     Windows 10 should enable "Remote Desktop"
     설정 -> 시스템 -> 원격 데스크톱 -> 원격 데스크톱 활성화
+** remmina
+*** install
+    https://remmina.org/how-to-install-remmina/#ubuntu
+    #+begin_src sh
+    sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
+    sudo apt update
+    sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret
+
+    sudo killall remmina  # to run newly installed remmina
+    #+end_src
+*** multiple monitor
+    https://gitlab.com/Remmina/Remmina/-/merge_requests/2184
+    fill "Monitor ID list"
+    e.g. 2,0,1
 ** freerdp
+*** freerdp bug
+    xfreerdp has problems of pressing some keys such as CTRL and ALT.
+    (I haven't tested for the latest version)
 *** install
     https://www.youtube.com/watch?v=Tpw75B5fOIY
     $ sudo apt install freerdp2-x11 freerdp2-shadow-x11
+*** version check
+    $ xfreerdp --version
+    $ sudo apt update
+    $ sudo apt install freerdp2-x11 freerdp2-shadow-x11
+
+    xfreerdp version 2.2.0 is working better
 *** connect
     https://www.youtube.com/watch?v=Tpw75B5fOIY
     #+begin_src sh
@@ -34,8 +57,14 @@
       $ xfreerdp /monitors:2 /multimon /v:<host>
     - using multiple monitors
       e.g.
-      $ xfreerdp /monitors:2,1,0 /multimon /v:<host>
-      $ xfreerdp /monitors:2,1,0 /multimon /u:some-user  /v:192.168.111.100
+      $ xfreerdp /monitors:2,0,1 /multimon /v:<host>
+      $ xfreerdp /monitors:2,0,1 /multimon /u:some-user  /v:192.168.111.100
+
+      - the first monitor number (=2) indicates the primary monitor
+      - other orders of monitor number are not important
+*** keyboard shortcuts
+    - Ctrl + Alt + Enter : toogle fullscreen
+    - Right Ctrl : release keyboard
 *** usage
     - toogle between client and server
       Ctrl+Alt+Enter
