@@ -44,6 +44,10 @@
    - "Setting" -> "Region & Language" -> "Manage installed Languages"
       -> "Keyboard input method system" -> "fcitx"
    - reboot
+*** disable fcitx shortcuts
+    https://askubuntu.com/a/884288
+    - edit "/usr/share/fcitx/addon/fcitx-vk.conf"
+    - add "Enable=False"
 ** Some shortcuts needed to be disabled for emacs
    Settings -> Keyboard Shortcuts
    - Alt+Space
@@ -513,6 +517,26 @@
      #+end_example
    - restart cups
      $ sudo systemctl restart cups
+** running gnome-control-center's category in command line
+   https://askubuntu.com/a/121606
+   $ gnome-control-center sound
+** switch from GUI to CLI (console)
+   https://booiljung.github.io/technical_articles/linux/switch_gui_and_cli.html
+
+   - edit "/etc/default/grub"
+   - update GRUB_CMDLINE_LINUX_DEFAULT from "quiet splash" to "text"
+     #+begin_example
+     GRUB_CMDLINE_LINUX="text"  # CLI
+     #+end_example
+   - add or update GRUB_TERMINAL
+     #+begin_example
+     GRUB_TERMINAL=console
+     #+end_example
+   - update grub
+     $ sudo update-grub
+   - reboot
+*** rollback
+    $ sudo systemctl set-default graphical.target
 
 * Utilities
 ** ssh
@@ -678,6 +702,9 @@
 ** pskill
    https://stackoverflow.com/a/27820938
    $ pkill -f python
+** killall
+   https://www.linkedin.com/pulse/use-killall-kill-commands-stop-processes-linux-kuldeep-saxena
+   $ killall gnome-control-center
 ** lsblk
    https://unix.stackexchange.com/a/227458
    Check whether a mounted device, such as sda or sdb, is SDD or HDD:
@@ -786,6 +813,16 @@
     #+end_example
 
     then reboot
+** startx
+*** run x session in another tty
+    https://askubuntu.com/a/546334
+    e.g.
+    $ startx -display :2 -- :2 vt3 &
+    where
+    - :2 means display number. you can get the current display by
+      $ echo $DISPLAY
+    - vt3 means tty number. you can get the current tty by
+      $ tty
 
 * NVIDIA GPU & CUDA
 ** components

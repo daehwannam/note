@@ -42,6 +42,22 @@
      * -d is daemon start optoin
      * --xim enable multiple users(tty sesssions) use ibus
    - if switch language doesn't work, run "M-x toggle-input-method"
+** fcitx setup
+   - start fcitx daemon
+     $ fcitx
+     or
+     $ fcitx -d
+   - start fcitx without daemon
+     $ fcitx -D
+*** xinit config
+    https://wiki.archlinux.org/title/fcitx#Set_environment_variables_for_IM_modules
+    the following code should be added to xinit config file
+    #+begin_src sh
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS=@im=fcitx
+    fcitx &  # run fcitx daemon
+    #+end_src
 ** slock
    - install
      $ sudo apt-get install slock
@@ -79,6 +95,8 @@
 ** multiple monitor setup
    - find monitors
      $ xrandr
+   - list only monitors
+     $ xrandr | grep " connected" | cut -f1 -d " "
    - find devices noted as "connected"
      #+begin_example
      DVI-I-1 connected primary 1920x1080+1920+0 (normal left inverted right x axis y axis) 598mm x 336mm
@@ -193,54 +211,58 @@ v** install
    - (optional) if you've installed the Pop Shell Shortcuts, you can remove this
      $ sudo rm /usr/local/bin/pop-shell-shortcuts
 
-* same of similar application for each session
-** Chrome browser for multiple tty sessions
-   https://superuser.com/a/647363
-   distinguised chromes are needed for exwm emacsclients
+* Common
+** kill programs running in other sessions
+   https://askubuntu.com/a/121602
+   $ killall https://askubuntu.com/a/121602
+** same of similar application for each session
+*** Chrome browser for multiple tty sessions
+    https://superuser.com/a/647363
+    distinguised chromes are needed for exwm emacsclients
 
-   first, make a directory for chrome user's profile
-   $ mkdir -p ~/profile/google-chrome-user-1
-*** Desktop Entry
-    make desktop entry
-    e.g. ~/.local/share/applications/gchrome1.desktop
+    first, make a directory for chrome user's profile
+    $ mkdir -p ~/profile/google-chrome-user-1
+**** Desktop Entry
+     make desktop entry
+     e.g. ~/.local/share/applications/gchrome1.desktop
+     #+begin_src sh
+     [Desktop Entry]
+     Type=Application
+     Terminal=false  # or true when the program output into terminal
+     Name="Google-chrome 1"  # Its name should be different with "Google Chrome". Desktop entries with the same names are not allowed.
+     Icon=/path/to/icon/icon.svg
+     Exec=google-chrome --user-data-dir=profile/google-chrome-user-1
+     #+end_src
+     where 'user-data-dir' means a path form user's home directory
+     e.g. "profile/google-chrome-user-1" becomes "/home/user/profile/google-chrome-user-1"
+**** Bash command (optional)
+     - make chrome execution command "~/script/command/gchrome1"
+       #+begin_src sh
+       google-chrome --user-data-dir=profile/google-chrome-user-1
+       #+end_src
+     - chmod +x ~/script/gchrome1
+     - update "~/.bashrc"
+       #+begin_src sh
+       export PATH="/home/dhnam/script/command:$PATH"
+       #+end_src
+*** Alacritty
+    terminal program to repace gnome-terminal
+*** install
+    https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
     #+begin_src sh
-    [Desktop Entry]
-    Type=Application
-    Terminal=false  # or true when the program output into terminal
-    Name="Google-chrome 1"  # Its name should be different with "Google Chrome". Desktop entries with the same names are not allowed.
-    Icon=/path/to/icon/icon.svg
-    Exec=google-chrome --user-data-dir=profile/google-chrome-user-1
+    sudo add-apt-repository ppa:aslatter/ppa
+    sudo apt install alacritty
     #+end_src
-    where 'user-data-dir' means a path form user's home directory
-    e.g. "profile/google-chrome-user-1" becomes "/home/user/profile/google-chrome-user-1"
-*** Bash command (optional)
-    - make chrome execution command "~/script/command/gchrome1"
-      #+begin_src sh
-      google-chrome --user-data-dir=profile/google-chrome-user-1
-      #+end_src
-    - chmod +x ~/script/gchrome1
-    - update "~/.bashrc"
-      #+begin_src sh
-      export PATH="/home/dhnam/script/command:$PATH"
-      #+end_src
-** Alacritty
-   terminal program to repace gnome-terminal
-** install
-   https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
-   #+begin_src sh
-   sudo add-apt-repository ppa:aslatter/ppa
-   sudo apt install alacritty
-   #+end_src
-** uninstall
-   #+begin_src sh
-   sudo apt remove --auto-remove alacritty
-   sudo add-apt-repository --remove ppa:aslatter/ppa
-   #+end_src
-** change theme
-   https://github.com/eendroroy/alacritty-theme
+*** uninstall
+    #+begin_src sh
+    sudo apt remove --auto-remove alacritty
+    sudo add-apt-repository --remove ppa:aslatter/ppa
+    #+end_src
+*** change theme
+    https://github.com/eendroroy/alacritty-theme
 
-   Update "~/.config/alacritty/alacritty.yml" with one of themes in
-   https://github.com/eendroroy/alacritty-theme/tree/master/themes
-** 256 colors
-   update "~/.bashrc" with the following line for Alacritty to apply 256 colors to the programs it launches
-   $ export TERM=xterm-256color
+    Update "~/.config/alacritty/alacritty.yml" with one of themes in
+    https://github.com/eendroroy/alacritty-theme/tree/master/themes
+*** 256 colors
+    update "~/.bashrc" with the following line for Alacritty to apply 256 colors to the programs it launches
+    $ export TERM=xterm-256color
