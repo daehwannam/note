@@ -520,21 +520,6 @@
 ** running gnome-control-center's category in command line
    https://askubuntu.com/a/121606
    $ gnome-control-center sound
-** switch from GUI to CLI (console)
-   https://booiljung.github.io/technical_articles/linux/switch_gui_and_cli.html
-
-   - edit "/etc/default/grub"
-   - update GRUB_CMDLINE_LINUX_DEFAULT from "quiet splash" to "text"
-     #+begin_example
-     GRUB_CMDLINE_LINUX="text"  # CLI
-     #+end_example
-   - add or update GRUB_TERMINAL
-     #+begin_example
-     GRUB_TERMINAL=console
-     #+end_example
-   - update grub
-     $ sudo update-grub
-   - reboot
 *** rollback
     $ sudo systemctl set-default graphical.target
 
