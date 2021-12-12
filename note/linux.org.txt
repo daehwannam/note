@@ -799,6 +799,9 @@
 
     then reboot
 ** startx
+*** running X11 simply
+    https://en.wikibooks.org/wiki/Guide_to_X11/Starting_Sessions#xinit_and_startx
+    $ startx
 *** run x session in another tty
     https://askubuntu.com/a/546334
     e.g.
