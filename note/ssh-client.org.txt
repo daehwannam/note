@@ -2,10 +2,15 @@
 ** ssh keygen and copy
    https://stackoverflow.com/a/16604890
 
-   $ ssh-keygen
-   $ ssh-copy-id -i user@address
-   $ ssh user@address
+   type followings in client side
 
+   #+begin_src sh
+   ssh-keygen
+   ssh-copy-id -p 22 -i user@address
+   ssh user@address
+   #+end_src
+
+   e.g.
    #+begin_example
    dhnam@ubuntu:~$ ssh-keygen
    Generating public/private rsa key pair.

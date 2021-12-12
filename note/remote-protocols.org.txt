@@ -178,6 +178,13 @@
      where you should insert correct uid and gid of 'someuser'
      the IDs can be found by
      $ id someuser
+** check the current status
+   $ sudo smbstatus
+** check shared folders
+   $ smbclient -L localhost
+** start samba automatically from booting
+   https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-samba-startstop.html
+   "By default, the smb service does not start automatically at boot time."
 
 * NFS (Caution: NFS doesn't support password)
   https://www.tecmint.com/install-nfs-server-on-ubuntu/

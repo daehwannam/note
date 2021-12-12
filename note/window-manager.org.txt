@@ -58,6 +58,9 @@
     export XMODIFIERS=@im=fcitx
     fcitx &  # run fcitx daemon
     #+end_src
+*** when Hangul key doesn't work
+    https://ieworld.tistory.com/4
+    
 ** slock
    - install
      $ sudo apt-get install slock
@@ -247,22 +250,32 @@ v** install
        #+end_src
 *** Alacritty
     terminal program to repace gnome-terminal
-*** install
-    https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
-    #+begin_src sh
-    sudo add-apt-repository ppa:aslatter/ppa
-    sudo apt install alacritty
-    #+end_src
-*** uninstall
-    #+begin_src sh
-    sudo apt remove --auto-remove alacritty
-    sudo add-apt-repository --remove ppa:aslatter/ppa
-    #+end_src
-*** change theme
-    https://github.com/eendroroy/alacritty-theme
+**** install
+     https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
+     #+begin_src sh
+     sudo add-apt-repository ppa:aslatter/ppa
+     sudo apt install alacritty
+     #+end_src
+**** uninstall
+     #+begin_src sh
+     sudo apt remove --auto-remove alacritty
+     sudo add-apt-repository --remove ppa:aslatter/ppa
+     #+end_src
+**** change theme
+     https://github.com/eendroroy/alacritty-theme
 
-    Update "~/.config/alacritty/alacritty.yml" with one of themes in
-    https://github.com/eendroroy/alacritty-theme/tree/master/themes
-*** 256 colors
-    update "~/.bashrc" with the following line for Alacritty to apply 256 colors to the programs it launches
-    $ export TERM=xterm-256color
+     Update "~/.config/alacritty/alacritty.yml" with one of themes in
+     https://github.com/eendroroy/alacritty-theme/tree/master/themes
+**** change font
+     https://wiki.archlinux.org/title/Alacritty#Font
+     Update "~/.config/alacritty/alacritty.yml" with the following code
+     #+begin_src 
+     font:
+       size: 8
+     #+end_src
+**** 256 colors
+     update "~/.bashrc" with the following line for Alacritty to apply 256 colors to the programs it launches
+     $ export TERM=xterm-256color
+**** change default terminal
+     https://itsfoss.com/change-default-terminal-ubuntu/
+     $ sudo update-alternatives --config x-terminal-emulator 

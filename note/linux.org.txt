@@ -48,6 +48,15 @@
     https://askubuntu.com/a/884288
     - edit "/usr/share/fcitx/addon/fcitx-vk.conf"
     - add "Enable=False"
+*** fcitx config
+    $ fcitx-configtool
+*** set default language
+    - open config
+      $ fcitx-configtool
+    - Global Config
+    - Show Advanced Options (at the left bottom corner)
+    - Program
+    - Default Input Method State -> Active
 ** Some shortcuts needed to be disabled for emacs
    Settings -> Keyboard Shortcuts
    - Alt+Space
