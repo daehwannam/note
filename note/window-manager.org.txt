@@ -162,9 +162,28 @@
 *** example
     - running Xephyr
       $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
-    - connect
+    - connect8
       $ DISPLAY=:3 emacs
-** EXWM wiin Xephyr
+** clipboard sharing between main and nested x sessions
+   https://github.com/flesueur/mi-lxc/issues/42#issuecomment-803263452
+   run "xclipsync" in nested X sessions
+   $ git clone https://github.com/apenwarr/xclipsync.git
+   $ cd xclipsync
+   $ xclipsync
+*** (error) xclipsync: ./xclipfrom: /usr/bin/wish: bad interpreter: No such file or directory
+    install wish:
+    $ sudo apt install wish
+   
+** Gnome withing Xephyr
+   https://www.youtube.com/watch?v=ECHH2JFA8SM
+   - run Xephyr
+     # $ Xephyr -host-cursor -screen 400x600 -noreset :1 &
+     $ Xephyr -host-cursor -screen 400x300 -noreset :1 &
+   - run Gnome
+     $ DISPLAY=:1 dbus-run-session gnome-shell
+   - kill or Xephyr
+     $ pkill -f Xephyr
+** EXWM within Xephyr
    Xephyr cannot concurrently run the same application
    therefore, you should prepare multiple similar programs
    e.g. google-chrome profile for each Xephyr connection
