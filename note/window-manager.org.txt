@@ -234,6 +234,17 @@ v** install
      $ sudo rm /usr/local/bin/pop-shell-shortcuts
 
 * Common
+** Gnome
+   gnome applications are working as server-client relationships
+   therefore, gnome-session should be running to start gnome applications, such as gnome-control-center or gnome-terminal
+
+   e.g. gnome-terminal-server should be runnign to execute gnome-terminal
+   https://askubuntu.com/questions/1346536/why-does-starting-a-terminal-on-a-different-tty-end-up-opening-the-program-on-th
+*** runing gnome session
+    https://wiki.archlinux.org/title/GNOME#Manually
+*** related
+    - gnome-settings-daemon
+    - gnome-shell
 ** kill programs running in other sessions
    https://askubuntu.com/a/121602
    $ killall https://askubuntu.com/a/121602
