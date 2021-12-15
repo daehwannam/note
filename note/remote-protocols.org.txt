@@ -185,8 +185,10 @@
 ** start samba automatically from booting
    https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-samba-startstop.html
    "By default, the smb service does not start automatically at boot time."
+** port change
+   https://sysdocu.tistory.com/1389
 
-* NFS (Caution: NFS doesn't support password)
+* NFS (Caution: NFS doesn't support password?)
   https://www.tecmint.com/install-nfs-server-on-ubuntu/
   https://www.nemonein.xyz/2020/09/4260/
 ** server side
@@ -226,3 +228,6 @@
      where the option "-o reconnect" reconnects to the server when it's disconnected
 ** unmounting
    $ umount path/to/local/dir
+** sshfs for Windows
+   https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-using-sshfs-e29c7ca81c87
+   https://sysdocu.tistory.com/1389

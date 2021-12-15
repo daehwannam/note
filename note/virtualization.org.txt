@@ -340,6 +340,14 @@
       - before removing by virt-manager, check its path and remove the file by 'sudo rm path/to/img'
 
 ** Usage
+*** virsh commands
+    https://computingforgeeks.com/virsh-commands-cheatsheet/
+    - list VMs
+      $ virsh list --all
+    - start VM
+      $ virsh start <vm-name>
+    - stop VM
+      $ virsh shutdown <vm-name>
 *** switching from guest to host
     https://superuser.com/a/1452377
     
