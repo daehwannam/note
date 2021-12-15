@@ -182,8 +182,8 @@ map <c-g><c-p> togglePinTab
 # See package: <http://bit.ly/Z1ZXYg>
 # Also similar to: `(backward|forward)-word`
 # However, this uses capitals w/ the shift key.
-map <a-B> moveTabLeft
-map <a-F> moveTabRight
+map <a-9> moveTabLeft # map <a-(> moveTabLeft
+map <a-0> moveTabRight # map <a-)> moveTabRight
 
 # Similar to Emacs help commands.
 map <c-h> showHelp
