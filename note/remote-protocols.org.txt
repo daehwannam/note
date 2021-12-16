@@ -230,4 +230,29 @@
    $ umount path/to/local/dir
 ** sshfs for Windows
    https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-using-sshfs-e29c7ca81c87
-   https://sysdocu.tistory.com/1389
+
+*** install
+    - install WINFsp
+      https://github.com/billziss-gh/winfsp
+      https://github.com/billziss-gh/winfsp/releases
+    - install SSHFS-Win
+*** mount
+    https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-using-sshfs-e29c7ca81c87
+
+    - format to mount
+      #+begin_example
+      \\sshfs[.option]\<remote user>@<remote host>[!port][\path]
+      #+end_example
+      - sshfs maps the remote user's home directory.
+      - sshfs.r connects to the remote user's root directory.
+      - sshfs.k maps the remote user's home directory and uses the SSH key stored in <local user>/.ssh/id_rsa.
+      - sshfs.kr adds the remote user's root directory and uses the locally stored SSH key.
+      - e.g.
+        \\sshfs.r\user@domain.com!12345\home/user/data
+    - mount driver in Windnows
+      - right mouse click on PC
+      - select "Add a network location"
+      - insert the mount information by the format
+      - check "Reconnect" and "Use different credentials"
+      - go next
+      - type ID/PW and check "Remember credentials"
