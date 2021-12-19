@@ -278,6 +278,11 @@ v** install
        #+begin_src sh
        export PATH="/home/dhnam/script/command:$PATH"
        #+end_src
+*** Kitty
+    https://sw.kovidgoyal.net/kitty/
+    https://github.com/kovidgoyal/kitty
+**** install
+     $ sudo apt install kitty
 *** Alacritty
     terminal program to repace gnome-terminal
 **** install
