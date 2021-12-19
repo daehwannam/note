@@ -21,6 +21,23 @@
      https://support.mozilla.org/en-US/questions/1284841
    - fixed hiding
      https://www.reddit.com/r/firefox/comments/8dlb5j/comment/dxopy23/?utm_source=share&utm_medium=web2x&context=3
+** use another profile
+   - make a new profile
+     https://support.mozilla.org/en-US/questions/1262935
+     - open "about:profiles"
+     - create a new profile
+   - run firefox with a new profile
+     - open "about:profiles"
+     - copy "Root Directory"
+       e.g. /home/dhnam/.mozilla/firefox/p37s9w6u.sub
+     - run firefox with "-profile" argument
+       e.g.
+       $ firefox -profile /home/dhnam/.mozilla/firefox/p37s9w6u.sub
+** remove "import bookmarks ..." in toolbar
+   - Menu ≡
+   - "More tools"
+   - "Customize toolbar..."
+   - drag "import bookmarks ..." from toolbar
 
 * Nyxt
 ** Install
