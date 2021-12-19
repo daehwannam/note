@@ -1,0 +1,20 @@
+
+/* Auto-hiding tab and address bars */
+/* https://support.mozilla.org/en-US/questions/1284841 */
+#navigator-toolbox {
+  max-height: 20px;
+  overflow: hidden;
+  transition: ease all 5s;
+}
+
+#navigator-toolbox:hover {
+  max-height: 100vh;
+  animation: 0s pop-in;
+  animation-fill-mode: both;
+  animation-delay: 5s;
+}
+
+@keyframes pop-in {
+  from {overflow: hidden}
+  to {overflow: unset}
+}

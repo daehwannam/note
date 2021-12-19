@@ -1,0 +1,92 @@
+* Firefox
+** userChrome.css
+   - make userChrome.css
+     https://www.userchrome.org/how-create-userchrome-css.html
+     - menu (3-bar) button -> "Help" -> "More Troubleshooting Information"
+     - open the path displayed in "Profile Directory"
+       e.g. /home/dhnam/.mozilla/firefox/t6ziesp7.default-release
+     - make directory chrome and userChrome.css in it
+       #+begin_src sh
+       mkdir chrome
+       touch chrome/userChrome.css
+       #+end_src
+   - activate userChrome.css
+     https://support.mozilla.org/en-US/questions/1325862
+     - go to "about:config"
+     - set "toolkit.legacyUserProfileCustomizations.stylesheets" as true
+     - restart the browser.
+   - exit and reload firefox
+** hide tab bar
+   - auto-hiding
+     https://support.mozilla.org/en-US/questions/1284841
+   - fixed hiding
+     https://www.reddit.com/r/firefox/comments/8dlb5j/comment/dxopy23/?utm_source=share&utm_medium=web2x&context=3
+
+* Nyxt
+** Install
+   https://nyxt.atlas.engineer/download
+   Ubuntu package is supported
+*** dependencies for installing from source (optional)
+    https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#gnulinux-freebsd-gtk-dependencie
+    $ sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev xclip enchant-2
+
+*** Youtube video fix
+    https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
+
+    'gstreamer1.0-libav' need to be installed
+    $ sudo apt-get install gstreamer1.0-libav
+*** "WebKitJavascriptError", Code: 699
+    https://github.com/atlas-engineer/nyxt/issues/1657#issuecomment-886022638
+
+    I got the error from google search
+
+    Install the following packages to fix it
+    #+begin_src sh
+    sudo apt install libgstreamer1.0-0
+    sudo apt install gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools
+    sudo apt install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
+    #+end_src
+*** config setup
+    #+begin_src sh
+    git clone https://github.com/daehwannam/nyxt-config.git
+   
+    if [ -d /home/$USER/.config/nyxt ]; then
+        echo "/home/$USER/.config/nyxt exists already"
+    else
+        mv nyxt-config /home/$USER/.config/nyxt
+    fi
+    #+end_src
+
+** Usage
+*** search with secific engine
+    - run 'set-url
+    - insert "<engine-name> key words"
+*** bookmark
+**** add url to bookmark
+     commands like 'bookmark-current-url add url to bookmark
+     where multiple tags can be added
+     1. type tags with seperators (space, comma, ...)
+     2. type C-SPC (in emacs-mode) to add the tag which the current cursor indicate
+**** default bookmark location
+     ~/.local/share/nyxt/bookmarks.lisp
+**** change bookmark location
+     https://github.com/atlas-engineer/nyxt/blob/master/source/manual.lisp
+
+     #+begin_src lisp
+     (define-configuration buffer
+         ((bookmarks-path (make-instance 'bookmarks-data-path
+                                         :basename "~/personal/bookmarks/bookmarks.lisp"))))
+     #+end_src
+*** visual mode
+    mouseless text selection
+    - run command 'visual-mode
+    - back to the normal mode by ESC or C-g (only for emacs-mode)
+
+** Configuration
+*** config file
+    /home/$USER/.config/nyxt/init.lisp
+
+** Misc
+*** delete cached history
+    https://discourse.atlas.engineer/t/global-history-tree-your-map-of-the-internet/82/3
+    $ rm -R  ~/.local/share/nyxt/history

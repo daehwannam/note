@@ -78,9 +78,12 @@ map <c-g><c-f> focusInput
 
 # Similar to Emacs `find-file`.
 map qj LinkHints.activateMode  # map <c-x><c-f> LinkHints.activateMode
-map qo LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
-map ql LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
-map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
+# map qo LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
+# map ql LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
+# map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
+
+# open in new window
+map qo LinkHints.activate newtab="window"  # only available in vimium-c
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
