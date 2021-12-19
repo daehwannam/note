@@ -1,20 +1,40 @@
-
-/* Auto-hiding tab and address bars */
-/* https://support.mozilla.org/en-US/questions/1284841 */
-#navigator-toolbox {
-  max-height: 20px;
-  overflow: hidden;
-  transition: ease all 5s;
+/* Minimizing tab-bar */
+/* https://support.mozilla.org/en-US/questions/1199921#answer-1065379 */
+/* Squash tab bar to 6px unless a tab is hovered */
+#TabsToolbar,
+#TabsToolbar .tabbrowser-tab {
+  height: 29px !important; /* 29px compact, 33px normal, YMMV */
+  min-height: 29px !important;
+  max-height: 29px !important;
+  transition: all 0.5s ease-in-out;
+}
+#TabsToolbar:not(:hover),
+#TabsToolbar:not(:hover) .tabbrowser-tab[selected] {
+  height: 6px !important;
+  min-height: 6px !important;
+  max-height: 6px !important;
+  transition: all 0.5s ease-in-out;
+}
+#TabsToolbar:not(:hover) .tabbrowser-tab[selected] .tab-content {
+  display: none;
 }
 
-#navigator-toolbox:hover {
-  max-height: 100vh;
-  animation: 0s pop-in;
-  animation-fill-mode: both;
-  animation-delay: 5s;
-}
+/* /\* Auto-hiding tab and address bars *\/ */
+/* /\* https://support.mozilla.org/en-US/questions/1284841 *\/ */
+/* #navigator-toolbox { */
+/*   max-height: 10px; */
+/*   overflow: hidden; */
+/*   transition: ease all 5s; */
+/* } */
 
-@keyframes pop-in {
-  from {overflow: hidden}
-  to {overflow: unset}
-}
+/* #navigator-toolbox:hover { */
+/*   max-height: 100vh; */
+/*   animation: 0s pop-in; */
+/*   animation-fill-mode: both; */
+/*   animation-delay: 5s; */
+/* } */
+
+/* @keyframes pop-in { */
+/*   from {overflow: hidden} */
+/*   to {overflow: unset} */
+/* } */

@@ -78,12 +78,12 @@ map <c-g><c-f> focusInput
 
 # Similar to Emacs `find-file`.
 map qj LinkHints.activateMode  # map <c-x><c-f> LinkHints.activateMode
-# map qo LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
-# map ql LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
-# map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
+map qo LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
+map ql LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
+map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
 
 # open in new window
-map qo LinkHints.activate newtab="window"  # only available in vimium-c
+map qn LinkHints.activate newtab="window"  # only available in vimium-c
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
@@ -185,8 +185,8 @@ map <c-g><c-p> togglePinTab
 # See package: <http://bit.ly/Z1ZXYg>
 # Also similar to: `(backward|forward)-word`
 # However, this uses capitals w/ the shift key.
-map <a-9> moveTabLeft # map <a-(> moveTabLeft
-map <a-0> moveTabRight # map <a-)> moveTabRight
+map <a-(> moveTabLeft # map <a-(> moveTabLeft
+map <a-)> moveTabRight # map <a-)> moveTabRight
 
 # Similar to Emacs help commands.
 map <c-h> showHelp
