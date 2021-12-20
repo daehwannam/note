@@ -531,6 +531,11 @@
    $ gnome-control-center sound
 *** rollback
     $ sudo systemctl set-default graphical.target
+** Enable dock bar
+   https://askubuntu.com/a/1186456
+   - run the following command
+     $ gnome-shell-extension-prefs
+   - change "Ubuntu Dock" as "ON"
 
 * Utilities
 ** ssh

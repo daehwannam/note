@@ -12,9 +12,9 @@
        #+end_src
    - activate userChrome.css
      https://support.mozilla.org/en-US/questions/1325862
-     - go to "about:config"
-     - set "toolkit.legacyUserProfileCustomizations.stylesheets" as true
-     - restart the browser.
+     * go to "about:config"
+     * set "toolkit.legacyUserProfileCustomizations.stylesheets" as true
+     * restart the browser.
    - exit and reload firefox
 ** hide tab bar
    - auto-hiding
@@ -25,7 +25,8 @@
    - make a new profile
      https://support.mozilla.org/en-US/questions/1262935
      - open "about:profiles"
-     - create a new profile
+     - click "Create a New Profile"
+     - (optional) click "Set as default profile" for your main profile
    - run firefox with a new profile
      - open "about:profiles"
      - copy "Root Directory"
@@ -38,6 +39,20 @@
    - "More tools"
    - "Customize toolbar..."
    - drag "import bookmarks ..." from toolbar
+
+* EAF browser
+  emacs-application-framework browser
+** error fix
+*** ModuleNotFoundError: No module named 'epc'
+    $ sudo apt-get install python3-epc
+*** python3: ../nouveau/pushbuf.c:723: nouveau_pushbuf_data: Assertion `kref' failed.
+    need to install graphic driver
+**** install nvidia driver
+     https://pstudio411.tistory.com/entry/Ubuntu-2004-Nvidia%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+     - check available drivers
+       $ ubuntu-drivers devices
+     - install a driver
+       $ sudo apt install nvidia-driver-470
 
 * Nyxt
 ** Install
