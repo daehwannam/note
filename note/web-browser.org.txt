@@ -41,7 +41,21 @@
    - drag "import bookmarks ..." from toolbar
 
 * EAF browser
+  https://github.com/emacs-eaf/emacs-application-framework
   emacs-application-framework browser
+** EAF Setup
+   # Install python dependencies
+   # #+begin_src sh
+   # pip install PyQt5 PyQt5-sip PyQtWebEngine pygit2
+   # #+end_src
+
+   install emacs-application-framework
+   #+begin_src sh
+   git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/package/emacs-application-framework/
+   cd ~/.emacs.d/package/emacs-application-framework/
+   chmod +x ./install-eaf.py
+   ./install-eaf.py --install-all-apps
+   #+end_src** 
 ** error fix
 *** ModuleNotFoundError: No module named 'epc'
     $ sudo apt-get install python3-epc
