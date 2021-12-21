@@ -352,6 +352,9 @@
 *** package version
     https://unix.stackexchange.com/a/89590
     $ dpkg -s <package> | grep Version
+*** install package
+    https://askubuntu.com/a/40781
+    $ sudo dpkg -i DEB_PACKAGE
 ** Creating a new user
    $ sudo adduser username
 ** Add a sudo user to sudo group
@@ -536,6 +539,15 @@
    - run the following command
      $ gnome-shell-extension-prefs
    - change "Ubuntu Dock" as "ON"
+** running .desktop file from command line
+   if "some-app.desktop" is located in one of
+   - /usr/share/applications
+   - /usr/local/share/applications
+   - ~/.local/share/applications
+
+   $ gtk-launch app
+   or
+   $ gtk-launch app.desktop
 
 * Utilities
 ** ssh

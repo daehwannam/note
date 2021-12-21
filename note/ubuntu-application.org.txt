@@ -1,0 +1,39 @@
+* HWP
+** install
+   - install HWP from .deb file
+     https://nooree.com/74
+     - download .deb file
+       https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
+     - install .deb file
+       $ sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
+   - change language to Korean
+     https://hamonikr.org/Free_Board/88075
+     http://no1linux.org/screenshot/37778
+     update "/usr/share/applications/hoffice11-hwp.desktop"
+     #+begin_example
+     Exec=/bin/bash -c "LANGUAGE=ko_KR /opt/hnc/hoffice11/Bin/hwp %f"
+     #+end_example
+   - enable to input Korean
+     https://hamonikr.org/Free_Board/85939
+     #+begin_src sh
+     cd /opt/hnc/hoffice11/Bin/
+     sudo mv qt qt.backup
+     #+end_src
+   - (optional) install nimf when you cannot type Korean
+     https://pivox.tistory.com/44
+     #+begin_src sh
+     sudo apt install curl
+     sudo rm -f /etc/apt/sources.list.d/hamonikr.list
+     curl -sL https://pkg.hamonikr.org/add-hamonikr.apt | sudo -E bash -
+     sudo apt install nimf nimf-libhangul
+     im-config -n nimf
+     #+end_src
+** (optional) install HWP viewer
+   https://nooree.com/74
+   - download .deb file
+     https://drive.google.com/file/d/1Xv8Gd5nGlz_rPFMGMYv4u_lEvLLPyF3V/view?usp=sharing
+   - install .deb file
+     $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
+
+* WPS
+  https://askubuntu.com/a/1368754
