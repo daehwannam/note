@@ -314,6 +314,11 @@
        - uid and gid can be obtained by:
          $ id
        - umask=007 make its permission as "drwxrwx---"
+     - if the mounted partition is gonna be shared via sshfs, set "umask=000"
+       e.g.
+       #+begin_example
+       UUID=C6289E13289E029B /home/dhnam/ntfsdata ntfs defaults,umask=000,uid=1000,gid=1000 0 0
+       #+end_example
    - reboot
 ** get gid from group name
    https://askubuntu.com/a/639998
@@ -536,9 +541,26 @@
     $ sudo systemctl set-default graphical.target
 ** Enable dock bar
    https://askubuntu.com/a/1186456
-   - run the following command
-     $ gnome-shell-extension-prefs
-   - change "Ubuntu Dock" as "ON"
+   - method 1
+     - run the following command
+       $ gnome-shell-extension-prefs
+     - change "Ubuntu Dock" as "ON"
+       - if extensions are inactivated, enable it by clicking the button at the top right corner
+   - method 2
+     - run gnome-tweaks
+       $ gnome-tweaks
+     - Extensions -> change "Ubuntu dock" as "ON"
+       - if extensions are inactivated, enable it by clicking the button at the top right corner
+*** change dock bar config
+    https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-20-04-focal-fossa-linux
+    if you cannot find Settings -> Appearance, you can try below method
+    - install dconf-editor
+      $ sudo apt install dconf-editor
+    - run dconf-editor
+      $ dconf-editor
+    - find "/org/gnome/shell/extensions/dash-to-dock/dock-position"
+    - change "Custom value"
+
 ** running .desktop file from command line
    if "some-app.desktop" is located in one of
    - /usr/share/applications

@@ -226,6 +226,12 @@
    - mount to server's directory
      $ sshfs -o reconnect user@x.x.x.x:/path/to/server/remote/dir path/to/local/dir
      where the option "-o reconnect" reconnects to the server when it's disconnected
+** enable option 'allow_other'
+   https://askubuntu.com/a/309242
+   update "/etc/fuse.conf"
+   #+begin_src sh
+   user_allow_other
+   #+end_src
 ** unmounting
    $ umount path/to/local/dir
 ** sshfs for Windows

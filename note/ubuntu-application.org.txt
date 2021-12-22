@@ -35,5 +35,40 @@
    - install .deb file
      $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
 
-* WPS
+* WPS Office
   https://askubuntu.com/a/1368754
+** install WPS
+   - download WPS package from https://www.wps.com/
+   - install WPS
+     $ sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
+** font update from ttf-mscorefonts-installer
+   https://ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
+   https://kairos03.github.io/2018/09/07/ubuntu18.04-wps-office-install.html
+
+   - install font
+     $ sudo apt install ttf-mscorefonts-installer
+   - update font cache
+     $ sudo fc-cache -f -v
+** font update for "Wingdings, Wingdings 2, Wingdings 3, MT Extra"
+   https://askubuntu.com/a/1000144
+   #+begin_src sh
+   git clone https://github.com/udoyen/wps-fonts.git
+   sudo mv -v wps-fonts/wps/* /usr/share/fonts/wps-office
+   rm -Rf wps-fonts/
+   #+end_src
+** (optional) font update to ~/.fonts/
+   https://tolovefeels.tistory.com/9
+
+   Caution: it may not work
+
+   #+begin_src sh
+   mkdir -p ~/.fonts/
+   wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/symbol.ttf -O ~/.fonts/symbol.ttf
+   wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/wingding.ttf -O ~/.fonts/wingding.ttf
+   wget https://bmaupin.github.io/askubuntu-983191-research/symbol_msfontservice.ttf -O ~/.fonts/symbol_msfontservice.ttf
+   wget https://bmaupin.github.io/askubuntu-983191-research/wingdings_msfontservice.ttf -O ~/.fonts/wingdings_msfontservice.ttf
+   fc-cache -f -v
+   #+end_src
+
+* Kazam
+  video recording and image capture tool
