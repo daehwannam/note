@@ -350,6 +350,11 @@
 *** update vs upgrade
     You should first run update, then upgrade. Neither of them automatically runs the other.
     https://askubuntu.com/a/94104
+** apt-cache
+*** find package by name
+    https://askubuntu.com/questions/32238/find-package-name-using-terminal
+    $ apt-cache search <name>
+    the most relevant results will be at the last since it is the terminal
 ** dpkg
 *** package install location
     https://askubuntu.com/a/408785
@@ -360,6 +365,13 @@
 *** install package
     https://askubuntu.com/a/40781
     $ sudo dpkg -i DEB_PACKAGE
+*** remove package
+    https://askubuntu.com/a/22204
+    - remove package
+      $ sudo dpkg -r package_name
+
+    - removing package and configuration files together
+      $ sudo dpkg --purge package_name
 ** Creating a new user
    $ sudo adduser username
 ** Add a sudo user to sudo group
