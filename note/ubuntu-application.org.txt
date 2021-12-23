@@ -19,6 +19,7 @@
      cd /opt/hnc/hoffice11/Bin/
      sudo mv qt qt.backup
      #+end_src
+     then fcitx works
    - (optional) install nimf when you cannot type Korean
      https://pivox.tistory.com/44
      #+begin_src sh
@@ -72,3 +73,87 @@
 
 * Kazam
   video recording and image capture tool
+
+* Flameshot
+** install
+   https://vitux.com/ubuntu-screenshot-flameshot/
+   $ sudo apt install flameshot
+** usage
+   https://www.tecmint.com/install-flameshot-in-linux/
+   $ flameshot gui
+
+* feh
+  image viewer
+** install
+   $ sudo apt install feh
+** usage
+   - up/down key -> zome in/out
+   - open image with fitting
+     $ feh --scale-down --auto-zoom
+** other shortcuts
+   http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
+** change default launch option
+   - copy .desktop
+     $ cp /usr/share/applications/feh.desktop ~/.local/share/applications/
+   - update "Exec" in "~/.local/share/applications/"
+     #+begin_src sh
+     Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
+     #+end_src
+
+* Nomacs
+** install
+   sudo apt install nomacs
+
+* KakaoTalk
+** install
+   https://movment.tistory.com/5
+*** install wine
+    #+begin_src sh
+    sudo dpkg --add-architecture i386
+
+    wget -nc https://dl.winehq.org/wine-builds/winehq.key
+    sudo apt-key add winehq.key
+
+    # for Ubuntu 20.04 LTS
+    sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
+
+    sudo apt update
+    sudo apt install --install-recommends winehq-stable
+
+    # set wine for 32bit applications
+    WINEARCH=win32 winecfg
+    # don't need to install Mono and Gecko
+    # set "Windows version" to "Windows 10"
+    #+end_src
+*** install KakaoTalk
+    - download KakaoTalk for windows
+      https://www.kakaocorp.com/service/KakaoTalk
+    - run the following command
+      $ LANG="ko_KR.UTF-8" wine ~/Downloads/KakaoTalk_Setup.exe
+    - uncheck "시작메뉴에 바로가기 만들기" and "Daum을 시작페이지로 설정"
+      otherwise, two shorcuts are created
+*** language setting for KakaoTalk
+    - update "~/.local/share/applications/wine/Programs/카카오톡/카카오톡.desktop" by
+      - adding LANG="ko_KR.UTF-8"
+      #+begin_src sh
+      Name=카카오톡
+      Exec=env WINEPREFIX="/home/dhnam/.wine" LANG="ko_KR.UTF-8" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dhnam/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/카카오톡/카카오톡.lnk
+      #+end_src
+    - (optional) make duplicate .desktop for convenience
+      - copy .desktop
+        #+begin_src sh
+        cp ~/.local/share/applications/wine/Programs/카카오톡/카카오톡.desktop ~/.local/share/applications/kakao-talk.desktop
+        #+end_src
+      - update name of .desktop
+        #+begin_src sh
+        # Name=카카오톡
+        Name=KakaoTalk
+        Exec=env WINEPREFIX="/home/dhnam/.wine" LANG="ko_KR.UTF-8" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dhnam/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/카카오톡/카카오톡.lnk
+        #+end_src
+    - log out session
+*** (optional) system tray
+    - install topicons plus
+      $ sudo apt install gnome-shell-extension-top-icons-plus
+    - enable topicons plus
+      $ gnome-tweaks
+      Extensions -> Topicons plus

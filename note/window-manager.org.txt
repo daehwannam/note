@@ -181,7 +181,7 @@
      $ Xephyr -host-cursor -screen 400x300 -noreset :1 &
    - run Gnome
      $ DISPLAY=:1 dbus-run-session gnome-shell
-   - kill or Xephyr
+   - kill Xephyr
      $ pkill -f Xephyr
 ** EXWM within Xephyr
    Xephyr cannot concurrently run the same application

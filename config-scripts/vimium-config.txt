@@ -60,11 +60,11 @@ map <c-x>0 removeTab
 
 # Not implemented in Emacs.
 map qu copyCurrentUrl  # map <c-g><c-u> copyCurrentUrl
-map <c-g><c-l> LinkHints.activateModeToCopyLinkUrl
+map <c-g><c-l> LinkHints.activateCopyLinkUrl
 
 # Not implemented in Emacs.
 map <c-g><c-o> openCopiedUrlInCurrentTab
-map <c-g><c-O> openCopiedUrlInNewTab
+map <c-g><c-s-o> openCopiedUrlInNewTab
 
 # Not implemented in Emacs.
 map <c-g>< goUp
@@ -77,30 +77,30 @@ map <c-g><c-i> enterInsertMode
 map <c-g><c-f> focusInput
 
 # Similar to Emacs `find-file`.
-map qj LinkHints.activateMode  # map <c-x><c-f> LinkHints.activateMode
-map ql LinkHints.activateModeToOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateModeToOpenInNewForegroundTab
-map qL LinkHints.activateModeToOpenInNewTab  #map <c-x><a-F> LinkHints.activateModeToOpenInNewTab
-map qO LinkHints.activateModeWithQueue  # map <c-x><a-f> LinkHints.activateModeWithQueue
+map qj LinkHints.activate  # map <c-x><c-f> LinkHints.activate
+map ql LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateOpenInNewForegroundTab
+map qL LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
+map qO LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
 
 # open in new window
 map qo LinkHints.activate newtab="window"  # only available in vimium-c
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
-map <c-x><c-D> Vomnibar.activateInNewTab
+map <c-x><c-s-d> Vomnibar.activateInNewTab
 
 # Similar to Emacs `switch-to-buffer`.
 map <c-x>b Vomnibar.activateTabSelection
 
 # Similar to Emacs `list-buffers`.
 map <c-x><c-b> Vomnibar.activateBookmarks
-map <c-x><c-B> Vomnibar.activateBookmarksInNewTab
+map <c-x><c-s-b> Vomnibar.activateBookmarksInNewTab
 
 # Not implemented in Emacs.
 # Similar to Emacs `(previous|next)-buffer`.
 # However, this uses `<c-g>` instead of `<c-x>`.
-map <c-<left>> goPrevious  # map <c-g><left> goPrevious
-map <c-right>> goNext  # map <c-g><right> goNext
+# map <c-<left>> goPrevious  # map <c-g><left> goPrevious
+# map <c-right>> goNext  # map <c-g><right> goNext
 
 # Similar to Emacs `other-frame`.
 # Also similar to Emacs `other-window`.
@@ -136,7 +136,7 @@ map <c-x><c-@> Marks.activateGotoMode
 map / enterFindMode  # map <c-s> enterFindMode  # similar to F3 or Ctrl-f
 map n performFind  # map <c-S> performFind  # similar to F3 or Enter
 map p performBackwardsFind  # map <c-r> performBackwardsFind  # similar to Shift-F3 or Shift-Enter
-# map <c-R> performBackwardsFind
+# map <c-s-r> performBackwardsFind
 
 # Not implemented in Emacs.
 # Similar to Emacs `(backward|forward)-char`.
@@ -198,3 +198,21 @@ map <a-q>k/ restoreTab
 map <a-q>k* closeOtherTabs
 map <a-q>k( closeTabsOnLeft
 map <a-q>k) closeTabsOnRight
+
+# visual mode
+map v enterVisualMode
+map V enterVisualLineMode
+# c is mapped to caret mode
+
+# movement in visual mode
+# https://github.com/philc/vimium/issues/3248#issuecomment-464564492
+# https://github.com/philc/vimium/wiki/Tips-and-Tricks#key-mapping
+mapkey <up> k
+mapkey <down> j
+mapkey <left> h
+mapkey <right> l
+# mapkey u b
+# mapkey o e
+
+# cancel key
+mapkey <c-g> <esc>
