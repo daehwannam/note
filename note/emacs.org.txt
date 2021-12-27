@@ -185,15 +185,60 @@
      $ sudo apt update
      $ sudo apt install snapd
    - install emacs
-     $ sudo snap install emacs --edge --classic
+     $ sudo snap install emacs --classic
+     # $ sudo snap install emacs --edge --classic
    - uninstall
      $ sudo snap remove <package>
    - path to the emacs: "/snap/emacs/current/usr/bin/emacs"
-** build emacs
+** build emacs with native comp
+   https://gist.github.com/kiennq/0f3e65098725b1f9708da8c92972e705
+   - install
+     #+begin_src sh
+     git clone git://git.savannah.gnu.org/emacs.git --depth=1
+     cd emacs
+     # git fetch origin feature/native-comp
+
+     sudo add-apt-repository -y ppa:ubuntu-toolchain-r/ppa
+     sudo apt install -y autoconf make checkinstall texinfo libxpm-dev libjpeg-dev \
+          libgif-dev libtiff-dev libpng-dev libgnutls28-dev libncurses5-dev \
+          libjansson-dev libharfbuzz-dev libgccjit-10-dev gcc-10 g++-10
+     sudo apt update
+     sudo apt -y upgrade
+
+     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+     sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
+
+     ./autogen.sh
+     ./configure --with-json --with-modules --with-harfbuzz --with-compress-install \
+                 --with-threads --with-included-regex --with-zlib --with-cairo --without-rsvg\
+                 --without-sound --without-imagemagick  --without-toolkit-scroll-bars \
+                 --without-gpm --without-dbus --without-makeinfo --without-pop \
+                 --without-mailutils --without-gsettings --with-nativecomp
+     make NATIVE_FULL_AOT=1 -j$(nproc)
+     sudo checkinstall -y -D --pkgname=emacs-nativecomp --pkgversion=1$(git rev-parse --short HEAD) \
+          --requires="libjansson-dev,libharfbuzz-dev,libgccjit-10-dev" --pkggroup=emacs --gzman=yes \
+          make install-strip
+     #+end_src
+
+   - after installation, you can see the message below
+     #+begin_example
+     Done. The new package has been installed and saved to
+     /home/dhnam/program/emacs/emacs-nativecomp_1f03d0de-1_amd64.deb
+     You can remove it from your system anytime using: 
+     $ dpkg -r emacs-nativecomp
+     #+end_example
+
+   - (optional )re-install emacs from .deb
+     #+begin_src sh
+     sudo dpkg -i emacs-nativecomp_1f03d0de-1_amd64.deb
+     #+end_src
+
+** build emacs with native comp 2
    https://sangwoo-joh.github.io/emacs-native-comp
    #+begin_src sh
    git clone git://git.savannah.gnu.org/emacs.git --depth=1
    cd emacs
+   # git fetch origin feature/native-comp
    #+end_src
 
    #+begin_src sh
@@ -213,6 +258,13 @@
    sudo make install
    emacs --version  # shows GNU Emacs 28.0.50
    #+end_src
+** check if native comp is applied
+   https://www.reddit.com/r/emacs/comments/kco74y/comment/gfsby8c/?utm_source=share&utm_medium=web2x&context=3
+
+   C-h f (or M-x describe-function) company-complete
+   #+begin_example
+   company-complete is an interactive native compiled Lisp function in ‘company.el’.
+   #+end_example
 
 * Package install
 ** Manual install
