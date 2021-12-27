@@ -655,9 +655,9 @@
 
    if you write alias in ~/.bashrc, you have to update it by:
    $ source ~/.bashrc
-* ln
-** making symbolic link
-   $ ln -s /path/to/file /path/to/link
+** ln
+*** making symbolic link
+    $ ln -s /path/to/file /path/to/link
 
 ** simple commands
    - <ls -lh> to see the detail sizes of files
@@ -840,6 +840,11 @@
      $ nohup command > result.log 2>&1 &
    - without nohup.out
      $ nohup command > /dev/null 2>&1   # doesn't create nohup.out
+** chroot
+   change root directory
+*** error of "failed to run command ‘/bin/bash’: No such file or directory"
+    https://unix.stackexchange.com/a/606895
+    in my case, /mnt/lib doesn't have most files
 ** acpi
    - install
      $ sudo apt-get install acpi
@@ -1088,3 +1093,15 @@
 
 ** monitoring GPUs of remote servers
    https://github.com/mseitzer/gpu-monitor
+
+* error fix
+** /sbin/init: No such file or directory
+   /etc/init: Permission denied
+   /bin/sh: 0: can't access tty; job control turned off
+
+   https://askubuntu.com/a/906917
+   https://askubuntu.com/a/906493
+
+   you need to mount a partition where root directory exists
+   $ mount -rw -o remount /dev/sda1 /mnt
+   where sda1 could be replaced with other partition based on your system
