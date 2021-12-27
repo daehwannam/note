@@ -579,7 +579,7 @@
 ** running .desktop file from command line
    if "some-app.desktop" is located in one of
    - /usr/share/applications
-   - /usr/local/share/applications
+   # - /usr/local/share/applications
    - ~/.local/share/applications
 
    $ gtk-launch app
@@ -758,7 +758,8 @@
     https://unix.stackexchange.com/a/59088
 
     #+begin_src sh
-    xdg-mime default org.gnome.Evince.desktop application/pdf
+    xdg-mime default org.kde.okular.desktop application/pdf
+    # xdg-mime default org.gnome.Evince.desktop application/pdf
     #+end_src
 
 ** pskill

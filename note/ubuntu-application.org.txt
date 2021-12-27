@@ -1,140 +1,138 @@
-* HWP
-** install
-   - install HWP from .deb file
-     https://nooree.com/74
-     - download .deb file
-       https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
-     - install .deb file
-       $ sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
-   - change language to Korean
-     https://hamonikr.org/Free_Board/88075
-     http://no1linux.org/screenshot/37778
-     update "/usr/share/applications/hoffice11-hwp.desktop"
-     #+begin_example
-     Exec=/bin/bash -c "LANGUAGE=ko_KR /opt/hnc/hoffice11/Bin/hwp %f"
-     #+end_example
-   - enable to input Korean
-     https://hamonikr.org/Free_Board/85939
-     #+begin_src sh
-     cd /opt/hnc/hoffice11/Bin/
-     sudo mv qt qt.backup
-     #+end_src
-     then fcitx works
-   - (optional) install nimf when you cannot type Korean
-     https://pivox.tistory.com/44
-     #+begin_src sh
-     sudo apt install curl
-     sudo rm -f /etc/apt/sources.list.d/hamonikr.list
-     curl -sL https://pkg.hamonikr.org/add-hamonikr.apt | sudo -E bash -
-     sudo apt install nimf nimf-libhangul
-     im-config -n nimf
-     #+end_src
-** (optional) install HWP viewer
-   https://nooree.com/74
-   - download .deb file
-     https://drive.google.com/file/d/1Xv8Gd5nGlz_rPFMGMYv4u_lEvLLPyF3V/view?usp=sharing
-   - install .deb file
-     $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
+* Office
+** HWP
+*** install
+    - install HWP from .deb file
+      https://nooree.com/74
+      - download .deb file
+        https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
+      - install .deb file
+        $ sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
+    - change language to Korean
+      https://hamonikr.org/Free_Board/88075
+      http://no1linux.org/screenshot/37778
+      update "/usr/share/applications/hoffice11-hwp.desktop"
+      #+begin_example
+      Exec=/bin/bash -c "LANGUAGE=ko_KR /opt/hnc/hoffice11/Bin/hwp %f"
+      #+end_example
+    - enable to input Korean
+      https://hamonikr.org/Free_Board/85939
+      #+begin_src sh
+      cd /opt/hnc/hoffice11/Bin/
+      sudo mv qt qt.backup
+      #+end_src
+      then fcitx works
+    - (optional) install nimf when you cannot type Korean
+      https://pivox.tistory.com/44
+      #+begin_src sh
+      sudo apt install curl
+      sudo rm -f /etc/apt/sources.list.d/hamonikr.list
+      curl -sL https://pkg.hamonikr.org/add-hamonikr.apt | sudo -E bash -
+      sudo apt install nimf nimf-libhangul
+      im-config -n nimf
+      #+end_src
+*** (optional) install HWP viewer
+    https://nooree.com/74
+    - download .deb file
+      https://drive.google.com/file/d/1Xv8Gd5nGlz_rPFMGMYv4u_lEvLLPyF3V/view?usp=sharing
+    - install .deb file
+      $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
+** LibreOffice
+*** install
+    $ sudo apt install libreoffice
+** OnlyOffice
+   https://askubuntu.com/a/1332488
+*** License
+    https://en.wikipedia.org/wiki/OnlyOffice#Desktop_editors
+    OnlyOffice Desktop is offered free of charge for both personal and commercial usage
+*** install
+    - .dep install
+      https://www.onlyoffice.com/download-desktop.aspx
+      $ sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
+    - snap install
+      $ snap install onlyoffice-desktopeditors
+*** change default language for new document
+    #+begin_src sh
+    cd /opt/onlyoffice/desktopeditors/converter/empty
+    sudo mv en-US en-US-backup
+    sudo cp -R ko-KR en-US
+    #+end_src
+*** direct commands to make new documents
+    #+begin_src sh
+    /usr/bin/onlyoffice-desktopeditors --new:word
+    /usr/bin/onlyoffice-desktopeditors --new:cell
+    /usr/bin/onlyoffice-desktopeditors --new:slide
+    #+end_src
+** WPS Office
+   https://askubuntu.com/a/1368754
+*** License
+    https://www.wps.com/eula/
+    CAUTION: No commercial entities or organizations are permitted
+    to use the functionally restricted version of the Software
+*** install WPS
+    - download WPS package from https://www.wps.com/
+    - install WPS
+      $ sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
+*** font update from ttf-mscorefonts-installer
+    https://ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
+    https://kairos03.github.io/2018/09/07/ubuntu18.04-wps-office-install.html
 
-* LibreOffice
-** install
-   $ sudo apt install libreoffice
+    - install font
+      $ sudo apt install ttf-mscorefonts-installer
+    - update font cache
+      $ sudo fc-cache -f -v
+*** font update for "Wingdings, Wingdings 2, Wingdings 3, MT Extra"
+    https://askubuntu.com/a/1000144
+    #+begin_src sh
+    git clone https://github.com/udoyen/wps-fonts.git
+    sudo mv -v wps-fonts/wps/* /usr/share/fonts/wps-office
+    rm -Rf wps-fonts/
+    #+end_src
+*** (optional) font update to ~/.fonts/
+    https://tolovefeels.tistory.com/9
 
-* OnlyOffice
-  https://askubuntu.com/a/1332488
-** License
-   https://en.wikipedia.org/wiki/OnlyOffice#Desktop_editors
-   OnlyOffice Desktop is offered free of charge for both personal and commercial usage
-** install
-   - .dep install
-     https://www.onlyoffice.com/download-desktop.aspx
-     $ sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
-   - snap install
-     $ snap install onlyoffice-desktopeditors
-** change default language for new document
-   #+begin_src sh
-   cd /opt/onlyoffice/desktopeditors/converter/empty
-   sudo mv en-US en-US-backup
-   sudo cp -R ko-KR en-US
-   #+end_src
-** direct commands to make new documents
-   #+begin_src sh
-   /usr/bin/onlyoffice-desktopeditors --new:word
-   /usr/bin/onlyoffice-desktopeditors --new:cell
-   /usr/bin/onlyoffice-desktopeditors --new:slide
-   #+end_src
+    Caution: it may not work
 
-* WPS Office
-  https://askubuntu.com/a/1368754
-** License
-   https://www.wps.com/eula/
-   CAUTION: No commercial entities or organizations are permitted
-   to use the functionally restricted version of the Software
-** install WPS
-   - download WPS package from https://www.wps.com/
-   - install WPS
-     $ sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
-** font update from ttf-mscorefonts-installer
-   https://ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
-   https://kairos03.github.io/2018/09/07/ubuntu18.04-wps-office-install.html
+    #+begin_src sh
+    mkdir -p ~/.fonts/
+    wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/symbol.ttf -O ~/.fonts/symbol.ttf
+    wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/wingding.ttf -O ~/.fonts/wingding.ttf
+    wget https://bmaupin.github.io/askubuntu-983191-research/symbol_msfontservice.ttf -O ~/.fonts/symbol_msfontservice.ttf
+    wget https://bmaupin.github.io/askubuntu-983191-research/wingdings_msfontservice.ttf -O ~/.fonts/wingdings_msfontservice.ttf
+    fc-cache -f -v
+    #+end_src
 
-   - install font
-     $ sudo apt install ttf-mscorefonts-installer
-   - update font cache
-     $ sudo fc-cache -f -v
-** font update for "Wingdings, Wingdings 2, Wingdings 3, MT Extra"
-   https://askubuntu.com/a/1000144
-   #+begin_src sh
-   git clone https://github.com/udoyen/wps-fonts.git
-   sudo mv -v wps-fonts/wps/* /usr/share/fonts/wps-office
-   rm -Rf wps-fonts/
-   #+end_src
-** (optional) font update to ~/.fonts/
-   https://tolovefeels.tistory.com/9
+* Screenshot
+** Kazam
+   video recording and image capture tool
+** Flameshot
+*** install
+    https://vitux.com/ubuntu-screenshot-flameshot/
+    $ sudo apt install flameshot
+*** usage
+    https://www.tecmint.com/install-flameshot-in-linux/
+    $ flameshot gui
 
-   Caution: it may not work
-
-   #+begin_src sh
-   mkdir -p ~/.fonts/
-   wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/symbol.ttf -O ~/.fonts/symbol.ttf
-   wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/wingding.ttf -O ~/.fonts/wingding.ttf
-   wget https://bmaupin.github.io/askubuntu-983191-research/symbol_msfontservice.ttf -O ~/.fonts/symbol_msfontservice.ttf
-   wget https://bmaupin.github.io/askubuntu-983191-research/wingdings_msfontservice.ttf -O ~/.fonts/wingdings_msfontservice.ttf
-   fc-cache -f -v
-   #+end_src
-
-* Kazam
-  video recording and image capture tool
-
-* Flameshot
-** install
-   https://vitux.com/ubuntu-screenshot-flameshot/
-   $ sudo apt install flameshot
-** usage
-   https://www.tecmint.com/install-flameshot-in-linux/
-   $ flameshot gui
-
-* feh
-  image viewer
-** install
-   $ sudo apt install feh
-** usage
-   - up/down key -> zome in/out
-   - open image with fitting
-     $ feh --scale-down --auto-zoom
-** other shortcuts
-   http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
-** change default launch option
-   - copy .desktop
-     $ cp /usr/share/applications/feh.desktop ~/.local/share/applications/
-   - update "Exec" in "~/.local/share/applications/"
-     #+begin_src sh
-     Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
-     #+end_src
-
-* Nomacs
-** install
-   sudo apt install nomacs
+* Image viewer
+** feh
+   image viewer
+*** install
+    $ sudo apt install feh
+*** usage
+    - up/down key -> zome in/out
+    - open image with fitting
+      $ feh --scale-down --auto-zoom
+*** other shortcuts
+    http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
+*** change default launch option
+    - copy .desktop
+      $ cp /usr/share/applications/feh.desktop ~/.local/share/applications/
+    - update "Exec" in "~/.local/share/applications/"
+      #+begin_src sh
+      Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
+      #+end_src
+** Nomacs
+*** install
+    sudo apt install nomacs
 
 * KakaoTalk
 ** install
@@ -196,7 +194,14 @@
     - Noto Sans CJK KR Medium
     - 백묵 돋음
 
-* evince
-  pdf viewer
-** install
-   $ sudo apt install evince
+* PDF reader
+** okular
+*** install
+    $ sudo apt-get install okular
+*** disable thumbnails at startup
+    https://forum.kde.org/viewtopic.php?f=20&t=95947
+    Menu -> "Settings" -> uncheck "Navigation panel"
+** evince
+   pdf viewer
+*** install
+    $ sudo apt install evince

@@ -173,7 +173,7 @@
 **** samba setup
      https://psychoria.tistory.com/678
      - install
-       [[file:linux.org.txt::*samba install][samba install]]
+       [[file:remote-protocols.org.txt::*samba install][samba install]]
      - update /etc/samba/smb.conf
        add the following information to the bottom of the config file:
        #+begin_example
@@ -195,7 +195,7 @@
      - check "Reconnect" and "Use different credentials"
        (not to forget credentials - https://superuser.com/a/262598 )
      - type "\\<IP address>\<shared network folder name>" for as network folder
-       where 10.0.2.2 means host machine's IP
+       # where 10.0.2.2 means host machine's IP
        e.g. "\\192.168.122.1\shared data"
        - you can find ip address of host for virtual machines :
          $ ip addr  # type this command in the host terminal

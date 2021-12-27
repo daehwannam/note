@@ -136,7 +136,7 @@
 
    you can skip some information
 ** change samba password
-   $ smbpasswd
+   $ sudo smbpasswd -a <user>
 ** run samba
    $ sudo service smbd restart
 ** connect to samba from linux
