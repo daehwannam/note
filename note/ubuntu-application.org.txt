@@ -192,4 +192,11 @@
       $ gnome-tweaks
       Extensions -> Topicons plus
 *** (optional) fonts for korean
+    - Noto Sans CJK TC Medium
     - Noto Sans CJK KR Medium
+    - 백묵 돋음
+
+* evince
+  pdf viewer
+** install
+   $ sudo apt install evince

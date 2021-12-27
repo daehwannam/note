@@ -456,6 +456,10 @@
    Exec=/path/to/file/program
    #+end_src
    The "Name" of application should be different with others
+*** location of desktop entries
+    - ~/.local/share/applications
+    - /usr/share/applications
+    - /usr/local/share/applications
 *** Run ~/.bashrc initially
     https://askubuntu.com/a/498718
 
@@ -572,7 +576,6 @@
       $ dconf-editor
     - find "/org/gnome/shell/extensions/dash-to-dock/dock-position"
     - change "Custom value"
-
 ** running .desktop file from command line
    if "some-app.desktop" is located in one of
    - /usr/share/applications
@@ -582,6 +585,11 @@
    $ gtk-launch app
    or
    $ gtk-launch app.desktop
+** change default application
+   https://askubuntu.com/questions/1030281/change-default-applications-from-script
+   https://askubuntu.com/a/251738
+
+   update "~/.config/mimeapps.list"
 
 * Utilities
 ** ssh
@@ -743,6 +751,12 @@
 
    e.g.
    $ xdg-open "example.pdf"
+*** change default applications of xdg-open
+    https://unix.stackexchange.com/a/59088
+
+    #+begin_src sh
+    xdg-mime default org.gnome.Evince.desktop application/pdf
+    #+end_src
 
 ** pskill
    https://stackoverflow.com/a/27820938

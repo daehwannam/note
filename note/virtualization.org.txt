@@ -310,6 +310,8 @@
    https://dennisnotes.com/note/20180614-ubuntu-18.04-qemu-setup/
    http://m.todaysppc.com/renewal/view.php?id=free&no=423466
    https://www.youtube.com/watch?v=RLy1zozJ9W0
+   https://linuxhint.com/install_virtio_drivers_kvm_qemu_windows_vm
+   https://www.youtube.com/watch?v=ZqBJzrQy7Do
 
    - "Show virtual hardware details"
    - CPUs

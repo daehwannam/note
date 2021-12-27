@@ -78,7 +78,7 @@
 *** emacs internal processes
     https://emacs.stackexchange.com/a/28066
     M-x list-processes
-*** list system processes
+*** display system processes
     https://emacs.stackexchange.com/a/48285
     M-x proced
 ** Async-shell-command shell command
@@ -181,14 +181,17 @@
      unzip emacs-25.3.zip
      cp -R emacs-emacs-25.3/lisp/* /usr/share/emacs/25.3/lisp
 ** Install emacs with snap
-   - install snap
-     $ sudo apt update
-     $ sudo apt install snapd
-   - install emacs
-     $ sudo snap install emacs --edge --classic
-   - uninstall
-     $ sudo snap remove <package>
-   - path to the emacs: "/snap/emacs/current/usr/bin/emacs"
+   it's compiled with native-comp option
+   https://www.reddit.com/r/emacs/comments/ob5pzw/comment/h3ne358/?utm_source=share&utm_medium=web2x&context=3
+*** install snap
+    $ sudo apt update
+    $ sudo apt install snapd
+*** install emacs
+    $ sudo snap install emacs --edge --classic
+*** uninstall
+    $ sudo snap remove <package>
+*** path to the emacs
+    "/snap/emacs/current/usr/bin/emacs"
 ** build emacs
    https://sangwoo-joh.github.io/emacs-native-comp
    #+begin_src sh
