@@ -655,6 +655,9 @@
 
    if you write alias in ~/.bashrc, you have to update it by:
    $ source ~/.bashrc
+* ln
+** making symbolic link
+   $ ln -s /path/to/file /path/to/link
 
 ** simple commands
    - <ls -lh> to see the detail sizes of files
