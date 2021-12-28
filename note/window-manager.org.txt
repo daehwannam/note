@@ -211,17 +211,28 @@
 
 * Pop Shell: Gnome extension
   https://github.com/pop-os/shell
-v** install
+** install
    https://www.linuxuprising.com/2020/05/how-to-install-pop-shell-tiling.html
 
    #+begin_src sh
    sudo apt install node-typescript make git
 
    cd ~/program
-   git clone https://github.com/pop-os/shell
-   cd shell
+   git clone https://github.com/pop-os/shell pop-shell
+   cd pop-shell
    make local-install
    #+end_src
+** install keyboard shortcuts
+   https://mugiberkah.com/how-to-install-the-pop-shell-window-tiling-extension-on-ubuntu-20-04/
+   #+begin_src sh
+   sudo apt install cargo rustc libgtk-3-dev
+   cd ~/program
+   git clone https://github.com/pop-os/shell-shortcuts pop-shell-shortcuts
+   cd pop-shell-shortcuts
+   make
+   sudo make install
+   #+end_src
+
 ** remove
    - disable pop shell
      $ gnome-tweaks
@@ -230,8 +241,9 @@ v** install
      $ rm -r ~/.local/share/gnome-shell/extensions/pop-shell@system76.com
    - reset keyboard shortcuts
      "Settings" -> "Keyboard Shortcuts" -> "Reset All..."
-   - (optional) if you've installed the Pop Shell Shortcuts, you can remove this
-     $ sudo rm /usr/local/bin/pop-shell-shortcuts
+   # - (CAUTION) (optional) if you've installed the Pop Shell Shortcuts, you can remove this
+   #   CAUTION: if you want to reinstall pop shell after removing these shortcuts, the shortcuts would not be applied
+   #   $ sudo rm /usr/local/bin/pop-shell-shortcuts
 
 * Common
 ** Gnome
@@ -278,39 +290,3 @@ v** install
        #+begin_src sh
        export PATH="/home/dhnam/script/command:$PATH"
        #+end_src
-*** Kitty
-    https://sw.kovidgoyal.net/kitty/
-    https://github.com/kovidgoyal/kitty
-**** install
-     $ sudo apt install kitty
-*** Alacritty
-    terminal program to repace gnome-terminal
-**** install
-     https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
-     #+begin_src sh
-     sudo add-apt-repository ppa:aslatter/ppa
-     sudo apt install alacritty
-     #+end_src
-**** uninstall
-     #+begin_src sh
-     sudo apt remove --auto-remove alacritty
-     sudo add-apt-repository --remove ppa:aslatter/ppa
-     #+end_src
-**** change theme
-     https://github.com/eendroroy/alacritty-theme
-
-     Update "~/.config/alacritty/alacritty.yml" with one of themes in
-     https://github.com/eendroroy/alacritty-theme/tree/master/themes
-**** change font
-     https://wiki.archlinux.org/title/Alacritty#Font
-     Update "~/.config/alacritty/alacritty.yml" with the following code
-     #+begin_src 
-     font:
-       size: 8
-     #+end_src
-**** 256 colors
-     update "~/.bashrc" with the following line for Alacritty to apply 256 colors to the programs it launches
-     $ export TERM=xterm-256color
-**** change default terminal
-     https://itsfoss.com/change-default-terminal-ubuntu/
-     $ sudo update-alternatives --config x-terminal-emulator 

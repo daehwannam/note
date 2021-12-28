@@ -205,3 +205,53 @@
    pdf viewer
 *** install
     $ sudo apt install evince
+
+* terminal emulator
+** xterm-256color
+   you can update "~/.bashrc" for xterm-256color but it may cause trouble with "M-x shell" or "M-x ansi-term"
+   $ export TERM=xterm-256color
+** Kitty
+   https://sw.kovidgoyal.net/kitty/
+   https://github.com/kovidgoyal/kitty
+*** install
+    $ sudo apt install kitty
+*** config
+    update "~/.config/kitty/kitty.conf"
+**** font
+     #+begin_example
+     font_size 10.0
+     #+end_example
+**** xterm-256color
+     https://news.ycombinator.com/item?id=24643008
+     #+begin_example
+     term xterm-256color
+     #+end_example
+    
+** Alacritty
+   terminal program to repace gnome-terminal
+*** install
+    https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
+    #+begin_src sh
+    sudo add-apt-repository ppa:aslatter/ppa
+    sudo apt install alacritty
+    #+end_src
+*** uninstall
+    #+begin_src sh
+    sudo apt remove --auto-remove alacritty
+    sudo add-apt-repository --remove ppa:aslatter/ppa
+    #+end_src
+*** change theme
+    https://github.com/eendroroy/alacritty-theme
+
+    Update "~/.config/alacritty/alacritty.yml" with one of themes in
+    https://github.com/eendroroy/alacritty-theme/tree/master/themes
+*** change font
+    https://wiki.archlinux.org/title/Alacritty#Font
+    Update "~/.config/alacritty/alacritty.yml" with the following code
+    #+begin_src 
+    font:
+      size: 8
+    #+end_src
+*** change default terminal
+    https://itsfoss.com/change-default-terminal-ubuntu/
+    $ sudo update-alternatives --config x-terminal-emulator 

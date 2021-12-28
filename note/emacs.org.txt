@@ -81,6 +81,10 @@
 *** display system processes
     https://emacs.stackexchange.com/a/48285
     M-x proced
+**** display all processes
+     https://www.reddit.com/r/emacs/comments/3vanut/comment/cxlvo1w/?utm_source=share&utm_medium=web2x&context=3
+     - type "f"
+     - insert "all"
 ** Async-shell-command shell command
    M-x async-shell-command
    or
@@ -443,7 +447,9 @@
        XKBOPTIONS="ctrl:swapcaps"
        #+end_example
      - Reconfigure
+       https://wiki.debian.org/Keyboard
        $ sudo dpkg-reconfigure keyboard-configuration
+       $ service keyboard-setup restart 
 *** xmodemap
     https://unix.stackexchange.com/questions/107566/how-to-swap-ctrl-and-capslock-using-xmodmap
     https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/

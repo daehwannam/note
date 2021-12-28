@@ -401,7 +401,7 @@
    2. Next Edit the /etc/hosts file:
       $ sudo nano /etc/hosts
       Replace any occurrence of the existing computer name with your new one.
-   3. Reboot the system to changes take effect:
+   3. Re-login or reboot the system to changes take effect:
       $ sudo reboot
 ** Ubuntu version
    https://askubuntu.com/questions/686239/how-do-i-check-the-version-of-ubuntu-i-am-running
