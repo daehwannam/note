@@ -449,7 +449,7 @@
      - Reconfigure
        https://wiki.debian.org/Keyboard
        $ sudo dpkg-reconfigure keyboard-configuration
-       $ service keyboard-setup restart 
+       $ service keyboard-setup restart
 *** xmodemap
     https://unix.stackexchange.com/questions/107566/how-to-swap-ctrl-and-capslock-using-xmodmap
     https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/

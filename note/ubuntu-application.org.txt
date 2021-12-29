@@ -255,3 +255,11 @@
 *** change default terminal
     https://itsfoss.com/change-default-terminal-ubuntu/
     $ sudo update-alternatives --config x-terminal-emulator 
+
+* Xpra
+  https://unix.stackexchange.com/a/608235
+
+  Xpra is the X equivalent of screen or tmux, providing a virtual X
+  environment and the ability to display the desktop or individual
+  application windows locally or remotely, attaching and detaching as
+  necessary.

@@ -57,9 +57,10 @@
     - Show Advanced Options (at the left bottom corner)
     - Program
     - Default Input Method State -> Active
-** Some shortcuts needed to be disabled for emacs
+** shortcuts change
    Settings -> Keyboard Shortcuts
-   - Alt+Space
+   - Alt+Space -> Disabled (needed to be disabled for emacs)
+   - Alt+Tab -> "Switch windows directly"
 
 * Initial Development setup
   You can refer configuration files in "~/record/config-scripts/"
@@ -513,6 +514,15 @@
      sudo systemctl enable graphical.target --force
      sudo systemctl set-default graphical.target 
      #+end_src
+** change font size of virtual console
+   https://unix.stackexchange.com/a/77050
+   - update "/etc/default/console-setup"
+     #+begin_example
+     FONTSIZE="8x16"
+     #+end_example
+     8x16 is the maximum size
+   - restart service
+     $ sudo service console-setup restart
 ** keyboard layout changes
    https://tolovefeels.tistory.com/58
 

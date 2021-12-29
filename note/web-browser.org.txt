@@ -1,3 +1,21 @@
+* qutebrowser
+** install
+   https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
+   $ apt install qutebrowser
+** help
+   :help
+** config
+   https://qutebrowser.org/doc/help/configuring.html#configpy
+   - config directory:
+     ~/.config/qutebrowser
+   - config file:
+     ~/.config/qutebrowser/config.py
+** run private mode from command line
+   https://www.reddit.com/r/qutebrowser/comments/j284pg/comment/g74m3vw/?utm_source=share&utm_medium=web2x&context=3
+   $ qutebrowser ':open -p'
+** dark mode
+   https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
+
 * Firefox
 ** userChrome.css
    - make userChrome.css
@@ -39,6 +57,10 @@
    - "More tools"
    - "Customize toolbar..."
    - drag "import bookmarks ..." from toolbar
+** close other tabs
+   https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
+   :tab-only --prev
+   :tab-only --next
 
 * EAF browser
   https://github.com/emacs-eaf/emacs-application-framework
