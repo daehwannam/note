@@ -132,6 +132,9 @@
    - exwm-input-move-event: super & left-mouse-click
    - exwm-input-resize-event: super & right-mouse-click
 
+* StumpWM
+  [[file:stumpwm.org.txt][file:~/record/note/stumpwm.org.txt]]
+
 * i3
 ** tutorial
    https://fedoramagazine.org/getting-started-i3-window-manager/
@@ -246,6 +249,10 @@
    #   $ sudo rm /usr/local/bin/pop-shell-shortcuts
 
 * Common
+** window manager comparisons
+*** StumpWM vs EXWM
+    https://news.ycombinator.com/item?id=19128285
+    both StumpWM and EXWM are manual tiling managers and there are a few other choices
 ** Gnome
    gnome applications are working as server-client relationships
    therefore, gnome-session should be running to start gnome applications, such as gnome-control-center or gnome-terminal

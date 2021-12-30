@@ -1,5 +1,24 @@
 * qutebrowser
-** install
+** install with pip
+   $ pip install qutebrowser
+** install manually with virtual/conda environment
+   https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc#installing-qutebrowser-with-virtualenv
+   #+begin_src sh
+   # prerequisites
+   sudo apt install asciidoc
+
+   # download and install qutebrowser
+   cd ~/program
+   git clone https://github.com/qutebrowser/qutebrowser.git
+   git clone --depth 1 --branch v2.4.0 https://github.com/qutebrowser/qutebrowser.git  # clone a specific tag
+   cd qutebrowser
+   python -m venv .venv
+   python scripts/mkvenv.py --venv-dir .venv
+   #+end_src
+*** running
+    $ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
+
+** install with apt
    https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
    $ apt install qutebrowser
 ** help
@@ -15,6 +34,59 @@
    $ qutebrowser ':open -p'
 ** dark mode
    https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
+   #+begin_example
+   :set content.user_stylesheets css/coolsheet.css
+   #+end_example
+   where css/coolsheet.css is file in "~/.config/qutebrowser"
+
+   e.g.
+   #+begin_example
+   :set content.user_stylesheets css/solarized-dark-all-sites.css
+   #+end_example
+** (not tested yet) ad-block
+   https://www.reddit.com/r/qutebrowser/comments/lahfyc/comment/glnzo03/?utm_source=share&utm_medium=web2x&context=3
+   $ sudo pacman -S python-adblock
+** change profile
+   https://github.com/qutebrowser/qutebrowser/issues/519#issuecomment-207421399
+   $ qutebrowser --basedir /home/${USER}/app-profile/qutebrowser1
+   or
+   $ qutebrowser --basedir app-profile/qutebrowser1
+
+   both make directory in a user's home (~)
+   CAUTION: don't use '~', which is recognized as a directory named "~" in "/home/${USER}/"
+*** config for profile
+    https://www.reddit.com/r/qutebrowser/comments/7l8rtl/can_i_use_multiple_user_profiles_with_qutebrowser/
+    - move to basedir "/home/${USER}/app-profile/qutebrowser1"
+      $ cd /home/${USER}/app-profile/qutebrowser1
+    - method1: replace config with symbol link
+      #+begin_src sh
+      rm -Rf config
+      ln -s /home/${USER}/.config/qutebrowser config
+      #+end_src
+    - method2: clone git repository
+      #+begin_src sh
+      rm -Rf config
+      git clone https://github.com/daehwannam/qutebrowser-config.git config
+** javascript button click is not working
+   https://github.com/qutebrowser/qutebrowser/issues/4487#issuecomment-503755580
+   updare "~/.config/qutebrowser/config.py"
+   #+begin_src python
+   c.content.javascript.can_access_clipboard = True
+   #+end_src
+** google sign-in problem
+   https://github.com/qutebrowser/qutebrowser/issues/5182#issuecomment-763300346
+   qutebrowser can sign-in google just after signing-in google with firefox
+   once the following line is added to config
+   #+begin_src python
+   c.content.javascript.can_access_clipboard = True
+   #+end_src
+** fix fcitx problem for Qt5
+   https://stackoverflow.com/a/55493403
+   #+begin_src sh
+   # sudo apt install fcitx-frontend-qt5 libfcitx-qt5-1  # these may need to be installed
+   cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so \
+      ~/program/qutebrowser/.venv/lib/python3.10/site-packages/PyQt5/Qt5/plugins/platforminputcontexts/
+   #+end_src
 
 * Firefox
 ** userChrome.css

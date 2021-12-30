@@ -603,6 +603,8 @@
 
 * Utilities
 ** ssh
+*** install ssh server
+    $ sudo apt install openssh-server
 *** SSH multiple port setup
     Modify /etc/ssh/sshd_config:
     ~ Port 22
@@ -875,6 +877,19 @@
       $ xbacklight -inc 10
     - decrease brightness
       $ xbacklight -dec 10 
+** cpupower
+*** current frequency governor
+    $ cpupower frequency-info -p
+    or
+    $ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+*** change frequency governor
+    https://wiki.archlinux.org/title/CPU_frequency_scaling#Scaling_governors
+    $ cpupower frequency-set -g <governor>
+    e.g.
+    #+begin_src sh
+    sudo cpupower frequency-set -g ondemand
+    sudo cpupower frequency-set -g powersave
+    #+end_src
     
 *** error of "No outputs have backlight property"
     https://askubuntu.com/a/1060843
@@ -1115,3 +1130,23 @@
    you need to mount a partition where root directory exists
    $ mount -rw -o remount /dev/sda1 /mnt
    where sda1 could be replaced with other partition based on your system
+** Cannot run in framebuffer mode. Please specify busIDs
+*** (testing) disable framebuffer
+    https://wiki.archlinux.org/title/GRUB/Tips_and_tricks#Disable_framebuffer
+    edit "/etc/default/grub"
+    #+begin_src sh
+    GRUB_TERMINAL_OUTPUT=console
+    #+end_src
+    or if you wan to use text mode
+    #+begin_src sh
+    GRUB_GFXPAYLOAD_LINUX=text
+    #+end_src
+*** remove all nvidia-drivers
+    this method disable to use some applications that require nvidia-drivers
+    https://askubuntu.com/a/206289
+    #+begin_src sh
+    sudo apt-get remove --purge '^nvidia-.*'
+    sudo apt-get install ubuntu-desktop
+    sudo rm /etc/X11/xorg.conf
+    echo 'nouveau' | sudo tee -a /etc/modules
+    #+end_src

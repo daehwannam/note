@@ -21,10 +21,15 @@
 
     sudo killall remmina  # to run newly installed remmina
     #+end_src
+*** basic usage
+    - Server: server's IP address
+    - Username: an user ID of the server
 *** multiple monitor
     https://gitlab.com/Remmina/Remmina/-/merge_requests/2184
-    fill "Monitor ID list"
-    e.g. 2,0,1
+    - check "Enable multi monitor"
+    - (don't need to check "Span screen over multiple monitors")
+    - fill "List monitor IDs" (or "Monitor ID list")
+      e.g. 2,0,1
 ** freerdp
 *** freerdp bug
     xfreerdp has problems of pressing some keys such as CTRL and ALT.

@@ -102,8 +102,6 @@
     #+end_src
 
 * Screenshot
-** Kazam
-   video recording and image capture tool
 ** Flameshot
 *** install
     https://vitux.com/ubuntu-screenshot-flameshot/
@@ -111,8 +109,13 @@
 *** usage
     https://www.tecmint.com/install-flameshot-in-linux/
     $ flameshot gui
+** Kazam
+   video recording and image capture tool
 
 * Image viewer
+** Nomacs
+*** install
+    sudo apt install nomacs
 ** feh
    image viewer
 *** install
@@ -130,9 +133,6 @@
       #+begin_src sh
       Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
       #+end_src
-** Nomacs
-*** install
-    sudo apt install nomacs
 
 * KakaoTalk
 ** install
@@ -226,7 +226,6 @@
      #+begin_example
      term xterm-256color
      #+end_example
-    
 ** Alacritty
    terminal program to repace gnome-terminal
 *** install
