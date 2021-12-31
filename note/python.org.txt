@@ -41,6 +41,19 @@
     exec(compile(tree, filename="<ast>", mode="exec"))
     #+end_src
 
+** working directory
+   https://linuxize.com/post/python-get-change-current-working-directory/#:~:text=To%20find%20the%20current%20working,chdir(path)%20.
+*** get current working directory
+    #+begin_src python
+    import os
+    cwd = os.getcwd()
+    #+end_src
+*** change working directory
+    #+begin_src python
+    import os
+    os.chdir('/path/to/other/dir')
+    #+end_src
+
 * Hy language
 ** emacs hy-mode
    https://github.com/hylang/hy-mode

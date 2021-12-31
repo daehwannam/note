@@ -314,6 +314,8 @@
 *** Export
 **** to pdf
      C-c C-e l p (org-latex-export-to-pdf)
+*** dired-do-async-shell-command (&)
+    run an executable asynchronously
 
 ** Tramp
 *** Remote

@@ -262,3 +262,11 @@
   environment and the ability to display the desktop or individual
   application windows locally or remotely, attaching and detaching as
   necessary.
+
+* unclutter
+  hide mouse when it's not moving
+** install
+   $ sudo apt install unclutter
+** change time waiting
+   https://askubuntu.com/a/684638
+   $ unclutter -idle 3 -root
