@@ -78,6 +78,42 @@
    or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
 ** transpose
    - org-table-transpose-table-at-point
+** Usage
+   https://orgmode.org/worg/org-tutorials/tables.html
+*** table creation methods
+**** make rough table with '|' then type TAB
+     #+begin_src org
+     |something
+     #+end_src
+     #+begin_src org
+     | some | thing |
+     |-
+     #+end_src
+**** 'org-table-create-or-convert-from-region' (C-c-|)
+**** separated strings to table
+     - make region over comma/tab separated strings
+     - type "C-c-|"
+     #+begin_src org
+     some, comma, separated, values
+     some	comma	separated	values
+     #+end_src
+*** move row/columns
+    - org-metaleft (M-<left>)
+    - org-metaright (M-<right>)
+    - org-metaup (M-<up>)
+    - org-metadown (M-<down>)
+*** insert/delete row/columns
+    - org-shiftmetaright (M-S-<right>)
+    - org-shiftmetaleft (M-S-<left>)
+    - org-shiftmetadown (M-S-<down>)
+    - org-shiftmetaup (M-S-<up>)
+*** narrowing the visiable par of a column
+    https://emacs.stackexchange.com/a/53644
+    - C-c <TAB> : toggle narrowing for tab
+    - C-u C-c <TAB> : narrow all tabs
+    - C-c ` : edit cell
+    | <10>             | <15>                        |
+    | A very wide cell | Another very very wide cell |
 
 * Mobile
   https://orgmode.org/worg/org-tutorials/
@@ -105,19 +141,3 @@
    Then, you can insert a tag
 ** Insert properties
    type 'C-c C-x p' to insert properties in a specific heading
-
-* File local variable
-  https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
-  https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions
-
-  - With the first line:
-    #+begin_example
-    # -*- eval: (message "foo"); -*-
-    #+end_example
-
-  - Or starts with "Local Variables"
-    #+begin_example
-    # Local Variables:
-    # eval: (message "foo")
-    # End:
-    #+end_example

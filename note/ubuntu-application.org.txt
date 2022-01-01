@@ -270,3 +270,24 @@
 ** change time waiting
    https://askubuntu.com/a/684638
    $ unclutter -idle 3 -root
+
+* amixer
+  a tool for configure sound
+** Usage
+   $ amixer set Master 15%
+
+* xbacklight
+*** install and usage
+    https://askubuntu.com/a/149265
+
+    - install
+      $ sudo apt-get install xbacklight
+    - increase brightness
+      $ xbacklight -inc 10
+    - decrease brightness
+      $ xbacklight -dec 10 
+
+* xrandr
+** change screen resolution
+   https://unix.stackexchange.com/a/227879
+   % xrandr -s 800x600

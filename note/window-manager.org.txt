@@ -211,6 +211,8 @@
 *** run other emacs clients
     $ DISPLAY=:2 emacsclient -c
     $ DISPLAY=:3 emacsclient -c
+* toggle mouse release
+  Ctrl+Shift
 
 * Pop Shell: Gnome extension
   https://github.com/pop-os/shell
