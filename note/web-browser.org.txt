@@ -9,8 +9,10 @@
 
    # download and install qutebrowser
    cd ~/program
-   git clone https://github.com/qutebrowser/qutebrowser.git
-   # git clone --depth 1 --branch v2.4.0 https://github.com/qutebrowser/qutebrowser.git  # clone a specific tag
+   # git clone https://github.com/qutebrowser/qutebrowser.git
+   VERSION=v2.4.0
+   git clone --depth 1 --branch $VERSION https://github.com/qutebrowser/qutebrowser.git  qutebrowser-$VERSION # clone a specific tag
+   ln -s qutebrowser-$VERSION qutebrowser
    cd qutebrowser
    python -m venv .venv
    python scripts/mkvenv.py --venv-dir .venv
@@ -18,6 +20,8 @@
 *** running
     $ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
 
+    if crash occurs a few seconds after starting this app,
+    you may need to install nvidia-driver (or nouveau drivers?)
 ** install with apt
    https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
    $ sudo apt install qutebrowser

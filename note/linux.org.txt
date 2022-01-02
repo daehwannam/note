@@ -57,6 +57,11 @@
     - Show Advanced Options (at the left bottom corner)
     - Program
     - Default Input Method State -> Active
+** error fix for typing korean in gnome
+   https://github.com/fcitx/fcitx-hangul/issues/4#issuecomment-282241511
+   #+begin_src sh
+   gsettings set org.gnome.settings-daemon.plugins.keyboard active false
+   #+end_src
 ** shortcuts change
    Settings -> Keyboard Shortcuts
    - Alt+Space -> Disabled (needed to be disabled for emacs)
@@ -600,6 +605,10 @@
    https://askubuntu.com/a/251738
 
    update "~/.config/mimeapps.list"
+** enable desktop icons
+   - open gnome-tweaks
+     $ gnome-tweaks
+   - "Extensions" -> "Desktop icons"
 
 * Utilities
 ** ssh
@@ -768,12 +777,23 @@
    $ xdg-open "example.pdf"
 *** change default applications of xdg-open
     https://unix.stackexchange.com/a/59088
+    https://stackoverflow.com/a/67185532
 
     #+begin_src sh
+    # pdf
+    # https://unix.stackexchange.com/a/59088
     xdg-mime default org.kde.okular.desktop application/pdf
     # xdg-mime default org.gnome.Evince.desktop application/pdf
+
+    # web browser
+    # https://stackoverflow.com/a/67185532
+    xdg-mime default qutebrowser.desktop x-scheme-handler/https
+    xdg-mime default qutebrowser.desktop x-scheme-handler/http
+    xdg-mime default qutebrowser.desktop text/html
+    xdg-mime default qutebrowser.desktop application/xhtml+xml
     #+end_src
 
+    or you can directly change "~/.config/mimeapps.list"
 ** pskill
    https://stackoverflow.com/a/27820938
    $ pkill -f python
@@ -867,16 +887,6 @@
      "xset r rate [delay [rate]]"
      e.g.
      $ xset r rate 250 60
-** xbacklight
-*** install and usage
-    https://askubuntu.com/a/149265
-
-    - install
-      $ sudo apt-get install xbacklight
-    - increase brightness
-      $ xbacklight -inc 10
-    - decrease brightness
-      $ xbacklight -dec 10 
 ** cpupower
 *** current frequency governor
     $ cpupower frequency-info -p
