@@ -135,6 +135,24 @@
 ** Example
    https://orgmode.org/manual/A-Beamer-example.html
 
+* Timer
+  - reference: https://orgmode.org/manual/Timers.html
+  - tutorial: https://www.youtube.com/watch?v=lxkPeJS6keY
+** D-Bus error fix
+*** Error: (dbus-error "No connection to bus" :session)
+    https://github.com/emacs-eaf/emacs-application-framework/issues/36#issuecomment-409860979
+    add the following code into the window-manger's configuration
+    #+begin_src sh
+    eval $(dbus-launch)
+    export DBUS_SESSION_BUS_ADDRESS
+    #+end_src
+*** Error: (dbus-error "The name org.freedesktop.Notifications was not provided by any .service files")
+    https://unix.stackexchange.com/a/458661
+    #+begin_src sh
+    sudo apt install notify-osd
+    sudo apt install dunst
+    #+end_src
+
 * Miscellaneous
 ** Tagging for heading
    Type 'C-c C-c' on the line of heading
