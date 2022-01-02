@@ -10,7 +10,7 @@
    # download and install qutebrowser
    cd ~/program
    git clone https://github.com/qutebrowser/qutebrowser.git
-   git clone --depth 1 --branch v2.4.0 https://github.com/qutebrowser/qutebrowser.git  # clone a specific tag
+   # git clone --depth 1 --branch v2.4.0 https://github.com/qutebrowser/qutebrowser.git  # clone a specific tag
    cd qutebrowser
    python -m venv .venv
    python scripts/mkvenv.py --venv-dir .venv
@@ -20,7 +20,7 @@
 
 ** install with apt
    https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
-   $ apt install qutebrowser
+   $ sudo apt install qutebrowser
 ** help
    :help
 ** config
