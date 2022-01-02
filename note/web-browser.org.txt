@@ -19,6 +19,15 @@
    #+end_src
 
    also you may need to fix fcitx problem: [[*fix fcitx problem for Qt5][fix fcitx problem for Qt5]]
+*** xdg-mime setting
+    #+begin_src sh
+    cp /home/dhnam/script/laptop/backup/desktop/qutebrowser.desktop ~/.local/share/applications
+
+    xdg-mime default qutebrowser.desktop x-scheme-handler/https
+    xdg-mime default qutebrowser.desktop x-scheme-handler/http
+    xdg-mime default qutebrowser.desktop text/html
+    xdg-mime default qutebrowser.desktop application/xhtml+xml
+    #+end_src
 *** running
     $ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
 
