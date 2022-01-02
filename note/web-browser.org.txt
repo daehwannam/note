@@ -9,14 +9,16 @@
 
    # download and install qutebrowser
    cd ~/program
-   # git clone https://github.com/qutebrowser/qutebrowser.git
-   VERSION=v2.4.0
-   git clone --depth 1 --branch $VERSION https://github.com/qutebrowser/qutebrowser.git  qutebrowser-$VERSION # clone a specific tag
-   ln -s qutebrowser-$VERSION qutebrowser
+   git clone https://github.com/qutebrowser/qutebrowser.git
+   # VERSION=v2.4.0
+   # git clone --depth 1 --branch $VERSION https://github.com/qutebrowser/qutebrowser.git  qutebrowser-$VERSION # clone a specific tag
+   # ln -s qutebrowser-$VERSION qutebrowser
    cd qutebrowser
    python -m venv .venv
    python scripts/mkvenv.py --venv-dir .venv
    #+end_src
+
+   also you may need to fix fcitx problem: [[*fix fcitx problem for Qt5][fix fcitx problem for Qt5]]
 *** running
     $ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
 
