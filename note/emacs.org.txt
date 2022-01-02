@@ -443,12 +443,13 @@
 **** Keyboard configuration with XKBOPTIONS
      https://askubuntu.com/a/418773
      https://superuser.com/a/623453
-     - Update "/etc/default/keyboard"
+     - Method 1: update "/etc/default/keyboard"
        (initial option -> XKBOPTIONS="")
        #+begin_example
        XKBOPTIONS="ctrl:swapcaps"
        #+end_example
-     - Reconfigure
+       then, reboot
+     - Method 2: reconfigure
        https://wiki.debian.org/Keyboard
        $ sudo dpkg-reconfigure keyboard-configuration
        $ service keyboard-setup restart
