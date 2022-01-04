@@ -43,9 +43,13 @@
      - recources: waiting for resources (it runs as soon as resources are freed)
      - priority: the job is behind a higher priority job
 
-   [Other commands]
-   $ scontrol show job [job_id]
-   $ scontrol show node [running_node_name]
+** Check job information
+   - Job ID
+     $ echo $SLURM_JOBID
+   - Job Info
+     $ scontrol show job [job_id]
+   - Node Info
+     $ scontrol show node [running_node_name]
 
 ** Run
    - interactive: run shell with resources
@@ -57,11 +61,18 @@
     - n, --ntasks : 실행할 task 개수
     - t, -time : 최대 실행시간
     --gres=gpu : 노드별 gpu 개수
+    --cpus-per-task 
 **** srun only
      2 nodes, 2 gpu per node
 
      $ srun -p titanxp -N 2 -n 4  -t 00:30:00 --gres=gpu:2 --pty /bin/bash -l  # resource allocation
      $ exit  # exit from queue
+***** examples
+      - 1 cpu
+        $ srun -N 1 -n 1 -t 3-00:00:00 --pty /bin/bash -l
+        $ srun -p [partition] -N 1 -n 1  -t 3-00:00:00 --pty /bin/bash -l
+      - 2 cpus
+        $ srun -N 1 -n 1 --cpus-per-task=2 -t 3-00:00:00 --pty /bin/bash -l
 **** salloc & srun
      1) Allocate resources with salloc
      2) Run tasks with srun
