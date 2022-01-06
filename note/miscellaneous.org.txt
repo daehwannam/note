@@ -19,3 +19,10 @@
 ** Check capacity
    1. Click gear-shaped icon (right top side?)
    2. Click "General -> Storage"
+
+* gmail
+** cleanup storage
+   https://www.howtogeek.com/715691/the-fastest-way-to-free-up-space-in-gmail/
+   - search mails with "size:XXmb"
+     e.g. size:100MB
+   - then remove the mails

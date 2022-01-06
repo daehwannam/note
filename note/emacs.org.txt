@@ -368,6 +368,8 @@
 ** ansi-term
    - M-x ansi-term
    - C-u M-x ansi-term  # for another ansi-term
+   - C-c C-j: term-line-mode
+   - C-c C-k: term-char-mode
 ** eshell
    - M-x eshell
    - C-u M-x eshell  # for another eshell

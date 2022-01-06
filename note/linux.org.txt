@@ -623,18 +623,41 @@
 *** install ssh server
     $ sudo apt install openssh-server
 *** SSH multiple port setup
-    Modify /etc/ssh/sshd_config:
-    ~ Port 22
-    ~ Port 61112
-    Then type as follow:
-    $ sudo service ssh restart
-** using x11 forwarding from linux
-   https://askubuntu.com/a/436751/820403
-   $ ssh -X remote_login@192.168.1.12
-** making firewall allow ssh port
-   https://www.cyberciti.biz/faq/ufw-allow-incoming-ssh-connections-from-a-specific-ip-address-subnet-on-ubuntu-debian/
-   $ sudo ufw allow 61112/tcp
-   where 61112 is the port number
+    - update "/etc/ssh/sshd_config"
+      #+begin_example
+      Port 22
+      Port 61112
+      #+end_example
+    - then type as follow:
+      $ sudo service ssh restart
+*** restrict port to a specific user
+    https://serverfault.com/questions/247291/forced-per-user-ssh-port
+    - update "/etc/ssh/sshd_config"
+      #+begin_example
+      ListenAddress 0:61112
+      AllowUsers someuser
+      #+end_example
+    - then type as follow:
+      $ sudo service ssh restart
+*** initialize known hosts
+    https://superuser.com/a/159510
+    remove "~/.ssh/known_hosts"
+*** using x11 forwarding from linux
+    https://askubuntu.com/a/436751/820403
+    $ ssh -X remote_login@192.168.1.12
+*** making firewall allow ssh port
+    https://www.cyberciti.biz/faq/ufw-allow-incoming-ssh-connections-from-a-specific-ip-address-subnet-on-ubuntu-debian/
+    $ sudo ufw allow 61112/tcp
+    where 61112 is the port number
+*** jump to a server via intermediate hops
+    https://wiki.gentoo.org/wiki/SSH_jump_host
+    ssh -J user1@host1:port1,user2@host2:port2 user3@host3 -p port3
+    e.g.
+    #+begin_src sh
+    ssh -J user1@host1:61111 user2@host2
+    ssh -J user1@host1:61111 user2@host2 -p 22
+    ssh -J user1@host1:61111,user2@host2:61112 user3@host3 -p 61113
+    #+end_src
 
 ** ls
 *** Explanation for "ls -l"
