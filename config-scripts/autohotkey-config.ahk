@@ -28,3 +28,8 @@ $CapsLock::Ctrl
 ; $CapsLock::Ctrl
 ; Ctrl & Alt::SetCapsLockState, % (t:=!t) ?  "On" :  "Off"
 ; Alt & Ctrl::SetCapsLockState, % (t:=!t) ?  "On" :  "Off"
+
+
+; [shift + space -> hangul key]
+; https://harryhan24.github.io/post/2020/02/16/auto-hot-key-windows/
++space::Send, {vk15sc138}

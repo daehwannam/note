@@ -855,6 +855,8 @@
      https://askubuntu.com/questions/505929/shutdown-after-a-certain-time
      $ date  # to check the current time
      $ sudo shutdown -P 8:30
+   - cancel scheduled shutdown
+     $ sudo shutdown -c
 ** zip & unzip
 *** zip
     - compress a directory
