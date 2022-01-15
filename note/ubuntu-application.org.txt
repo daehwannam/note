@@ -201,6 +201,11 @@
 *** disable thumbnails at startup
     https://forum.kde.org/viewtopic.php?f=20&t=95947
     Menu -> "Settings" -> uncheck "Navigation panel"
+*** inverse search setting
+    https://tex.stackexchange.com/questions/161797/how-to-configure-emacs-and-auctex-to-perform-forward-and-inverse-search
+    - Menu -> "Settings" -> "Configure Okular" -> "Editor" -> "Emacs client"
+    - Menu -> "Tools" -> "Browse"
+    - emacs server or daemon should be running
 ** evince
    pdf viewer
 *** install
