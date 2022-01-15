@@ -15,6 +15,9 @@
    https://stackoverflow.com/questions/10909738/emacs-custom-command-line-arguments
 
 * Command
+** help commands
+*** apropos-command (C-h a)
+    it shows commands (interactively callable functions) that match a pattern
 ** Esc-=: count lines
 *** Be careful of Alt-= in Putty
     It changes the default character set.
@@ -92,11 +95,39 @@
 ** Exception handling
    https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/
 ** Debug with Edebug
-   https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
+   - official reference
+     https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
+     - commands for execution modes
+       
+   - example
+     https://www.emacswiki.org/emacs/SourceLevelDebugger
+*** commands for execution modes
+    https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug-Execution-Modes.html
+    https://www.gnu.org/software/emacs/manual/html_node/elisp/Jumping.html
+    https://www.gnu.org/software/emacs/manual/html_node/elisp/Breakpoints.html
+
+    - edebug-stop (S)
+    - edebug-step-mode (SPC)
+    - edebug-next-mode (n)
+    - edebug-step-in (i)
+    - edebug-trace-mode (t)
+    - edebug-go-mode (g): go - run until the next breakpoint
+    - edebug-continue-mode (c) : continue - pause one second at each breakpoint, and then continue
+    - edebug-set-breakpoint (b) : set a breakpoint at the stop point at or after point
+    - top-level (q) : quit debugging
+    - ...
 *** eval-defun (C-M-x)
-    - move cursor after a function call (or a s-expression)
-    - type C-M-x, then debugger starts inside the function
-    - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
+    - "eval-defun" evaluates a function definition, then the function's body can be navigated by edebug
+    - to debug a function's body, you should evaluate the function with "eval-defun" (C-M-x)
+      or, the function should be found by "xref-find-definitions" (M-.)
+    - to start debug by interactive function call, such as "M-x some-function",
+      you should evaluate "some-function" with "eval-defun" and prefix argument (C-u C-M-x)
+    - also, you can start debugger from a s-expression, rather then inside the function evaluated by "C-u C-M-x"
+      - move cursor after a function call (or a s-expression)
+      - type C-M-x, then debugger starts inside a function evaluated by "C-u C-M-x"
+      - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
+*** error: Don’t know where ‘some-function’ is defined
+    to debug the inside of a function, the function should be evaluated with C-M-x
 *** edebug-all-defs
     - M-x edebug-all-defs toggles the value of the variable edebug-all-defs
     - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
@@ -173,6 +204,27 @@
    https://stackoverflow.com/a/12228646
    alias, script or custom command defined in ~/.bashrc can be used once BASH_ENV is set to the config
    $ BASH_ENV=~/.bashrc emacs
+** custom command line argument
+   #+BEGIN_SRC elisp
+   (progn
+     (progn
+       (defvar exwm-cmd-arg-passed nil)
+
+       (let ((remaining-cmd-args (cdr command-line-args)))
+         ;; originally '(cdr command-line-args) is passed into `command-line-1'
+         (setq exwm-cmd-arg-passed (member "--exwm" remaining-cmd-args)))
+
+       ;; exwm setup
+       (defun exwm-cmd-arg-handler (switch)
+         ;; do nothing
+         )
+
+       (add-to-list 'command-switch-alist '("--exwm" . exwm-cmd-arg-handler)))
+
+     (when exwm-cmd-arg-passed
+       ;; do something if --exwm is passed from command line
+       (progn '(do something))))
+   #+END_SRC
 
 * Install Emacs
 ** Emacs 25
@@ -409,6 +461,13 @@
    - open in another buffer
      use prefix argument to open web page in another buffer
      e.g. C-u M-x eww
+** markdown mode
+   https://jblevins.org/projects/markdown-mode/
+*** usage
+    - markdown-preview (C-c C-c p): preview in the current page
+*** error fix: Markdown command markdown is not found
+    install 'markdown'
+    $ sudo apt install markdown
 
 * KeyChanges
 ** Windows: auto-hot key

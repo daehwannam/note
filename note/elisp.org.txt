@@ -1,22 +1,11 @@
-* custom command line argument
-  #+BEGIN_SRC elisp
-  (progn
-    (progn
-      (defvar exwm-cmd-arg-passed nil)
 
-      (let ((remaining-cmd-args (cdr command-line-args)))
-        ;; originally '(cdr command-line-args) is passed into `command-line-1'
-        (setq exwm-cmd-arg-passed (member "--exwm" remaining-cmd-args)))
+* native emacs-lisp functions
 
-      ;; exwm setup
-      (defun exwm-cmd-arg-handler (switch)
-        ;; do nothing
-        )
-
-      (add-to-list 'command-switch-alist '("--exwm" . exwm-cmd-arg-handler)))
-
-    (when exwm-cmd-arg-passed
-      ;; do something if --exwm is passed from command line
-      (progn '(do something))))
-  #+END_SRC
-
+* common lisp functions
+** cl-remove-if-not
+   remains items that satisfy the predicate
+   e.g.
+   #+begin_src elisp
+   (require 'cl-lib)
+   (cl-remove-if-not (lambda (x) (> x 3)) '(1 3 2 4 6 0 2 5))
+   #+end_src

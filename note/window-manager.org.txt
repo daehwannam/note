@@ -250,8 +250,15 @@
    #   CAUTION: if you want to reinstall pop shell after removing these shortcuts, the shortcuts would not be applied
    #   $ sudo rm /usr/local/bin/pop-shell-shortcuts
 
+* DWM
+** workspace setting for multi monitors
+   https://www.reddit.com/r/suckless/comments/hc5qvs/dwm_switching_all_tags_between_multiple_monitors/
+   https://dwm.suckless.org/patches/single_tagset/
+** DWL: DWM for Wayland
+   https://github.com/djpohly/dwl
+
 * Common
-** window manager comparisons
+** winndow manager comparisons
 *** StumpWM vs EXWM
     https://news.ycombinator.com/item?id=19128285
     both StumpWM and EXWM are manual tiling managers and there are a few other choices
