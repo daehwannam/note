@@ -431,6 +431,12 @@
    - Raw-string match
      Use the below command during ivy search.
      M-r: ivy-toggle-regexp-quote
+*** counsel-find-file
+    - ivy-alt-done (C-j) : extend path to the directory
+    - ivy-done (RET or C-m) : exit the minibuffer with the selected candidate
+    - ivy-partial-or-done (TAB) : extend path to the directory or open the filecoco
+    - ivy-insert-current (M-i) : insert the current candidate into the minibuffer
+    - ivy-insert-current-full (C-M-y) : Insert the full Yank the current directory into the minibuffer
 ** ido
 *** using command without id
     https://stackoverflow.com/questions/6771664/disable-ido-mode-for-specific-commands

@@ -114,6 +114,35 @@
     - C-c ` : edit cell
     | <10>             | <15>                        |
     | A very wide cell | Another very very wide cell |
+*** visualize references
+    - org-table-field-info (C-c ?) : show the current cell's info
+    - org-table-toggle-coordinate-overlays ("C-c }") : visualize reference info
+*** formula
+    https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html
+    - e.g. mean over columns
+      #+begin_example org
+      | Student  | Maths | Physics | Mean            |
+      |----------+-------+---------+-----------------|
+      | Bertrand |    13 |      09 | :=vmean($2..$3) |
+      | Henri    |    15 |      14 |                 |
+      | Arnold   |    17 |      13 |                 |
+      #+end_example
+      then type "C-c C-c"
+    - interactively update formula for a specific cell
+      - move cursor to a cell where a formula is applied
+      - type "C-u C-c ="
+*** formula examples
+    - mean over columns
+      ~:=vmean($2..$3)~
+    - sum over rows
+      ~:=vsum(@2..@10)"~
+    - add two cell values
+      ~:=@3$2 + @2$4~
+*** relative table reference
+    https://orgmode.org/manual/References.html
+    - ~@-2~ : 2 step previous row
+    - ~$+3~ : 3 step next column
+    - ~@-2$+3~ : a cell which is 2 step previous in rows and 3 step next in columns
 
 * Mobile
   https://orgmode.org/worg/org-tutorials/
