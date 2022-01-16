@@ -296,3 +296,15 @@
 ** change screen resolution
    https://unix.stackexchange.com/a/227879
    % xrandr -s 800x600
+
+* Drawing
+** Inkscape
+*** install
+    https://inkscape.org/ko/release/inkscape-1.0/gnulinux/ubuntu/ppa/dl/
+    #+begin_src sh
+    sudo add-apt-repository ppa:inkscape.dev/stable
+    sudo apt update
+    sudo apt install inkscape
+    #+end_src
+*** tutorial
+    https://inkscape.org/ko/learn/tutorials/

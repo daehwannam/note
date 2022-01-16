@@ -6,7 +6,7 @@
   - IPE
   - LaTeXDraw
   - TikZiT: https://tikzit.github.io/
-  - inksape
+  - inkscape
 
 * Org-mode with Beamer
   https://www.youtube.com/watch?v=Ho6nMWGtepY
