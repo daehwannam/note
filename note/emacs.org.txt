@@ -20,7 +20,7 @@
     it shows commands (interactively callable functions) that match a pattern
 ** Esc-=: count lines
 *** Be careful of Alt-= in Putty
-    It changes the default character set.
+    It changes the default character set to some weird character set.
 ** Removing dependencies
    M-x package-autoremove
 ** rectangle-mark-mode
@@ -133,6 +133,9 @@
     - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
 ** toggle-menu-bar-mode-from-frame
    enable/disable menu-bar
+** toggle-input-method
+   - "C-\" : change to the default input method if it exists
+   - "C-u C-\" : choose an input method and change to it
 
 * My command
 ** xah-open-in-external-app

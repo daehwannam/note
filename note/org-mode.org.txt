@@ -152,13 +152,20 @@
    - Github: https://github.com/200ok-ch/organice
    - Documentation: https://organice.200ok.ch/documentation.html
 
-* Indentation setting per each file(buffer)
-  https://www.reddit.com/r/emacs/comments/97naje/comment/e49rzvi/?utm_source=share&utm_medium=web2x&context=3
-  https://orgmode.org/manual/In_002dbuffer-Settings.html#DOCF151
+* indentation
+** remove hard indentation
+   use "org-unindent-buffer"
+** switch between odd/oddeven bullet levels
+   https://orgmode.org/manual/Hard-indentation.html
+   - M-x org-convert-to-odd-levels
+   - M-x org-convert-to-oddeven-levels
+** Indentation setting per each file(buffer)
+   https://www.reddit.com/r/emacs/comments/97naje/comment/e49rzvi/?utm_source=share&utm_medium=web2x&context=3
+   https://orgmode.org/manual/In_002dbuffer-Settings.html#DOCF151
 
-  Start the org file with the following in-buffer settings
-  - #+STARTUP: indent
-  - #+STARTUP: noindent
+   Start the org file with the following in-buffer settings
+   - #+STARTUP: indent
+   - #+STARTUP: noindent
 
 * Beamer
 ** Example
