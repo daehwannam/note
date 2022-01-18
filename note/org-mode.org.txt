@@ -1,4 +1,10 @@
 
+* Common
+** org-shiftleft / org-shiftright
+   these commands change
+   - states (TODO, DONE, ...)
+   - item bullet types (-, *, +, 1., ...)
+
 * Agenda
   - j (org-agenda-goto-date): make agenda starting from the date
 
