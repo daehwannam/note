@@ -161,6 +161,8 @@
 * indentation
 ** remove hard indentation
    use "org-unindent-buffer"
+** add hard indentation
+   use "org-indent-region"
 ** switch between odd/oddeven bullet levels
    https://orgmode.org/manual/Hard-indentation.html
    - M-x org-convert-to-odd-levels

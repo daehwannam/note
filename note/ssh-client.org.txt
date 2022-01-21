@@ -2,7 +2,7 @@
 ** ssh keygen and copy
    https://stackoverflow.com/a/16604890
 
-   type followings in client side
+   type the followings in the client side:
 
    #+begin_src sh
    ssh-keygen
