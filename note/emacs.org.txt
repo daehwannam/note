@@ -435,6 +435,7 @@
      Use the below command during ivy search.
      M-r: ivy-toggle-regexp-quote
 *** counsel-find-file
+    - ivy-immediate-done (C-M-j) : exit the minibuffer with current input instead of current candidate.
     - ivy-alt-done (C-j) : extend path to the directory
     - ivy-done (RET or C-m) : exit the minibuffer with the selected candidate
     - ivy-partial-or-done (TAB) : extend path to the directory or open the filecoco

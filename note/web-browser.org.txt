@@ -102,6 +102,10 @@
    cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so \
       ~/program/qutebrowser/.venv/lib/python3.10/site-packages/PyQt5/Qt5/plugins/platforminputcontexts/
    #+end_src
+** find functions bound to a key
+   https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/
+   write ":bind <Ctrl+x>" and leave a space after that,
+   then the autocompletion area will show you the <current> and the <default> bindings.
 
 * Firefox
 ** userChrome.css
@@ -162,8 +166,10 @@
    #+begin_src sh
    git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/package/emacs-application-framework/
    cd ~/.emacs.d/package/emacs-application-framework/
-   chmod +x ./install-eaf.py
-   ./install-eaf.py --install-all-apps
+   # chmod +x ./install-eaf.py
+   # ./install-eaf.py --install-all-apps
+   PYTHON=/usr/bin/python3 # change this path for your system
+   $PYTHON install-eaf.py --install-all-apps
    #+end_src** 
 ** error fix
 *** ModuleNotFoundError: No module named 'epc'
