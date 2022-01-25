@@ -104,8 +104,11 @@
    #+end_src
 ** find functions bound to a key
    https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/
-   write ":bind <Ctrl+x>" and leave a space after that,
-   then the autocompletion area will show you the <current> and the <default> bindings.
+   https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/gxgxnuu/
+   - write ":bind <Ctrl+x>" and leave a space after that,
+     then the autocompletion area will show you the <current> and the <default> bindings.
+   - ":bind --mode=prompt <ctrl-x>"
+   - ":help :bind"
 
 * Firefox
 ** userChrome.css

@@ -39,6 +39,22 @@
 ** LibreOffice
 *** install
     $ sudo apt install libreoffice
+*** command line export
+    https://askubuntu.com/questions/60778/how-can-i-convert-an-odt-file-to-a-pdf
+    #+begin_src bash
+    libreoffice --headless --convert-to pdf *.odt
+    libreoffice --headless --convert-to pdf *.pdf
+    #+end_src
+*** libre office draw
+**** fit drawing contents to the page of libre office draw
+     https://stackoverflow.com/a/50046582/6710003
+***** export only objects without margins
+      https://ask.libreoffice.org/t/libreoffice-draw-how-to-automatically-resize-canvas-to-content/4809/2
+      select objects and export
+**** change page size
+     https://ask.libreoffice.org/t/libreoffice-draw-how-to-automatically-resize-canvas-to-content/4809/2
+     - menu bar -> Page -> Properties -> Page
+     - change Width and Height
 ** OnlyOffice
    https://askubuntu.com/a/1332488
 *** License
@@ -308,3 +324,7 @@
     #+end_src
 *** tutorial
     https://inkscape.org/ko/learn/tutorials/
+    Help -> Tutorials -> ...
+*** remove svg margin
+    https://stackoverflow.com/a/64116358/6710003
+    $ inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
