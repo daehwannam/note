@@ -128,6 +128,9 @@ nn
     $ # Set the cache to timeout after 1 hour (setting is in seconds)
     $ git config --global credential.helper 'cache --timeout=3600'
 
+** git config list
+   $ git config --list
+
 * Git for Windows
 ** Using linux utility
    add "C:\Program Files\Git\usr\bin" to 'Path' variable

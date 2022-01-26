@@ -19,6 +19,11 @@
    #+end_src
 
    also you may need to fix fcitx problem: [[*fix fcitx problem for Qt5][fix fcitx problem for Qt5]]
+*** updating
+    https://qutebrowser.org/doc/install.html#_updating
+    #+begin_src sh
+    python scripts/mkvenv.py --update --venv-dir .venv
+    #+end_src
 *** xdg-mime setting
     #+begin_src sh
     cp /home/dhnam/script/laptop/backup/desktop/qutebrowser.desktop ~/.local/share/applications
@@ -109,6 +114,16 @@
      then the autocompletion area will show you the <current> and the <default> bindings.
    - ":bind --mode=prompt <ctrl-x>"
    - ":help :bind"
+** help
+   help command used to description of functions
+   #+begin_example
+   :help :hint
+   #+end_example
+** right mouse click
+   #+begin_example
+   :hint all right-click
+   #+end_example
+   also, typing 'alt' makes the right-click menu disappears
 
 * Firefox
 ** userChrome.css

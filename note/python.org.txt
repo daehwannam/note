@@ -10,6 +10,14 @@
 
    this code can execute the block of __main__ in "module.py"
 
+* Python virtualenv
+** make a virtualenv
+   $ python -m venv .venv
+** switch to a virtualenv
+   $ source .venv/bin/activate
+** deactivate
+   $ deactivate
+
 * Python language
 ** tail call optimization
 *** code
