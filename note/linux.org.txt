@@ -965,7 +965,6 @@
 ** dmesg
    https://man7.org/linux/man-pages/man1/dmesg.1.html
    "dmesg is used to examine or control the kernel ring buffer."
-
    dmesg can print kernel log
 ** fdisk
    list disks
