@@ -967,6 +967,27 @@
    "dmesg is used to examine or control the kernel ring buffer."
 
    dmesg can print kernel log
+** fdisk
+   list disks
+   $ sudo fdisk -l
+
+   e.g. example output of a disk
+   #+begin_example
+   Disk /dev/sdb: 596.18 GiB, 640135028736 bytes, 1250263728 sectors
+   Disk model: S2 Portable     
+   Units: sectors of 1 * 512 = 512 bytes
+   Sector size (logical/physical): 512 bytes / 512 bytes
+   I/O size (minimum/optimal): 512 bytes / 512 bytes
+   Disklabel type: dos
+   Disk identifier: 0x8eddc49c
+   #+end_example
+*** mount a listed disk
+    https://www.tutorialspoint.com/how-to-mount-usb-drive-in-a-linux-system
+    e.g.
+    #+begin_src sh
+    $ sudo mount /dev/sdb1 /mnt
+    #+end_src
+>>>>>>> 3336137fe1a11db54404ed9be1479b1f6e6b1d3f
 
 * NVIDIA GPU & CUDA
 ** components
