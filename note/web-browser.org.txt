@@ -124,6 +124,9 @@
    :hint all right-click
    #+end_example
    also, typing 'alt' makes the right-click menu disappears
+** search start from middle point
+   https://www.reddit.com/r/qutebrowser/comments/lld84t/comment/gnowqzu/?utm_source=share&utm_medium=web2x&context=3
+   click some text then search
 
 * Firefox
 ** userChrome.css
@@ -202,13 +205,35 @@
        $ sudo apt install nvidia-driver-470
 
 * Nyxt
+** manual installation
+   https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#standard-developer-installation
+*** [[file:common-lisp.org.txt::*Install][SBCL install]]
+*** Lisp dependencies
+    #+begin_src sh
+    mkdir -p ~/common-lisp
+    git clone https://github.com/joachifm/cl-webkit ~/common-lisp/cl-webkit
+    #+end_src
+*** GNU/Linux, FreeBSD GTK dependencies
+    #+begin_src sh
+    # Debian-based distributions
+    sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev pkg-config xclip enchant-2
+    #+end_src
+*** fetch the source code
+    #+begin_src sh
+    mkdir -p ~/common-lisp
+    git clone https://github.com/atlas-engineer/nyxt ~/common-lisp/nyxt
+    #+end_src
+*** compile
+    #+begin_src sh
+    cd ~/common-lisp/nyxt
+    make all
+    #+end_src
 ** Install
    https://nyxt.atlas.engineer/download
    Ubuntu package is supported
 *** dependencies for installing from source (optional)
     https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#gnulinux-freebsd-gtk-dependencie
     $ sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev xclip enchant-2
-
 *** Youtube video fix
     https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
 
@@ -235,7 +260,6 @@
         mv nyxt-config /home/$USER/.config/nyxt
     fi
     #+end_src
-
 ** Usage
 *** search with secific engine
     - run 'set-url
@@ -260,11 +284,30 @@
     mouseless text selection
     - run command 'visual-mode
     - back to the normal mode by ESC or C-g (only for emacs-mode)
-
+*** passthrough-mode
+*** nyxt open a new window from command-line
+**** using eval
+     https://github.com/atlas-engineer/nyxt/issues/1478#issuecomment-855752985
+     - config
+       #+begin_src lisp
+       (define-configuration browser ((remote-execution-p :t)))
+       #+end_src
+     - command-line
+       #+begin_src sh
+       nyxt --remote --eval '(make-window)'
+       #+end_src
+**** using distinct sockets
+     use "-S" option
+     $ nyxt -S https://google.com/
+*** prompt buffer (with emacs-mode)
+    - C-x C-c: copy
+    - C-x C-x: cut
+    - C-x h: select all
 ** Configuration
 *** config file
     /home/$USER/.config/nyxt/init.lisp
-
+*** names of commands
+    https://discourse.atlas.engineer/t/solved-issue-remapping-keybind-for-search-buffer-and-visual-mode/376
 ** Misc
 *** delete cached history
     https://discourse.atlas.engineer/t/global-history-tree-your-map-of-the-internet/82/3
