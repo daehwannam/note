@@ -4,10 +4,14 @@
   $ cd example.git
   $ git init --bare
 
-* remote repository add
-** local machine example
+* remote repository path
+** examples
    - ssh://user@server.name.ac.kr:60001/home/user/emacs.git
    - ssh://user@domain.com:61112/home/user/work/gitbackup/sp_ae.git
+
+* local repository path
+** examples
+   - /path/to/the/repository.git
 
 * git daemon
 ** references
