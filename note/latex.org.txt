@@ -54,6 +54,15 @@
 *** GUI tool comparison
     https://www.canterbury.ac.nz/media/documents/research/latex_figures.pdf
 
+* latexmk
+  http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkflow
+** tex to pdf
+   latexmk -pdf some-tex-file-name
+
+* rubber
+  https://scaron.info/blog/makefiles-for-latex.html
+  similar to latexmk and it has some more features
+
 * pdfcrop
   https://tex.stackexchange.com/questions/434404/remove-only-top-and-bottom-margins-using-pdfcrop
 
@@ -88,3 +97,14 @@
     \item[] A blank label?
     \end{itemize}
     #+end_src
+
+* Commands
+** \setcitestyle
+   https://tex.stackexchange.com/a/367402
+   it changes citation style
+   #+begin_src latex
+   \setcitestyle{numbers}
+   \setcitestyle{square}
+   \setcitestyle{comma}
+   #+end_src
+

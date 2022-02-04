@@ -242,6 +242,7 @@
     $ sudo apt-get install gstreamer1.0-libav
 *** "WebKitJavascriptError", Code: 699
     https://github.com/atlas-engineer/nyxt/issues/1657#issuecomment-886022638
+    https://github.com/atlas-engineer/nyxt/issues/1883#issuecomment-1004048147
 
     I got the error from google search
 
