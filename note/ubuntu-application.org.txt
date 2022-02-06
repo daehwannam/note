@@ -128,6 +128,16 @@
 ** Kazam
    video recording and image capture tool
 
+* Recording (screencast)
+** peek
+*** install
+    $ sudo apt install peek
+
+* Video editing
+** kdenlive
+*** install
+    $ sudo apt install kdenlive
+
 * Image viewer
 ** Nomacs
 *** install
@@ -311,7 +321,7 @@
 * xrandr
 ** change screen resolution
    https://unix.stackexchange.com/a/227879
-   % xrandr -s 800x600
+   % xrandr -s 800x60n0
 
 * Drawing
 ** Inkscape
@@ -328,3 +338,34 @@
 *** remove svg margin
     https://stackoverflow.com/a/64116358/6710003
     $ inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
+
+* scrcpy
+  https://sean.tistory.com/59
+** install
+   - scrcpy
+     $ sudo apt install scrcpy
+   - other necessary packages
+     $ sudo apt install adb ffmpeg libsdl2-2.0-0 make gcc pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev android-tools-adb android-tools-fastboot
+** enable development option (개발자 옵션)
+   https://sean.tistory.com/23?category=874763
+   - 개발자 옵션 활성화
+     https://sean.tistory.com/23?category=874763
+     - "설정" -> "휴대전화 정보" -> "소프트웨어 정보"
+     - "빌드번호" 반복 터치
+   - "설정" -> "개발자 옵션" -> "USB 디버깅" ON
+** connect via adb & scrcpy
+   - Connect the mobile device with a computer via USB
+   - Allow USB debugging
+   - check the connected device
+     if the device is connected it shows 'device' rather than 'unauthorized'
+     e.g.
+     $ adb devices
+     #+begin_example
+     List of devices attached
+     3200eb5294938489	device
+     #+end_example
+   - run scrcpy
+     $ scrcpy
+** Korean input
+   http://no1linux.org/board_WEnl84/38786
+   install app "Gboaard - Google keyboard"
