@@ -183,6 +183,7 @@
 *** file local variable
     https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
     https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions
+    https://www.linuxtopia.org/online_books/linux_tool_guides/gnu_emacs_manual/File-Variables.html
 
     Example of local varaible setup for org-mode:
     - With the first line:
@@ -194,6 +195,7 @@
       #+begin_example
       # Local Variables:
       # eval: (message "foo")
+      # eval: (message "bar")
       # End:
       #+end_example
 ** Key binding to function

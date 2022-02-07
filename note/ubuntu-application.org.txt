@@ -369,3 +369,10 @@
 ** Korean input
    http://no1linux.org/board_WEnl84/38786
    install app "Gboaard - Google keyboard"
+
+* Zoom
+** install
+   https://pstudio411.tistory.com/entry/Ubuntu-2004-LTS화상회의-필수인-ZOOM-설치-법
+
+   $ wget https://zoom.us/client/latest/zoom_amd64.deb
+   $ sudo apt install ./zoom_amd64.deb

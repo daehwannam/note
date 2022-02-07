@@ -322,6 +322,20 @@
     /home/$USER/.config/nyxt/init.lisp
 *** names of commands
     https://discourse.atlas.engineer/t/solved-issue-remapping-keybind-for-search-buffer-and-visual-mode/376
+*** analyzing values
+**** annotation
+     'data-path' is defined in "~/common-lisp/nyxt/source/data-storage.lisp"
+
+     Run the following code in REPL of Nyxt
+     - CLOS property (dirname, basename, ...) check:
+       #+begin_src lisp
+       (dirname (annotations-path (current-buffer)))
+       (basename (annotations-path (current-buffer)))
+       #+end_src
+     - call expand-path function:
+       #+begin_src lisp
+       (expand-path (annotations-path (current-buffer)))
+       #+end_src
 ** Misc
 *** delete cached history
     https://discourse.atlas.engineer/t/global-history-tree-your-map-of-the-internet/82/3
