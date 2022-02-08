@@ -192,6 +192,12 @@
       #+end_example
 
     - Or starts with "Local Variables"
+
+      "local variables list" should be declared in near the end of the
+      file.  The start of the local variables list should be no more
+      than 3000 characters from the end of the file, and must be on
+      the last page if the file is divided into pages.
+
       #+begin_example
       # Local Variables:
       # eval: (message "foo")
