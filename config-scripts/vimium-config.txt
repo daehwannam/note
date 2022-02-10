@@ -76,14 +76,23 @@ map <c-g><c-i> enterInsertMode
 # Not implemented in Emacs.
 map <c-g><c-f> focusInput
 
+# # Similar to Emacs `find-file`.
+# map qj LinkHints.activate  # map <c-x><c-f> LinkHints.activate
+# map ql LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateOpenInNewForegroundTab
+# map qL LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
+# map qO LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
+
+# # open in new window
+# map qo LinkHints.activate newtab="window"  # only available in vimium-c
+
 # Similar to Emacs `find-file`.
 map qj LinkHints.activate  # map <c-x><c-f> LinkHints.activate
 map ql LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateOpenInNewForegroundTab
-map qL LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
+map qo LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
 map qO LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
 
-# open in new window
-map qo LinkHints.activate newtab="window"  # only available in vimium-c
+# # open in new window
+# map qo LinkHints.activate newtab="window"  # only available in vimium-c
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
