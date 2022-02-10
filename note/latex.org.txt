@@ -97,6 +97,8 @@
     \item[] A blank label?
     \end{itemize}
     #+end_src
+** multiple .bib files
+   https://tex.stackexchange.com/questions/84099/bibliographies-from-multiple-bib-files
 
 * Commands
 ** \setcitestyle
