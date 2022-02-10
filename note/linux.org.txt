@@ -872,6 +872,8 @@
       $ unzip -l compressed.zip
     - uncompressing .zip file
       $ unzip compressed.zip
+    - uncompressing .zip file to a specific directory
+      $ unzip compressed.zip -d path/to/dir
 ** terminal spreadsheets
    https://www.reddit.com/r/emacs/comments/kxinju/org_tables_for_big_spreadsheets/
    - emacs SES

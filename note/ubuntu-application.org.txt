@@ -127,6 +127,12 @@
     $ flameshot gui
 ** Kazam
    video recording and image capture tool
+** shortcuts
+   Windows key + CTRL + R = Start recording.
+   Windows key + CTRL + P = Pause recording, press again to resume.
+   Windows key + CTRL + F = Finish recording.
+   Windows key + CTRL + W = Show/hide main window
+   Windows key + CTRL + Q = Quit recording.
 
 * Recording (screencast)
 ** peek
@@ -366,6 +372,18 @@
      #+end_example
    - run scrcpy
      $ scrcpy
+* sndcpy
+  https://kibua20.tistory.com/182
+** requirements
+   - vlc should be installed
+     $ which vlc
+** install
+   $ curl -L -O https://github.com/rom1v/sndcpy/releases/download/v1.0/sndcpy-v1.0.zip
+   $ unzip sndcpy-v1.0.zip -d ~/program/sndcpy
+** run
+   $ cd ~/program/sndcpy
+   $ ./sndcpy
+
 ** Korean input
    http://no1linux.org/board_WEnl84/38786
    install app "Gboaard - Google keyboard"
