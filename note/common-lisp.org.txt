@@ -3,6 +3,7 @@
   https://askubuntu.com/questions/670304/what-is-the-install-routine-for-common-lisp-slime-sbcl-quicklisp-on-ubuntu
 ** install sbcl
    $ sudo apt-get install sbcl
+   $ sudo apt install sbcl-source  # necessary for "slime-edit-definition" (M-.)
    or
    $ conda install -c conda-forge sbcl
 ** install quicklisp
