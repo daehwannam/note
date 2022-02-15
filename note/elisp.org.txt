@@ -11,12 +11,14 @@
    #+end_src
 
 * setq-default
+  https://stackoverflow.com/a/22673010
   https://stackoverflow.com/a/18173666
   https://www.gnu.org/software/emacs/manual/html_node/elisp/Intro-to-Buffer_002dLocal.html
 
   if a variable is buffer-local, it allows the variable to have a global value and local values for buffers
   otherwise, setq-default and setq have no difference
-  - make-local-variable declare a buffer-local variable
+  - use 'make-local-variable' to declare a buffer-local variable in a specific buffer
+    you should call 'make-local-variable' for each buffer to declare and use the buffer-local variable
     e.g. (make-local-variable 'some-variable-symbol)
   - 'setq-default' assigns a variable a global value
   - 'setq' assigns a variable a local value for the current buffer
