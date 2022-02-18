@@ -994,6 +994,10 @@
     #+begin_src sh
     $ sudo mount /dev/sdb1 /mnt
     #+end_src
+** command
+*** check a program exists
+    https://stackoverflow.com/a/677212
+    $ command -v pdfgrep
 
 * NVIDIA GPU & CUDA
 ** components
