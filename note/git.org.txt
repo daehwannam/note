@@ -5,9 +5,13 @@
   $ git init --bare
 
 * remote repository path
+  the path is usually to a bare git repository
 ** examples
+   - ssh://user@server.name.ac.kr:/home/user/emacs.git
    - ssh://user@server.name.ac.kr:60001/home/user/emacs.git
    - ssh://user@domain.com:61112/home/user/work/gitbackup/sp_ae.git
+
+   (60001 and 61112 are port numbers of ssh)
 
 * local repository path
 ** examples
