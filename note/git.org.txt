@@ -58,6 +58,9 @@ nn
   $ cd dhnamutil
   $ git submodule init
   $ git submodule update
+** update all submodules
+   https://nochoco-lee.tistory.com/88
+   $ git submodule update --recursive
 
 * set name and email
   https://www.lainyzine.com/ko/article/how-to-set-git-repository-username-and-email/
