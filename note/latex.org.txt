@@ -101,7 +101,7 @@
    https://tex.stackexchange.com/questions/84099/bibliographies-from-multiple-bib-files
 
 * Commands
-** \setcitestyle
+** setcitestyle
    https://tex.stackexchange.com/a/367402
    it changes citation style
    #+begin_src latex
@@ -109,4 +109,14 @@
    \setcitestyle{square}
    \setcitestyle{comma}
    #+end_src
-
+** texttt
+*** texttt with courier
+    https://tex.stackexchange.com/a/24848
+    without using 'courier', texttt doesn't display text in courier font
+    #+begin_src latex
+    \documentclass{article}
+    \usepackage{courier}
+    \begin{document}
+    This is not Courier font. \texttt{This is Courier font.}
+    \end{document}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    #+end_src

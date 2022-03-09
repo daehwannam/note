@@ -60,7 +60,9 @@ map <c-x>0 removeTab
 
 # Not implemented in Emacs.
 map qu copyCurrentUrl  # map <c-g><c-u> copyCurrentUrl
-map <c-g><c-l> LinkHints.activateCopyLinkUrl
+map qU LinkHints.activateCopyLinkUrl
+# map <c-g><c-u> copyCurrentUrl
+# map <c-g><c-l> LinkHints.activateCopyLinkUrl
 
 # Not implemented in Emacs.
 map <c-g><c-o> openCopiedUrlInCurrentTab
@@ -91,8 +93,10 @@ map ql LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.acti
 map qo LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
 map qO LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
 
-# # open in new window
-# map qo LinkHints.activate newtab="window"  # only available in vimium-c
+map <c-x><a-j> LinkHints.activate  # map <c-x><c-f> LinkHints.activate
+map <c-x><a-l> LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateOpenInNewForegroundTab
+map <c-x><a-o> LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
+map <c-x><a-O> LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate

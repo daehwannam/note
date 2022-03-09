@@ -176,10 +176,29 @@
     https://blog.allardhendriksen.nl/posts/tracking-project-virtual-environments-with-pyvenv-tracking-mode/
     https://endlessparentheses.com/a-quick-guide-to-directory-local-variables.html
 
-    - Move to the project root
-    - M-x add-dir-local-variable
-      - python-mode
-      - pyvenv-workon --> some-python-environment
+    directory-local variables are applied to all sub-directories
+
+    - 'nil' could be used instead of a specific mode to apply the variable for all modes.
+      https://www.emacswiki.org/emacs/DirectoryVariables
+
+    - e.g. add a new variable to '.dir-locals.el'
+      - Move to the project root
+      - M-x add-dir-local-variable
+        - python-mode
+        - pyvenv-workon --> some-python-environment
+**** directory-local variable with eval
+     https://stackoverflow.com/questions/2833928/how-do-i-set-buffer-local-variable-from-eval-in-dir-local-el#
+
+     e.g. both code is identical
+     #+begin_src elisp
+     ((nil . ((compilation-directory . "/home/vava/code_directory/")
+              (compilation-command . "rake"))))
+     #+end_src
+     
+     #+begin_src elisp
+     ((nil . ((eval . (setq compilation-directory "/home/vava/code_directory"))
+              (compilation-command . "rake"))))
+     #+end_src
 *** file local variable
     https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
     https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions

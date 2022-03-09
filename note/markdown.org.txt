@@ -1,0 +1,16 @@
+
+* Collapsible block
+  https://gist.github.com/joyrexus/16041f2426450e73f5df9391f7f7ae5f
+  #+begin_src markdown
+  ## collapsible block example
+  <details><summary>click this text</summary>
+  <p>
+  <!-- an empty line is needed after this -->
+
+  #### this block is hidden until you click the text
+  ```python
+  print("hello world!")
+  ```
+  </p>
+  </details>
+  #+end_src
