@@ -778,6 +778,11 @@
      e.g. #!/home/user/program/miniconda3/envs/default/bin/python
      CAUTION: no space is needed between shebang and the program path
 
+** wget
+*** download a file to a specific directory
+    https://www.tecmint.com/wget-download-file-to-specific-directory/
+    wget https://some-site.com/some-file.txt -P /some/path/to/dir
+
 ** lscpu
    show cpu information
    $ lscpu

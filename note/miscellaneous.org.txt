@@ -27,17 +27,3 @@
    - search mails with "size:XXmb"
      e.g. size:100MB
    - then remove the mails
-
-* Excel
-** count comma
-   https://www.extendoffice.com/documents/excel/3400-excel-count-number-of-commas-dashes-in-a-cell.html
-
-   if you want to count commas in the cell C7
-   #+begin_example
-   =LEN(C7)-LEN(SUBSTITUTE(C7,",",""))
-   #+end_example
-
-   - count words separated by commas
-     #+begin_example
-     =LEN(C7)-LEN(SUBSTITUTE(C7,",",""))+if(C7="", 0, 1)
-     #+end_example

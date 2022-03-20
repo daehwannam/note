@@ -506,9 +506,9 @@
     install 'markdown'
     $ sudo apt install markdown
 ** AucTex
-** error "LaTeX: there were unresolved citations, {6} pages"
-   - M-x TeX-command-master (C-c C-c) BibTeX
-   - run "C-c C-c" again
+*** error "LaTeX: there were unresolved citations, {6} pages"
+    - M-x TeX-command-master (C-c C-c) BibTeX
+    - run "C-c C-c" again
 
 * KeyChanges
 ** Windows: auto-hot key

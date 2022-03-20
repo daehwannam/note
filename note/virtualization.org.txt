@@ -350,6 +350,8 @@
       $ virsh start <vm-name>
     - stop VM
       $ virsh shutdown <vm-name>
+    - shutdown VM by force
+      $ virsh destroy <vm-name>
 *** switching from guest to host
     https://superuser.com/a/1452377
     
