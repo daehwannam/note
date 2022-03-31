@@ -29,6 +29,3 @@
    chmod +x ~/.local/bin/digestif
    ~/.local/bin/digestif
    #+end_src
-   - download the digestif wrapper script.
-   - place it in your $PATH (say, ~/.local/bin).
-   - make it executable (chmod +x ~/.local/bin/digestif).

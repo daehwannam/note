@@ -1,6 +1,7 @@
 
 * Install
   https://askubuntu.com/questions/670304/what-is-the-install-routine-for-common-lisp-slime-sbcl-quicklisp-on-ubuntu
+  https://lispcookbook.github.io/cl-cookbook/getting-started.html
 ** install sbcl
    $ sudo apt-get install sbcl
    $ sudo apt install sbcl-source  # necessary for "slime-edit-definition" (M-.)
@@ -35,8 +36,22 @@
 ** run a script file in command line
    $ sbcl --script source.lisp
 
+* Debian
+** library install
+   https://wiki.debian.org/CommonLisp
+   there are two ways to install libraries in debian
+   - via apt
+     - once a system has been installed, it can be loaded with "require"
+       - "asdf" should be loaded beforehand by (require "asdf")?
+   - via quicklisp
+     - "ql:quickload" tries downloading then loads a system
+     - once a system has been installed, it can be loaded with "require"
+       - "quicklisp" should be loaded beforehand
+       - quicklisp can be loaded by (load "~/quicklisp/setup.lisp")
+         unless "~/.sbclrc" is not updated by (ql:add-to-init-file)
+
 * SLIME
-** SLIME commands
+** emacs SLIME commands
    - slime : runs REPL
    - slime-repl-quit
    - slime-quit-lisp

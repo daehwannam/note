@@ -28,3 +28,10 @@
    check if an executable exists
    e.g.
    $ (executable-find "pdfgrep")
+** key-description
+   https://stackoverflow.com/a/7292684
+   key-description is the reverse of kbd
+   #+begin_src elisp
+   (key-description (kbd "M-DEL"))
+   ;; (key-description [134217855])
+   #+end_src
