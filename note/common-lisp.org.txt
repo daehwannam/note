@@ -56,10 +56,15 @@
    - slime-repl-quit
    - slime-quit-lisp
    - M-. : go to definition from slime REPL
+*** resource
+    - https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
+    - https://www.youtube.com/watch?v=sBcPNr1CKKw
 
 ** Debugging
    - (error "message" ...): shows backtrace
    - (break): go into a debugger
+*** SLDB: the SLIME debugger
+    https://slime.common-lisp.dev/doc/html/Debugger.html
 
 * CFFI
   - tutorial: https://www.youtube.com/watch?v=lvHi5LyhxGk

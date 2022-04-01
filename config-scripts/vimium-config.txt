@@ -25,8 +25,8 @@ unmapAll # Use Emacs-style bindings only.
 #########################################
 
 ## Similar to Emacs `(next|previous)-line`.
-map <c-v> scrollDown  # map <c-n> scrollDown
-map <a-v> scrollUp  # map <c-p> scrollUp
+# map <c-v> scrollDown  # map <c-n> scrollDown
+# map <a-v> scrollUp  # map <c-p> scrollUp
 
 # Similar to Emacs `(backward|forward)-char`.
 # map <c-b> scrollLeft

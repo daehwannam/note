@@ -22,6 +22,7 @@
     e.g. (make-local-variable 'some-variable-symbol)
   - 'setq-default' assigns a variable a global value
   - 'setq' assigns a variable a local value for the current buffer
+  - 'setq-local' assigns ...
 
 * functions
 ** executable-find
