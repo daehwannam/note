@@ -59,8 +59,14 @@
      source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
      https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition
 *** resource
-    - https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
-    - https://www.youtube.com/watch?v=sBcPNr1CKKw
+    - The Common Lisp Cookbook
+      https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
+      - slime REPL shortcuts
+        https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-slime-repl-shortcuts
+      - slime mode shortcuts
+        https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-other-slime-shortcuts
+    - useful slime shortcuts
+      https://www.youtube.com/watch?v=sBcPNr1CKKw
 
 ** Debugging
    - (error "message" ...): shows backtrace
