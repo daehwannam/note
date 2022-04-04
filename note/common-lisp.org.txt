@@ -55,7 +55,9 @@
    - slime : runs REPL
    - slime-repl-quit
    - slime-quit-lisp
-   - M-. : go to definition from slime REPL
+   - slime-edit-definition (M-.) : go to definition from slime REPL
+     source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
+     https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition
 *** resource
     - https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
     - https://www.youtube.com/watch?v=sBcPNr1CKKw
