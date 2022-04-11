@@ -21,7 +21,6 @@
    * (ql:quickload "vecto")
    * (ql:add-to-init-file)
    * (quit)
-
 ** install slime by using quicklisp
    $ sbcl
    * (ql:quickload "quicklisp-slime-helper")
@@ -65,7 +64,6 @@
         https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-other-slime-shortcuts
     - useful slime shortcuts
       https://www.youtube.com/watch?v=sBcPNr1CKKw
-
 ** Debugging
    - (error "message" ...): shows backtrace
    - (break): go into a debugger
@@ -79,7 +77,6 @@
 ** Function arguments
    http://www.gigamonkeys.com/book/functions.html
    addtional arguments: optional, rest, keyword
-
 ** function(#') and lambda
    https://stackoverflow.com/a/29346982/6710003
 
@@ -91,11 +88,60 @@
    because lambda is a macro and the expanded form include function:
    > (macroexpand-1 '(lambda (x) (+ x x x)))
    ==> (function (lambda (x) (+ x x x)))
-
 ** Macro
    - examples: https://lispcookbook.github.io/cl-cookbook/macros.html
+** package
+   https://lispcookbook.github.io/cl-cookbook/packages.html
+*** current package
+    a special variable ~*package*~ indicate the current package
+    #+begin_src lisp
+    *package*
+    #+end_src
+*** initial package
+    common-lisp-user is the inital package
+*** making a package
+    a new package cange defined by 'defpackage'.
+    however, the command doesn't switch to the new package.
+    #+begin_src lisp
+    (defpackage :my-package
+      (:use :cl))
+    #+end_src
+*** switching package
+    change the current package
+    #+begin_src lisp
+    (in-package :my-package)
+    #+end_src
+*** accessing symbols in packages
+    - package:exported-symbol
+    - package::non-exported-symbol.
+*** importing symbols in other packages
+**** importing specific symbols
+     #+begin_src lisp
+     (defpackage :my-package
+       (:import-from :ppcre :regex-replace)
+       (:use :cl))
+     #+end_src
+     'my-package' shares symbol 'regex-replace' with package 'ppcre'
+     'import-from' can import any symbol in a package, whether the symbol is exported from the package or not.
+**** importing all symbols
+     #+begin_src lisp
+     (defpackage :my-package
+       (:use :cl :ppcre))
+     #+end_src
+     all symbols exported from 'cl' and 'ppcre' are available in 'my-package'.
+     however, exploit 'use' only for importing symbols of your internal packages which you can control.
+**** printing all exported packages
+     #+begin_src lisp
+     (let ((package-name "CL"))  ; the name should be capitalized
+       (do-external-symbols (s (find-package package-name))
+         (print s)))
+     #+end_src
 
 * Lisp functions
 ** (load "file-path.ext")
 ** (apropos "some-substring")
+
+
+
+
    search for interned symbols whose names contain the substring
