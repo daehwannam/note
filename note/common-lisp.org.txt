@@ -93,11 +93,16 @@
 ** Macro
    - examples: https://lispcookbook.github.io/cl-cookbook/macros.html
 ** package
+   http://www.flownet.com/gat/packages.pdf
    https://lispcookbook.github.io/cl-cookbook/packages.html
+
+   - a package is a collection of symbols of distinct names
+   - a package cannot have symbols with the same name
+   - packages cannot have a same name.
 *** current package
     a special variable ~*package*~ indicate the current package
     #+begin_src lisp
-    *package*
+    ,*package*
     #+end_src
 *** initial package
     common-lisp-user is the inital package
@@ -108,8 +113,9 @@
     (defpackage :my-package
       (:use :cl))
     #+end_src
+    (also, package can be created by 'make-package' function, which is used defpackage)
 *** switching package
-    change the current package
+    change the current package by 'in-package' macro
     #+begin_src lisp
     (in-package :my-package)
     #+end_src
@@ -117,15 +123,30 @@
     - package:exported-symbol
     - package::non-exported-symbol.
 *** importing symbols in other packages
-**** importing specific symbols
+**** importing a symbol
+     #+begin_src lisp
+     (import 'some-package::some-function)
+     (some-function)
+     #+end_src
+***** import a list of symbols
+      #+begin_src lisp
+      (defpackage :some-package (:use :cl))
+      (in-package :some-package)
+      (defvar *symbols* '(foo bar))
+      (in-package :common-lisp-user)
+      (import some-package::*symbols*)  ; import 'foo and 'bar
+      (import 'some-package::*symbols*)  ; import '*symbols*
+      #+end_src
+**** importing a symbol for package definition
      #+begin_src lisp
      (defpackage :my-package
        (:import-from :ppcre :regex-replace)
        (:use :cl))
      #+end_src
-     'my-package' shares symbol 'regex-replace' with package 'ppcre'
-     'import-from' can import any symbol in a package, whether the symbol is exported from the package or not.
-**** importing all symbols
+     - 'my-package' shares symbol 'regex-replace' with package 'ppcre'
+     - 'import-from' can import any symbol in a package, whether the symbol is exported from the package or not.
+     - "(:use :cl)" is needed to use exported symbols from "cl" package
+**** importing all symbols for package definition
      #+begin_src lisp
      (defpackage :my-package
        (:use :cl :ppcre))
@@ -138,6 +159,193 @@
        (do-external-symbols (s (find-package package-name))
          (print s)))
      #+end_src
+**** name conflicts of symbols
+     #+begin_src lisp
+     (defpackage :some-package
+       (:use :cl))
+     (in-package :some-package)
+     (defun some-function ()
+       "some-function")
+     (in-package :common-lisp-user)
+     (intern "SOME-FUNCTION")  ; interning a symbol of same name
+     (import 'some-package::some-function)  ; raise an error
+     #+end_src
+*** home package
+    every symbol has a unique home package.
+
+    in the below example, home package of 'foo is 'jane, although 'foo is also interned in 'bob
+    #+begin_src lisp
+    (defpackage :jane (:use :cl))
+    (in-package :jane)
+    'foo
+    (defpackage :bob (:use :cl))
+    (in-package bob)
+    (import 'jane::foo)
+    (defpackage :charlie (:use :cl))
+    (in-package charlie)
+    (print 'bob::foo)  ; (symbol-package 'bob::foo) => #<PACKAGE "JANE">
+    #+end_src
+**** symbol-package
+     'symbol-package' is return the home package of a symbol
+     #+begin_src lisp
+     (symbol-package some-symbol)
+     (symbol-package 'symbol-name)
+     (symbol-package 'package-name::symbol-name)
+     #+end_src
+*** exporting
+    related operations:
+    - export : add a symbol to the exported symbol list
+    - unexport : pop a symbol from the exported symbol list
+    - use-package : import all the exported symbols in a package
+    - unuse-package : unimport all the exported symbols in a package
+**** shadowing
+     - a symbol added to the "shadowing symbols list" shadow or override symbols with the same name
+     (shadowing is used when use-package is called multiples times over packages exporting symbols with the same names)
+     - shadowing should be carefuly used
+       https://www-fourier.ujf-grenoble.fr/~sergerar/Papers/Packaging.pdf
+     - shadowing functions
+       - shadow: add a symbol into "shadowing symbols list" of a package (and intern the symbol if it wasn't),
+         then the package always use the symbol and doesn't use symbols with the same name from other packages
+       - shadowing-import: import a symbol from another package and the symbol shadow other symbols with the same name.
+     - 'unintern' cancel the effect of 'shadow' and 'shadowing-import'
+       'unintern' could raise name conflicts
+
+     #+begin_src lisp
+     (defpackage :p1 (:use :cl))
+     (in-package :p1)
+     (export '(x y z))
+
+     (defpackage :p2 (:use :cl))
+     (in-package :p2)
+     (export '(x y z))
+
+     (defpackage :main (:use :cl))
+     (in-package :main)
+
+     (shadow 'x)  ; (shadow 'x 'main) or (shadow "X")
+     (shadow "Y")  ; (find-symbol "Y") => :INTERNAL
+     (shadowing-import 'p1:y)  ; shadowing and import
+     (shadowing-import 'p2:z)  ; shadowing and import
+
+     (use-package 'p1)
+     (use-package 'p2)
+
+     (print (symbol-package 'x))  ; #<PACKAGE "MAIN">
+     (print (symbol-package 'y))  ; #<PACKAGE "P1">
+     (print (symbol-package 'z))  ; #<PACKAGE "P2">
+
+     ;; (unintern 'x)  ; => name conflicts between 'p1:x and 'p2:x
+     #+end_src
+
+* symbol
+** interning a symbol
+   http://www.flownet.com/gat/packages.pdf
+   interning a symbol is an act of putting a symbol into a package
+*** functions related to interning
+**** import
+     'import' add a symbol into a package, so it does interning
+     #+begin_src lisp
+     (setq some-symbol (make-symbol "SOME-NAME"))
+     (print some-symbol)
+     (import some-symbol)
+     (print some-symbol)
+     (eq some-symbol 'some-name)
+     #+end_src
+**** unintern
+     'unintern' remove a symbol from a package.
+     it's a reverse operation of 'import'
+     #+begin_src lisp
+     (setq some-symbol 'some-name)
+     (unintern some-symbol)
+     (eq some-symbol 'some-name)  ; 'some-name is the newly interned symbol which is different with some-symbol
+     ;; (import some-symbol)  ; name-conflict error
+     #+end_src
+**** intern
+     'intern' take a name and make a symbol of the name and import it
+     if a symbol with the same name doesn't exist
+
+     definition of intern like:
+     #+begin_src lisp
+     (defun intern (name)
+       (or (find-symbol name)
+           (let ((s (make-symbol name)))
+             (import s)
+             s)))
+     #+end_src
+**** symbol-name
+     'symbol-name' takes a symbol and return its name
+     #+begin_src lisp
+     (symbol-name 'cl:car)
+     (symbol-name 'car)
+     #+end_src
+**** symbol-package
+     'symbol-package' returns the home package of a symbol
+     #+begin_src lisp
+     (symbol-package 'cl:car)
+     (symbol-package 'car)
+     #+end_src
+*** uninterned symbol
+    making uninterned symbols
+    - an uninterned symbol with a uniqure name can be created by 'gensym'
+    - an uninterned symbol with a given string can be created by 'make-symbol'
+    - or you can make a specific symols like #:some-name
+    #+begin_src lisp
+    (gensym)
+    (make-symbol "SOME-NAME")
+    (setf #:some-name 100)
+    #+end_src
+**** sharpsign colon (#:some-name)
+    http://clhs.lisp.se/Body/02_dhe.htm
+    "#:" introduces an uninterned symbol whose name is
+    symbol-name. Every time this syntax is encountered, a distinct
+    uninterned symbol is created. The symbol-name must have the
+    syntax of a symbol with no package prefix.
+
+    http://www.flownet.com/gat/packages.pdf
+    Usually symbol with "#:" is uninterned symbol,
+    but the exact meaning of "#:" is a symbol without "home package".
+    There is a rare case of "#:", where a symbol is interned for a package but doesn't have a home package.
+
+    #+begin_src lisp
+    (defpackage :jane (:use :cl))
+    (in-package :jane)
+    'foo
+    (defpackage :bob (:use :cl))
+    (in-package bob)
+    (import 'jane::foo)
+    (in-package :jane)
+    (unintern 'foo)
+    (print (symbol-package 'bob::foo))  ; => NIL
+    (print 'bob::foo)  ; => #:FOO
+    #+end_src
+**** equality between uninterned symbols
+     'make-symbol' make different symbols although the name is same
+     #+begin_src lisp
+     (setq symbol1 (make-symbol "MY-SYMBOL"))
+     (setq symbol2 (make-symbol "MY-SYMBOL"))
+     (eq symbol1 symbol2)  ; => NIL
+
+     (setq symbol3 'my-symbol)  ; 'my-symbol is a symbol made from Lisp reader, which use make-symbol
+     (setq symbol4 'my-symbol)  ; doesn't make a new symbol and return 'my-symbol
+     (eq symbol3 symbol4)  ; => T ; two symbols are same
+     #+end_src
+*** finding an interned symbol
+    #+begin_src lisp
+    (find-symbol "SOME-NAME")  ; the name should be capitalized
+    #+end_src
+*** uninterned symbols can be used for packages
+    https://lispcookbook.github.io/cl-cookbook/packages.html
+    https://microeducate.tech/uninterned-symbols-in-common-lisp/
+    #+begin_src lisp
+    (defpackage #:iterate
+      (:use :cl)
+      (:nicknames #:iter))
+
+    (print "ITERATE")
+    (print "ITER")
+
+    (in-package #:iter)
+    #+end_src
 
 * Lisp functions
 ** (load "file-path.ext")

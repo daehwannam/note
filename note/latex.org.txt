@@ -120,3 +120,35 @@
     This is not Courier font. \texttt{This is Courier font.}
     \end{document}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
     #+end_src
+** Greek fonts
+   https://tex.stackexchange.com/questions/487710/a-whole-list-of-math-fonts-for-greek-letters-in-latex
+
+* Custum commands
+** denotation definition
+   % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
+   #+begin_src latex
+   \usepackage{stmaryrd}
+
+   \newcommand{\denotation}[2][]{
+   \left\llbracket#2\right\rrbracket_{#1}
+   }
+   #+end_src
+** labels for table cells
+   % https://tex.stackexchange.com/a/356820
+   #+begin_src latex
+   \makeatletter
+   \newcommand\newtag[2]{#1\def\@currentlabel{#1}\label{#2}}
+   \makeatother
+   #+end_src
+** circled text
+   https://tex.stackexchange.com/a/7045
+   #+begin_src latex
+   \usepackage{tikz}
+   \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+       \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+   #+end_src
+** bold font for both text and math
+   https://tex.stackexchange.com/a/347148
+   #+begin_src latex
+   \newcommand\boldtxt[1]{\textbf{\boldmath #1}}
+   #+end_src

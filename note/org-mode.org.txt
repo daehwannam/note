@@ -65,6 +65,8 @@
    #+END_SRC
 ** python virtual environment
    Change python environment before evaluating code block by "M-x pyvenv-workon"
+** edit code black in a special buffer
+   org-edit-special (C-c ')
 
 * Export
   - C-c C-e: org-export-dispatch
