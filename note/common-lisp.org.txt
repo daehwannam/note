@@ -114,6 +114,11 @@
       (:use :cl))
     #+end_src
     (also, package can be created by 'make-package' function, which is used defpackage)
+**** defpackage
+     - all of functionalieis about importing, exporting, shadowing, etc, can be processed by 'defpackage'
+     - you should not use other functions except 'defpackage'
+     - the arguments could be symbols, strings, keywords, etc,
+       however, you should refrain to pass symbols as arguments. otherwise, symbols would be interned before passing themselves as arguments
 *** switching package
     change the current package by 'in-package' macro
     #+begin_src lisp
@@ -346,6 +351,14 @@
 
     (in-package #:iter)
     #+end_src
+** sharping dot (#.)
+   https://stackoverflow.com/a/59003160
+   sharpsign dot (#.) evaluates the next expression at read time
+   #+begin_src lisp
+   (defvar *some-var* 42)
+   (print '(*some-var* #.*some-var*))
+   (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
+   #+end_src
 
 * Lisp functions
 ** (load "file-path.ext")
