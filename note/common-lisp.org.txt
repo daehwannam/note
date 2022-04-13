@@ -241,124 +241,144 @@
 
      ;; (unintern 'x)  ; => name conflicts between 'p1:x and 'p2:x
      #+end_src
-
-* symbol
-** interning a symbol
-   http://www.flownet.com/gat/packages.pdf
-   interning a symbol is an act of putting a symbol into a package
-*** functions related to interning
-**** import
-     'import' add a symbol into a package, so it does interning
-     #+begin_src lisp
-     (setq some-symbol (make-symbol "SOME-NAME"))
-     (print some-symbol)
-     (import some-symbol)
-     (print some-symbol)
-     (eq some-symbol 'some-name)
-     #+end_src
-**** unintern
-     'unintern' remove a symbol from a package.
-     it's a reverse operation of 'import'
-     #+begin_src lisp
-     (setq some-symbol 'some-name)
-     (unintern some-symbol)
-     (eq some-symbol 'some-name)  ; 'some-name is the newly interned symbol which is different with some-symbol
-     ;; (import some-symbol)  ; name-conflict error
-     #+end_src
-**** intern
-     'intern' take a name and make a symbol of the name and import it
-     if a symbol with the same name doesn't exist
-
-     definition of intern like:
-     #+begin_src lisp
-     (defun intern (name)
-       (or (find-symbol name)
-           (let ((s (make-symbol name)))
-             (import s)
-             s)))
-     #+end_src
-**** symbol-name
-     'symbol-name' takes a symbol and return its name
-     #+begin_src lisp
-     (symbol-name 'cl:car)
-     (symbol-name 'car)
-     #+end_src
-**** symbol-package
-     'symbol-package' returns the home package of a symbol
-     #+begin_src lisp
-     (symbol-package 'cl:car)
-     (symbol-package 'car)
-     #+end_src
-*** uninterned symbol
-    making uninterned symbols
-    - an uninterned symbol with a uniqure name can be created by 'gensym'
-    - an uninterned symbol with a given string can be created by 'make-symbol'
-    - or you can make a specific symols like #:some-name
-    #+begin_src lisp
-    (gensym)
-    (make-symbol "SOME-NAME")
-    (setf #:some-name 100)
-    #+end_src
-**** sharpsign colon (#:some-name)
-    http://clhs.lisp.se/Body/02_dhe.htm
-    "#:" introduces an uninterned symbol whose name is
-    symbol-name. Every time this syntax is encountered, a distinct
-    uninterned symbol is created. The symbol-name must have the
-    syntax of a symbol with no package prefix.
-
+** symbol
+*** interning a symbol
     http://www.flownet.com/gat/packages.pdf
-    Usually symbol with "#:" is uninterned symbol,
-    but the exact meaning of "#:" is a symbol without "home package".
-    There is a rare case of "#:", where a symbol is interned for a package but doesn't have a home package.
+    interning a symbol is an act of putting a symbol into a package
+**** functions related to interning
+***** import
+      'import' add a symbol into a package, so it does interning
+      #+begin_src lisp
+      (setq some-symbol (make-symbol "SOME-NAME"))
+      (print some-symbol)
+      (import some-symbol)
+      (print some-symbol)
+      (eq some-symbol 'some-name)
+      #+end_src
+***** unintern
+      'unintern' remove a symbol from a package.
+      it's a reverse operation of 'import'
+      #+begin_src lisp
+      (setq some-symbol 'some-name)
+      (unintern some-symbol)
+      (eq some-symbol 'some-name)  ; 'some-name is the newly interned symbol which is different with some-symbol
+      ;; (import some-symbol)  ; name-conflict error
+      #+end_src
+***** intern
+      'intern' take a name and make a symbol of the name and import it
+      if a symbol with the same name doesn't exist
 
-    #+begin_src lisp
-    (defpackage :jane (:use :cl))
-    (in-package :jane)
-    'foo
-    (defpackage :bob (:use :cl))
-    (in-package bob)
-    (import 'jane::foo)
-    (in-package :jane)
-    (unintern 'foo)
-    (print (symbol-package 'bob::foo))  ; => NIL
-    (print 'bob::foo)  ; => #:FOO
-    #+end_src
-**** equality between uninterned symbols
-     'make-symbol' make different symbols although the name is same
+      definition of intern like:
+      #+begin_src lisp
+      (defun intern (name)
+        (or (find-symbol name)
+            (let ((s (make-symbol name)))
+              (import s)
+              s)))
+      #+end_src
+***** symbol-name
+      'symbol-name' takes a symbol and return its name
+      #+begin_src lisp
+      (symbol-name 'cl:car)
+      (symbol-name 'car)
+      #+end_src
+***** symbol-package
+      'symbol-package' returns the home package of a symbol
+      #+begin_src lisp
+      (symbol-package 'cl:car)
+      (symbol-package 'car)
+      #+end_src
+**** uninterned symbol
+     making uninterned symbols
+     - an uninterned symbol with a uniqure name can be created by 'gensym'
+     - an uninterned symbol with a given string can be created by 'make-symbol'
+     - or you can make a specific symols like #:some-name
      #+begin_src lisp
-     (setq symbol1 (make-symbol "MY-SYMBOL"))
-     (setq symbol2 (make-symbol "MY-SYMBOL"))
-     (eq symbol1 symbol2)  ; => NIL
-
-     (setq symbol3 'my-symbol)  ; 'my-symbol is a symbol made from Lisp reader, which use make-symbol
-     (setq symbol4 'my-symbol)  ; doesn't make a new symbol and return 'my-symbol
-     (eq symbol3 symbol4)  ; => T ; two symbols are same
+     (gensym)
+     (make-symbol "SOME-NAME")
+     (setf #:some-name 100)
      #+end_src
-*** finding an interned symbol
-    #+begin_src lisp
-    (find-symbol "SOME-NAME")  ; the name should be capitalized
-    #+end_src
-*** uninterned symbols can be used for packages
-    https://lispcookbook.github.io/cl-cookbook/packages.html
-    https://microeducate.tech/uninterned-symbols-in-common-lisp/
-    #+begin_src lisp
-    (defpackage #:iterate
-      (:use :cl)
-      (:nicknames #:iter))
+***** sharpsign colon (#:some-name)
+     http://clhs.lisp.se/Body/02_dhe.htm
+     "#:" introduces an uninterned symbol whose name is
+     symbol-name. Every time this syntax is encountered, a distinct
+     uninterned symbol is created. The symbol-name must have the
+     syntax of a symbol with no package prefix.
 
-    (print "ITERATE")
-    (print "ITER")
+     http://www.flownet.com/gat/packages.pdf
+     Usually symbol with "#:" is uninterned symbol,
+     but the exact meaning of "#:" is a symbol without "home package".
+     There is a rare case of "#:", where a symbol is interned for a package but doesn't have a home package.
 
-    (in-package #:iter)
+     #+begin_src lisp
+     (defpackage :jane (:use :cl))
+     (in-package :jane)
+     'foo
+     (defpackage :bob (:use :cl))
+     (in-package bob)
+     (import 'jane::foo)
+     (in-package :jane)
+     (unintern 'foo)
+     (print (symbol-package 'bob::foo))  ; => NIL
+     (print 'bob::foo)  ; => #:FOO
+     #+end_src
+***** equality between uninterned symbols
+      'make-symbol' make different symbols although the name is same
+      #+begin_src lisp
+      (setq symbol1 (make-symbol "MY-SYMBOL"))
+      (setq symbol2 (make-symbol "MY-SYMBOL"))
+      (eq symbol1 symbol2)  ; => NIL
+
+      (setq symbol3 'my-symbol)  ; 'my-symbol is a symbol made from Lisp reader, which use make-symbol
+      (setq symbol4 'my-symbol)  ; doesn't make a new symbol and return 'my-symbol
+      (eq symbol3 symbol4)  ; => T ; two symbols are same
+      #+end_src
+**** finding an interned symbol
+     #+begin_src lisp
+     (find-symbol "SOME-NAME")  ; the name should be capitalized
+     #+end_src
+**** uninterned symbols can be used for packages
+     https://lispcookbook.github.io/cl-cookbook/packages.html
+     https://microeducate.tech/uninterned-symbols-in-common-lisp/
+     #+begin_src lisp
+     (defpackage #:iterate
+       (:use :cl)
+       (:nicknames #:iter))
+
+     (print "ITERATE")
+     (print "ITER")
+
+     (in-package #:iter)
+     #+end_src
+*** sharping dot (#.)
+    https://stackoverflow.com/a/59003160
+    sharpsign dot (#.) evaluates the next expression at read time
+    #+begin_src lisp
+    (defvar *some-var* 42)
+    (print '(*some-var* #.*some-var*))
+    (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
     #+end_src
-** sharping dot (#.)
-   https://stackoverflow.com/a/59003160
-   sharpsign dot (#.) evaluates the next expression at read time
-   #+begin_src lisp
-   (defvar *some-var* 42)
-   (print '(*some-var* #.*some-var*))
-   (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
-   #+end_src
+** system
+   https://sinax.be/blog/lisp/getting-started-with-asdf.html
+*** loading system
+    #+begin_src lisp
+    (asdf:load-system "alexandria")
+    #+end_src
+*** standard location of systems
+    ~/common-lisp/
+    ~/.local/share/common-lisp/source/
+*** dependency
+    https://stackoverflow.com/a/19739782
+    ":depends-on" keyword is used for dependencies between systems, files or etc
+    systems (or files) which are depended on are loaded earlier than other systems or files
+*** module
+    lisp files can be split into multiple directories, then each directory become a module
+    e.g. https://gitlab.common-lisp.net/alexandria/alexandria
+
+    c.f.
+    - each module doesn't need to belong to a specific package
+    - symbols' belonging to packages are defined by utilities such as 'defpackage'
+    - location of symbols in modules or files don't decide their packages
 
 * Lisp functions
 ** (load "file-path.ext")
