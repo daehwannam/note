@@ -383,8 +383,4 @@
 * Lisp functions
 ** (load "file-path.ext")
 ** (apropos "some-substring")
-
-
-
-
    search for interned symbols whose names contain the substring
