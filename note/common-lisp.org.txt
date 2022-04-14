@@ -364,6 +364,13 @@
     #+begin_src lisp
     (asdf:load-system "alexandria")
     #+end_src
+**** asdf:make
+     https://asdf.common-lisp.dev/asdf/Convenience-Functions.html
+     "asdf:make" also load files like "asdf:load-system" as the default behavior,
+     but system definition can change the behavior
+     #+begin_src lisp
+     (asdf:make "alexandria")
+     #+end_src
 *** standard location of systems
     ~/common-lisp/
     ~/.local/share/common-lisp/source/
