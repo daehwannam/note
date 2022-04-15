@@ -145,11 +145,14 @@
 **** importing a symbol for package definition
      #+begin_src lisp
      (defpackage :my-package
-       (:import-from :ppcre :regex-replace)
+       (:import-from :some-package :func1 #:func2)
        (:use :cl))
      #+end_src
-     - 'my-package' shares symbol 'regex-replace' with package 'ppcre'
-     - 'import-from' can import any symbol in a package, whether the symbol is exported from the package or not.
+     - 'my-package' shares symbols 'func1' and 'func2' with package 'some-package'
+     - packages and symbols can be expressed as keywords or sharpsign colon (#:some-name) forms
+     - if ":import-from" include only a package without addtional arguments, it doesn't import anything
+       however, recent ASDF can detect the dependency and load the system including the package
+       https://asdf.common-lisp.dev/asdf.html#The-package_002dinferred_002dsystem-extension
      - "(:use :cl)" is needed to use exported symbols from "cl" package
 **** importing all symbols for package definition
      #+begin_src lisp
@@ -240,6 +243,11 @@
      (print (symbol-package 'z))  ; #<PACKAGE "P2">
 
      ;; (unintern 'x)  ; => name conflicts between 'p1:x and 'p2:x
+     #+end_src
+**** exporting imported symbols
+     a package can export symbols which are imported from other packages
+     #+begin_src lisp
+     (defpackage :test-hwp (:use :cl :alexandria) (:export :copy-array))
      #+end_src
 ** symbol
 *** interning a symbol
@@ -386,6 +394,52 @@
     - each module doesn't need to belong to a specific package
     - symbols' belonging to packages are defined by utilities such as 'defpackage'
     - location of symbols in modules or files don't decide their packages
+*** Load new system created during runtime
+    https://lispcookbook.github.io/cl-cookbook/systems.html#using-the-system-you-defined
+    - load the new .asd file: (load "path/to/foobar.asd"),
+      or with C-c C-k in Slime to compile and load the whole file.
+    - (asdf:clear-configuration) to re-process the configuration.
+*** add directories where ASDF search systems
+    https://asdf.common-lisp.dev/asdf/Configuring-ASDF-to-find-your-systems.html
+    https://asdf.common-lisp.dev/asdf/Controlling-where-ASDF-searches-for-systems.html
+    the default directories of systems:
+    - ~/common-lisp/
+    - ~/.local/share/common-lisp/source/.
+
+    if you want to add another directory:
+    1. make directory "~/.config/common-lisp/source-registry.conf.d/"
+    2. make a file named "*.conf" in the directory
+       e.g. "my-lisp.conf"
+    3. add the following line into the file
+       #+begin_src lisp
+       (:tree "/home/user/my-lisp/")
+       #+end_src
+*** creating a project skeleton
+    #+begin_src lisp
+    (ql:quickload "cl-project")
+    (cl-project:make-project #p"some/path/to/project/")  ; if you doesn't use an absolute path, the project directory is created from the current path for slime
+    #+end_src
+*** testing a system
+    #+begin_src lisp
+    (asdf:test-system :some-project)
+    #+end_src
+
+    for testing, a testing system should be defined in the system's .asd file
+    (the test skeleton is also created by "cl-project:make-project")
+    e.g.
+    #+begin_src lisp
+    (defsystem "some-project"
+      ...)
+    (defsystem "some-project/tests"
+      ...)
+    #+end_src
+** quicklisp
+*** install and load systems
+    #+begin_src lisp
+    (ql:quickload "some-system")
+    #+end_src
+    the system "some-system" installed in "~/quicklisp/dists/quicklisp/software/"
+
 
 * Lisp functions
 ** (load "file-path.ext")
