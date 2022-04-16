@@ -439,7 +439,27 @@
     (ql:quickload "some-system")
     #+end_src
     the system "some-system" installed in "~/quicklisp/dists/quicklisp/software/"
+** comment
+*** #+(or) & #+(and)
+    https://stackoverflow.com/a/6365579 
+    https://lispcookbook.github.io/cl-cookbook/debugging.html#using-the-powerful-repl
+    #+(or) comment the following expression
+    #+(and) doesn't comment the following expression
+    #+begin_src lisp
+    (progn
+      #+(or)
+      (defun func-1 ())  ; undefined
+      #+(and)
+      (defun func-2 ())  ; defined
+      )
+    #+end_src    
 
+    ~#+nil~ works too but there are exceptional cases
+    ( https://stackoverflow.com/a/6365579 )
+*** #| ... |#
+    https://lispcookbook.github.io/cl-cookbook/debugging.html#using-the-powerful-repl
+
+    the code in #| ... |# is commented
 
 * Lisp functions
 ** (load "file-path.ext")
@@ -458,3 +478,14 @@
    (format t "it prints - ~a ~a" "some string" 100)  ; print a string and return nil
    (format nil "it's a string - ~a ~a" "some string" 100)  ; return a string
    #+end_src
+*** iteration construct (~{str~})
+    https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node200.html
+    #+begin_src lisp
+    (format nil 
+            "The winners are:~{ ~S~}." 
+            '(fred harry jill)) 
+    ;; => "The winners are: FRED HARRY JILL." 
+
+    (format nil "Pairs:~{ <~S,~S>~}." '(a 1 b 2 c 3)) 
+    ;; => "Pairs: <A,1> <B,2> <C,3>."
+    #+end_src
