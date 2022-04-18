@@ -71,6 +71,8 @@
    - (break): go into a debugger
 *** SLDB: the SLIME debugger
     https://slime.common-lisp.dev/doc/html/Debugger.html
+*** slime-repl-inspect
+    inspect an object, such as a variable, function or class
 
 * CFFI
   - tutorial: https://www.youtube.com/watch?v=lvHi5LyhxGk
