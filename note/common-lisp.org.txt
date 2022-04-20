@@ -50,29 +50,53 @@
          unless "~/.sbclrc" is not updated by (ql:add-to-init-file)
 
 * SLIME
-** emacs SLIME commands
+** Emacs SLIME commands
    - slime : runs REPL
    - slime-repl-quit
    - slime-quit-lisp
    - slime-edit-definition (M-.) : go to definition from slime REPL
-     source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
+     The source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
      https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition
-*** resource
+*** Resource
     - The Common Lisp Cookbook
       https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
-      - slime REPL shortcuts
+      - SLIME REPL shortcuts
         https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-slime-repl-shortcuts
-      - slime mode shortcuts
+      - SLIME mode shortcuts
         https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-other-slime-shortcuts
-    - useful slime shortcuts
+    - Useful SLIME shortcuts
       https://www.youtube.com/watch?v=sBcPNr1CKKw
 ** Debugging
-   - (error "message" ...): shows backtrace
-   - (break): go into a debugger
+*** Functions        
+    - (error "message" ...): shows backtrace
+    - (break): go into a debugger
+*** interactive debugger shortcuts
+    - press "v" on a stack trace frame to view the corresponding source file location
+    - press "e" on a stack trace frame to evaluate an expression on the frame
+*** Stepping
+    0. (optional) [[*Compile with different optimizations][compile with maximum debugging information]]
+       e.g. "C-u C-c C-c"
+    1. The function to debug should inclue "(break)"
+       or run the function with "step"
+       https://www.reddit.com/r/lisp/comments/1q42pc/comment/cd92k9i/?utm_source=share&utm_medium=web2x&context=3
+       e.g.
+       #+begin_example
+       CL-USER> (step (some-func arg1 arg2))
+       #+end_example
+    2. Choose "STEP-INTO" to go inside the function
+    3. Now, you can use STEP-CONTINUE, STEP-OUT, STEP-NEXT and STEP-INTO
 *** SLDB: the SLIME debugger
     https://slime.common-lisp.dev/doc/html/Debugger.html
-*** slime-repl-inspect
+*** slime-repl-inspect (C-c I)
     inspect an object, such as a variable, function or class
+** Compile with different optimizations
+   https://lispcookbook.github.io/cl-cookbook/debugging.html#compile-with-maximum-debugging-information
+   - C-u C-c C-c: compile with maximum debugging information
+     cf. optimization option
+     #+begin_src lisp
+     (declaim (optimize (speed 0) (space 0) (debug 3)))
+     #+end_src
+   - M-- C-c C-c: compile for speed
 
 * CFFI
   - tutorial: https://www.youtube.com/watch?v=lvHi5LyhxGk
