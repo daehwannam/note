@@ -71,10 +71,12 @@
     - (error "message" ...): shows backtrace
     - (break): go into a debugger
 *** interactive debugger shortcuts
-    - press "v" on a stack trace frame to view the corresponding source file location
-    - press "e" on a stack trace frame to evaluate an expression on the frame
+    pressing the following shortcuts on a stack trace frame provide debugging information
+    - v (sldb-show-source) shows the corresponding source file location
+    - e (sldb-eval-in-frame) evaluates an expression on the frame
+    - d (sldb-pprint-eval-in-frame) evaluates an expression on the frame with pretty format
 *** Stepping
-    0. (optional) [[*Compile with different optimizations][compile with maximum debugging information]]
+    0. [[*Compile with different optimizations][compile with maximum debugging information]]
        e.g. "C-u C-c C-c"
     1. The function to debug should inclue "(break)"
        or run the function with "step"
@@ -89,6 +91,51 @@
     https://slime.common-lisp.dev/doc/html/Debugger.html
 *** slime-repl-inspect (C-c I)
     inspect an object, such as a variable, function or class
+*** trace & untrace
+    https://lispcookbook.github.io/cl-cookbook/debugging.html#trace
+**** trace
+     when a traced function is called, it shows the all other function calls until the traced function is terminated
+     e.g.
+     #+begin_src lisp
+     (defun factorial (n)
+       (if (plusp n)
+           (* n (factorial (1- n)))
+           1))
+     (trace factorial)
+
+     (factorial 2)
+     #+end_src
+*** untrace
+    an untraced function doesn't show its internal function calls anymore
+    e.g.
+    #+begin_src lisp
+    (untrace factorial)
+    #+end_src
+
+    you can untrace all functions by passing no argument to "untrace"
+    e.g.
+    #+begin_src lisp
+    (untrace)
+    #+end_src
+*** tracing with slime
+**** slime-trace-dialog-toggle-trace (C-c M-t)
+     you can toggle to trace/untrace a function with the slime command
+**** slime-trace-dialog (C-c T)
+     it manages and showa tracing information
+     shortcuts:
+     - slime-trace-dialog-fetch-status (g): update status
+     - slime-trace-dialog-fetch-traces (G): update traces
+*** tracing recursive functions
+    recursive functions may not be traced due to optimization
+    in that case the optimization level should be lowered to trace recursion:
+    #+begin_src lisp
+    (declaim (optimize (debug 3)))
+    #+end_src
+*** tracing method invocation
+    https://lispcookbook.github.io/cl-cookbook/debugging.html#tracing-method-invocation
+    #+begin_src lisp
+    (trace foo :methods t)
+    #+end_src
 ** Compile with different optimizations
    https://lispcookbook.github.io/cl-cookbook/debugging.html#compile-with-maximum-debugging-information
    - C-u C-c C-c: compile with maximum debugging information
