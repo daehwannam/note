@@ -80,15 +80,15 @@ nn
 
    - C-x v ~
    - magit-find-file
-
 ** See previous revision with magit
    https://emacs.stackexchange.com/a/7683
 
    M-x magit-find-file
-
-* initialize upstream repository
-  https://emacs.stackexchange.com/a/6023
-  C-x g b u
+** initialize upstream repository
+   https://emacs.stackexchange.com/a/6023
+   C-x g b u
+** update all sub modules
+   Submodule(o) -> Update(u) -> Type "*"
 
 * git clone shallowly
   $ git clone --depth=1 user@github.com:joe/hello-world.git
