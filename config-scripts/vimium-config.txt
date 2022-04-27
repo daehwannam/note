@@ -61,8 +61,8 @@ map <c-x>0 removeTab
 # Not implemented in Emacs.
 map qu copyCurrentUrl  # map <c-g><c-u> copyCurrentUrl
 map qU LinkHints.activateCopyLinkUrl
-# map <c-g><c-u> copyCurrentUrl
-# map <c-g><c-l> LinkHints.activateCopyLinkUrl
+map <c-g><c-u> copyCurrentUrl
+map <c-g><c-l> LinkHints.activateCopyLinkUrl
 
 # Not implemented in Emacs.
 map <c-g><c-o> openCopiedUrlInCurrentTab
@@ -207,6 +207,7 @@ map <c-h> showHelp
 # Tab opeations
 map <a-q>o createTab
 map <a-q>k. removeTab
+map <a-q><c-k> removeTab
 map <a-q>k/ restoreTab
 map <a-q>k* closeOtherTabs
 map <a-q>k( closeTabsOnLeft

@@ -1007,6 +1007,11 @@
 *** check a program exists
     https://stackoverflow.com/a/677212
     $ command -v pdfgrep
+** pdfcrop
+   remove margin of pdf
+   #+begin_src sh
+   pdfcrop example.pdf
+   #+end_src
 
 * NVIDIA GPU & CUDA
 ** components
