@@ -1,0 +1,49 @@
+
+* Common
+** install
+   $ sudo apt install libreoffice
+** command line export
+   https://askubuntu.com/questions/60778/how-can-i-convert-an-odt-file-to-a-pdf
+   #+begin_src bash
+   libreoffice --headless --convert-to pdf *.odt  # convert all odt files to pdfs
+   libreoffice --headless --convert-to pdf *.odg  # convert all odg files to pdfs
+   libreoffice --headless --convert-to pdf example.odt
+   libreoffice --headless --convert-to pdf example.odg
+   #+end_src
+
+* Calc
+** sum all the numbers above the current cell?
+   https://superuser.com/a/1029360
+   #+begin_example
+   =SUM(G$1:G1) -> for 1st row and then you can copy-paste the formula to other cells
+   #+end_example
+** count comma
+   https://www.extendoffice.com/documents/excel/3400-excel-count-number-of-commas-dashes-in-a-cell.html
+
+   if you want to count commas in the cell C7
+   #+begin_example
+   =LEN(C7)-LEN(SUBSTITUTE(C7,",",""))
+   #+end_example
+
+   - count words separated by commas
+     #+begin_example
+     =LEN(C7)-LEN(SUBSTITUTE(C7,",",""))+if(C7="", 0, 1)
+     #+end_example
+
+* Draw
+** fit drawing contents to the page of libre office draw
+   https://stackoverflow.com/a/50046582/6710003
+*** export only objects without margins
+    https://ask.libreoffice.org/t/libreoffice-draw-how-to-automatically-resize-canvas-to-content/4809/2
+    select objects and export
+** change page size
+   https://ask.libreoffice.org/t/libreoffice-draw-how-to-automatically-resize-canvas-to-content/4809/2
+   - menu bar -> Page -> Properties -> Page
+   - change Width and Height
+* Formula
+** adjusting size of formula
+   https://ask.libreoffice.org/t/how-to-increase-the-font-size-of-the-equation-in-libreoffice-impress/29098/2
+
+   #+begin_example
+   size * 2 { some-formula }
+   #+end_example

@@ -25,6 +25,10 @@
    M-x package-autoremove
 ** rectangle-mark-mode
    https://stackoverflow.com/a/25068794
+*** replace strings in a rectangle
+    https://stackoverflow.com/a/45270265
+    1. rectangle-mark-mode
+    2. query-replace or query-replace-regexp
 ** cua-selection-mode
    mode for visible rectangle region
    - cua-set-rectangle-mark (C-RET): enagle/disable rectangle-mark
@@ -77,7 +81,7 @@
     - the command sends the code of the current region
 *** miscellaneous
     there are other commands whose names start with "python-shell-"
-** See running processes
+** monitor running processes
 *** emacs internal processes
     https://emacs.stackexchange.com/a/28066
     M-x list-processes
@@ -88,6 +92,10 @@
      https://www.reddit.com/r/emacs/comments/3vanut/comment/cxlvo1w/?utm_source=share&utm_medium=web2x&context=3
      - type "f"
      - insert "all"
+** finding occurences
+   - grep
+   - rgrep
+   - occur (M-s o) : show all lines in the current buffer containing a match for REGEXP.
 ** Async-shell-command shell command
    M-x async-shell-command
    or
@@ -136,6 +144,17 @@
 ** toggle-input-method
    - "C-\" : change to the default input method if it exists
    - "C-u C-\" : choose an input method and change to it
+** query-replace-regexp
+*** replace numbers with rounded numbers
+    https://stackoverflow.com/a/23644015
+    #+begin_example
+    <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.3f" \#&) <RET>
+    #+end_example
+*** replace numbers with rounded numbers multiplied 100
+    https://stackoverflow.com/a/23644015
+    #+begin_example
+    <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.1f" (* \#& 100)) <RET>
+    #+end_example
 
 * My command
 ** xah-open-in-external-app

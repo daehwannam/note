@@ -56,7 +56,54 @@
    - slime-quit-lisp
    - slime-edit-definition (M-.) : go to definition from slime REPL
      The source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
-     https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition
+     ( https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition )
+   - slime-sync-package-and-default-directory (C-c ~) : it will change
+     the current package of the REPL to the package of that file and
+     also set the current directory of the REPL to the parent
+     directory of the file
+   - slime-reindent-defun
+*** Completion
+    - C-c TAB (completion-at-point)
+    - M-/ (dabbrev-expand)
+*** Compilation vs Evaluation
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
+    There are a couple of pragmatic differences when choosing between
+    compiling or evaluating. In general, it is better to compile
+    top-level forms, for two reasons:
+    - Compiling a top-level form highlights warnings and errors in the editor, whereas evaluation does not.
+    - SLIME keeps track of line-numbers of compiled forms, but when a
+      top-level form is evaluated, the file line number information is
+      lost. That’s problematic for code navigation afterwards.
+*** compilation
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
+    - C-c C-k (slime-compile-and-load-file)
+    - M-x slime-compile-region
+    - C-c C-c (slime-compile-defun)
+*** Evaluation (not compilation)
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
+    - C-x C-e (slime-eval-last-expression) : the result is printed in the minibuffer.
+    - C-c C-p (slime-pprint-eval-last-expression) : eval and pretty-print the expression before point
+    - C-c C-r : evaluate a region
+    - C-M-x : evaluate a defun
+    - C-c C-e (slime-interactive-eval) : get a prompt that asks for code to eval in the current context
+    - C-c C-j (slime-eval-last-expression-in-repl): send this expression to the REPL and evaluate it
+*** Finding referece source
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#searching-lisp-code
+    - C-c C-w c (slime-who-calls) : callers of a function
+    - C-c C-w m (slime-who-macroexpands) : places where a macro is expanded
+    - C-c C-w r (slime-who-references) : global variable references
+    - C-c C-w b (slime-who-bind) : global variable bindings
+    - C-c C-w s (slime-who-sets) : global variable setters
+    - C-c C-w a (slime-who-specializes) : methods specialized on a symbol
+*** Documentation
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#lisp-documentation-in-emacs---learning-about-lisp-symbols
+    - C-c C-d d : shows the symbols’ documentation on a new window
+      it's the same result using "describe" function
+    - C-c C-d f : describes a function
+    - C-c C-d h : looks up the symbol documentation in CLHS by opening the web browser.
+      however, it works only on symbols, so there are two more bindings:
+      - C-c C-d # : for reader macros
+      - C-c C-d ~ : for format directives
 *** Resource
     - The Common Lisp Cookbook
       https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
@@ -91,6 +138,7 @@
     https://slime.common-lisp.dev/doc/html/Debugger.html
 *** slime-repl-inspect (C-c I)
     inspect an object, such as a variable, function or class
+    (you can call "(inspect 'symbol)" instead on REPL)
 *** trace & untrace
     https://lispcookbook.github.io/cl-cookbook/debugging.html#trace
 **** trace
@@ -534,7 +582,7 @@
 
     the code in #| ... |# is commented
 
-* Lisp functions
+* Lisp functions and utilities
 ** (load "file-path.ext")
 ** (apropos "some-substring")
    search for interned symbols whose names contain the substring
@@ -545,6 +593,13 @@
 ** princ
    https://lispcookbook.github.io/cl-cookbook/debugging.html
    "princ" focuses on an aesthetic representation.
+** comparison of print functions
+   https://stackoverflow.com/a/19756405
+   - "write" is the general entry point to the Lisp printer.
+   - "prin1" produces output suitable for input to read.
+   - "princ" is just like prin1 except that the output has no escape characters. princ is intended to look good to people, while output from prin1 is intended to be acceptable for the function read.
+   - "print" is just like prin1 except that the printed representation of object is preceded by a newline and followed by a space.
+   - "pprint" produces pretty output.
 ** format
    "format" prints (with t as the 1st argument) or returns a string (with nil as the 1st argument)
    #+begin_src lisp
@@ -562,3 +617,6 @@
     (format nil "Pairs:~{ <~S,~S>~}." '(a 1 b 2 c 3)) 
     ;; => "Pairs: <A,1> <B,2> <C,3>."
     #+end_src
+** destructuring-bind
+   - examples
+     https://gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html

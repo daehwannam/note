@@ -37,26 +37,7 @@
     - install .deb file
       $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
 ** LibreOffice
-*** install
-    $ sudo apt install libreoffice
-*** command line export
-    https://askubuntu.com/questions/60778/how-can-i-convert-an-odt-file-to-a-pdf
-    #+begin_src bash
-    libreoffice --headless --convert-to pdf *.odt  # convert all odt files to pdfs
-    libreoffice --headless --convert-to pdf *.odg  # convert all odg files to pdfs
-    libreoffice --headless --convert-to pdf example.odt
-    libreoffice --headless --convert-to pdf example.odg
-    #+end_src
-*** libre office draw
-**** fit drawing contents to the page of libre office draw
-     https://stackoverflow.com/a/50046582/6710003
-***** export only objects without margins
-      https://ask.libreoffice.org/t/libreoffice-draw-how-to-automatically-resize-canvas-to-content/4809/2
-      select objects and export
-**** change page size
-     https://ask.libreoffice.org/t/libreoffice-draw-how-to-automatically-resize-canvas-to-content/4809/2
-     - menu bar -> Page -> Properties -> Page
-     - change Width and Height
+   file:~/record/note/libre-office.org.txt
 ** OnlyOffice
    https://askubuntu.com/a/1332488
 *** License

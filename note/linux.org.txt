@@ -1008,6 +1008,11 @@
    #+begin_src sh
    pdfcrop example.pdf
    #+end_src
+*** examples
+    #+begin_src sh
+    pdfcrop --margins 10 input.pdf output.pdf
+    pdfcrop --margins '5 10 5 20' --clip input.pdf output.pdf
+    #+end_src
 
 * NVIDIA GPU & CUDA
 ** components

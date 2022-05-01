@@ -42,6 +42,9 @@
      https://slurm.schedmd.com/quickstart.html
      - recources: waiting for resources (it runs as soon as resources are freed)
      - priority: the job is behind a higher priority job
+*** print REASON part of a job
+    https://slurm.schedmd.com/squeue.html
+    squeue -u dhnam --format "%R"
 
 ** Check job information
    - Job ID
