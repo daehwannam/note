@@ -581,6 +581,10 @@
     https://lispcookbook.github.io/cl-cookbook/debugging.html#using-the-powerful-repl
 
     the code in #| ... |# is commented
+** miscellaneous
+*** asterisks(*) variable
+    https://stackoverflow.com/a/34595750
+    - * refers the last value retured by REPL
 
 * Lisp functions and utilities
 ** (load "file-path.ext")
