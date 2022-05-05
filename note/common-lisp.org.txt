@@ -585,6 +585,13 @@
 *** asterisks(*) variable
     https://stackoverflow.com/a/34595750
     - * refers the last value retured by REPL
+** string and characters
+*** character representation: #\[some-char]
+    e.g.
+    #+begin_src lisp
+    ;; https://lispcookbook.github.io/cl-cookbook/data-structures.html#substitute-nsubstituteifif-not
+    (substitute #\o #\x "hellx") ;; => "hello"
+    #+end_src
 
 * Lisp functions and utilities
 ** (load "file-path.ext")
@@ -610,6 +617,8 @@
    (format t "it prints - ~a ~a" "some string" 100)  ; print a string and return nil
    (format nil "it's a string - ~a ~a" "some string" 100)  ; return a string
    #+end_src
+*** format directives
+    https://en.wikipedia.org/wiki/Format_(Common_Lisp)#Format_directives
 *** iteration construct (~{str~})
     https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node200.html
     #+begin_src lisp
