@@ -609,11 +609,11 @@
 
    - a vector is an one-dimensional array
      - a vector is also a sequence
-   - vectors or arrays are simple if they
+   - a simple-array is an array which
      - are not displaced (by :displaced-to)
      - are not adjustable (by :adjust-array)
      - have no fill pointer (by fill-pointer)
-   - a simple-vector does not restrict its types of elements
+   - a simple-vector is a simple-array which does not restrict its types of elements
      - it doesn’t use :element-type to set the types of the elements
 *** array and vector notation
     #+begin_src lisp
@@ -621,9 +621,11 @@
     (type-of #(1 1 1))  ; => (SIMPLE-VECTOR 3)
     (type-of '#(1 1 1))  ; => (SIMPLE-VECTOR 3)
     (type-of #1A(1 1 1))  ; => (SIMPLE-VECTOR 3)
+    (type-of (vector 1 1 1))  ; => (SIMPLE-VECTOR 3)
 
     ;; 2 dimensional
     (type-of #2A((1 1) (1 1)))  ; => (SIMPLE-ARRAY T (2 2))
+    (type-of (make-array '(2 2) :initial-element 1))  ; => (SIMPLE-ARRAY T (2 2))
 
     ;; 3 dimensional
     (type-of #3A(((1 1) (1 1)) ((1 1) (1 1))))  ; => (ARRAY T (2 2 2))
@@ -635,6 +637,46 @@
     #4(100)  ; => #(100 100 100 100)
     #4(100 200)  ; => #(100 200 200 200)
     (type-of #4(100))  ; => (SIMPLE-VECTOR 4)
+    #+end_src
+*** row-major-aref
+    #+begin_src lisp
+    (row-major-aref #3A(((000 001) (010 011)) ((100 101) (110 111))) 6)  ; => 110
+    #+end_src
+*** vector functions
+    https://lispcookbook.github.io/cl-cookbook/data-structures.html#vectors
+**** vector-push
+     #+begin_src lisp
+     (let ((vec (make-array 8 :fill-pointer 3)))
+       (print vec)  ; => #(0 0 0)
+       (vector-push 100 vec)
+       (print vec)  ; => #(0 0 0 100)
+       )
+     #+end_src
+**** vector-push-extend
+     #+begin_src lisp
+     (let ((vec (make-array 3 :fill-pointer 3)))
+       (print vec)  ; => #(0 0 0)
+       (print (array-total-size vec))
+       (vector-push-extend 100 vec 5)  ; the optional 3rd argument means the number of added pointers when it's extended
+       (print vec)  ; => #(0 0 0 100)
+       (print (array-total-size vec))  ; => 8
+       )
+     #+end_src
+**** fill-pointer
+     #+begin_src lisp
+     (let ((vec (make-array 8 :fill-pointer 3)))
+       (print vec)  ; => #(0 0 0)
+       (print (fill-pointer vec))  ; => 3
+       (setf (fill-pointer vec) 1)
+       (print (fill-pointer vec))  ; => 1
+       (vector-push 100 vec)
+       (print vec)  ; => #(0 100)
+       )
+     #+end_src
+*** a vector to a list
+    #+begin_src lisp
+    (map 'list 'identity #(1 2 3))
+    (coerce #(1 2 3) 'list)
     #+end_src
 
 * Lisp functions and utilities
