@@ -592,6 +592,47 @@
     ;; https://lispcookbook.github.io/cl-cookbook/data-structures.html#substitute-nsubstituteifif-not
     (substitute #\o #\x "hellx") ;; => "hello"
     #+end_src
+
+* Lisp functions and utilities
+** (load "file-path.ext")
+** (apropos "some-substring")
+   search for interned symbols whose names contain the substring
+** print & read
+   https://lispcookbook.github.io/cl-cookbook/debugging.html
+   "print" prints a readable representation of its argument,
+   which means what is printed can be read back in by the Lisp reader.
+** princ
+   https://lispcookbook.github.io/cl-cookbook/debugging.html
+   "princ" focuses on an aesthetic representation.
+** comparison of print functions
+   https://stackoverflow.com/a/19756405
+   - "write" is the general entry point to the Lisp printer.
+   - "prin1" produces output suitable for input to read.
+   - "princ" is just like prin1 except that the output has no escape characters. princ is intended to look good to people, while output from prin1 is intended to be acceptable for the function read.
+   - "print" is just like prin1 except that the printed representation of object is preceded by a newline and followed by a space.
+   - "pprint" produces pretty output.
+** format
+   "format" prints (with t as the 1st argument) or returns a string (with nil as the 1st argument)
+   #+begin_src lisp
+   (format t "it prints - ~a ~a" "some string" 100)  ; print a string and return nil
+   (format nil "it's a string - ~a ~a" "some string" 100)  ; return a string
+   #+end_src
+*** format directives
+    https://en.wikipedia.org/wiki/Format_(Common_Lisp)#Format_directives
+*** iteration construct (~{str~})
+    https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node200.html
+    #+begin_src lisp
+    (format nil 
+            "The winners are:~{ ~S~}." 
+            '(fred harry jill)) 
+    ;; => "The winners are: FRED HARRY JILL." 
+
+    (format nil "Pairs:~{ <~S,~S>~}." '(a 1 b 2 c 3)) 
+    ;; => "Pairs: <A,1> <B,2> <C,3>."
+    #+end_src
+** destructuring-bind
+   - examples
+     https://gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
 ** set
 *** a list to a set
     https://stackoverflow.com/a/34003369
@@ -678,44 +719,8 @@
     (map 'list 'identity #(1 2 3))
     (coerce #(1 2 3) 'list)
     #+end_src
-
-* Lisp functions and utilities
-** (load "file-path.ext")
-** (apropos "some-substring")
-   search for interned symbols whose names contain the substring
-** print & read
-   https://lispcookbook.github.io/cl-cookbook/debugging.html
-   "print" prints a readable representation of its argument,
-   which means what is printed can be read back in by the Lisp reader.
-** princ
-   https://lispcookbook.github.io/cl-cookbook/debugging.html
-   "princ" focuses on an aesthetic representation.
-** comparison of print functions
-   https://stackoverflow.com/a/19756405
-   - "write" is the general entry point to the Lisp printer.
-   - "prin1" produces output suitable for input to read.
-   - "princ" is just like prin1 except that the output has no escape characters. princ is intended to look good to people, while output from prin1 is intended to be acceptable for the function read.
-   - "print" is just like prin1 except that the printed representation of object is preceded by a newline and followed by a space.
-   - "pprint" produces pretty output.
-** format
-   "format" prints (with t as the 1st argument) or returns a string (with nil as the 1st argument)
-   #+begin_src lisp
-   (format t "it prints - ~a ~a" "some string" 100)  ; print a string and return nil
-   (format nil "it's a string - ~a ~a" "some string" 100)  ; return a string
-   #+end_src
-*** format directives
-    https://en.wikipedia.org/wiki/Format_(Common_Lisp)#Format_directives
-*** iteration construct (~{str~})
-    https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node200.html
-    #+begin_src lisp
-    (format nil 
-            "The winners are:~{ ~S~}." 
-            '(fred harry jill)) 
-    ;; => "The winners are: FRED HARRY JILL." 
-
-    (format nil "Pairs:~{ <~S,~S>~}." '(a 1 b 2 c 3)) 
-    ;; => "Pairs: <A,1> <B,2> <C,3>."
-    #+end_src
-** destructuring-bind
-   - examples
-     https://gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
+** association list
+*** reverse order of cons as key & value
+    http://clhs.lisp.se/Body/f_rassoc.htm
+    https://lispcookbook.github.io/cl-cookbook/data-structures.html#hash-table
+    "rassoc" uses the 2nd value of cons cell as key
