@@ -560,6 +560,35 @@
     (ql:quickload "some-system")
     #+end_src
     the system "some-system" installed in "~/quicklisp/dists/quicklisp/software/"
+** special varaible (variables in dynamic scope)
+   https://stackoverflow.com/a/2386051
+
+   special variables, which is in dynamic scopes, can be defined by
+   - defvar
+   - defparameter
+   - declare and special
+
+   #+begin_src lisp
+   (progn
+     (defmacro print-var (x) `(if (boundp ',x) (print ,x) (format t "~&~a is unbound" ',x)))
+     (defun print-vars ()
+       (print-var foo)
+       (print-var bar)
+       (print-var baz)
+       (print-var new))
+     (defvar foo 10)  ; global special variable is declared by 'defvar'
+     (let ((bar 20)
+           (baz 30))
+       (declare (special bar baz))  ; local special variable is declared by 'declare' and 'special'
+       (let ((foo 100)
+             (bar 200)
+             (baz 300)
+             (new 400)
+             (print-vars))
+         (declare (special baz))
+         (print-vars))
+       (print-vars)))
+   #+end_src
 ** comment
 *** #+(or) & #+(and)
     https://stackoverflow.com/a/6365579 
