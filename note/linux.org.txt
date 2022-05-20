@@ -1017,6 +1017,14 @@
     pdfcrop --margins 10 input.pdf output.pdf
     pdfcrop --margins '5 10 5 20' --clip input.pdf output.pdf
     #+end_src
+** shopt
+*** remove all directories except one
+    https://stackoverflow.com/a/34057281
+    #+begin_src sh
+    shopt -s extglob
+    cd parent
+    rm -rf !(some-dir-name)
+    #+end_src
 
 * NVIDIA GPU & CUDA
 ** components

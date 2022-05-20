@@ -63,6 +63,17 @@
    $ conda --version
 ** The path of the current conda environment
    $ echo $CONDA_PREFIX
+** yml
+   https://3months.tistory.com/441
+*** conda environment to .yaml (or .yml)
+    #+begin_src sh
+    conda activate my-env
+    conda env export > environment.yaml
+    #+end_src
+*** create conda environment from .yaml
+    #+begin_src sh
+    conda env create --file environment.yaml
+    #+end_src
 
 * Packages
 ** Check the versions of an installed package

@@ -10,6 +10,49 @@
    libreoffice --headless --convert-to pdf example.odt
    libreoffice --headless --convert-to pdf example.odg
    #+end_src
+** macro
+*** add a macro
+    https://www.debugpoint.com/2014/09/writing-a-macro-in-libreoffice-calc-getting-started/
+    1. Tools -> Macros -> Organize Macros -> Basic -> New
+    2. Compile or Run(F5)
+    3. Save (Ctrl + s)
+*** resize formulas in draw
+    https://ask.libreoffice.org/t/how-to-increase-the-font-size-of-the-equation-in-libreoffice-impress/29098/3
+    #+begin_example
+    Sub resizeAllMathFormulas(Optional ByVal pNewBaseFontHeight)
+    REM No resolving of groups!
+    If IsMissing(pNewBaseFontHeight) Then 
+     pNewBaseFontHeight=InputBox("Please enter the new BaseFontHeight for ALL Math formulas.", "Resize ALL Formulas Generally", "48")
+    End If
+    tD=ThisComponent
+    tDPs=tD.DrawPages
+    For pN=0 To tDPs.Count -1
+     tP=tD.DrawPages(pN)
+     For sN=0 To tP.Count-1
+      tS=tP(sN)
+      If tS.SupportsService("com.sun.star.drawing.OLE2Shape") Then
+       If tS.Model.SupportsService("com.sun.star.formula.FormulaProperties") Then
+        tS.Model.BaseFontHeight=pNewBaseFontHeight
+       End If
+      End If
+     Next sN
+    Next pN
+    End Sub
+
+    Sub askAndResizeSelectedMathFormula()
+    tD=ThisComponent
+    tSel=tD.CurrentSelection
+    If NOT tSel.SupportsService("com.sun.star.drawing.ShapeCollection") Then Exit Sub
+    If tSel.Count<>1 Then Exit Sub
+    tS=tSel(0)
+    If tS.SupportsService("com.sun.star.drawing.OLE2Shape") Then
+     If tS.Model.SupportsService("com.sun.star.formula.FormulaProperties") Then
+      NewBaseFontHeight=0+InputBox("please enter the new BaseFontHeight.", "Resize Formula Generally", "48")
+      tS.Model.BaseFontHeight=newBaseFontHeight
+     End If
+    End If
+    End Sub
+    #+end_example
 
 * Calc
 ** sum all the numbers above the current cell?
