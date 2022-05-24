@@ -659,6 +659,23 @@
     (format nil "Pairs:~{ <~S,~S>~}." '(a 1 b 2 c 3)) 
     ;; => "Pairs: <A,1> <B,2> <C,3>."
     #+end_src
+**** concatenation character indication (~^)
+     #+begin_src lisp
+     (format nil "The Marx brothers are:~{ ~A~^,~}."
+             '("Groucho" "Harpo" "Chico" "Zeppo" "Karl"))
+     #+end_src
+** with-output-to-string
+   it constructs a string with print functions with streams
+   #+begin_src lisp
+   ;; https://lispcookbook.github.io/cl-cookbook/data-structures.html#printing-a-hash-table-readably
+   (read-from-string
+    (with-output-to-string (s)
+      (print-hash-table-readably
+       (alexandria:alist-hash-table
+        '((a . 1) (b . 2) (c . 3))) s)))
+   ;; #<HASH-TABLE :TEST EQL :COUNT 3 {1009592E23}>
+   ;; 83
+   #+end_src
 ** destructuring-bind
    - examples
      https://gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
