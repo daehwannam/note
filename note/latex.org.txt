@@ -124,6 +124,7 @@
    https://tex.stackexchange.com/questions/487710/a-whole-list-of-math-fonts-for-greek-letters-in-latex
 ** Change lower cases to smaller upper cases
    https://tex.stackexchange.com/a/56333
+   it makes characters capital but the charcters which were capital have bigger fonts
    #+begin_src latex
    \textsc{SomeText}
    #+end_src
