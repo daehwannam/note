@@ -1,6 +1,11 @@
 
 * Wi-fi (wifi)
   https://blog.rottenwifi.com/ubuntu-connect-to-wifi-terminal/
+** wifi
+   - enable wifi
+     $ wifi on
+   - disable wifi
+     $ wifi off
 ** nmcli
    - check wifi status
      $ nmcli radio wifi
@@ -22,6 +27,6 @@
      "Activate a connection" -> select a SSID
 
      If you cannot see available SSIDs, you should enable wifi beforehand:
-     $ nmcli radio wifi on
+     $ wifi on
 
      If a wifi is connected, '*' is attached to the SSID of connected wifi.
