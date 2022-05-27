@@ -373,7 +373,18 @@
 ** symbol
 *** interning a symbol
     http://www.flownet.com/gat/packages.pdf
-    interning a symbol is an act of putting a symbol into a package
+    - interning a symbol is an act of putting a symbol into a package
+    - 'intern' return two values: the created symbol and the symbol's type
+    - if a symbol is already interned, the 2nd value of results indicate whether it's internal or external
+      (whether inside or outside or the current package)
+    - interning a symbol into the current package
+      #+begin_src lisp
+      (intern "MY-SYMBOL")
+      #+end_src
+    - interning a symbol into a specific package
+      #+begin_src lisp
+      (intern "MY-SYMBOL" "SOME-PACKAGE-NAME")
+      #+end_src
 **** functions related to interning
 ***** import
       'import' add a symbol into a package, so it does interning
@@ -610,10 +621,6 @@
     https://lispcookbook.github.io/cl-cookbook/debugging.html#using-the-powerful-repl
 
     the code in #| ... |# is commented
-** miscellaneous
-*** asterisks(*) variable
-    https://stackoverflow.com/a/34595750
-    - * refers the last value retured by REPL
 ** string and characters
 *** character representation: #\[some-char]
     e.g.
@@ -770,3 +777,11 @@
     http://clhs.lisp.se/Body/f_rassoc.htm
     https://lispcookbook.github.io/cl-cookbook/data-structures.html#hash-table
     "rassoc" uses the 2nd value of cons cell as key
+
+** miscellaneous
+*** asterisks(*) variable
+    https://stackoverflow.com/a/34595750
+    - * refers the last value retured by REPL
+*** the meaning of "n" in destructive functions
+    https://stackoverflow.com/a/62145090
+    "The N stands for non-consing, meaning it doesn't need to allocate any new cons cells."

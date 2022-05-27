@@ -868,6 +868,12 @@
      $ sudo shutdown -P 8:30
    - cancel scheduled shutdown
      $ sudo shutdown -c
+** suspend & hibernate
+   - suspend
+     https://www.cyberciti.biz/faq/linux-command-to-suspend-hibernate-laptop-netbook-pc/
+     $ systemctl suspend
+   - hibernate
+     $ systemctl hibernate
 ** zip & unzip
 *** zip
     - compress a directory

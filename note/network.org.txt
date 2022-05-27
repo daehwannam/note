@@ -23,6 +23,9 @@
    - key bindings
      - go forward or enable: press <enter>
      - go to the back page: press <escape>
+     - moving keys
+       - ctrl-n, ctrl-p, ctrl-f, ctrl-b
+       - TAB, shift-TAB
    - wifi connection
      "Activate a connection" -> select a SSID
 
