@@ -1,0 +1,27 @@
+
+* Wi-fi (wifi)
+  https://blog.rottenwifi.com/ubuntu-connect-to-wifi-terminal/
+** nmcli
+   - check wifi status
+     $ nmcli radio wifi
+   - enable wifi
+     $ nmcli radio wifi on
+     this may require a few seconds
+   - disable wifi
+     $ nmcli radio wifi on
+   - list SSIDs
+     $ nmcli dev wifi list
+** nmtui
+   network manager with text-based UI
+   - run
+     $ nmtui
+   - key bindings
+     - go forward or enable: press <enter>
+     - go to the back page: press <escape>
+   - wifi connection
+     "Activate a connection" -> select a SSID
+
+     If you cannot see available SSIDs, you should enable wifi beforehand:
+     $ nmcli radio wifi on
+
+     If a wifi is connected, '*' is attached to the SSID of connected wifi.
