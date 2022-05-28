@@ -368,7 +368,7 @@
 *** package version
     https://unix.stackexchange.com/a/89590
     $ dpkg -s <package> | grep Version
-*** install package
+*** install .deb package
     https://askubuntu.com/a/40781
     $ sudo dpkg -i DEB_PACKAGE
 *** remove package
@@ -833,6 +833,7 @@
     xdg-mime default qutebrowser.desktop x-scheme-handler/http
     xdg-mime default qutebrowser.desktop text/html
     xdg-mime default qutebrowser.desktop application/xhtml+xml
+    # or firefox.desktop
     #+end_src
 
     or you can directly change "~/.config/mimeapps.list"
