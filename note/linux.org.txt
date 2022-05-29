@@ -821,22 +821,22 @@
     https://unix.stackexchange.com/a/59088
     https://stackoverflow.com/a/67185532
 
-    #+begin_src sh
-    # pdf
-    # https://unix.stackexchange.com/a/59088
-    xdg-mime default org.kde.okular.desktop application/pdf
-    # xdg-mime default org.gnome.Evince.desktop application/pdf
+    - change applications by commands
+      #+begin_src sh
+      # pdf
+      # https://unix.stackexchange.com/a/59088
+      xdg-mime default org.kde.okular.desktop application/pdf
+      # xdg-mime default org.gnome.Evince.desktop application/pdf
 
-    # web browser
-    # https://stackoverflow.com/a/67185532
-    xdg-mime default qutebrowser.desktop x-scheme-handler/https
-    xdg-mime default qutebrowser.desktop x-scheme-handler/http
-    xdg-mime default qutebrowser.desktop text/html
-    xdg-mime default qutebrowser.desktop application/xhtml+xml
-    # or firefox.desktop
-    #+end_src
-
-    or you can directly change "~/.config/mimeapps.list"
+      # web browser
+      # https://stackoverflow.com/a/67185532
+      xdg-mime default qutebrowser.desktop x-scheme-handler/https
+      xdg-mime default qutebrowser.desktop x-scheme-handler/http
+      xdg-mime default qutebrowser.desktop text/html
+      xdg-mime default qutebrowser.desktop application/xhtml+xml
+      # or firefox.desktop or nyxt.desktop
+      #+end_src
+    - or you can directly change "~/.config/mimeapps.list"
 ** pskill
    https://stackoverflow.com/a/27820938
    $ pkill -f python
