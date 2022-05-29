@@ -211,6 +211,11 @@
    because lambda is a macro and the expanded form include function:
    > (macroexpand-1 '(lambda (x) (+ x x x)))
    ==> (function (lambda (x) (+ x x x)))
+*** sharping quote(#') vs. quote(')
+    https://lispcookbook.github.io/cl-cookbook/functions.html#referencing-functions-by-name-single-quote--or-sharpsign-quote-
+    - sharping quote(#') consider lexical scope and quote(') cannot do
+    - sharping quote(#') is usually prefered
+    
 ** Macro
    - examples: https://lispcookbook.github.io/cl-cookbook/macros.html
 ** package
@@ -493,11 +498,19 @@
 *** sharping dot (#.)
     https://stackoverflow.com/a/59003160
     sharpsign dot (#.) evaluates the next expression at read time
-    #+begin_src lisp
-    (defvar *some-var* 42)
-    (print '(*some-var* #.*some-var*))
-    (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
-    #+end_src
+
+    - example 1
+      #+begin_src lisp
+      (defvar *some-var* 42)
+      (print '(*some-var* #.*some-var*))
+      (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
+      #+end_src
+    - example 2
+      #+begin_src lisp
+      (defparameter *foo* 42)
+      (read-from-string "#.(setq *foo* \"gotcha\")")
+      (print *foo*)  ; "gotcha"
+      #+end_src
 ** system
    https://sinax.be/blog/lisp/getting-started-with-asdf.html
 *** loading system
