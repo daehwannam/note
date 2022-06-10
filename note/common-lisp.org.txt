@@ -511,6 +511,9 @@
       (read-from-string "#.(setq *foo* \"gotcha\")")
       (print *foo*)  ; "gotcha"
       #+end_src
+
+    Therfore, functions like read-from-string is dangerous due to possibility of evaluating suspicious code
+    ( https://qr.ae/pvFGuC )
 ** system
    https://sinax.be/blog/lisp/getting-started-with-asdf.html
 *** loading system
@@ -790,6 +793,13 @@
     http://clhs.lisp.se/Body/f_rassoc.htm
     https://lispcookbook.github.io/cl-cookbook/data-structures.html#hash-table
     "rassoc" uses the 2nd value of cons cell as key
+** type
+*** subtypep
+    check if the 1st argument is the subtype of the 2nd argument
+    #+begin_src lisp
+    (subtypep 'ratio 'rational)
+    (subtypep 'integer 'rational)
+    #+end_src
 
 ** miscellaneous
 *** asterisks(*) variable
