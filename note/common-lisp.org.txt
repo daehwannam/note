@@ -790,7 +790,17 @@
     http://clhs.lisp.se/Body/f_rassoc.htm
     https://lispcookbook.github.io/cl-cookbook/data-structures.html#hash-table
     "rassoc" uses the 2nd value of cons cell as key
+** loop
+*** iterate
+**** solving conflicts with loop macro
+     symbols 'for and 'iter are also used for loop macro.
+     Therefore, they should be shadowed.
 
+     #+begin_src lisp
+     (asdf:load-system "iterate")  ; (ql:quickload "iterate")
+     (shadowing-import 'iterate:for 'iterate:iter)
+     (use-package :iterate)
+     #+end_src
 ** miscellaneous
 *** asterisks(*) variable
     https://stackoverflow.com/a/34595750

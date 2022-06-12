@@ -149,6 +149,9 @@
       Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
       #+end_src
 
+* Video player
+** MPlayer
+
 * KakaoTalk
 ** install
    https://movment.tistory.com/5
