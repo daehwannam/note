@@ -512,7 +512,18 @@
       (print *foo*)  ; "gotcha"
       #+end_src
 ** loop
-*** iterate
+*** loop with closures
+    #+begin_src lisp
+    (defun dice (n)
+      (lambda ()
+        (1+ (random n))))
+
+    (loop
+      with dice = (dice 6)
+      repeat 20
+      collect (funcall dice))
+    #+end_src
+*** iterate package
 **** solving conflicts with loop macro
      symbols 'for and 'iter are also used for loop macro.
      Therefore, they should be shadowed.
