@@ -180,6 +180,10 @@
 * Beamer
 ** Example
    https://orgmode.org/manual/A-Beamer-example.html
+** .org to .pdf
+   https://stackoverflow.com/a/39171652
+   - M-x org-beamer-export-to-pdf
+   - C-c C-e l P
 
 * Timer
   - reference: https://orgmode.org/manual/Timers.html

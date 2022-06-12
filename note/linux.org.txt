@@ -821,10 +821,12 @@
     https://unix.stackexchange.com/a/59088
     https://stackoverflow.com/a/67185532
 
+    - you first need .desktop files such as ~/.local/share/applications/${your_app}.desktop
     - change applications by commands
       #+begin_src sh
       # pdf
       # https://unix.stackexchange.com/a/59088
+      # xdg-mime default emacsclient-alternate.desktop application/pdf
       xdg-mime default org.kde.okular.desktop application/pdf
       # xdg-mime default org.gnome.Evince.desktop application/pdf
 
