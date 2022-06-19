@@ -532,12 +532,35 @@
      (shadowing-import 'iterate:for 'iterate:iter)
      (use-package :iterate)
      #+end_src
+*** series
+**** #M reader macro
+     https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node351.html
 ** type
 *** subtypep
     check if the 1st argument is the subtype of the 2nd argument
     #+begin_src lisp
     (subtypep 'ratio 'rational)
     (subtypep 'integer 'rational)
+    #+end_src
+** arrays and vectors
+   https://lispcookbook.github.io/cl-cookbook/data-structures.html#arrays-and-vectors
+   - a vector is 1-dimensional array
+   - a simple array is
+     - neither displaced (using :displaced-to, to point to another array)
+     - nor adjustable (:adjust-array), nor does it have a fill pointer
+       (fill-pointer, that moves when we add or remove elements).
+   - A simple vector is a simple array that is also not specialized
+     (it doesn’t use :element-type to set the types of the elements).
+*** displaced-to
+    https://stackoverflow.com/questions/40810796/displaced-multidimensional-arrays-in-common-lisp
+    https://lispcookbook.github.io/cl-cookbook/arrays.html#reductions
+    displaced arrays share storage with the original array.
+    e.g.
+    #+begin_src lisp
+    (let ((a (make-array '(3 3) :initial-contents 
+                         '((1 2 3) (2 3 1) (3 1 2)))))
+      (make-array 9 :displaced-to a))
+    ;; #(1 2 3 2 3 1 3 1 2)
     #+end_src
 ** miscellaneous
 *** asterisks(*) variable
