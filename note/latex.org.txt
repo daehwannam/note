@@ -128,6 +128,13 @@
    #+begin_src latex
    \textsc{SomeText}
    #+end_src
+** hyperref
+*** hyperlink without box
+    https://tex.stackexchange.com/a/324123
+    https://tex.stackexchange.com/a/12408
+    #+begin_src latex
+    \usepackage[hidelinks]{hyperref}
+    #+end_src
 
 * Custum commands
 ** denotation definition
