@@ -22,7 +22,7 @@
    cd ~/.emacs.d/package
    git clone https://github.com/mhayashi1120/Emacs-langtool.git langtool
    #+end_src
-** (optional) runnign server
+** (optional) running server
    #+begin_src sh
    cd ~/program/LanguageTool
    java -jar languagetool-server.jar --port <port> --config <file>
