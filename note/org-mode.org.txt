@@ -183,7 +183,8 @@
 ** .org to .pdf
    https://stackoverflow.com/a/39171652
    - M-x org-beamer-export-to-pdf
-   - C-c C-e l P
+     - after the command is executed, you can run the following shortcut:
+       C-c C-e l P
 
 * Timer
   - reference: https://orgmode.org/manual/Timers.html

@@ -229,6 +229,13 @@
 *** install
     $ sudo apt install evince
 
+* PDF split
+** qdpf
+   - install
+     $ sudo apt-get install qpdf
+   - example
+     $ qpdf input.pdf --pages . 1-10 -- output.pdf
+
 * terminal emulator
 ** xterm-256color
    you can update "~/.bashrc" for xterm-256color but it may cause trouble with "M-x shell" or "M-x ansi-term"
