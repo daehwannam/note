@@ -342,6 +342,15 @@
 *** remove svg margin
     https://stackoverflow.com/a/64116358/6710003
     $ inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
+*** export
+**** svg to eps
+     https://stackoverflow.com/a/30539923
+     $ inkscape input.svg -o output.eps --export-ignore-filters --export-ps-level=3
+**** svg to pdf
+     $ inkscape input.svg -o output.pdf
+***** deprecated method
+      https://mjmorse.com/blog/export-pdf-inkscape/
+      $ inkscape --file=input.svg --without-gui --export-pdf=output.pdf
 
 * scrcpy
   https://sean.tistory.com/59
