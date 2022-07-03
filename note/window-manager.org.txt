@@ -177,7 +177,7 @@
     install wish:
     $ sudo apt install wish
    
-** Gnome withing Xephyr
+** Gnome within Xephyr
    https://www.youtube.com/watch?v=ECHH2JFA8SM
    - run Xephyr
      # $ Xephyr -host-cursor -screen 400x600 -noreset :1 &
