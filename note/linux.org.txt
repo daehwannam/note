@@ -1002,16 +1002,24 @@
    Disklabel type: dos
    Disk identifier: 0x8eddc49c
    #+end_example
-** xte
-*** toggle Caps Lock
-    https://askubuntu.com/a/607915
-    $ xte "key Caps_Lock"
 *** mount a listed disk
     https://www.tutorialspoint.com/how-to-mount-usb-drive-in-a-linux-system
     e.g.
     #+begin_src sh
     $ sudo mount /dev/sdb1 /mnt
     #+end_src
+** lsblk
+   https://www.reddit.com/r/emacs/comments/btvsk7/comment/ep3eepc/?utm_source=share&utm_medium=web2x&context=3
+   lsblk lists information about block devices.
+** udisksctl
+   https://www.reddit.com/r/linuxquestions/comments/a2lfh3/sudo_mount_vs_udisksctl_mount/
+   udisksctl is from udisks2 package
+   - udisksctl doesn't require sudo privilege unlike mount/unmount command
+   - udisksctl mount devices to /run/media/$USER/<automatically-created-directory>
+** xte
+*** toggle Caps Lock
+    https://askubuntu.com/a/607915
+    $ xte "key Caps_Lock"
 ** command
 *** check a program exists
     https://stackoverflow.com/a/677212

@@ -59,7 +59,29 @@
 ** indent-rigidly
    https://emacs.stackexchange.com/a/9467
    indent-rigidly (C-x TAB)
-** window configuration
+** align-regexp
+   https://stackoverflow.com/a/20119400
+   - align muliple lines within a region with respect strings
+     which are matched with a regular expression.
+   - the matched strings become columns
+** Example
+   - before processing
+     #+begin_example
+     row 1 & is & here
+     this & is & row2
+     and & here is & row 3
+     #+end_example
+   - align-regexp recipe
+     1. make a region
+     2. run the command: C-u M-x align-regexp
+     3. pass arguments of the command: "\(\s-*\)&" -> "1" -> "1"
+   - after align-regexp
+     #+begin_example
+     row 1 & is      & here
+     this  & is      & row2
+     and   & here is & row 3
+     #+end_example
+** Window configuration
    https://emacs.stackexchange.com/a/2714/26068
    - window-configuration-to-register (C-x r w <char>): save window configuration
    - jump-to-register (C-x r j <char>): apply the configuration
