@@ -253,6 +253,26 @@
      $ su -l <id>
      "su <id>" doesn't execute .profile
 
+** check if command is failed or not
+   #+begin_src bash
+   # https://unix.stackexchange.com/a/22728
+   if some-command ; then
+       echo "Command succeeded"
+   else
+       echo "Command failed"
+   fi
+   #+end_src
+
+   e.g.
+   #+begin_src bash
+   # https://unix.stackexchange.com/a/22728
+   if cd some-directory ; then
+       echo "Success to change the current directory"
+   else
+       echo "Fail to change the current directory"
+   fi
+   #+end_src
+
 * Configuration of ~/.bashrc
   #+begin_src bash
   # added by Anaconda3 4.4.0 installer

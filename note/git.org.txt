@@ -1,4 +1,7 @@
 
+* clone repository with a specific directory name
+  $ git clone https://github.com/user-name/repository.git dir-name
+
 * bare git directory
   $ mkdir example.git
   $ cd example.git
