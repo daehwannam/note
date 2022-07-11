@@ -48,6 +48,14 @@
      \tikzexternalize[prefix=TikzPictures/]
      #+end_src
    - (Optional) Use \tikzsetnextfilename{filename} before each \begin{tikzpicture}.
+*** tikzexternalize with latexmk
+    https://tex.stackexchange.com/a/393039
+    https://tex.stackexchange.com/a/561409
+
+    option "-shell-escape" should be added:
+    #+begin_src sh
+    latexmk -latexoption="-synctex=1" -shell-escape -pdf doc.tex
+    #+end_src
 
 ** GUI tools
    - tikzit: https://tikzit.github.io/

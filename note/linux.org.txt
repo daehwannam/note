@@ -764,6 +764,19 @@
     -name '*.blg' -o -name '*.spl' -o -name '*.log' -o -name '*.pdf' \) -delete
     #+end_src
 
+** grep
+** pdfgrep
+   e.g.
+   - command
+     #+begin_src sh
+     pdfgrep -H -n -i 'encode [^.]* as' some/path/to/dir/*
+     #+end_src
+     the text between 'encode' and 'as' doesn't include '.' character.
+   - output
+     #+begin_example
+     pdf/DBLP=conf+acl+GoldwasserRCR11.pdf:6:encode a first-order decision as αcs , a binary variP ROPORTION Words-predicate prop (Sec. 3.2)
+     pdf/DBLP=conf+acl+GoldwasserRCR11.pdf:6:and encode these restrictions as global constraints analyze their properties. Tab. 1 defines the naming
+     #+end_example
 ** xargs
    xargs sends the standard input as arguments of another command
 
