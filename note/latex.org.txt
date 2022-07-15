@@ -143,6 +143,22 @@
     #+begin_src latex
     \usepackage[hidelinks]{hyperref}
     #+end_src
+** smash
+   smash can be used for identical heights of underlines.
+   #+begin_src latex
+   \underline{\smash{<stuff>}}
+   #+end_src
+** caption
+*** captions above tables
+    https://tex.stackexchange.com/a/428038
+    #+begin_src latex
+    \begin{figure}
+      \caption{A picture of a tucan.}
+      \begin{center}
+        \includegraphics{tucan.eps}
+      \end{center}
+    \end{figure}
+    #+end_src
 
 * Custum commands
 ** denotation definition

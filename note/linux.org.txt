@@ -71,7 +71,7 @@
   You can refer configuration files in "~/record/config-scripts/"
   1. Clone the record repository
      #+begin_src bash
-     cd ~ 
+     cd ~
      git clone https://github.com/daehwannam/record.git
      #+end_src
   2. Install conda: [[file:conda.org.txt::*Install conda][Install conda]]
@@ -181,7 +181,7 @@
 ** editing with emacs
    This option is useful when a program (e.g. git) rerquires external editor to modify text
 *** EDITOR vs. VISUAL
-    https://unix.stackexchange.com/a/4861    
+    https://unix.stackexchange.com/a/4861
 *** EDITOR variable
     https://unix.stackexchange.com/a/502691
     $ EDITOR=emacs virsh edit win10
@@ -235,7 +235,7 @@
    https://stackoverflow.com/a/677212
 
    $ command -v <the_command>
-   
+
    e.g. install autoconf unless it exists
    #+begin_src sh
    if ! command -v autoconf &> /dev/null
@@ -537,7 +537,7 @@
    - undoing text-mode
      #+begin_src sh
      sudo systemctl enable graphical.target --force
-     sudo systemctl set-default graphical.target 
+     sudo systemctl set-default graphical.target
      #+end_src
 ** change font size of virtual console
    https://unix.stackexchange.com/a/77050
@@ -766,7 +766,7 @@
     -exec: run command with the found files as arguments which is represented as {}
            https://unix.stackexchange.com/a/12904
     -delete: remove found files
-    -print: print the found files (default action)    
+    -print: print the found files (default action)
 *** remove found files
     https://stackoverflow.com/a/41386937
     $ find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
@@ -988,7 +988,7 @@
     sudo cpupower frequency-set -g ondemand
     sudo cpupower frequency-set -g powersave
     #+end_src
-    
+
 *** error of "No outputs have backlight property"
     https://askubuntu.com/a/1060843
 
@@ -997,7 +997,7 @@
 
     #+begin_example
     Section "Device"
-        Identifier  "Intel Graphics" 
+        Identifier  "Intel Graphics"
         Driver      "intel"
         Option      "Backlight"  "intel_backlight"
     EndSection
@@ -1028,7 +1028,7 @@
    e.g. example output of a disk
    #+begin_example
    Disk /dev/sdb: 596.18 GiB, 640135028736 bytes, 1250263728 sectors
-   Disk model: S2 Portable     
+   Disk model: S2 Portable
    Units: sectors of 1 * 512 = 512 bytes
    Sector size (logical/physical): 512 bytes / 512 bytes
    I/O size (minimum/optimal): 512 bytes / 512 bytes
@@ -1116,7 +1116,7 @@
      https://blog.csdn.net/weixin_41278720/article/details/81255265
      export PATH=$HOME/cuda-10.2/bin:$PATH
      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/cuda-10.2/lib64/
-      
+
 ** install guides
 *** NVIDIA Driver
     - using GUI: software & updates
@@ -1130,7 +1130,7 @@
       setup the xorg-edgers ppa
       $ sudo add-apt-repository ppa:xorg-edgers/ppa -y
       $ sudo apt-get update
-      
+
       install a specific driver
       $ sudo apt-get install nvidia-334
 
@@ -1174,7 +1174,7 @@
      https://blog.kovalevskyi.com/multiple-version-of-cuda-libraries-on-the-same-machine-b9502d50ae77
      https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
      https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
-    
+
      add following commands to ~/.bashrc
      $ export PATH=/usr/local/cuda-8.0/bin:$PATH
      $ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
