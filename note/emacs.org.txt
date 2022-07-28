@@ -181,7 +181,8 @@
     #+begin_example
     <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.1f" (* \#& 100)) <RET>
     #+end_example
-
+** clone-indirect-buffer-other-window (C-x 4 c)
+   clone the current buffer to the other window
 * My command
 ** xah-open-in-external-app
    it opens a file with an external program within dired-mode.
