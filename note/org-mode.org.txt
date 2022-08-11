@@ -67,6 +67,10 @@
    Change python environment before evaluating code block by "M-x pyvenv-workon"
 ** edit code black in a special buffer
    org-edit-special (C-c ')
+*** commands of the special buffer for code editing
+     - org-edit-src-exit (C-c ')
+     - org-edit-src-abort (C-c C-k)
+     - <code evaluation> (C-c C-c)
 
 * Export
   - C-c C-e: org-export-dispatch
