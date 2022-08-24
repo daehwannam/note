@@ -98,6 +98,14 @@ map <c-x><a-l> LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHi
 map <c-x><a-o> LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
 map <c-x><a-O> LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
 
+map <a-q><a-j> LinkHints.activate  # map <c-x><c-f> LinkHints.activate
+map <a-q><a-l> LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHints.activateOpenInNewForegroundTab
+map <a-q><a-o> LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
+map <a-q><a-O> LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
+
+map <a-q><c-a-b> goBack reuse=-1  # only available in vimium-c
+map <a-q><c-a-f> goForward reuse=-1  # only available in vimium-c
+
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
 map <c-x><c-s-d> Vomnibar.activateInNewTab
@@ -212,6 +220,11 @@ map <a-q>k/ restoreTab
 map <a-q>k* closeOtherTabs
 map <a-q>k( closeTabsOnLeft
 map <a-q>k) closeTabsOnRight
+
+map <a-q><a-k>/ restoreTab
+map <a-q><a-k>* closeOtherTabs
+map <a-q><a-k>( closeTabsOnLeft
+map <a-q><a-k>) closeTabsOnRight
 
 # visual mode
 map v enterVisualMode
