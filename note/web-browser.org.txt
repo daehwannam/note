@@ -173,6 +173,20 @@
    https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
    :tab-only --prev
    :tab-only --next
+** Compact density
+   https://support.mozilla.org/en-US/questions/1342224
+   https://support.mozilla.org/en-US/kb/compact-mode-workaround-firefox
+
+   1. Type about:config in the address bar and press Enter.
+      A warning page may appear. Click "Accept the Risk and Continue" to go to the about:config page.
+   2. Find the browser.compactmode.show preference.
+   3. Switch the toggle to true and then close the tab.
+   4. Click the menu button (triple-dot shaped) to open the menu panel.
+   5. Click More tools.
+   6. Choose Customize toolbar….
+   7. At the bottom of the panel, click Density.
+   8. Choose Compact (not supported) from the menu options.
+   9. Click Done.
 
 * EAF browser
   https://github.com/emacs-eaf/emacs-application-framework
