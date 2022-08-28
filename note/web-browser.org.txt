@@ -182,11 +182,11 @@
    2. Find the browser.compactmode.show preference.
    3. Switch the toggle to true and then close the tab.
    4. Click the menu button (triple-dot shaped) to open the menu panel.
-   5. Click More tools.
-   6. Choose Customize toolbar….
-   7. At the bottom of the panel, click Density.
-   8. Choose Compact (not supported) from the menu options.
-   9. Click Done.
+   5. Click "More tools".
+   6. Choose "Customize toolbar…".
+   7. At the bottom of the panel, click "Density".
+   8. Choose "Compact (not supported)" from the menu options.
+   9. Click "Done".
 
 * EAF browser
   https://github.com/emacs-eaf/emacs-application-framework
