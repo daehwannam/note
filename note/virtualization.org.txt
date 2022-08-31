@@ -304,6 +304,47 @@
           #+end_example
       - start vm with virsh
         $ virsh start <vmname>
+*** Port forwarding
+    https://wiki.libvirt.org/page/Networking#Forwarding_Incoming_Connections
+    https://serverfault.com/a/733736
+
+    - Shutdown the guest OS
+    - Create a file "/etc/libvirt/hooks/qemu" and update variable values:
+      #+begin_src bash
+      #!/bin/bash
+
+      # IMPORTANT: Change the "VM NAME" string to match your actual VM Name.
+      # In order to create rules to other VMs, just duplicate the below block and configure
+      # it accordingly.
+      if [ "${1}" = "VM NAME" ]; then
+
+         # Update the following variables to fit your setup
+         GUEST_IP=
+         GUEST_PORT=
+         HOST_PORT=
+
+         if [ "${2}" = "stopped" ] || [ "${2}" = "reconnect" ]; then
+          /sbin/iptables -D FORWARD -o virbr0 -p tcp -d $GUEST_IP --dport $GUEST_PORT -j ACCEPT
+          /sbin/iptables -t nat -D PREROUTING -p tcp --dport $HOST_PORT -j DNAT --to $GUEST_IP:$GUEST_PORT
+         fi
+         if [ "${2}" = "start" ] || [ "${2}" = "reconnect" ]; then
+          /sbin/iptables -I FORWARD -o virbr0 -p tcp -d $GUEST_IP --dport $GUEST_PORT -j ACCEPT
+          /sbin/iptables -t nat -I PREROUTING -p tcp --dport $HOST_PORT -j DNAT --to $GUEST_IP:$GUEST_PORT
+         fi
+      fi
+      #+end_src
+      - [[*find guest's IP][find guest's IP]]
+    - Make the script executable:
+      #+begin_src bash
+      chmod +x /etc/libvirt/hooks/qemu
+      #+end_src
+    - Restart the libvirtd service
+      #+begin_src bash
+      # systemctl stop libvirtd
+      # systemctl start libvirtd
+      systemctl restart libvirtd
+      #+end_src
+    - Run  the guest OS
 
 ** Optimization
    https://unix.stackexchange.com/a/48584
@@ -373,9 +414,9 @@
 *** find guest's IP
     https://www.cyberciti.biz/faq/find-ip-address-of-linux-kvm-guest-virtual-machine/
     #+begin_src sh
-    virsh net-list
-    virsh net-info default
-    virsh net-dhcp-leases default
+    virsh net-list  # it lists the network namesq
+    virsh net-info default  # 'default' is a network name
+    virsh net-dhcp-leases default  # print IP of a guest
     #+end_src
 
     or run commands guest OS
