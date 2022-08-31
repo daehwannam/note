@@ -878,17 +878,6 @@
 ** killall
    https://www.linkedin.com/pulse/use-killall-kill-commands-stop-processes-linux-kuldeep-saxena
    $ killall gnome-control-center
-** lsblk
-   https://unix.stackexchange.com/a/227458
-   Check whether a mounted device, such as sda or sdb, is SDD or HDD:
-   $ lsblk -d -o name,rota
-
-   The example output is:
-       NAME ROTA
-       sda     0
-       sdb     0
-       sdc     1
-   where 1 is HDD(rotational device) and 0 is SDD.
 ** chown &* chgrp
    Basic usage
    $ chown user some/file/or/directory
@@ -1039,16 +1028,43 @@
     https://www.tutorialspoint.com/how-to-mount-usb-drive-in-a-linux-system
     e.g.
     #+begin_src sh
-    $ sudo mount /dev/sdb1 /mnt
+    $ sudo mount /dev/sdb1 /mnt  # not '/dev/sdb' (entire disk) but '/dev/sdb1' (partition)
     #+end_src
 ** lsblk
+   https://www.linkedin.com/pulse/use-killall-kill-commands-stop-processes-linux-kuldeep-saxena
    https://www.reddit.com/r/emacs/comments/btvsk7/comment/ep3eepc/?utm_source=share&utm_medium=web2x&context=3
    lsblk lists information about block devices.
+   $ lsblk
+*** Check if a device is SDD or HDD
+    https://unix.stackexchange.com/a/227458
+    Check whether a mounted device, such as sda or sdb, is SDD or HDD:
+    $ lsblk -d -o name,rota
+
+    The example output is:
+        NAME ROTA
+        sda     0
+        sdb     0
+        sdc     1
+    where 1 is HDD(rotational device) and 0 is SDD.
+*** detailed information
+    https://unix.stackexchange.com/questions/14165/list-partition-labels-from-the-command-line
+    #+begin_src sh
+    lsblk -o name,mountpoint,label,size,uuid
+    #+end_src
 ** udisksctl
    https://www.reddit.com/r/linuxquestions/comments/a2lfh3/sudo_mount_vs_udisksctl_mount/
    udisksctl is from udisks2 package
    - udisksctl doesn't require sudo privilege unlike mount/unmount command
    - udisksctl mount devices to /run/media/$USER/<automatically-created-directory>
+
+   #+begin_src sh
+   udisksctl mount -b /dev/sdb1  # not '/dev/sdb' (entire disk) but '/dev/sdb1' (partition)
+   udisksctl unmount -b /dev/sdb1
+   #+end_src
+*** list device information
+    #+begin_src bash
+    udisksctl info -b /dev/sdb
+    #+end_src
 ** xte
 *** toggle Caps Lock
     https://askubuntu.com/a/607915
