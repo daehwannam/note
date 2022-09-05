@@ -424,3 +424,27 @@
     - "ifconfig" for linux
 **** connecting guest VM with RDP
      one you found guest's IP, you can access via RDP
+*** View virtual
+**** Basic usage
+     - remote-viewer
+       #+begin_src sh
+       remote-viewer spice://localhost:5900
+       #+end_src
+     - virt-manager
+       #+begin_src sh
+       virt-viewer --domain-name my-vn
+       #+end_src
+**** Scaling
+     https://askubuntu.com/a/1312816
+
+     Use "-z" option or GDK_SCALE variable
+     - remote-viewer
+       #+begin_src sh
+       remote-viewer -z 200 spice://localhost:5900
+       # GDK_SCALE=2 remote-viewer spice://localhost:5900
+       #+end_src
+     - virt-manager
+       #+begin_src sh
+       virt-viewer -z 200 --domain-name my-vn
+       # GDK_SCALE=2 virt-viewer --domain-name my-vn
+       #+end_src

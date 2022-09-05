@@ -306,3 +306,33 @@
        #+begin_src sh
        export PATH="/home/dhnam/script/command:$PATH"
        #+end_src
+** DPI setting
+   https://unix.stackexchange.com/a/461525
+   https://unix.stackexchange.com/a/461525
+*** Find the proper DPI
+    #+begin_src bash :results output
+    xdpyinfo | grep -B 2 resolution
+    #+end_src
+
+    #+RESULTS:
+    : screen #0:
+    :   dimensions:    11520x2160 pixels (1813x340 millimeters)
+    :   resolution:    161x161 dots per inch
+
+    In the above result, the proper DPI is 161
+*** Update ~/.Xresources
+    Add the following line:
+    #+begin_example
+    Xft.dpi: 161
+    #+end_example
+*** Update .xinitrc
+    Add the following line:
+    #+begin_src sh
+    xrdb -merge ~/.Xresources
+    #+end_src
+** Xresources
+*** Mouse size
+    https://unix.stackexchange.com/a/612138/502857
+    #+begin_example
+    Xcursor.size: 22
+    #+end_example

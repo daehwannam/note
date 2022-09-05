@@ -30,6 +30,13 @@
     - (don't need to check "Span screen over multiple monitors")
     - fill "List monitor IDs" (or "Monitor ID list")
       e.g. 2,0,1
+*** configuration file location
+    https://askubuntu.com/a/420987
+    ~/.local/share/remmina
+*** connection via a configuration file
+    #+begin_src bash
+    remmina -c ~/.local/share/remmina/some-config.remmina
+    #+end_src
 ** freerdp
 *** freerdp bug
     xfreerdp has problems of pressing some keys such as CTRL and ALT.
