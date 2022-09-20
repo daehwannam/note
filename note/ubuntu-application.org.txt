@@ -325,7 +325,19 @@
 * xrandr
 ** change screen resolution
    https://unix.stackexchange.com/a/227879
-   % xrandr -s 800x60n0
+   $ xrandr -s 800x60n0
+
+* xset
+** Change screen saver time
+   https://askubuntu.com/a/764844
+   #+begin_src sh
+   xset dpms 0 0 1800  # 30 mins
+   #+end_src
+
+   The 1st and 2nd zeros means disabling 'standby' and 'suspend'
+   - 'standby' mode usually puts all devices in a low-power state,
+      and only keeps system memory refreshed and the CPU idling.
+      https://www.techrepublic.com/article/are-you-sleeping-understanding-hibernation-standby-and-other-power-management-features/
 
 * Drawing
 ** Inkscape
