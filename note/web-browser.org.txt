@@ -1,356 +1,356 @@
 * qutebrowser
 ** install with pip
-   $ pip install qutebrowser
+$ pip install qutebrowser
 ** install manually with virtual/conda environment
-   https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc#installing-qutebrowser-with-virtualenv
-   #+begin_src sh
-   # prerequisites
-   sudo apt install asciidoc
+https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc#installing-qutebrowser-with-virtualenv
+#+begin_src sh
+# prerequisites
+sudo apt install asciidoc
 
-   # download and install qutebrowser
-   cd ~/program
-   git clone https://github.com/qutebrowser/qutebrowser.git
-   # VERSION=v2.4.0
-   # git clone --depth 1 --branch $VERSION https://github.com/qutebrowser/qutebrowser.git  qutebrowser-$VERSION # clone a specific tag
-   # ln -s qutebrowser-$VERSION qutebrowser
-   cd qutebrowser
-   python -m venv .venv
-   python scripts/mkvenv.py --venv-dir .venv
-   #+end_src
+# download and install qutebrowser
+cd ~/program
+git clone https://github.com/qutebrowser/qutebrowser.git
+# VERSION=v2.4.0
+# git clone --depth 1 --branch $VERSION https://github.com/qutebrowser/qutebrowser.git  qutebrowser-$VERSION # clone a specific tag
+# ln -s qutebrowser-$VERSION qutebrowser
+cd qutebrowser
+python -m venv .venv
+python scripts/mkvenv.py --venv-dir .venv
+#+end_src
 
-   also you may need to fix fcitx problem: [[*fix fcitx problem for Qt5][fix fcitx problem for Qt5]]
+also you may need to fix fcitx problem: [[*fix fcitx problem for Qt5][fix fcitx problem for Qt5]]
 *** updating
-    https://qutebrowser.org/doc/install.html#_updating
-    #+begin_src sh
-    python scripts/mkvenv.py --update --venv-dir .venv
-    #+end_src
+https://qutebrowser.org/doc/install.html#_updating
+#+begin_src sh
+python scripts/mkvenv.py --update --venv-dir .venv
+#+end_src
 *** xdg-mime setting
-    #+begin_src sh
-    cp /home/dhnam/script/laptop/backup/desktop/qutebrowser.desktop ~/.local/share/applications
+#+begin_src sh
+cp /home/dhnam/script/laptop/backup/desktop/qutebrowser.desktop ~/.local/share/applications
 
-    xdg-mime default qutebrowser.desktop x-scheme-handler/https
-    xdg-mime default qutebrowser.desktop x-scheme-handler/http
-    xdg-mime default qutebrowser.desktop text/html
-    xdg-mime default qutebrowser.desktop application/xhtml+xml
-    #+end_src
+xdg-mime default qutebrowser.desktop x-scheme-handler/https
+xdg-mime default qutebrowser.desktop x-scheme-handler/http
+xdg-mime default qutebrowser.desktop text/html
+xdg-mime default qutebrowser.desktop application/xhtml+xml
+#+end_src
 *** running
-    $ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
+$ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
 
-    if crash occurs a few seconds after starting this app,
-    you may need to install nvidia-driver (or nouveau drivers?)
+if crash occurs a few seconds after starting this app,
+you may need to install nvidia-driver (or nouveau drivers?)
 ** install with apt
-   https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
-   $ sudo apt install qutebrowser
+https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
+$ sudo apt install qutebrowser
 ** help
-   :help
+:help
 ** config
-   https://qutebrowser.org/doc/help/configuring.html#configpy
-   - config directory:
-     ~/.config/qutebrowser
-   - config file:
-     ~/.config/qutebrowser/config.py
+https://qutebrowser.org/doc/help/configuring.html#configpy
+- config directory:
+  ~/.config/qutebrowser
+- config file:
+  ~/.config/qutebrowser/config.py
 ** run private mode from command line
-   https://www.reddit.com/r/qutebrowser/comments/j284pg/comment/g74m3vw/?utm_source=share&utm_medium=web2x&context=3
-   $ qutebrowser ':open -p'
+https://www.reddit.com/r/qutebrowser/comments/j284pg/comment/g74m3vw/?utm_source=share&utm_medium=web2x&context=3
+$ qutebrowser ':open -p'
 ** dark mode
-   https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
-   #+begin_example
-   :set content.user_stylesheets css/coolsheet.css
-   #+end_example
-   where css/coolsheet.css is file in "~/.config/qutebrowser"
+https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
+#+begin_example
+:set content.user_stylesheets css/coolsheet.css
+#+end_example
+where css/coolsheet.css is file in "~/.config/qutebrowser"
 
-   e.g.
-   #+begin_example
-   :set content.user_stylesheets css/solarized-dark-all-sites.css
-   #+end_example
+e.g.
+#+begin_example
+:set content.user_stylesheets css/solarized-dark-all-sites.css
+#+end_example
 ** (not tested yet) ad-block
-   https://www.reddit.com/r/qutebrowser/comments/lahfyc/comment/glnzo03/?utm_source=share&utm_medium=web2x&context=3
-   $ sudo pacman -S python-adblock
+https://www.reddit.com/r/qutebrowser/comments/lahfyc/comment/glnzo03/?utm_source=share&utm_medium=web2x&context=3
+$ sudo pacman -S python-adblock
 ** change profile
-   https://github.com/qutebrowser/qutebrowser/issues/519#issuecomment-207421399
-   $ qutebrowser --basedir /home/${USER}/app-profile/qutebrowser1
-   or
-   $ qutebrowser --basedir app-profile/qutebrowser1
+https://github.com/qutebrowser/qutebrowser/issues/519#issuecomment-207421399
+$ qutebrowser --basedir /home/${USER}/app-profile/qutebrowser1
+or
+$ qutebrowser --basedir app-profile/qutebrowser1
 
-   both make directory in a user's home (~)
-   CAUTION: don't use '~', which is recognized as a directory named "~" in "/home/${USER}/"
+both make directory in a user's home (~)
+CAUTION: don't use '~', which is recognized as a directory named "~" in "/home/${USER}/"
 *** config for profile
-    https://www.reddit.com/r/qutebrowser/comments/7l8rtl/can_i_use_multiple_user_profiles_with_qutebrowser/
-    - move to basedir "/home/${USER}/app-profile/qutebrowser1"
-      $ cd /home/${USER}/app-profile/qutebrowser1
-    - method1: replace config with symbol link
-      #+begin_src sh
-      rm -Rf config
-      ln -s /home/${USER}/.config/qutebrowser config
-      #+end_src
-    - method2: clone git repository
-      #+begin_src sh
-      rm -Rf config
-      git clone https://github.com/daehwannam/qutebrowser-config.git config
+https://www.reddit.com/r/qutebrowser/comments/7l8rtl/can_i_use_multiple_user_profiles_with_qutebrowser/
+- move to basedir "/home/${USER}/app-profile/qutebrowser1"
+  $ cd /home/${USER}/app-profile/qutebrowser1
+- method1: replace config with symbol link
+  #+begin_src sh
+  rm -Rf config
+  ln -s /home/${USER}/.config/qutebrowser config
+  #+end_src
+- method2: clone git repository
+  #+begin_src sh
+  rm -Rf config
+  git clone https://github.com/daehwannam/qutebrowser-config.git config
 ** javascript button click is not working
-   https://github.com/qutebrowser/qutebrowser/issues/4487#issuecomment-503755580
-   updare "~/.config/qutebrowser/config.py"
-   #+begin_src python
-   c.content.javascript.can_access_clipboard = True
-   #+end_src
+https://github.com/qutebrowser/qutebrowser/issues/4487#issuecomment-503755580
+updare "~/.config/qutebrowser/config.py"
+#+begin_src python
+c.content.javascript.can_access_clipboard = True
+#+end_src
 ** google sign-in problem
-   https://github.com/qutebrowser/qutebrowser/issues/5182#issuecomment-763300346
-   qutebrowser can sign-in google just after signing-in google with firefox
-   once the following line is added to config
-   #+begin_src python
-   c.content.javascript.can_access_clipboard = True
-   #+end_src
+https://github.com/qutebrowser/qutebrowser/issues/5182#issuecomment-763300346
+qutebrowser can sign-in google just after signing-in google with firefox
+once the following line is added to config
+#+begin_src python
+c.content.javascript.can_access_clipboard = True
+#+end_src
 ** fix fcitx problem for Qt5
-   https://stackoverflow.com/a/55493403
-   #+begin_src sh
-   # sudo apt install fcitx-frontend-qt5 libfcitx-qt5-1  # these may need to be installed
-   cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so \
-      ~/program/qutebrowser/.venv/lib/python3.10/site-packages/PyQt5/Qt5/plugins/platforminputcontexts/
-   #+end_src
+https://stackoverflow.com/a/55493403
+#+begin_src sh
+# sudo apt install fcitx-frontend-qt5 libfcitx-qt5-1  # these may need to be installed
+cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so \
+   ~/program/qutebrowser/.venv/lib/python3.10/site-packages/PyQt5/Qt5/plugins/platforminputcontexts/
+#+end_src
 ** find functions bound to a key
-   https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/
-   https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/gxgxnuu/
-   - write ":bind <Ctrl+x>" and leave a space after that,
-     then the autocompletion area will show you the <current> and the <default> bindings.
-   - ":bind --mode=prompt <ctrl-x>"
-   - ":help :bind"
+https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/
+https://www.reddit.com/r/qutebrowser/comments/n859gd/how_do_i_find_out_what_is_a_keykey_combination/gxgxnuu/
+- write ":bind <Ctrl+x>" and leave a space after that,
+  then the autocompletion area will show you the <current> and the <default> bindings.
+- ":bind --mode=prompt <ctrl-x>"
+- ":help :bind"
 ** help
-   help command used to description of functions
-   #+begin_example
-   :help :hint
-   #+end_example
+help command used to description of functions
+#+begin_example
+:help :hint
+#+end_example
 ** right mouse click
-   #+begin_example
-   :hint all right-click
-   #+end_example
-   also, typing 'alt' makes the right-click menu disappears
+#+begin_example
+:hint all right-click
+#+end_example
+also, typing 'alt' makes the right-click menu disappears
 ** search start from middle point
-   https://www.reddit.com/r/qutebrowser/comments/lld84t/comment/gnowqzu/?utm_source=share&utm_medium=web2x&context=3
-   click some text then search
+https://www.reddit.com/r/qutebrowser/comments/lld84t/comment/gnowqzu/?utm_source=share&utm_medium=web2x&context=3
+click some text then search
 
 * Firefox
 ** userChrome.css
-   - make userChrome.css
-     https://www.userchrome.org/how-create-userchrome-css.html
-     - menu (3-bar) button -> "Help" -> "More Troubleshooting Information"
-     - open the path displayed in "Profile Directory"
-       e.g. /home/dhnam/.mozilla/firefox/t6ziesp7.default-release
-     - make directory chrome and userChrome.css in it
-       #+begin_src sh
-       mkdir chrome
-       touch chrome/userChrome.css
-       #+end_src
-   - activate userChrome.css
-     https://support.mozilla.org/en-US/questions/1325862
-     * go to "about:config"
-     * set "toolkit.legacyUserProfileCustomizations.stylesheets" as true
-     * restart the browser.
-   - exit and reload firefox
+- make userChrome.css
+  https://www.userchrome.org/how-create-userchrome-css.html
+  - menu (3-bar) button -> "Help" -> "More Troubleshooting Information"
+  - open the path displayed in "Profile Directory"
+    e.g. /home/dhnam/.mozilla/firefox/t6ziesp7.default-release
+  - make directory chrome and userChrome.css in it
+    #+begin_src sh
+    mkdir chrome
+    touch chrome/userChrome.css
+    #+end_src
+- activate userChrome.css
+  https://support.mozilla.org/en-US/questions/1325862
+  * go to "about:config"
+  * set "toolkit.legacyUserProfileCustomizations.stylesheets" as true
+  * restart the browser.
+- exit and reload firefox
 ** hide tab bar
-   - auto-hiding
-     https://support.mozilla.org/en-US/questions/1284841
-   - fixed hiding
-     https://www.reddit.com/r/firefox/comments/8dlb5j/comment/dxopy23/?utm_source=share&utm_medium=web2x&context=3
+- auto-hiding
+  https://support.mozilla.org/en-US/questions/1284841
+- fixed hiding
+  https://www.reddit.com/r/firefox/comments/8dlb5j/comment/dxopy23/?utm_source=share&utm_medium=web2x&context=3
 ** use another profile
-   - make a new profile
-     https://support.mozilla.org/en-US/questions/1262935
-     - open "about:profiles"
-     - click "Create a New Profile"
-     - (optional) click "Set as default profile" for your main profile
-   - run firefox with a new profile
-     - open "about:profiles"
-     - copy "Root Directory"
-       e.g. /home/dhnam/.mozilla/firefox/p37s9w6u.sub
-     - run firefox with "-profile" argument
-       e.g.
-       $ firefox -profile /home/dhnam/.mozilla/firefox/p37s9w6u.sub
+- make a new profile
+  https://support.mozilla.org/en-US/questions/1262935
+  - open "about:profiles"
+  - click "Create a New Profile"
+  - (optional) click "Set as default profile" for your main profile
+- run firefox with a new profile
+  - open "about:profiles"
+  - copy "Root Directory"
+    e.g. /home/dhnam/.mozilla/firefox/p37s9w6u.sub
+  - run firefox with "-profile" argument
+    e.g.
+    $ firefox -profile /home/dhnam/.mozilla/firefox/p37s9w6u.sub
 ** remove "import bookmarks ..." in toolbar
-   - Menu ≡
-   - "More tools"
-   - "Customize toolbar..."
-   - drag "import bookmarks ..." from toolbar
+- Menu ≡
+- "More tools"
+- "Customize toolbar..."
+- drag "import bookmarks ..." from toolbar
 ** close other tabs
-   https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
-   :tab-only --prev
-   :tab-only --next
+https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
+:tab-only --prev
+:tab-only --next
 ** Compact density
-   https://support.mozilla.org/en-US/questions/1342224
-   https://support.mozilla.org/en-US/kb/compact-mode-workaround-firefox
+https://support.mozilla.org/en-US/questions/1342224
+https://support.mozilla.org/en-US/kb/compact-mode-workaround-firefox
 
-   1. Type about:config in the address bar and press Enter.
-      A warning page may appear. Click "Accept the Risk and Continue" to go to the about:config page.
-   2. Find the browser.compactmode.show preference.
-   3. Switch the toggle to true and then close the tab.
-   4. Click the menu button (triple-dot shaped) to open the menu panel.
-   5. Click "More tools".
-   6. Choose "Customize toolbar…".
-   7. At the bottom of the panel, click "Density".
-   8. Choose "Compact (not supported)" from the menu options.
-   9. Click "Done".
+1. Type about:config in the address bar and press Enter.
+   A warning page may appear. Click "Accept the Risk and Continue" to go to the about:config page.
+2. Find the browser.compactmode.show preference.
+3. Switch the toggle to true and then close the tab.
+4. Click the menu button (triple-dot shaped) to open the menu panel.
+5. Click "More tools".
+6. Choose "Customize toolbar…".
+7. At the bottom of the panel, click "Density".
+8. Choose "Compact (not supported)" from the menu options.
+9. Click "Done".
 
 * EAF browser
-  https://github.com/emacs-eaf/emacs-application-framework
-  emacs-application-framework browser
+https://github.com/emacs-eaf/emacs-application-framework
+emacs-application-framework browser
 ** EAF Setup
-   # Install python dependencies
-   # #+begin_src sh
-   # pip install PyQt5 PyQt5-sip PyQtWebEngine pygit2
-   # #+end_src
+# Install python dependencies
+# #+begin_src sh
+# pip install PyQt5 PyQt5-sip PyQtWebEngine pygit2
+# #+end_src
 
-   install emacs-application-framework
-   #+begin_src sh
-   git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/package/emacs-application-framework/
-   cd ~/.emacs.d/package/emacs-application-framework/
-   # chmod +x ./install-eaf.py
-   # ./install-eaf.py --install-all-apps
-   PYTHON=/usr/bin/python3 # change this path for your system
-   $PYTHON install-eaf.py --install-all-apps
-   #+end_src** 
+install emacs-application-framework
+#+begin_src sh
+git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/package/emacs-application-framework/
+cd ~/.emacs.d/package/emacs-application-framework/
+# chmod +x ./install-eaf.py
+# ./install-eaf.py --install-all-apps
+PYTHON=/usr/bin/python3 # change this path for your system
+$PYTHON install-eaf.py --install-all-apps
+#+end_src** 
 ** error fix
 *** ModuleNotFoundError: No module named 'epc'
-    $ sudo apt-get install python3-epc
+$ sudo apt-get install python3-epc
 *** python3: ../nouveau/pushbuf.c:723: nouveau_pushbuf_data: Assertion `kref' failed.
-    need to install graphic driver
+need to install graphic driver
 **** install nvidia driver
-     https://pstudio411.tistory.com/entry/Ubuntu-2004-Nvidia%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
-     - check available drivers
-       $ ubuntu-drivers devices
-     - install a driver
-       $ sudo apt install nvidia-driver-470
+https://pstudio411.tistory.com/entry/Ubuntu-2004-Nvidia%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+- check available drivers
+  $ ubuntu-drivers devices
+- install a driver
+  $ sudo apt install nvidia-driver-470
 
 * Nyxt
 ** manual installation
-   https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#standard-developer-installation
+https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#standard-developer-installation
 *** [[file:common-lisp.org.txt::*Install][SBCL install]]
-    install sbcl by apt
+install sbcl by apt
 *** Lisp dependencies
-    #+begin_src sh
-    mkdir -p ~/common-lisp
-    git clone https://github.com/joachifm/cl-webkit ~/common-lisp/cl-webkit
-    #+end_src
+#+begin_src sh
+mkdir -p ~/common-lisp
+git clone https://github.com/joachifm/cl-webkit ~/common-lisp/cl-webkit
+#+end_src
 *** GNU/Linux, FreeBSD GTK dependencies
-    #+begin_src sh
-    # Debian-based distributions
-    sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev pkg-config xclip enchant-2
-    #+end_src
+#+begin_src sh
+# Debian-based distributions
+sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev pkg-config xclip enchant-2
+#+end_src
 *** fetch the source code
-    #+begin_src sh
-    mkdir -p ~/common-lisp
-    git clone --recurse-submodules https://github.com/atlas-engineer/nyxt ~/common-lisp/nyxt
-    #+end_src
+#+begin_src sh
+mkdir -p ~/common-lisp
+git clone --recurse-submodules https://github.com/atlas-engineer/nyxt ~/common-lisp/nyxt
+#+end_src
 *** compile
-    #+begin_src sh
-    cd ~/common-lisp/nyxt
-    make all
-    #+end_src
+#+begin_src sh
+cd ~/common-lisp/nyxt
+make all
+#+end_src
 ** Install
-   https://nyxt.atlas.engineer/download
-   Ubuntu package is supported
+https://nyxt.atlas.engineer/download
+Ubuntu package is supported
 *** dependencies for installing from source (optional)
-    https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#gnulinux-freebsd-gtk-dependencie
-    $ sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev xclip enchant-2
+https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#gnulinux-freebsd-gtk-dependencie
+$ sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev xclip enchant-2
 *** Youtube video fix
-    https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
+https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
 
-    'gstreamer1.0-libav' need to be installed
-    $ sudo apt-get install gstreamer1.0-libav
+'gstreamer1.0-libav' need to be installed
+$ sudo apt-get install gstreamer1.0-libav
 *** "WebKitJavascriptError", Code: 699
-    https://github.com/atlas-engineer/nyxt/issues/1657#issuecomment-886022638
-    https://github.com/atlas-engineer/nyxt/issues/1883#issuecomment-1004048147
+https://github.com/atlas-engineer/nyxt/issues/1657#issuecomment-886022638
+https://github.com/atlas-engineer/nyxt/issues/1883#issuecomment-1004048147
 
-    I got the error from google search
+I got the error from google search
 
-    Install the following packages to fix it
-    #+begin_src sh
-    sudo apt install libgstreamer1.0-0
-    sudo apt install gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools
-    sudo apt install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
-    #+end_src
+Install the following packages to fix it
+#+begin_src sh
+sudo apt install libgstreamer1.0-0
+sudo apt install gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools
+sudo apt install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
+#+end_src
 *** config setup
-    #+begin_src sh
-    git clone https://github.com/daehwannam/nyxt-config.git
-   
-    if [ -d /home/$USER/.config/nyxt ]; then
-        echo "/home/$USER/.config/nyxt exists already"
-    else
-        mv nyxt-config /home/$USER/.config/nyxt
-    fi
-    #+end_src
+#+begin_src sh
+git clone https://github.com/daehwannam/nyxt-config.git
+
+if [ -d /home/$USER/.config/nyxt ]; then
+    echo "/home/$USER/.config/nyxt exists already"
+else
+    mv nyxt-config /home/$USER/.config/nyxt
+fi
+#+end_src
 ** Usage
 *** search with secific engine
-    - run 'set-url
-    - insert "<engine-name> key words"
+- run 'set-url
+- insert "<engine-name> key words"
 *** bookmark
 **** add url to bookmark
-     commands like 'bookmark-current-url add url to bookmark
-     where multiple tags can be added
-     1. type tags with seperators (space, comma, ...)
-     2. type C-SPC (in emacs-mode) to add the tag which the current cursor indicate
+commands like 'bookmark-current-url add url to bookmark
+where multiple tags can be added
+1. type tags with seperators (space, comma, ...)
+2. type C-SPC (in emacs-mode) to add the tag which the current cursor indicate
 **** default bookmark location
-     ~/.local/share/nyxt/bookmarks.lisp
+~/.local/share/nyxt/bookmarks.lisp
 **** change bookmark location
-     https://github.com/atlas-engineer/nyxt/blob/master/source/manual.lisp
+https://github.com/atlas-engineer/nyxt/blob/master/source/manual.lisp
 
-     #+begin_src lisp
-     (define-configuration buffer
-         ((bookmarks-path (make-instance 'bookmarks-data-path
-                                         :basename "~/personal/bookmarks/bookmarks.lisp"))))
-     #+end_src
+#+begin_src lisp
+(define-configuration buffer
+    ((bookmarks-path (make-instance 'bookmarks-data-path
+                                    :basename "~/personal/bookmarks/bookmarks.lisp"))))
+#+end_src
 *** visual mode
-    mouseless text selection
-    - run command 'visual-mode
-    - back to the normal mode by ESC or C-g (only for emacs-mode)
+mouseless text selection
+- run command 'visual-mode
+- back to the normal mode by ESC or C-g (only for emacs-mode)
 *** passthrough-mode
 *** nyxt open a new window from command-line
 **** using eval
-     https://github.com/atlas-engineer/nyxt/issues/1478#issuecomment-855752985
-     - config
-       #+begin_src lisp
-       (define-configuration browser ((remote-execution-p :t)))
-       #+end_src
-     - command-line
-       #+begin_src sh
-       nyxt --remote --eval '(make-window)'
-       #+end_srcn
+https://github.com/atlas-engineer/nyxt/issues/1478#issuecomment-855752985
+- config
+  #+begin_src lisp
+  (define-configuration browser ((remote-execution-p :t)))
+  #+end_src
+- command-line
+  #+begin_src sh
+  nyxt --remote --eval '(make-window)'
+  #+end_srcn
 **** using distinct sockets
-     use "-S" option
-     $ nyxt -S https://google.com/
+use "-S" option
+$ nyxt -S https://google.com/
 *** prompt buffer (with emacs-mode)
-    - C-x C-c: copy
-    - C-x C-x: cut
-    - C-x h: select all
+- C-x C-c: copy
+- C-x C-x: cut
+- C-x h: select all
 *** nyxt command-line options
-    * --init ARG
-    * --no-init
-    * --no-socket
-    * --with-path ARG : seta data path
-      e.g.
-      * --with-path bookmarks=/path/to/bookmarks
-      * --with-path session=/path/to/session
+* --init ARG
+* --no-init
+* --no-socket
+* --with-path ARG : seta data path
+  e.g.
+  * --with-path bookmarks=/path/to/bookmarks
+  * --with-path session=/path/to/session
 *** history
-    - list-history: show all history
+- list-history: show all history
 *** default bindings of prompt-buffer-mode
-    [[file:~/common-lisp/nyxt/source/mode/prompt-buffer.lisp]]
+[[file:~/common-lisp/nyxt/source/mode/prompt-buffer.lisp]]
 ** Configuration
 *** config file
-    /home/$USER/.config/nyxt/init.lisp
+/home/$USER/.config/nyxt/init.lisp
 *** names of commands
-    https://discourse.atlas.engineer/t/solved-issue-remapping-keybind-for-search-buffer-and-visual-mode/376
+https://discourse.atlas.engineer/t/solved-issue-remapping-keybind-for-search-buffer-and-visual-mode/376
 *** analyzing values
 **** annotation
-     'data-path' is defined in "~/common-lisp/nyxt/source/data-storage.lisp"
+'data-path' is defined in "~/common-lisp/nyxt/source/data-storage.lisp"
 
-     Run the following code in REPL of Nyxt
-     - CLOS property (dirname, basename, ...) check:
-       #+begin_src lisp
-       (dirname (annotations-path (current-buffer)))
-       (basename (annotations-path (current-buffer)))
-       #+end_src
-     - call expand-path function:
-       #+begin_src lisp
-       (expand-path (annotations-path (current-buffer)))
-       #+end_src
+Run the following code in REPL of Nyxt
+- CLOS property (dirname, basename, ...) check:
+  #+begin_src lisp
+  (dirname (annotations-path (current-buffer)))
+  (basename (annotations-path (current-buffer)))
+  #+end_src
+- call expand-path function:
+  #+begin_src lisp
+  (expand-path (annotations-path (current-buffer)))
+  #+end_src
 ** Misc
 *** delete cached history
-    https://discourse.atlas.engineer/t/global-history-tree-your-map-of-the-internet/82/3
-    $ rm -R  ~/.local/share/nyxt/history
+https://discourse.atlas.engineer/t/global-history-tree-your-map-of-the-internet/82/3
+$ rm -R  ~/.local/share/nyxt/history

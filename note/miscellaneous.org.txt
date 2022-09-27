@@ -1,29 +1,29 @@
 
 * Drawing tool
-  https://tex.stackexchange.com/questions/26972/what-gui-applications-are-there-to-assist-in-generating-graphics-for-tex
-  https://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
-  - TikzEdt
-  - IPE
-  - LaTeXDraw
-  - TikZiT: https://tikzit.github.io/
-  - inkscape
+https://tex.stackexchange.com/questions/26972/what-gui-applications-are-there-to-assist-in-generating-graphics-for-tex
+https://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+- TikzEdt
+- IPE
+- LaTeXDraw
+- TikZiT: https://tikzit.github.io/
+- inkscape
 
 * Org-mode with Beamer
-  https://www.youtube.com/watch?v=Ho6nMWGtepY
+https://www.youtube.com/watch?v=Ho6nMWGtepY
 
 * Office 365
 ** Outlook mail setup
-   1. Click gear-shaped icon (right top side?)
-   2. Click "View all Outlook settings"
-   3. Click "Mail -> Forwarding"
-   4. You can remove forwarded mails with the option "Keep a copy of forwarded messages"
+1. Click gear-shaped icon (right top side?)
+2. Click "View all Outlook settings"
+3. Click "Mail -> Forwarding"
+4. You can remove forwarded mails with the option "Keep a copy of forwarded messages"
 ** Check capacity
-   1. Click gear-shaped icon (right top side?)
-   2. Click "General -> Storage"
+1. Click gear-shaped icon (right top side?)
+2. Click "General -> Storage"
 
 * gmail
 ** cleanup storage
-   https://www.howtogeek.com/715691/the-fastest-way-to-free-up-space-in-gmail/
-   - search mails with "size:XXmb"
-     e.g. size:100MB
-   - then remove the mails
+https://www.howtogeek.com/715691/the-fastest-way-to-free-up-space-in-gmail/
+- search mails with "size:XXmb"
+  e.g. size:100MB
+- then remove the mails

@@ -1,420 +1,420 @@
 * Office
 ** HWP
 *** install
-    - install HWP from .deb file
-      https://nooree.com/74
-      - download .deb file
-        https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
-      - install .deb file
-        $ sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
-    - change language to Korean
-      https://hamonikr.org/Free_Board/88075
-      http://no1linux.org/screenshot/37778
-      update "/usr/share/applications/hoffice11-hwp.desktop"
-      #+begin_example
-      Exec=/bin/bash -c "LANGUAGE=ko_KR /opt/hnc/hoffice11/Bin/hwp %f"
-      #+end_example
-    - enable to input Korean
-      https://hamonikr.org/Free_Board/85939
-      #+begin_src sh
-      cd /opt/hnc/hoffice11/Bin/
-      sudo mv qt qt.backup
-      #+end_src
-      then fcitx works
-    - (optional) install nimf when you cannot type Korean
-      https://pivox.tistory.com/44
-      #+begin_src sh
-      sudo apt install curl
-      sudo rm -f /etc/apt/sources.list.d/hamonikr.list
-      curl -sL https://pkg.hamonikr.org/add-hamonikr.apt | sudo -E bash -
-      sudo apt install nimf nimf-libhangul
-      im-config -n nimf
-      #+end_src
+- install HWP from .deb file
+  https://nooree.com/74
+  - download .deb file
+    https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
+  - install .deb file
+    $ sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
+- change language to Korean
+  https://hamonikr.org/Free_Board/88075
+  http://no1linux.org/screenshot/37778
+  update "/usr/share/applications/hoffice11-hwp.desktop"
+  #+begin_example
+  Exec=/bin/bash -c "LANGUAGE=ko_KR /opt/hnc/hoffice11/Bin/hwp %f"
+  #+end_example
+- enable to input Korean
+  https://hamonikr.org/Free_Board/85939
+  #+begin_src sh
+  cd /opt/hnc/hoffice11/Bin/
+  sudo mv qt qt.backup
+  #+end_src
+  then fcitx works
+- (optional) install nimf when you cannot type Korean
+  https://pivox.tistory.com/44
+  #+begin_src sh
+  sudo apt install curl
+  sudo rm -f /etc/apt/sources.list.d/hamonikr.list
+  curl -sL https://pkg.hamonikr.org/add-hamonikr.apt | sudo -E bash -
+  sudo apt install nimf nimf-libhangul
+  im-config -n nimf
+  #+end_src
 *** (optional) install HWP viewer
-    https://nooree.com/74
-    - download .deb file
-      https://drive.google.com/file/d/1Xv8Gd5nGlz_rPFMGMYv4u_lEvLLPyF3V/view?usp=sharing
-    - install .deb file
-      $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
+https://nooree.com/74
+- download .deb file
+  https://drive.google.com/file/d/1Xv8Gd5nGlz_rPFMGMYv4u_lEvLLPyF3V/view?usp=sharing
+- install .deb file
+  $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
 ** LibreOffice
-   file:~/record/note/libre-office.org.txt
+file:~/record/note/libre-office.org.txt
 ** OnlyOffice
-   https://askubuntu.com/a/1332488
+https://askubuntu.com/a/1332488
 *** License
-    https://en.wikipedia.org/wiki/OnlyOffice#Desktop_editors
-    OnlyOffice Desktop is offered free of charge for both personal and commercial usage
+https://en.wikipedia.org/wiki/OnlyOffice#Desktop_editors
+OnlyOffice Desktop is offered free of charge for both personal and commercial usage
 *** install
-    - .dep install
-      https://www.onlyoffice.com/download-desktop.aspx
-      $ sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
-    - snap install
-      $ snap install onlyoffice-desktopeditors
+- .dep install
+  https://www.onlyoffice.com/download-desktop.aspx
+  $ sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
+- snap install
+  $ snap install onlyoffice-desktopeditors
 *** change default language for new document
-    #+begin_src sh
-    cd /opt/onlyoffice/desktopeditors/converter/empty
-    sudo mv en-US en-US-backup
-    sudo cp -R ko-KR en-US
-    #+end_src
+#+begin_src sh
+cd /opt/onlyoffice/desktopeditors/converter/empty
+sudo mv en-US en-US-backup
+sudo cp -R ko-KR en-US
+#+end_src
 *** direct commands to make new documents
-    #+begin_src sh
-    /usr/bin/onlyoffice-desktopeditors --new:word
-    /usr/bin/onlyoffice-desktopeditors --new:cell
-    /usr/bin/onlyoffice-desktopeditors --new:slide
-    #+end_src
+#+begin_src sh
+/usr/bin/onlyoffice-desktopeditors --new:word
+/usr/bin/onlyoffice-desktopeditors --new:cell
+/usr/bin/onlyoffice-desktopeditors --new:slide
+#+end_src
 ** WPS Office
-   https://askubuntu.com/a/1368754
+https://askubuntu.com/a/1368754
 *** License
-    https://www.wps.com/eula/
-    CAUTION: No commercial entities or organizations are permitted
-    to use the functionally restricted version of the Software
+https://www.wps.com/eula/
+CAUTION: No commercial entities or organizations are permitted
+to use the functionally restricted version of the Software
 *** install WPS
-    - download WPS package from https://www.wps.com/
-    - install WPS
-      $ sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
+- download WPS package from https://www.wps.com/
+- install WPS
+  $ sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
 *** font update from ttf-mscorefonts-installer
-    https://ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
-    https://kairos03.github.io/2018/09/07/ubuntu18.04-wps-office-install.html
+https://ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
+https://kairos03.github.io/2018/09/07/ubuntu18.04-wps-office-install.html
 
-    - install font
-      $ sudo apt install ttf-mscorefonts-installer
-    - update font cache
-      $ sudo fc-cache -f -v
+- install font
+  $ sudo apt install ttf-mscorefonts-installer
+- update font cache
+  $ sudo fc-cache -f -v
 *** font update for "Wingdings, Wingdings 2, Wingdings 3, MT Extra"
-    https://askubuntu.com/a/1000144
-    #+begin_src sh
-    git clone https://github.com/udoyen/wps-fonts.git
-    sudo mv -v wps-fonts/wps/* /usr/share/fonts/wps-office
-    rm -Rf wps-fonts/
-    #+end_src
+https://askubuntu.com/a/1000144
+#+begin_src sh
+git clone https://github.com/udoyen/wps-fonts.git
+sudo mv -v wps-fonts/wps/* /usr/share/fonts/wps-office
+rm -Rf wps-fonts/
+#+end_src
 *** (optional) font update to ~/.fonts/
-    https://tolovefeels.tistory.com/9
+https://tolovefeels.tistory.com/9
 
-    Caution: it may not work
+Caution: it may not work
 
-    #+begin_src sh
-    mkdir -p ~/.fonts/
-    wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/symbol.ttf -O ~/.fonts/symbol.ttf
-    wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/wingding.ttf -O ~/.fonts/wingding.ttf
-    wget https://bmaupin.github.io/askubuntu-983191-research/symbol_msfontservice.ttf -O ~/.fonts/symbol_msfontservice.ttf
-    wget https://bmaupin.github.io/askubuntu-983191-research/wingdings_msfontservice.ttf -O ~/.fonts/wingdings_msfontservice.ttf
-    fc-cache -f -v
-    #+end_src
+#+begin_src sh
+mkdir -p ~/.fonts/
+wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/symbol.ttf -O ~/.fonts/symbol.ttf
+wget https://source.winehq.org/git/wine.git/blob/HEAD:/fonts/wingding.ttf -O ~/.fonts/wingding.ttf
+wget https://bmaupin.github.io/askubuntu-983191-research/symbol_msfontservice.ttf -O ~/.fonts/symbol_msfontservice.ttf
+wget https://bmaupin.github.io/askubuntu-983191-research/wingdings_msfontservice.ttf -O ~/.fonts/wingdings_msfontservice.ttf
+fc-cache -f -v
+#+end_src
 
 * Screenshot
 ** Flameshot
 *** install
-    https://vitux.com/ubuntu-screenshot-flameshot/
-    $ sudo apt install flameshot
+https://vitux.com/ubuntu-screenshot-flameshot/
+$ sudo apt install flameshot
 *** usage
-    https://www.tecmint.com/install-flameshot-in-linux/
-    $ flameshot gui
+https://www.tecmint.com/install-flameshot-in-linux/
+$ flameshot gui
 ** Kazam
-   video recording and image capture tool
+video recording and image capture tool
 ** shortcuts
-   Windows key + CTRL + R = Start recording.
-   Windows key + CTRL + P = Pause recording, press again to resume.
-   Windows key + CTRL + F = Finish recording.
-   Windows key + CTRL + W = Show/hide main window
-   Windows key + CTRL + Q = Quit recording.
+Windows key + CTRL + R = Start recording.
+Windows key + CTRL + P = Pause recording, press again to resume.
+Windows key + CTRL + F = Finish recording.
+Windows key + CTRL + W = Show/hide main window
+Windows key + CTRL + Q = Quit recording.
 
 * Recording (screencast)
 ** peek
 *** install
-    $ sudo apt install peek
+$ sudo apt install peek
 
 * Video editing
 ** kdenlive
 *** install
-    $ sudo apt install kdenlive
+$ sudo apt install kdenlive
 
 * Image viewer
 ** Nomacs
 *** install
-    sudo apt install nomacs
+sudo apt install nomacs
 ** feh
-   image viewer
+image viewer
 *** install
-    $ sudo apt install feh
+$ sudo apt install feh
 *** usage
-    - up/down key -> zome in/out
-    - open image with fitting
-      $ feh --scale-down --auto-zoom
+- up/down key -> zome in/out
+- open image with fitting
+  $ feh --scale-down --auto-zoom
 *** other shortcuts
-    http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
+http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
 *** change default launch option
-    - copy .desktop
-      $ cp /usr/share/applications/feh.desktop ~/.local/share/applications/
-    - update "Exec" in "~/.local/share/applications/"
-      #+begin_src sh
-      Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
-      #+end_src
+- copy .desktop
+  $ cp /usr/share/applications/feh.desktop ~/.local/share/applications/
+- update "Exec" in "~/.local/share/applications/"
+  #+begin_src sh
+  Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
+  #+end_src
 
 * Video player
 ** MPlayer
 
 * KakaoTalk
 ** install
-   https://movment.tistory.com/5
+https://movment.tistory.com/5
 *** install wine
-    - install wine
-      #+begin_src sh
-      sudo dpkg --add-architecture i386
+- install wine
+  #+begin_src sh
+  sudo dpkg --add-architecture i386
 
-      wget -nc https://dl.winehq.org/wine-builds/winehq.key
-      sudo apt-key add winehq.key
+  wget -nc https://dl.winehq.org/wine-builds/winehq.key
+  sudo apt-key add winehq.key
 
-      # for Ubuntu 20.04 LTS
-      sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
+  # for Ubuntu 20.04 LTS
+  sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
 
-      sudo apt update
-      sudo apt install --install-recommends winehq-stable
-      #+end_src
-    - set wine for 32bit applications
-      -run command
-        $ WINEARCH=win32 winecfg
-      - don't need to install Mono and Gecko
-      - set "Windows version" to "Windows 10"
+  sudo apt update
+  sudo apt install --install-recommends winehq-stable
+  #+end_src
+- set wine for 32bit applications
+  -run command
+    $ WINEARCH=win32 winecfg
+  - don't need to install Mono and Gecko
+  - set "Windows version" to "Windows 10"
 *** install KakaoTalk
-    - download KakaoTalk for windows
-      https://www.kakaocorp.com/service/KakaoTalk
-    - run the following command
-      $ LANG="ko_KR.UTF-8" wine ~/Downloads/KakaoTalk_Setup.exe
-    - uncheck
-      - "시작메뉴에 바로가기 만들기"
-      - "Daum을 시작페이지로 설정"
-      otherwise, two shorcuts are created
+- download KakaoTalk for windows
+  https://www.kakaocorp.com/service/KakaoTalk
+- run the following command
+  $ LANG="ko_KR.UTF-8" wine ~/Downloads/KakaoTalk_Setup.exe
+- uncheck
+  - "시작메뉴에 바로가기 만들기"
+  - "Daum을 시작페이지로 설정"
+  otherwise, two shorcuts are created
 *** language setting for KakaoTalk
-    - update "~/.local/share/applications/wine/Programs/카카오톡/카카오톡.desktop" by
-      - adding LANG="ko_KR.UTF-8"
-      #+begin_src sh
-      Exec=env WINEPREFIX="/home/dhnam/.wine" LANG="ko_KR.UTF-8" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dhnam/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/카카오톡/카카오톡.lnk
-      #+end_src
-    - (optional) make duplicate .desktop for convenience
-      - copy .desktop
-        #+begin_src sh
-        cp ~/.local/share/applications/wine/Programs/카카오톡/카카오톡.desktop ~/.local/share/applications/kakao-talk.desktop
-        #+end_src
-      - update name of "~/.local/share/applications/kakao-talk.desktop"
-        #+begin_src sh
-        # Name=카카오톡
-        Name=KakaoTalk
-        Exec=env WINEPREFIX="/home/dhnam/.wine" LANG="ko_KR.UTF-8" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dhnam/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/카카오톡/카카오톡.lnk
-        #+end_src
-    - log out session
+- update "~/.local/share/applications/wine/Programs/카카오톡/카카오톡.desktop" by
+  - adding LANG="ko_KR.UTF-8"
+  #+begin_src sh
+  Exec=env WINEPREFIX="/home/dhnam/.wine" LANG="ko_KR.UTF-8" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dhnam/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/카카오톡/카카오톡.lnk
+  #+end_src
+- (optional) make duplicate .desktop for convenience
+  - copy .desktop
+    #+begin_src sh
+    cp ~/.local/share/applications/wine/Programs/카카오톡/카카오톡.desktop ~/.local/share/applications/kakao-talk.desktop
+    #+end_src
+  - update name of "~/.local/share/applications/kakao-talk.desktop"
+    #+begin_src sh
+    # Name=카카오톡
+    Name=KakaoTalk
+    Exec=env WINEPREFIX="/home/dhnam/.wine" LANG="ko_KR.UTF-8" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dhnam/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/카카오톡/카카오톡.lnk
+    #+end_src
+- log out session
 *** (optional) system tray
-    - install topicons plus
-      $ sudo apt install gnome-shell-extension-top-icons-plus
-    - enable topicons plus
-      $ gnome-tweaks
-      Extensions -> Topicons plus
+- install topicons plus
+  $ sudo apt install gnome-shell-extension-top-icons-plus
+- enable topicons plus
+  $ gnome-tweaks
+  Extensions -> Topicons plus
 *** (optional) fonts for korean
-    - Noto Sans CJK TC Medium
-    - Noto Sans CJK KR Medium
-    - 백묵 돋음
+- Noto Sans CJK TC Medium
+- Noto Sans CJK KR Medium
+- 백묵 돋음
 
 * PDF reader
 ** okular
 *** install
-    $ sudo apt-get install okular
+$ sudo apt-get install okular
 *** disable thumbnails at startup
-    https://forum.kde.org/viewtopic.php?f=20&t=95947
-    Menu -> "Settings" -> uncheck "Navigation panel"
+https://forum.kde.org/viewtopic.php?f=20&t=95947
+Menu -> "Settings" -> uncheck "Navigation panel"
 *** inverse search setting
-    https://tex.stackexchange.com/questions/161797/how-to-configure-emacs-and-auctex-to-perform-forward-and-inverse-search
-    - Menu -> "Settings" -> "Configure Okular" -> "Editor" -> "Emacs client"
-    - Menu -> "Tools" -> "Browse"
-    - emacs server or daemon should be running
+https://tex.stackexchange.com/questions/161797/how-to-configure-emacs-and-auctex-to-perform-forward-and-inverse-search
+- Menu -> "Settings" -> "Configure Okular" -> "Editor" -> "Emacs client"
+- Menu -> "Tools" -> "Browse"
+- emacs server or daemon should be running
 ** evince
-   pdf viewer
+pdf viewer
 *** install
-    $ sudo apt install evince
+$ sudo apt install evince
 
 * PDF split
 ** qdpf
-   - install
-     $ sudo apt-get install qpdf
-   - example
-     $ qpdf input.pdf --pages . 1-10 -- output.pdf
+- install
+  $ sudo apt-get install qpdf
+- example
+  $ qpdf input.pdf --pages . 1-10 -- output.pdf
 
 * terminal emulator
 ** xterm-256color
-   you can update "~/.bashrc" for xterm-256color but it may cause trouble with "M-x shell" or "M-x ansi-term"
-   $ export TERM=xterm-256color
+you can update "~/.bashrc" for xterm-256color but it may cause trouble with "M-x shell" or "M-x ansi-term"
+$ export TERM=xterm-256color
 ** Kitty
-   https://sw.kovidgoyal.net/kitty/
-   https://github.com/kovidgoyal/kitty
+https://sw.kovidgoyal.net/kitty/
+https://github.com/kovidgoyal/kitty
 *** install
-    $ sudo apt install kitty
+$ sudo apt install kitty
 *** config
-    update "~/.config/kitty/kitty.conf"
+update "~/.config/kitty/kitty.conf"
 **** font
-     #+begin_example
-     font_size 10.0
-     #+end_example
+#+begin_example
+font_size 10.0
+#+end_example
 **** xterm-256color
-     https://news.ycombinator.com/item?id=24643008
-     #+begin_example
-     term xterm-256color
-     #+end_example
+https://news.ycombinator.com/item?id=24643008
+#+begin_example
+term xterm-256color
+#+end_example
 **** stop cursor blinking
-     https://github.com/kovidgoyal/kitty/issues/530
-     #+begin_example
-     cursor_stop_blinking_after 0.1
-     #+end_example
+https://github.com/kovidgoyal/kitty/issues/530
+#+begin_example
+cursor_stop_blinking_after 0.1
+#+end_example
 ** Alacritty
-   terminal program to repace gnome-terminal
+terminal program to repace gnome-terminal
 *** install
-    https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
-    #+begin_src sh
-    sudo add-apt-repository ppa:aslatter/ppa
-    sudo apt install alacritty
-    #+end_src
+https://ubuntuhandbook.org/index.php/2020/12/install-alacritty-ppa-ubuntu-20-04/
+#+begin_src sh
+sudo add-apt-repository ppa:aslatter/ppa
+sudo apt install alacritty
+#+end_src
 *** uninstall
-    #+begin_src sh
-    sudo apt remove --auto-remove alacritty
-    sudo add-apt-repository --remove ppa:aslatter/ppa
-    #+end_src
+#+begin_src sh
+sudo apt remove --auto-remove alacritty
+sudo add-apt-repository --remove ppa:aslatter/ppa
+#+end_src
 *** change theme
-    https://github.com/eendroroy/alacritty-theme
+https://github.com/eendroroy/alacritty-theme
 
-    Update "~/.config/alacritty/alacritty.yml" with one of themes in
-    https://github.com/eendroroy/alacritty-theme/tree/master/themes
+Update "~/.config/alacritty/alacritty.yml" with one of themes in
+https://github.com/eendroroy/alacritty-theme/tree/master/themes
 *** change font
-    https://wiki.archlinux.org/title/Alacritty#Font
-    Update "~/.config/alacritty/alacritty.yml" with the following code
-    #+begin_src 
-    font:
-      size: 8
-    #+end_src
+https://wiki.archlinux.org/title/Alacritty#Font
+Update "~/.config/alacritty/alacritty.yml" with the following code
+#+begin_src 
+font:
+  size: 8
+#+end_src
 *** change default terminal
-    https://itsfoss.com/change-default-terminal-ubuntu/
-    $ sudo update-alternatives --config x-terminal-emulator 
+https://itsfoss.com/change-default-terminal-ubuntu/
+$ sudo update-alternatives --config x-terminal-emulator 
 
 * Xpra
-  https://unix.stackexchange.com/a/608235
+https://unix.stackexchange.com/a/608235
 
-  Xpra is the X equivalent of screen or tmux, providing a virtual X
-  environment and the ability to display the desktop or individual
-  application windows locally or remotely, attaching and detaching as
-  necessary.
+Xpra is the X equivalent of screen or tmux, providing a virtual X
+environment and the ability to display the desktop or individual
+application windows locally or remotely, attaching and detaching as
+necessary.
 
 * unclutter
-  hide mouse when it's not moving
+hide mouse when it's not moving
 ** install
-   $ sudo apt install unclutter
+$ sudo apt install unclutter
 ** change time waiting
-   https://askubuntu.com/a/684638
-   $ unclutter -idle 3 -root
+https://askubuntu.com/a/684638
+$ unclutter -idle 3 -root
 
 * amixer
-  a tool for configure sound
+a tool for configure sound
 ** Usage
-   $ amixer set Master 15%
+$ amixer set Master 15%
 
 * xbacklight
 *** install and usage
-    https://askubuntu.com/a/149265
+https://askubuntu.com/a/149265
 
-    - install
-      $ sudo apt-get install xbacklight
-    - increase brightness
-      $ xbacklight -inc 10
-    - decrease brightness
-      $ xbacklight -dec 10 
+- install
+  $ sudo apt-get install xbacklight
+- increase brightness
+  $ xbacklight -inc 10
+- decrease brightness
+  $ xbacklight -dec 10 
 
 * xrandr
 ** change screen resolution
-   https://unix.stackexchange.com/a/227879
-   $ xrandr -s 800x60n0
+https://unix.stackexchange.com/a/227879
+$ xrandr -s 800x60n0
 
 * xset
 ** Change screen saver time
-   https://askubuntu.com/a/764844
-   #+begin_src sh
-   xset dpms 0 0 1800  # 30 mins
-   #+end_src
+https://askubuntu.com/a/764844
+#+begin_src sh
+xset dpms 0 0 1800  # 30 mins
+#+end_src
 
-   The 1st and 2nd zeros means disabling 'standby' and 'suspend'
-   - 'standby' mode usually puts all devices in a low-power state,
-      and only keeps system memory refreshed and the CPU idling.
-      https://www.techrepublic.com/article/are-you-sleeping-understanding-hibernation-standby-and-other-power-management-features/
+The 1st and 2nd zeros means disabling 'standby' and 'suspend'
+- 'standby' mode usually puts all devices in a low-power state,
+   and only keeps system memory refreshed and the CPU idling.
+   https://www.techrepublic.com/article/are-you-sleeping-understanding-hibernation-standby-and-other-power-management-features/
 
 * Drawing
 ** Inkscape
 *** install
-    https://inkscape.org/ko/release/inkscape-1.0/gnulinux/ubuntu/ppa/dl/
-    #+begin_src sh
-    sudo add-apt-repository ppa:inkscape.dev/stable
-    sudo apt update
-    sudo apt install inkscape
-    #+end_src
+https://inkscape.org/ko/release/inkscape-1.0/gnulinux/ubuntu/ppa/dl/
+#+begin_src sh
+sudo add-apt-repository ppa:inkscape.dev/stable
+sudo apt update
+sudo apt install inkscape
+#+end_src
 *** tutorial
-    https://inkscape.org/ko/learn/tutorials/
-    Help -> Tutorials -> ...
+https://inkscape.org/ko/learn/tutorials/
+Help -> Tutorials -> ...
 *** remove svg margin
-    https://stackoverflow.com/a/64116358/6710003
-    $ inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
+https://stackoverflow.com/a/64116358/6710003
+$ inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
 *** export
 **** svg to eps
-     https://stackoverflow.com/a/30539923
-     $ inkscape input.svg -o output.eps --export-ignore-filters --export-ps-level=3
+https://stackoverflow.com/a/30539923
+$ inkscape input.svg -o output.eps --export-ignore-filters --export-ps-level=3
 **** svg to pdf
-     $ inkscape input.svg -o output.pdf
+$ inkscape input.svg -o output.pdf
 ***** deprecated method
-      https://mjmorse.com/blog/export-pdf-inkscape/
-      $ inkscape --file=input.svg --without-gui --export-pdf=output.pdf
+https://mjmorse.com/blog/export-pdf-inkscape/
+$ inkscape --file=input.svg --without-gui --export-pdf=output.pdf
 
 * scrcpy
-  https://sean.tistory.com/59
+https://sean.tistory.com/59
 ** install
-   - scrcpy
-     $ sudo apt install scrcpy
-   - other necessary packages
-     $ sudo apt install adb ffmpeg libsdl2-2.0-0 make gcc pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev android-tools-adb android-tools-fastboot
+- scrcpy
+  $ sudo apt install scrcpy
+- other necessary packages
+  $ sudo apt install adb ffmpeg libsdl2-2.0-0 make gcc pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev android-tools-adb android-tools-fastboot
 ** enable development option (개발자 옵션)
-   https://sean.tistory.com/23?category=874763
-   - 개발자 옵션 활성화
-     https://sean.tistory.com/23?category=874763
-     - "설정" -> "휴대전화 정보" -> "소프트웨어 정보"
-     - "빌드번호" 반복 터치
-   - "설정" -> "개발자 옵션" -> "USB 디버깅" ON
+https://sean.tistory.com/23?category=874763
+- 개발자 옵션 활성화
+  https://sean.tistory.com/23?category=874763
+  - "설정" -> "휴대전화 정보" -> "소프트웨어 정보"
+  - "빌드번호" 반복 터치
+- "설정" -> "개발자 옵션" -> "USB 디버깅" ON
 ** connect via adb & scrcpy
-   - Connect the mobile device with a computer via USB
-   - Allow USB debugging
-   - check the connected device
-     if the device is connected it shows 'device' rather than 'unauthorized'
-     e.g.
-     $ adb devices
-     #+begin_example
-     List of devices attached
-     3200eb5294938489	device
-     #+end_example
-   - run scrcpy
-     $ scrcpy
+- Connect the mobile device with a computer via USB
+- Allow USB debugging
+- check the connected device
+  if the device is connected it shows 'device' rather than 'unauthorized'
+  e.g.
+  $ adb devices
+  #+begin_example
+  List of devices attached
+  3200eb5294938489	device
+  #+end_example
+- run scrcpy
+  $ scrcpy
 * sndcpy
-  https://kibua20.tistory.com/182
+https://kibua20.tistory.com/182
 ** requirements
-   - vlc should be installed
-     $ which vlc
+- vlc should be installed
+  $ which vlc
 ** install
-   $ curl -L -O https://github.com/rom1v/sndcpy/releases/download/v1.0/sndcpy-v1.0.zip
-   $ unzip sndcpy-v1.0.zip -d ~/program/sndcpy
+$ curl -L -O https://github.com/rom1v/sndcpy/releases/download/v1.0/sndcpy-v1.0.zip
+$ unzip sndcpy-v1.0.zip -d ~/program/sndcpy
 ** run
-   $ cd ~/program/sndcpy
-   $ ./sndcpy
+$ cd ~/program/sndcpy
+$ ./sndcpy
 
 ** Korean input
-   http://no1linux.org/board_WEnl84/38786
-   install app "Gboaard - Google keyboard"
+http://no1linux.org/board_WEnl84/38786
+install app "Gboaard - Google keyboard"
 
 * Zoom
 ** install
-   https://pstudio411.tistory.com/entry/Ubuntu-2004-LTS화상회의-필수인-ZOOM-설치-법
+https://pstudio411.tistory.com/entry/Ubuntu-2004-LTS화상회의-필수인-ZOOM-설치-법
 
-   $ wget https://zoom.us/client/latest/zoom_amd64.deb
-   $ sudo apt install ./zoom_amd64.deb
+$ wget https://zoom.us/client/latest/zoom_amd64.deb
+$ sudo apt install ./zoom_amd64.deb
 
 * WhatsApp
 ** install
-   https://snapcraft.io/whatsapp-for-linux
-   $ sudo snap install whatsapp-for-linux
+https://snapcraft.io/whatsapp-for-linux
+$ sudo snap install whatsapp-for-linux

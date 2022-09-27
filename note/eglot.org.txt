@@ -1,31 +1,31 @@
 
 * pyls
 ** setup
-   https://github.com/palantir/python-language-server
+https://github.com/palantir/python-language-server
 
-   Install pyls in global environment:
-   $ pip install python-language-server
-   # $ conda install python-language-server
+Install pyls in global environment:
+$ pip install python-language-server
+# $ conda install python-language-server
 
 ** Configuration
-   https://github.com/palantir/python-language-server#configuration
-   The default of pyls configuraiton is ~/.config/pycodestyle
+https://github.com/palantir/python-language-server#configuration
+The default of pyls configuraiton is ~/.config/pycodestyle
 
 *** pycodestyle
-    https://pycodestyle.pycqa.org/en/latest/intro.html#configuration
-    -------------- ~/.config/pycodestyle --------------
-    [pycodestyle]
-    count = False
-    ignore = E226,E302,E41
-    ---------------------------------------------------
+https://pycodestyle.pycqa.org/en/latest/intro.html#configuration
+-------------- ~/.config/pycodestyle --------------
+[pycodestyle]
+count = False
+ignore = E226,E302,E41
+---------------------------------------------------
 
 * digedtif
-  https://github.com/astoff/digestif
-  lsp for latex
+https://github.com/astoff/digestif
+lsp for latex
 ** setup
-   https://github.com/astoff/digestif#luatex-with-the-self-installing-script-
-   #+begin_src sh
-   wget https://raw.githubusercontent.com/astoff/digestif/master/scripts/digestif -P ~/.local/bin
-   chmod +x ~/.local/bin/digestif
-   ~/.local/bin/digestif
-   #+end_src
+https://github.com/astoff/digestif#luatex-with-the-self-installing-script-
+#+begin_src sh
+wget https://raw.githubusercontent.com/astoff/digestif/master/scripts/digestif -P ~/.local/bin
+chmod +x ~/.local/bin/digestif
+~/.local/bin/digestif
+#+end_src

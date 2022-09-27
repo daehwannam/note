@@ -1,216 +1,216 @@
 
 * Common
 ** org-shiftleft / org-shiftright
-   these commands change
-   - states (TODO, DONE, ...)
-   - item bullet types (-, *, +, 1., ...)
+these commands change
+- states (TODO, DONE, ...)
+- item bullet types (-, *, +, 1., ...)
 
 * Agenda
-  - j (org-agenda-goto-date): make agenda starting from the date
+- j (org-agenda-goto-date): make agenda starting from the date
 
 * Calendar
-  - M-x calendar
-  - org-calendar-goto-agenda: type "c"
-    https://emacs.stackexchange.com/questions/29632/org-mode-calendar-integration
+- M-x calendar
+- org-calendar-goto-agenda: type "c"
+  https://emacs.stackexchange.com/questions/29632/org-mode-calendar-integration
 
 * LaTeX
 ** example latex formula in org mode
-   \[E=mc^2\]
+\[E=mc^2\]
 
-   \begin{equation}
-     f(x) =  \sum\limits_0^\infty(f^{(n)}(x)|_{x=0} \cdot x)
-   \end{equation}
+\begin{equation}
+  f(x) =  \sum\limits_0^\infty(f^{(n)}(x)|_{x=0} \cdot x)
+\end{equation}
 ** org-latex-preview
-   https://orgmode.org/manual/Previewing-LaTeX-fragments.html#Previewing-LaTeX-fragments
-   - turn on visualizing latex in the current entry (or in marked region)
-     C-c C-x C-l (org-latex-preview)
-   - turn off visualizing latex in the current entry
-     C-u C-c C-x C-l (org-latex-preview with a prefix argument)
-   - turn on visualizing latex in the current buffer
-     C-u C-u C-c C-x C-l (org-latex-preview with two prefix arguments)
-   - turn off visualizing latex in the current buffer
-     C-u C-u C-u C-c C-x C-l (org-latex-preview with three prefix arguments)
+https://orgmode.org/manual/Previewing-LaTeX-fragments.html#Previewing-LaTeX-fragments
+- turn on visualizing latex in the current entry (or in marked region)
+  C-c C-x C-l (org-latex-preview)
+- turn off visualizing latex in the current entry
+  C-u C-c C-x C-l (org-latex-preview with a prefix argument)
+- turn on visualizing latex in the current buffer
+  C-u C-u C-c C-x C-l (org-latex-preview with two prefix arguments)
+- turn off visualizing latex in the current buffer
+  C-u C-u C-u C-c C-x C-l (org-latex-preview with three prefix arguments)
 *** changing equation font size
-    https://emacs.stackexchange.com/a/19881
-    - M-x customize
-    - Search "org-format"
-    - Enter "Org Format Latex Options"
-    - Change the value of "scale"
-      e.g. 1.0 --> 1.5
+https://emacs.stackexchange.com/a/19881
+- M-x customize
+- Search "org-format"
+- Enter "Org Format Latex Options"
+- Change the value of "scale"
+  e.g. 1.0 --> 1.5
 ** dynamically enable/disable latex preview
-   org-fragtog-mode
+org-fragtog-mode
 
 * Mark an unit
-  - org-mark-element (M-h)
-  - org-babel-mark-block (C-c C-v C-M-h)
+- org-mark-element (M-h)
+- org-babel-mark-block (C-c C-v C-M-h)
 
 * code block with org-babel
-  https://orgmode.org/manual/Literal-Examples.html
-  - type "<s" then press <TAB>
-  - type "<e" then press <TAB> for untyped example (literal examples)
+https://orgmode.org/manual/Literal-Examples.html
+- type "<s" then press <TAB>
+- type "<e" then press <TAB> for untyped example (literal examples)
 ** writing the result of standard output
-   #+begin_src python :results output
-   # indentation
-   import sys
-   print("hello world")
-   #+end_src
+#+begin_src python :results output
+# indentation
+import sys
+print("hello world")
+#+end_src
 
-   #+RESULTS:
-   : hello world
+#+RESULTS:
+: hello world
 ** displaying other file's content
-   https://emacs.stackexchange.com/a/36643
-   #+BEGIN_SRC sh :results output drawer
-   # cat data.csv  # print all cotents
-   head -n 3 ~/.bashrc  # print first 5 lines
-   #+END_SRC
+https://emacs.stackexchange.com/a/36643
+#+BEGIN_SRC sh :results output drawer
+# cat data.csv  # print all cotents
+head -n 3 ~/.bashrc  # print first 5 lines
+#+END_SRC
 ** python virtual environment
-   Change python environment before evaluating code block by "M-x pyvenv-workon"
+Change python environment before evaluating code block by "M-x pyvenv-workon"
 ** edit code black in a special buffer
-   org-edit-special (C-c ')
+org-edit-special (C-c ')
 *** commands of the special buffer for code editing
-     - org-edit-src-exit (C-c ')
-     - org-edit-src-abort (C-c C-k)
-     - <code evaluation> (C-c C-c)
+ - org-edit-src-exit (C-c ')
+ - org-edit-src-abort (C-c C-k)
+ - <code evaluation> (C-c C-c)
 
 * Export
-  - C-c C-e: org-export-dispatch
+- C-c C-e: org-export-dispatch
 
-  - C-c C-e l p: export to pdf
-  - C-c C-e l o: export to pdf and open it
+- C-c C-e l p: export to pdf
+- C-c C-e l o: export to pdf and open it
 
 * Link
-  https://orgmode.org/manual/Handling-links.html
-  - C-c l     (org-store-link)
-  - C-c C-l     (org-insert-link)
-  - C-c C-o     (org-open-at-point)
+https://orgmode.org/manual/Handling-links.html
+- C-c l     (org-store-link)
+- C-c C-l     (org-insert-link)
+- C-c C-o     (org-open-at-point)
 
 * Table
 ** Install Inconsolata font for org-mode tables with CJK characters
-   $ sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
-   or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
+$ sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
+or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
 ** transpose
-   - org-table-transpose-table-at-point
+- org-table-transpose-table-at-point
 ** Usage
-   https://orgmode.org/worg/org-tutorials/tables.html
+https://orgmode.org/worg/org-tutorials/tables.html
 *** table creation methods
 **** make rough table with '|' then type TAB
-     #+begin_src org
-     |something
-     #+end_src
-     #+begin_src org
-     | some | thing |
-     |-
-     #+end_src
+#+begin_src org
+|something
+#+end_src
+#+begin_src org
+| some | thing |
+|-
+#+end_src
 **** 'org-table-create-or-convert-from-region' (C-c-|)
 **** separated strings to table
-     - make region over comma/tab separated strings
-     - type "C-c-|"
-     #+begin_src org
-     some, comma, separated, values
-     some	comma	separated	values
-     #+end_src
+- make region over comma/tab separated strings
+- type "C-c-|"
+#+begin_src org
+some, comma, separated, values
+some	comma	separated	values
+#+end_src
 *** move row/columns
-    - org-metaleft (M-<left>)
-    - org-metaright (M-<right>)
-    - org-metaup (M-<up>)
-    - org-metadown (M-<down>)
+- org-metaleft (M-<left>)
+- org-metaright (M-<right>)
+- org-metaup (M-<up>)
+- org-metadown (M-<down>)
 *** insert/delete row/columns
-    - org-shiftmetaright (M-S-<right>)
-    - org-shiftmetaleft (M-S-<left>)
-    - org-shiftmetadown (M-S-<down>)
-    - org-shiftmetaup (M-S-<up>)
+- org-shiftmetaright (M-S-<right>)
+- org-shiftmetaleft (M-S-<left>)
+- org-shiftmetadown (M-S-<down>)
+- org-shiftmetaup (M-S-<up>)
 *** narrowing the visiable par of a column
-    https://emacs.stackexchange.com/a/53644
-    - C-c <TAB> : toggle narrowing for tab
-    - C-u C-c <TAB> : narrow all tabs
-    - C-c ` : edit cell
-    | <10>             | <15>                        |
-    | A very wide cell | Another very very wide cell |
+https://emacs.stackexchange.com/a/53644
+- C-c <TAB> : toggle narrowing for tab
+- C-u C-c <TAB> : narrow all tabs
+- C-c ` : edit cell
+| <10>             | <15>                        |
+| A very wide cell | Another very very wide cell |
 *** visualize references
-    - org-table-field-info (C-c ?) : show the current cell's info
-    - org-table-toggle-coordinate-overlays ("C-c }") : visualize reference info
+- org-table-field-info (C-c ?) : show the current cell's info
+- org-table-toggle-coordinate-overlays ("C-c }") : visualize reference info
 *** formula
-    https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html
-    - e.g. mean over columns
-      #+begin_example org
-      | Student  | Maths | Physics | Mean            |
-      |----------+-------+---------+-----------------|
-      | Bertrand |    13 |      09 | :=vmean($2..$3) |
-      | Henri    |    15 |      14 |                 |
-      | Arnold   |    17 |      13 |                 |
-      #+end_example
-      then type "C-c C-c"
-    - interactively update formula for a specific cell
-      - move cursor to a cell where a formula is applied
-      - type "C-u C-c ="
+https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html
+- e.g. mean over columns
+  #+begin_example org
+  | Student  | Maths | Physics | Mean            |
+  |----------+-------+---------+-----------------|
+  | Bertrand |    13 |      09 | :=vmean($2..$3) |
+  | Henri    |    15 |      14 |                 |
+  | Arnold   |    17 |      13 |                 |
+  #+end_example
+  then type "C-c C-c"
+- interactively update formula for a specific cell
+  - move cursor to a cell where a formula is applied
+  - type "C-u C-c ="
 *** formula examples
-    - mean over columns
-      ~:=vmean($2..$3)~
-    - sum over rows
-      ~:=vsum(@2..@10)"~
-    - add two cell values
-      ~:=@3$2 + @2$4~
+- mean over columns
+  ~:=vmean($2..$3)~
+- sum over rows
+  ~:=vsum(@2..@10)"~
+- add two cell values
+  ~:=@3$2 + @2$4~
 *** relative table reference
-    https://orgmode.org/manual/References.html
-    - ~@-2~ : 2 step previous row
-    - ~$+3~ : 3 step next column
-    - ~@-2$+3~ : a cell which is 2 step previous in rows and 3 step next in columns
+https://orgmode.org/manual/References.html
+- ~@-2~ : 2 step previous row
+- ~$+3~ : 3 step next column
+- ~@-2$+3~ : a cell which is 2 step previous in rows and 3 step next in columns
 
 * Mobile
-  https://orgmode.org/worg/org-tutorials/
+https://orgmode.org/worg/org-tutorials/
 ** Orgzly
 ** Organice
-   - App: https://organice.200ok.ch/
-   - Github: https://github.com/200ok-ch/organice
-   - Documentation: https://organice.200ok.ch/documentation.html
+- App: https://organice.200ok.ch/
+- Github: https://github.com/200ok-ch/organice
+- Documentation: https://organice.200ok.ch/documentation.html
 
 * indentation
 ** remove hard indentation
-   use "org-unindent-buffer"
+use "org-unindent-buffer"
 ** add hard indentation
-   use "org-indent-region"
+use "org-indent-region"
 ** switch between odd/oddeven bullet levels
-   https://orgmode.org/manual/Hard-indentation.html
-   - M-x org-convert-to-odd-levels
-   - M-x org-convert-to-oddeven-levels
+https://orgmode.org/manual/Hard-indentation.html
+- M-x org-convert-to-odd-levels
+- M-x org-convert-to-oddeven-levels
 ** Indentation setting per each file(buffer)
-   https://www.reddit.com/r/emacs/comments/97naje/comment/e49rzvi/?utm_source=share&utm_medium=web2x&context=3
-   https://orgmode.org/manual/In_002dbuffer-Settings.html#DOCF151
+https://www.reddit.com/r/emacs/comments/97naje/comment/e49rzvi/?utm_source=share&utm_medium=web2x&context=3
+https://orgmode.org/manual/In_002dbuffer-Settings.html#DOCF151
 
-   Start the org file with the following in-buffer settings
-   - #+STARTUP: indent
-   - #+STARTUP: noindent
+Start the org file with the following in-buffer settings
+- #+STARTUP: indent
+- #+STARTUP: noindent
 
 * Beamer
 ** Example
-   https://orgmode.org/manual/A-Beamer-example.html
+https://orgmode.org/manual/A-Beamer-example.html
 ** .org to .pdf
-   https://stackoverflow.com/a/39171652
-   - M-x org-beamer-export-to-pdf
-     - after the command is executed, you can run the following shortcut:
-       C-c C-e l P
+https://stackoverflow.com/a/39171652
+- M-x org-beamer-export-to-pdf
+  - after the command is executed, you can run the following shortcut:
+    C-c C-e l P
 
 * Timer
-  - reference: https://orgmode.org/manual/Timers.html
-  - tutorial: https://www.youtube.com/watch?v=lxkPeJS6keY
+- reference: https://orgmode.org/manual/Timers.html
+- tutorial: https://www.youtube.com/watch?v=lxkPeJS6keY
 ** D-Bus error fix
 *** Error: (dbus-error "No connection to bus" :session)
-    https://github.com/emacs-eaf/emacs-application-framework/issues/36#issuecomment-409860979
-    add the following code into the window-manger's configuration
-    #+begin_src sh
-    eval $(dbus-launch)
-    export DBUS_SESSION_BUS_ADDRESS
-    #+end_src
+https://github.com/emacs-eaf/emacs-application-framework/issues/36#issuecomment-409860979
+add the following code into the window-manger's configuration
+#+begin_src sh
+eval $(dbus-launch)
+export DBUS_SESSION_BUS_ADDRESS
+#+end_src
 *** Error: (dbus-error "The name org.freedesktop.Notifications was not provided by any .service files")
-    https://unix.stackexchange.com/a/458661
-    #+begin_src sh
-    sudo apt install notify-osd
-    sudo apt install dunst
-    #+end_src
+https://unix.stackexchange.com/a/458661
+#+begin_src sh
+sudo apt install notify-osd
+sudo apt install dunst
+#+end_src
 
 * Miscellaneous
 ** Tagging for heading
-   Type 'C-c C-c' on the line of heading
-   Then, you can insert a tag
+Type 'C-c C-c' on the line of heading
+Then, you can insert a tag
 ** Insert properties
-   type 'C-c C-x p' to insert properties in a specific heading
+type 'C-c C-x p' to insert properties in a specific heading

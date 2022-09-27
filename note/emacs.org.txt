@@ -1,218 +1,218 @@
 
 * Emacs execution
 ** emacs without gui
-   $ emacs --no-window-system
-   $ or
-   $ emacs -nw
+$ emacs --no-window-system
+$ or
+$ emacs -nw
 ** emacsclient
 *** multiple daemon
-    https://emacs.stackexchange.com/questions/495/multiple-emacs-instances-each-with-their-own-server/505#505
-    $ emacs --daemon=workspaceN
-    $ emacsclient -t -s workspaceN
+https://emacs.stackexchange.com/questions/495/multiple-emacs-instances-each-with-their-own-server/505#505
+$ emacs --daemon=workspaceN
+$ emacsclient -t -s workspaceN
 **** list daemons
-     $ ps -fu dhnam | grep "emacs --daemon"
+$ ps -fu dhnam | grep "emacs --daemon"
 *** open a file with existing emacs frame of running server
-    https://www.emacswiki.org/emacs/EmacsClient#h5o-4
-    $ emacsclient --alternate-editor="" some-file.extention
+https://www.emacswiki.org/emacs/EmacsClient#h5o-4
+$ emacsclient --alternate-editor="" some-file.extention
 ** user-defined command-line arguments
-   https://stackoverflow.com/a/2112346/6710003
-   https://stackoverflow.com/questions/10909738/emacs-custom-command-line-arguments
+https://stackoverflow.com/a/2112346/6710003
+https://stackoverflow.com/questions/10909738/emacs-custom-command-line-arguments
 
 * Command
 ** help commands
 *** apropos-command (C-h a)
-    it shows commands (interactively callable functions) that match a pattern
+it shows commands (interactively callable functions) that match a pattern
 ** Esc-=: count lines
 *** Be careful of Alt-= in Putty
-    It changes the default character set to some weird character set.
+It changes the default character set to some weird character set.
 ** Removing dependencies
-   M-x package-autoremove
+M-x package-autoremove
 ** rectangle-mark-mode
-   https://stackoverflow.com/a/25068794
+https://stackoverflow.com/a/25068794
 *** replace strings in a rectangle
-    https://stackoverflow.com/a/45270265
-    1. rectangle-mark-mode
-    2. query-replace or query-replace-regexp
+https://stackoverflow.com/a/45270265
+1. rectangle-mark-mode
+2. query-replace or query-replace-regexp
 ** cua-selection-mode
-   mode for visible rectangle region
-   - cua-set-rectangle-mark (C-RET): enagle/disable rectangle-mark
+mode for visible rectangle region
+- cua-set-rectangle-mark (C-RET): enagle/disable rectangle-mark
 
 ** Finding files depending of old cl package
-   https://github.com/hlissner/doom-emacs/issues/3372
-   (require 'loadhist)
-   (file-dependents (feature-file 'cl))
+https://github.com/hlissner/doom-emacs/issues/3372
+(require 'loadhist)
+(file-dependents (feature-file 'cl))
 ** Find files by names
-   https://emacs.stackexchange.com/a/29001/26068
-   M-x find-name-dired  ; requires regex such as "*some-file*" (a file name containing "some-file")
+https://emacs.stackexchange.com/a/29001/26068
+M-x find-name-dired  ; requires regex such as "*some-file*" (a file name containing "some-file")
 ** GUI emacs font size change (text-scale-adjust)
-   - increase font size
-     - C-x C-=
-     - C-x C-+p
-   - decrease font size
-     - C-x C--
-   - set to default font size
-     - C-x C-0
+- increase font size
+  - C-x C-=
+  - C-x C-+p
+- decrease font size
+  - C-x C--
+- set to default font size
+  - C-x C-0
 ** set-fill-prefix: remembering prefix of the current line
-   - it's bound to "C-x ."
-   - Then, "M-j" (default-indent-new-line) fills the new line with the prefix
-   - To cancel the effect, move the cursor to the beginning of the current line, then call 'set-fill-prefix
+- it's bound to "C-x ."
+- Then, "M-j" (default-indent-new-line) fills the new line with the prefix
+- To cancel the effect, move the cursor to the beginning of the current line, then call 'set-fill-prefix
 ** indent-rigidly
-   https://emacs.stackexchange.com/a/9467
-   indent-rigidly (C-x TAB)
+https://emacs.stackexchange.com/a/9467
+indent-rigidly (C-x TAB)
 ** align-regexp
-   https://stackoverflow.com/a/20119400
-   - align muliple lines within a region with respect strings
-     which are matched with a regular expression.
-   - the matched strings become columns
+https://stackoverflow.com/a/20119400
+- align muliple lines within a region with respect strings
+  which are matched with a regular expression.
+- the matched strings become columns
 ** Example
-   - before processing
-     #+begin_example
-     row 1 & is & here
-     this & is & row2
-     and & here is & row 3
-     #+end_example
-   - align-regexp recipe
-     1. make a region
-     2. run the command: C-u M-x align-regexp
-     3. pass arguments of the command: "\(\s-*\)&" -> "1" -> "1"
-   - after align-regexp
-     #+begin_example
-     row 1 & is      & here
-     this  & is      & row2
-     and   & here is & row 3
-     #+end_example
+- before processing
+  #+begin_example
+  row 1 & is & here
+  this & is & row2
+  and & here is & row 3
+  #+end_example
+- align-regexp recipe
+  1. make a region
+  2. run the command: C-u M-x align-regexp
+  3. pass arguments of the command: "\(\s-*\)&" -> "1" -> "1"
+- after align-regexp
+  #+begin_example
+  row 1 & is      & here
+  this  & is      & row2
+  and   & here is & row 3
+  #+end_example
 ** Window configuration
-   https://emacs.stackexchange.com/a/2714/26068
-   - window-configuration-to-register (C-x r w <char>): save window configuration
-   - jump-to-register (C-x r j <char>): apply the configuration
+https://emacs.stackexchange.com/a/2714/26068
+- window-configuration-to-register (C-x r w <char>): save window configuration
+- jump-to-register (C-x r j <char>): apply the configuration
 ** python commands
 *** run-python
-    - 'run-python is mapped to C-c C-p in *.py file
-    - when the command is initially executed,
-      python process's working directory is the path of the current buffer
-    - when the python processe is terminated, but the buffer is not killed,
-      the buffer keeps its working directory,
-      and newly-created process inherits the working directory
-    - run-python can make multiple python shells with a prefix argument (e.g. C-u M-x run-python)
-      where you should say "yes" about the prompt "Make dedicated process?"
-      however, dedicated process cannot interactively work with buffers of python files
+- 'run-python is mapped to C-c C-p in *.py file
+- when the command is initially executed,
+  python process's working directory is the path of the current buffer
+- when the python processe is terminated, but the buffer is not killed,
+  the buffer keeps its working directory,
+  and newly-created process inherits the working directory
+- run-python can make multiple python shells with a prefix argument (e.g. C-u M-x run-python)
+  where you should say "yes" about the prompt "Make dedicated process?"
+  however, dedicated process cannot interactively work with buffers of python files
 *** python-shell-switch-to-shell
-    - 'python-shell-switch-to-shell is mapepd to C-c C-z in *.py file
-    - it switches to the buffer of python shell executed by 'run-python
+- 'python-shell-switch-to-shell is mapepd to C-c C-z in *.py file
+- it switches to the buffer of python shell executed by 'run-python
 *** python-shell-send-buffer
-    - 'python-shell-send-buffer is mapepd to C-c C-c in *.py file
-    - the command sends the entire code of the current buffer
+- 'python-shell-send-buffer is mapepd to C-c C-c in *.py file
+- the command sends the entire code of the current buffer
 *** python-shell-send-region
-    - 'python-shell-send-buffer is mapepd to C-c C-r in *.py file
-    - the command sends the code of the current region
+- 'python-shell-send-buffer is mapepd to C-c C-r in *.py file
+- the command sends the code of the current region
 *** miscellaneous
-    there are other commands whose names start with "python-shell-"
+there are other commands whose names start with "python-shell-"
 ** monitor running processes
 *** emacs internal processes
-    https://emacs.stackexchange.com/a/28066
-    M-x list-processes
+https://emacs.stackexchange.com/a/28066
+M-x list-processes
 *** display system processes
-    https://emacs.stackexchange.com/a/48285
-    M-x proced
+https://emacs.stackexchange.com/a/48285
+M-x proced
 **** display all processes
-     https://www.reddit.com/r/emacs/comments/3vanut/comment/cxlvo1w/?utm_source=share&utm_medium=web2x&context=3
-     - type "f"
-     - insert "all"
+https://www.reddit.com/r/emacs/comments/3vanut/comment/cxlvo1w/?utm_source=share&utm_medium=web2x&context=3
+- type "f"
+- insert "all"
 ** finding occurences
-   - grep
-   - rgrep
-   - occur (M-s o) : show all lines in the current buffer containing a match for REGEXP.
+- grep
+- rgrep
+- occur (M-s o) : show all lines in the current buffer containing a match for REGEXP.
 ** Async-shell-command shell command
-   M-x async-shell-command
-   or
-   M-&
+M-x async-shell-command
+or
+M-&
 ** Exception handling
-   https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/
+https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/
 ** Debug with Edebug
-   - official reference
-     https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
-     - commands for execution modes
-       
-   - example
-     https://www.emacswiki.org/emacs/SourceLevelDebugger
-*** commands for execution modes
-    https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug-Execution-Modes.html
-    https://www.gnu.org/software/emacs/manual/html_node/elisp/Jumping.html
-    https://www.gnu.org/software/emacs/manual/html_node/elisp/Breakpoints.html
+- official reference
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug.html
+  - commands for execution modes
 
-    - edebug-stop (S)
-    - edebug-step-mode (SPC)
-    - edebug-next-mode (n)
-    - edebug-step-in (i)
-    - edebug-trace-mode (t)
-    - edebug-go-mode (g): go - run until the next breakpoint
-    - edebug-continue-mode (c) : continue - pause one second at each breakpoint, and then continue
-    - edebug-set-breakpoint (b) : set a breakpoint at the stop point at or after point
-    - top-level (q) : quit debugging
-    - ...
+- example
+  https://www.emacswiki.org/emacs/SourceLevelDebugger
+*** commands for execution modes
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Edebug-Execution-Modes.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Jumping.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Breakpoints.html
+
+- edebug-stop (S)
+- edebug-step-mode (SPC)
+- edebug-next-mode (n)
+- edebug-step-in (i)
+- edebug-trace-mode (t)
+- edebug-go-mode (g): go - run until the next breakpoint
+- edebug-continue-mode (c) : continue - pause one second at each breakpoint, and then continue
+- edebug-set-breakpoint (b) : set a breakpoint at the stop point at or after point
+- top-level (q) : quit debugging
+- ...
 *** eval-defun (C-M-x)
-    - "eval-defun" evaluates a function definition, then the function's body can be navigated by edebug
-    - to debug a function's body, you should evaluate the function with "eval-defun" (C-M-x)
-      or, the function should be found by "xref-find-definitions" (M-.)
-    - to start debug by interactive function call, such as "M-x some-function",
-      you should evaluate "some-function" with "eval-defun" and prefix argument (C-u C-M-x)
-    - also, you can start debugger from a s-expression, rather then inside the function evaluated by "C-u C-M-x"
-      - move cursor after a function call (or a s-expression)
-      - type C-M-x, then debugger starts inside a function evaluated by "C-u C-M-x"
-      - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
+- "eval-defun" evaluates a function definition, then the function's body can be navigated by edebug
+- to debug a function's body, you should evaluate the function with "eval-defun" (C-M-x)
+  or, the function should be found by "xref-find-definitions" (M-.)
+- to start debug by interactive function call, such as "M-x some-function",
+  you should evaluate "some-function" with "eval-defun" and prefix argument (C-u C-M-x)
+- also, you can start debugger from a s-expression, rather then inside the function evaluated by "C-u C-M-x"
+  - move cursor after a function call (or a s-expression)
+  - type C-M-x, then debugger starts inside a function evaluated by "C-u C-M-x"
+  - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
 *** error: Don’t know where ‘some-function’ is defined
-    to debug the inside of a function, the function should be evaluated with C-M-x
+to debug the inside of a function, the function should be evaluated with C-M-x
 *** edebug-all-defs
-    - M-x edebug-all-defs toggles the value of the variable edebug-all-defs
-    - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
+- M-x edebug-all-defs toggles the value of the variable edebug-all-defs
+- when edebug-all-defs is true, you can debug an interactive command by M-x some-command
 ** toggle-menu-bar-mode-from-frame
-   enable/disable menu-bar
+enable/disable menu-bar
 ** toggle-input-method
-   - "C-\" : change to the default input method if it exists
-   - "C-u C-\" : choose an input method and change to it
+- "C-\" : change to the default input method if it exists
+- "C-u C-\" : choose an input method and change to it
 ** query-replace-regexp
 *** replace numbers with rounded numbers
-    https://stackoverflow.com/a/23644015
-    #+begin_example
-    <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.3f" \#&) <RET>
-    #+end_example
+https://stackoverflow.com/a/23644015
+#+begin_example
+<C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.3f" \#&) <RET>
+#+end_example
 *** replace numbers with rounded numbers multiplied 100
-    https://stackoverflow.com/a/23644015
-    #+begin_example
-    <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.1f" (* \#& 100)) <RET>
-    #+end_example
+https://stackoverflow.com/a/23644015
+#+begin_example
+<C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.1f" (* \#& 100)) <RET>
+#+end_example
 ** clone-indirect-buffer-other-window (C-x 4 c)
-   clone the current buffer to the other window
+clone the current buffer to the other window
 ** apply a function over multiple buffers
-   - ibuffer
-   - ibuffer-mark-by-name-regexp (% n) to mark buffers by their name, using a regexp.
-   - ibuffer-do-eval (E) to evaluate a lisp expression
-   - ibuffer-do-save (S)
+- ibuffer
+- ibuffer-mark-by-name-regexp (% n) to mark buffers by their name, using a regexp.
+- ibuffer-do-eval (E) to evaluate a lisp expression
+- ibuffer-do-save (S)
 * My command
 ** xah-open-in-external-app
-   it opens a file with an external program within dired-mode.
+it opens a file with an external program within dired-mode.
 
 * Customize
 ** Emacs terminal key translation
-   In terminal, some keystroke is translated as another one.
+In terminal, some keystroke is translated as another one.
 
-   See the StackExchange answer
-   https://emacs.stackexchange.com/a/2531
-   "when pressing C-/ in terminal, it actually invokes C-_."
+See the StackExchange answer
+https://emacs.stackexchange.com/a/2531
+"when pressing C-/ in terminal, it actually invokes C-_."
 ** trigger C-c prefix by another key
 ** using key-translation-map
-   https://www.reddit.com/r/emacs/comments/8a7unt/comment/dwwocdy/?utm_source=share&utm_medium=web2x&context=3
-   #+begin_src elisp
-   (progn
-     (define-key key-translation-map (kbd "s-e") (kbd "C-c")))
-   #+end_src
+https://www.reddit.com/r/emacs/comments/8a7unt/comment/dwwocdy/?utm_source=share&utm_medium=web2x&context=3
+#+begin_src elisp
+(progn
+  (define-key key-translation-map (kbd "s-e") (kbd "C-c")))
+#+end_src
 ** using key-translation
-   https://www.reddit.com/r/emacs/comments/8apn20/comment/dx255km/?utm_source=share&utm_medium=web2x&context=3
-   #+begin_src elisp
-   (keyboard-translate ?\C-z ?\C-c)
-   #+end_src
+https://www.reddit.com/r/emacs/comments/8apn20/comment/dx255km/?utm_source=share&utm_medium=web2x&context=3
+#+begin_src elisp
+(keyboard-translate ?\C-z ?\C-c)
+#+end_src
 ** Change text colors with describe-char
-   https://emacs.stackexchange.com/a/18199/26068
+https://emacs.stackexchange.com/a/18199/26068
 # ** Enhance mark & region selection speed
 #    https://www.reddit.com/r/emacs/comments/7wezb4/how_can_i_make_line_rendering_faster/
 #    - disable 'font-lock-mode
@@ -224,448 +224,448 @@
 #      - lots rare unicode characters in buffer makes emacs slow.
 ** Local variable
 *** directory-local
-    https://blog.allardhendriksen.nl/posts/tracking-project-virtual-environments-with-pyvenv-tracking-mode/
-    https://endlessparentheses.com/a-quick-guide-to-directory-local-variables.html
+https://blog.allardhendriksen.nl/posts/tracking-project-virtual-environments-with-pyvenv-tracking-mode/
+https://endlessparentheses.com/a-quick-guide-to-directory-local-variables.html
 
-    directory-local variables are applied to all sub-directories
+directory-local variables are applied to all sub-directories
 
-    - 'nil' could be used instead of a specific mode to apply the variable for all modes.
-      https://www.emacswiki.org/emacs/DirectoryVariables
+- 'nil' could be used instead of a specific mode to apply the variable for all modes.
+  https://www.emacswiki.org/emacs/DirectoryVariables
 
-    - e.g. add a new variable to '.dir-locals.el'
-      - Move to the project root
-      - M-x add-dir-local-variable
-        - python-mode
-        - pyvenv-workon --> some-python-environment
+- e.g. add a new variable to '.dir-locals.el'
+  - Move to the project root
+  - M-x add-dir-local-variable
+    - python-mode
+    - pyvenv-workon --> some-python-environment
 **** directory-local variable with eval
-     https://stackoverflow.com/questions/2833928/how-do-i-set-buffer-local-variable-from-eval-in-dir-local-el#
+https://stackoverflow.com/questions/2833928/how-do-i-set-buffer-local-variable-from-eval-in-dir-local-el#
 
-     e.g. both code is identical
-     #+begin_src elisp
-     ((nil . ((compilation-directory . "/home/vava/code_directory/")
-              (compilation-command . "rake"))))
-     #+end_src
-     
-     #+begin_src elisp
-     ((nil . ((eval . (setq compilation-directory "/home/vava/code_directory"))
-              (compilation-command . "rake"))))
-     #+end_src
+e.g. both code is identical
+#+begin_src elisp
+((nil . ((compilation-directory . "/home/vava/code_directory/")
+         (compilation-command . "rake"))))
+#+end_src
+
+#+begin_src elisp
+((nil . ((eval . (setq compilation-directory "/home/vava/code_directory"))
+         (compilation-command . "rake"))))
+#+end_src
 *** file local variable
-    https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
-    https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions
-    https://www.linuxtopia.org/online_books/linux_tool_guides/gnu_emacs_manual/File-Variables.html
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
+https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions
+https://www.linuxtopia.org/online_books/linux_tool_guides/gnu_emacs_manual/File-Variables.html
 
-    Example of local varaible setup for org-mode:
-    - With the first line:
-      #+begin_example
-      # -*- eval: (message "foo"); -*-
-      #+end_example
+Example of local varaible setup for org-mode:
+- With the first line:
+  #+begin_example
+  # -*- eval: (message "foo"); -*-
+  #+end_example
 
-    - Or starts with "Local Variables"
+- Or starts with "Local Variables"
 
-      "local variables list" should be declared in near the end of the
-      file.  The start of the local variables list should be no more
-      than 3000 characters from the end of the file, and must be on
-      the last page if the file is divided into pages.
+  "local variables list" should be declared in near the end of the
+  file.  The start of the local variables list should be no more
+  than 3000 characters from the end of the file, and must be on
+  the last page if the file is divided into pages.
 
-      #+begin_example
-      # Local Variables:
-      # eval: (message "foo")
-      # eval: (message "bar")
-      # End:
-      #+end_example
+  #+begin_example
+  # Local Variables:
+  # eval: (message "foo")
+  # eval: (message "bar")
+  # End:
+  #+end_example
 ** Key binding to function
-   https://stackoverflow.com/a/15647443
+https://stackoverflow.com/a/15647443
 ** Code Characters for interactive
-   https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes
 ** change entire font size
-   https://stackoverflow.com/a/296316
-   (set-face-attribute 'default nil :height 120)
+https://stackoverflow.com/a/296316
+(set-face-attribute 'default nil :height 120)
 ** running custom shell commands
-   https://stackoverflow.com/a/12228646
-   alias, script or custom command defined in ~/.bashrc can be used once BASH_ENV is set to the config
-   $ BASH_ENV=~/.bashrc emacs
+https://stackoverflow.com/a/12228646
+alias, script or custom command defined in ~/.bashrc can be used once BASH_ENV is set to the config
+$ BASH_ENV=~/.bashrc emacs
 ** custom command line argument
-   #+BEGIN_SRC elisp
-   (progn
-     (progn
-       (defvar exwm-cmd-arg-passed nil)
+#+BEGIN_SRC elisp
+(progn
+  (progn
+    (defvar exwm-cmd-arg-passed nil)
 
-       (let ((remaining-cmd-args (cdr command-line-args)))
-         ;; originally '(cdr command-line-args) is passed into `command-line-1'
-         (setq exwm-cmd-arg-passed (member "--exwm" remaining-cmd-args)))
+    (let ((remaining-cmd-args (cdr command-line-args)))
+      ;; originally '(cdr command-line-args) is passed into `command-line-1'
+      (setq exwm-cmd-arg-passed (member "--exwm" remaining-cmd-args)))
 
-       ;; exwm setup
-       (defun exwm-cmd-arg-handler (switch)
-         ;; do nothing
-         )
+    ;; exwm setup
+    (defun exwm-cmd-arg-handler (switch)
+      ;; do nothing
+      )
 
-       (add-to-list 'command-switch-alist '("--exwm" . exwm-cmd-arg-handler)))
+    (add-to-list 'command-switch-alist '("--exwm" . exwm-cmd-arg-handler)))
 
-     (when exwm-cmd-arg-passed
-       ;; do something if --exwm is passed from command line
-       (progn '(do something))))
-   #+END_SRC
+  (when exwm-cmd-arg-passed
+    ;; do something if --exwm is passed from command line
+    (progn '(do something))))
+#+END_SRC
 
 * Install Emacs
 ** Emacs 25
-   https://askubuntu.com/a/851646
-   sudo add-apt-repository ppa:kelleyk/emacs
-   sudo apt-get update
-   sudo apt-get install emacs25
+https://askubuntu.com/a/851646
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt-get update
+sudo apt-get install emacs25
 ** Install emacs with conda-forge
-   https://anaconda.org/conda-forge/emacs
-   $ conda install -c conda-forge emacs
-   eamcs can be installed in virtual env
+https://anaconda.org/conda-forge/emacs
+$ conda install -c conda-forge emacs
+eamcs can be installed in virtual env
 ** Installing source
-   https://emacs.stackexchange.com/questions/7184/where-are-emacs-lisp-files
-   sudo apt-get install emacs25-el
+https://emacs.stackexchange.com/questions/7184/where-are-emacs-lisp-files
+sudo apt-get install emacs25-el
 *** Old way
 **** Download
-     download emacs source code from https://github.com/emacs-mirror/emacs
-     e.g. wget https://github.com/emacs-mirror/emacs/archive/emacs-25.3.zip
+download emacs source code from https://github.com/emacs-mirror/emacs
+e.g. wget https://github.com/emacs-mirror/emacs/archive/emacs-25.3.zip
 **** Commands
-     cd /tmp
-     wget https://github.com/emacs-mirror/emacs/archive/emacs-25.3.zip
-     unzip emacs-25.3.zip
-     cp -R emacs-emacs-25.3/lisp/* /usr/share/emacs/25.3/lisp
+cd /tmp
+wget https://github.com/emacs-mirror/emacs/archive/emacs-25.3.zip
+unzip emacs-25.3.zip
+cp -R emacs-emacs-25.3/lisp/* /usr/share/emacs/25.3/lisp
 ** Install emacs with snap
-   it's compiled with native-comp option
-   https://www.reddit.com/r/emacs/comments/ob5pzw/comment/h3ne358/?utm_source=share&utm_medium=web2x&context=3
+it's compiled with native-comp option
+https://www.reddit.com/r/emacs/comments/ob5pzw/comment/h3ne358/?utm_source=share&utm_medium=web2x&context=3
 *** install snap
-    $ sudo apt update
-    $ sudo apt install snapd
+$ sudo apt update
+$ sudo apt install snapd
 *** install emacs
-    $ sudo snap install emacs --edge --classic
-    # $ sudo snap install emacs --classic
+$ sudo snap install emacs --edge --classic
+# $ sudo snap install emacs --classic
 *** uninstall
-    $ sudo snap remove <package>
+$ sudo snap remove <package>
 *** path to the emacs
-    "/snap/emacs/current/usr/bin/emacs"
+"/snap/emacs/current/usr/bin/emacs"
 ** build emacs with native comp
-   https://gist.github.com/kiennq/0f3e65098725b1f9708da8c92972e705
-   - install
-     #+begin_src sh
-     git clone git://git.savannah.gnu.org/emacs.git --depth=1
-     cd emacs
-     # git fetch origin feature/native-comp
+https://gist.github.com/kiennq/0f3e65098725b1f9708da8c92972e705
+- install
+  #+begin_src sh
+  git clone git://git.savannah.gnu.org/emacs.git --depth=1
+  cd emacs
+  # git fetch origin feature/native-comp
 
-     sudo add-apt-repository -y ppa:ubuntu-toolchain-r/ppa
-     sudo apt install -y autoconf make checkinstall texinfo libxpm-dev libjpeg-dev \
-          libgif-dev libtiff-dev libpng-dev libgnutls28-dev libncurses5-dev \
-          libjansson-dev libharfbuzz-dev libgccjit-10-dev gcc-10 g++-10
-     sudo apt update
-     sudo apt -y upgrade
+  sudo add-apt-repository -y ppa:ubuntu-toolchain-r/ppa
+  sudo apt install -y autoconf make checkinstall texinfo libxpm-dev libjpeg-dev \
+       libgif-dev libtiff-dev libpng-dev libgnutls28-dev libncurses5-dev \
+       libjansson-dev libharfbuzz-dev libgccjit-10-dev gcc-10 g++-10
+  sudo apt update
+  sudo apt -y upgrade
 
-     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
-     sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
+  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+  sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
 
-     ./autogen.sh
-     ./configure --with-json --with-modules --with-harfbuzz --with-compress-install \
-                 --with-threads --with-included-regex --with-zlib --with-cairo --without-rsvg\
-                 --without-sound --without-imagemagick  --without-toolkit-scroll-bars \
-                 --without-gpm --without-dbus --without-makeinfo --without-pop \
-                 --without-mailutils --without-gsettings --with-nativecomp
-     make NATIVE_FULL_AOT=1 -j$(nproc)
-     sudo checkinstall -y -D --pkgname=emacs-nativecomp --pkgversion=1$(git rev-parse --short HEAD) \
-          --requires="libjansson-dev,libharfbuzz-dev,libgccjit-10-dev" --pkggroup=emacs --gzman=yes \
-          make install-strip
-     #+end_src
+  ./autogen.sh
+  ./configure --with-json --with-modules --with-harfbuzz --with-compress-install \
+              --with-threads --with-included-regex --with-zlib --with-cairo --without-rsvg\
+              --without-sound --without-imagemagick  --without-toolkit-scroll-bars \
+              --without-gpm --without-dbus --without-makeinfo --without-pop \
+              --without-mailutils --without-gsettings --with-nativecomp
+  make NATIVE_FULL_AOT=1 -j$(nproc)
+  sudo checkinstall -y -D --pkgname=emacs-nativecomp --pkgversion=1$(git rev-parse --short HEAD) \
+       --requires="libjansson-dev,libharfbuzz-dev,libgccjit-10-dev" --pkggroup=emacs --gzman=yes \
+       make install-strip
+  #+end_src
 
-   - after installation, you can see the message below
-     #+begin_example
-     Done. The new package has been installed and saved to
-     /home/dhnam/program/emacs/emacs-nativecomp_1f03d0de-1_amd64.deb
-     You can remove it from your system anytime using: 
-     $ dpkg -r emacs-nativecomp
-     #+end_example
+- after installation, you can see the message below
+  #+begin_example
+  Done. The new package has been installed and saved to
+  /home/dhnam/program/emacs/emacs-nativecomp_1f03d0de-1_amd64.deb
+  You can remove it from your system anytime using: 
+  $ dpkg -r emacs-nativecomp
+  #+end_example
 
-   - (optional )re-install emacs from .deb
-     #+begin_src sh
-     sudo dpkg -i emacs-nativecomp_1f03d0de-1_amd64.deb
-     #+end_src
+- (optional )re-install emacs from .deb
+  #+begin_src sh
+  sudo dpkg -i emacs-nativecomp_1f03d0de-1_amd64.deb
+  #+end_src
 
 ** build emacs with native comp 2
 >>>>>>> 51beffc2164f9957db18e0de48ddffb694f198d2
-   https://sangwoo-joh.github.io/emacs-native-comp
-   #+begin_src sh
-   git clone git://git.savannah.gnu.org/emacs.git --depth=1
-   cd emacs
-   # git fetch origin feature/native-comp
-   #+end_src
+https://sangwoo-joh.github.io/emacs-native-comp
+#+begin_src sh
+git clone git://git.savannah.gnu.org/emacs.git --depth=1
+cd emacs
+# git fetch origin feature/native-comp
+#+end_src
 
-   #+begin_src sh
-   sudo apt install autoconf
-   sudo apt-get install texinfo
-   sudo apt install libgtk-3-dev
-   sudo apt install libxpm-dev libgif-dev libungif-bin gnutls-bin
-   #+end_src
+#+begin_src sh
+sudo apt install autoconf
+sudo apt-get install texinfo
+sudo apt install libgtk-3-dev
+sudo apt install libxpm-dev libgif-dev libungif-bin gnutls-bin
+#+end_src
 
-   #+begin_src sh
-   sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-   sudo apt-get install gcc-10 g++-10 libgccjit0 libgccjit-10-dev libjansson4 libjansson-dev
-   export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
-   ./autogen.sh
-   ./configure --with-nativecomp
-   make -jN
-   sudo make install
-   emacs --version  # shows GNU Emacs 28.0.50
-   #+end_src
+#+begin_src sh
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get install gcc-10 g++-10 libgccjit0 libgccjit-10-dev libjansson4 libjansson-dev
+export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+./autogen.sh
+./configure --with-nativecomp
+make -jN
+sudo make install
+emacs --version  # shows GNU Emacs 28.0.50
+#+end_src
 ** check if native comp is applied
-   https://www.reddit.com/r/emacs/comments/kco74y/comment/gfsby8c/?utm_source=share&utm_medium=web2x&context=3
+https://www.reddit.com/r/emacs/comments/kco74y/comment/gfsby8c/?utm_source=share&utm_medium=web2x&context=3
 
-   C-h f (or M-x describe-function) company-complete
-   #+begin_example
-   company-complete is an interactive native compiled Lisp function in ‘company.el’.
-   #+end_example
+C-h f (or M-x describe-function) company-complete
+#+begin_example
+company-complete is an interactive native compiled Lisp function in ‘company.el’.
+#+end_example
 
 * Package install
 ** Manual install
-   M-x package-install RET auctex RET
+M-x package-install RET auctex RET
 ** Check if a package is installed
-   https://stackoverflow.com/a/41775524
-   (package-installed-p 'auctex)
-   (package-installed-p 'counsel)
-   (package-installed-p 'swiper)
+https://stackoverflow.com/a/41775524
+(package-installed-p 'auctex)
+(package-installed-p 'counsel)
+(package-installed-p 'swiper)
 
 * Modes & Packages
 ** Evil
 *** Evil-collection
-    https://github.com/emacs-evil/evil-collection
+https://github.com/emacs-evil/evil-collection
 ** Advice
 *** Evil vs Emacs
-    - https://stackoverflow.com/questions/43380067/why-would-you-prefer-spacemacs-over-emacs-running-on-evil-mode
+- https://stackoverflow.com/questions/43380067/why-would-you-prefer-spacemacs-over-emacs-running-on-evil-mode
 ** Link
-   https://orgmode.org/manual/Handling-links.html
-   - C-c l     (org-store-link)
-   - C-c C-l     (org-insert-link)
-   - C-c C-o     (org-open-at-point)
+https://orgmode.org/manual/Handling-links.html
+- C-c l     (org-store-link)
+- C-c C-l     (org-insert-link)
+- C-c C-o     (org-open-at-point)
 ** Dired
 *** dired-do-shell-command
-    https://stackoverflow.com/a/380013
+https://stackoverflow.com/a/380013
 *** wdired-mode
-    https://stackoverflow.com/a/49472114
-    wdired-change-to-wdired-mode can change symbol link.
+https://stackoverflow.com/a/49472114
+wdired-change-to-wdired-mode can change symbol link.
 *** dired-mode compression commands
-    https://emacs.stackexchange.com/questions/20833/how-to-deal-with-zip-archives-in-dired
-    - dired-do-compress: Z
-    - dired-do-compress-to: c
+https://emacs.stackexchange.com/questions/20833/how-to-deal-with-zip-archives-in-dired
+- dired-do-compress: Z
+- dired-do-compress-to: c
 *** Change files names in dired
-    - C-x C-q: dired-toggle-read-only
-      - C-c C-c: apply changes
-      - C-c ESC: abort
+- C-x C-q: dired-toggle-read-only
+  - C-c C-c: apply changes
+  - C-c ESC: abort
 *** Find files by name with regex
-    M-x find-name-dired
+M-x find-name-dired
 *** Export
 **** to pdf
-     C-c C-e l p (org-latex-export-to-pdf)
+C-c C-e l p (org-latex-export-to-pdf)
 *** dired-do-async-shell-command (&)
-    run an executable asynchronously
+run an executable asynchronously
 *** find and open multiples files
-    1. find-dired
-       e.g.
-       - M-x find-dired
-       - Run find in directory: ~/record/note/
-       - Run find (with args): -name *.txt
-    2. dired-toggle-marks (t)
-    3. dired-do-find-marked-files (F)
+1. find-dired
+   e.g.
+   - M-x find-dired
+   - Run find in directory: ~/record/note/
+   - Run find (with args): -name *.txt
+2. dired-toggle-marks (t)
+3. dired-do-find-marked-files (F)
 
 ** Tramp
 *** Remote
-    C-x C-f /ssh:you@remotehost:/home/user/file
+C-x C-f /ssh:you@remotehost:/home/user/file
 *** SCP rather than ssh
-    https://emacs.stackexchange.com/a/13802
-    C-x C-f /scp:you@remotehost:/home/user/file
-    This use ssh when file size is small and scp when file size is large
+https://emacs.stackexchange.com/a/13802
+C-x C-f /scp:you@remotehost:/home/user/file
+This use ssh when file size is small and scp when file size is large
 *** Sudo
-    C-x C-f /sudo::/home/user/file
+C-x C-f /sudo::/home/user/file
 *** Multi-hop
-    https://stackoverflow.com/questions/2177687/open-file-via-ssh-and-sudo-with-emacs
-    /ssh:you1@remotehost1|ssh:you2@remotehost2:/path
-    /ssh:you@remotehost|sudo:remotehost:/path/to/file
-    /ssh:you@remotehost#12345|sudo::/path/to/file
+https://stackoverflow.com/questions/2177687/open-file-via-ssh-and-sudo-with-emacs
+/ssh:you1@remotehost1|ssh:you2@remotehost2:/path
+/ssh:you@remotehost|sudo:remotehost:/path/to/file
+/ssh:you@remotehost#12345|sudo::/path/to/file
 *** Specific port
-    /ssh:you@remotehost#33333:/home/user/file
+/ssh:you@remotehost#33333:/home/user/file
 *** From windows emacs
-    /plink:you@remotehost#33333:/home/user
+/plink:you@remotehost#33333:/home/user
 *** Various protocols
 **** rclone
-     /rclone:storage:/path/to/file
+/rclone:storage:/path/to/file
 **** ftp
-     /ftp:user@remotehost:/path/to/file
+/ftp:user@remotehost:/path/to/file
 ** Desktop mode & window register
-   https://stackoverflow.com/a/46146046
-   https://stackoverflow.com/a/2575269
-   - frameset-to-register: C-x r f
-   - jump-to-register: C-x r j
+https://stackoverflow.com/a/46146046
+https://stackoverflow.com/a/2575269
+- frameset-to-register: C-x r f
+- jump-to-register: C-x r j
 ** Desktop mode save/load
-   save and load configuration file from a specific directory
+save and load configuration file from a specific directory
 
-   M-x desktop-save
-   M-x desktop-change-dir
+M-x desktop-save
+M-x desktop-change-dir
 ** Hydra
-   - examples:
-     https://github.com/abo-abo/hydra/wiki/Emacs
+- examples:
+  https://github.com/abo-abo/hydra/wiki/Emacs
 ** ansi-term
-   - M-x ansi-term
-   - C-u M-x ansi-term  # for another ansi-term
-   - C-c C-j: term-line-mode
-   - C-c C-k: term-char-mode
+- M-x ansi-term
+- C-u M-x ansi-term  # for another ansi-term
+- C-c C-j: term-line-mode
+- C-c C-k: term-char-mode
 ** eshell
-   - M-x eshell
-   - C-u M-x eshell  # for another eshell
+- M-x eshell
+- C-u M-x eshell  # for another eshell
 
-   - eshell works with GNU screen
+- eshell works with GNU screen
 ** Counsel & swiper
-   - Raw-string match
-     Use the below command during ivy search.
-     M-r: ivy-toggle-regexp-quote
+- Raw-string match
+  Use the below command during ivy search.
+  M-r: ivy-toggle-regexp-quote
 *** counsel-find-file
-    - ivy-immediate-done (C-M-j) : exit the minibuffer with current input instead of current candidate.
-    - ivy-alt-done (C-j) : extend path to the directory
-    - ivy-done (RET or C-m) : exit the minibuffer with the selected candidate
-    - ivy-partial-or-done (TAB) : extend path to the directory or open the filecoco
-    - ivy-insert-current (M-i) : insert the current candidate into the minibuffer
-    - ivy-insert-current-full (C-M-y) : Insert the full Yank the current directory into the minibuffer
+- ivy-immediate-done (C-M-j) : exit the minibuffer with current input instead of current candidate.
+- ivy-alt-done (C-j) : extend path to the directory
+- ivy-done (RET or C-m) : exit the minibuffer with the selected candidate
+- ivy-partial-or-done (TAB) : extend path to the directory or open the filecoco
+- ivy-insert-current (M-i) : insert the current candidate into the minibuffer
+- ivy-insert-current-full (C-M-y) : Insert the full Yank the current directory into the minibuffer
 ** ido
 *** using command without id
-    https://stackoverflow.com/questions/6771664/disable-ido-mode-for-specific-commands
-    ido is disabled in come commands by repeatedly hitting the last key.
-    
-    ido-magic-forward-char (C-f) disables ido
-    e.g.
-    - C-x C-b ... C-f  switch to ‘ido-find-file’.
-    - C-x C-f ... C-f  fallback to non-Ido ‘find-file’.
-    - C-x C-d ... C-f  fallback to non-Ido brief ‘dired’.
-    - C-x d ... C-f    fallback to non-Ido ‘dired’.
+https://stackoverflow.com/questions/6771664/disable-ido-mode-for-specific-commands
+ido is disabled in come commands by repeatedly hitting the last key.
 
-    ido-copy-current-file-name changes 'ido-write-file' to write-file'
+ido-magic-forward-char (C-f) disables ido
+e.g.
+- C-x C-b ... C-f  switch to ‘ido-find-file’.
+- C-x C-f ... C-f  fallback to non-Ido ‘find-file’.
+- C-x C-d ... C-f  fallback to non-Ido brief ‘dired’.
+- C-x d ... C-f    fallback to non-Ido ‘dired’.
+
+ido-copy-current-file-name changes 'ido-write-file' to write-file'
 ** Flyspell
-   - aspell for Windows
-     - http://aspell.net/win32/
-     - after install, update add path to the 'bin' directory to 'Path' variable
+- aspell for Windows
+  - http://aspell.net/win32/
+  - after install, update add path to the 'bin' directory to 'Path' variable
 ** pdf-tools
-   - install
-     1) M-x package-install pdf-tools
-     2) M-x pdf-tools-install
-   - Fit Height / Width / Page
-     H / W / P
+- install
+  1) M-x package-install pdf-tools
+  2) M-x pdf-tools-install
+- Fit Height / Width / Page
+  H / W / P
 ** EWW
-   https://gnu.huihoo.org/emacs/manual/eww/Basics.html
-   open url or search keywords
-   change 'eww-search-prefix with another value to chagne the default search engine
-   - open in another buffer
-     use prefix argument to open web page in another buffer
-     e.g. C-u M-x eww
+https://gnu.huihoo.org/emacs/manual/eww/Basics.html
+open url or search keywords
+change 'eww-search-prefix with another value to chagne the default search engine
+- open in another buffer
+  use prefix argument to open web page in another buffer
+  e.g. C-u M-x eww
 ** markdown mode
-   https://jblevins.org/projects/markdown-mode/
+https://jblevins.org/projects/markdown-mode/
 *** usage
-    - markdown-preview (C-c C-c p): preview in the current page
+- markdown-preview (C-c C-c p): preview in the current page
 *** error fix: Markdown command markdown is not found
-    install 'markdown'
-    $ sudo apt install markdown
+install 'markdown'
+$ sudo apt install markdown
 ** AucTex
 *** error "LaTeX: there were unresolved citations, {6} pages"
-    - M-x TeX-command-master (C-c C-c) BibTeX
-    - run "C-c C-c" again
+- M-x TeX-command-master (C-c C-c) BibTeX
+- run "C-c C-c" again
 
 * KeyChanges
 ** Windows: auto-hot key
-   $Ctrl::CapsLock
-   $CapsLock::Ctrl
+$Ctrl::CapsLock
+$CapsLock::Ctrl
 *** run on startup
-    http://autohotkey.com/docs/FAQ.htm#Startup
-    1. Find the script file, select it, and press Control+C.
-    2. Press Win+R to open the Run dialog, then enter shell:startup and click OK or Enter. This will open the Startup folder for the current user. To instead open the folder for all users, enter shell:common startup (however, in that case you must be an administrator to proceed).
-    3. Right click inside the window, and click "Paste Shortcut". The shortcut to the script should now be in the Startup folder.
+http://autohotkey.com/docs/FAQ.htm#Startup
+1. Find the script file, select it, and press Control+C.
+2. Press Win+R to open the Run dialog, then enter shell:startup and click OK or Enter. This will open the Startup folder for the current user. To instead open the folder for all users, enter shell:common startup (however, in that case you must be an administrator to proceed).
+3. Right click inside the window, and click "Paste Shortcut". The shortcut to the script should now be in the Startup folder.
 ** Linux
 *** Ubuntu
 **** gnome-tweak-tool (CapsLock as Ctrl - Not swapping)
-     - install gnome-tweak-tool
-       $ sudo apt-get install gnome-tweak-tool
-     - run gnome-tweak-tool
-       $ gnome-tweaks
-       $ # or
-       $ gnome-tweak-tool
-     - Keyboard & Mouse -> Keyboard -> Additional Layout Options
-       -> Ctrl position (or Caps Lock behavior)
+- install gnome-tweak-tool
+  $ sudo apt-get install gnome-tweak-tool
+- run gnome-tweak-tool
+  $ gnome-tweaks
+  $ # or
+  $ gnome-tweak-tool
+- Keyboard & Mouse -> Keyboard -> Additional Layout Options
+  -> Ctrl position (or Caps Lock behavior)
 **** remapping key for virtual console (tty terminal)
-     https://askubuntu.com/a/44125
+https://askubuntu.com/a/44125
 ***** simple version
-      https://wiki.kldp.org/HOWTO/html/Keyboard-and-Console/Keyboard-and-Console-HOWTO-15.html
-      $ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
-      or
-      #+begin_src sh
-      sudo loadkeys
-      keymaps 0-15
-      keycode 58 = Control
-      keycode 29 = Caps_Lock
-      #+end_src
+https://wiki.kldp.org/HOWTO/html/Keyboard-and-Console/Keyboard-and-Console-HOWTO-15.html
+$ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
+or
+#+begin_src sh
+sudo loadkeys
+keymaps 0-15
+keycode 58 = Control
+keycode 29 = Caps_Lock
+#+end_src
 ***** detailed version
-      https://linuxcommando.blogspot.com/2008/03/remap-caps-lock-key-for-virtual-console.html
-      - Find key codes
-        showkey command print codes of typed keys for 10 seconds
-        $ sudo showkey
-        - Caps Lock: code 58
-      - Find symbolic names of keys
-        $ sudo dumpkeys -l |grep -i ctrl
-        - Left Ctrl has symbolic name of "CtrlL"
-          (Catuion: the name CtrlL would not work in virtual console)
-      - Map a key code to a symbolic name
-        $ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
+https://linuxcommando.blogspot.com/2008/03/remap-caps-lock-key-for-virtual-console.html
+- Find key codes
+  showkey command print codes of typed keys for 10 seconds
+  $ sudo showkey
+  - Caps Lock: code 58
+- Find symbolic names of keys
+  $ sudo dumpkeys -l |grep -i ctrl
+  - Left Ctrl has symbolic name of "CtrlL"
+    (Catuion: the name CtrlL would not work in virtual console)
+- Map a key code to a symbolic name
+  $ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
 **** Keyboard configuration with XKBOPTIONS
-     https://askubuntu.com/a/418773
-     https://superuser.com/a/623453
-     - Method 1: update "/etc/default/keyboard"
-       (initial option -> XKBOPTIONS="")
-       #+begin_example
-       XKBOPTIONS="ctrl:swapcaps"
-       #+end_example
-       then, reboot
-     - Method 2: reconfigure
-       https://wiki.debian.org/Keyboard
-       $ sudo dpkg-reconfigure keyboard-configuration
-       $ service keyboard-setup restart
+https://askubuntu.com/a/418773
+https://superuser.com/a/623453
+- Method 1: update "/etc/default/keyboard"
+  (initial option -> XKBOPTIONS="")
+  #+begin_example
+  XKBOPTIONS="ctrl:swapcaps"
+  #+end_example
+  then, reboot
+- Method 2: reconfigure
+  https://wiki.debian.org/Keyboard
+  $ sudo dpkg-reconfigure keyboard-configuration
+  $ service keyboard-setup restart
 *** xmodemap
-    https://unix.stackexchange.com/questions/107566/how-to-swap-ctrl-and-capslock-using-xmodmap
-    https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/
+https://unix.stackexchange.com/questions/107566/how-to-swap-ctrl-and-capslock-using-xmodmap
+https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/
 
-    - Configuration file: ~/.Xmodmap
-      #+begin_example
-      !
-      ! Swap Caps_Lock and Control_L
-      !
-      remove Lock = Caps_Lock
-      remove Control = Control_L
-      remove Lock = Control_L
-      remove Control = Caps_Lock
-      keysym Control_L = Caps_Lock
-      keysym Caps_Lock = Control_L
-      add Lock = Caps_Lock
-      add Control = Control_L
-      #+end_example
+- Configuration file: ~/.Xmodmap
+  #+begin_example
+  !
+  ! Swap Caps_Lock and Control_L
+  !
+  remove Lock = Caps_Lock
+  remove Control = Control_L
+  remove Lock = Control_L
+  remove Control = Caps_Lock
+  keysym Control_L = Caps_Lock
+  keysym Caps_Lock = Control_L
+  add Lock = Caps_Lock
+  add Control = Control_L
+  #+end_example
 
-    - Running Xmodemap
-      $ xmodmap ~/.Xmodmap
+- Running Xmodemap
+  $ xmodmap ~/.Xmodmap
 
-    - Startup setting
-      (todo)
+- Startup setting
+  (todo)
 *** others
-    - autokey
+- autokey
 
 * Bug fix
 ** Server socket permission denied
-   https://github.com/magit/with-editor/issues/7#issuecomment-548822576
+https://github.com/magit/with-editor/issues/7#issuecomment-548822576
 
-   When you encounter a message like "Creating directory: Permission
-   denied, /run/user/1001", You need to change 'server-socket-dir.
+When you encounter a message like "Creating directory: Permission
+denied, /run/user/1001", You need to change 'server-socket-dir.
 
-   (I saw the bug when I use magit operations, where the linux account
-   doesn't have root privilege)
+(I saw the bug when I use magit operations, where the linux account
+doesn't have root privilege)
 
-   #+begin_src elisp
+#+begin_src elisp
 (setq
- server-name "emacs"
- ;; default server-socket-dir is (getenv "XDG_RUNTIME_DIR")
- server-socket-dir "/home/user-account/emacs-server-socket")
-   #+end_src
+server-name "emacs"
+;; default server-socket-dir is (getenv "XDG_RUNTIME_DIR")
+server-socket-dir "/home/user-account/emacs-server-socket")
+#+end_src

@@ -1,29 +1,29 @@
 
 * langtool
-  https://github.com/mhayashi1120/Emacs-langtool
+https://github.com/mhayashi1120/Emacs-langtool
 ** Download LanguageTool jar file
-   - download archive
-     https://languagetool.org/download/
-   - daily builds
-     (reference: https://github.com/languagetool-org/languagetool/issues/684 )
-     https://www.languagetool.org/download/snapshots/?C=M;O=D
-   - downloading example
-     #+begin_src sh
-     wget https://languagetool.org/download/LanguageTool-5.7.zip -P ~/Downloads
-     cd ~/Downloads
-     unzip LanguageTool-5.7.zip -d ~/program
-     mv ~/program/LanguageTool-5.7 ~/program/LanguageTool
-     #+end_src
+- download archive
+  https://languagetool.org/download/
+- daily builds
+  (reference: https://github.com/languagetool-org/languagetool/issues/684 )
+  https://www.languagetool.org/download/snapshots/?C=M;O=D
+- downloading example
+  #+begin_src sh
+  wget https://languagetool.org/download/LanguageTool-5.7.zip -P ~/Downloads
+  cd ~/Downloads
+  unzip LanguageTool-5.7.zip -d ~/program
+  mv ~/program/LanguageTool-5.7 ~/program/LanguageTool
+  #+end_src
 ** install jave 8
-   - java version check
-     $ java -version
+- java version check
+  $ java -version
 ** download langtool package
-   #+begin_src sh
-   cd ~/.emacs.d/package
-   git clone https://github.com/mhayashi1120/Emacs-langtool.git langtool
-   #+end_src
+#+begin_src sh
+cd ~/.emacs.d/package
+git clone https://github.com/mhayashi1120/Emacs-langtool.git langtool
+#+end_src
 ** (optional) running server
-   #+begin_src sh
-   cd ~/program/LanguageTool
-   java -jar languagetool-server.jar --port <port> --config <file>
-   #+end_src
+#+begin_src sh
+cd ~/program/LanguageTool
+java -jar languagetool-server.jar --port <port> --config <file>
+#+end_src

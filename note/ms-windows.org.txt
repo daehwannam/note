@@ -1,31 +1,31 @@
 
 * Path setup
-  - 컴퓨터 + 마우스 오른쪽 --> 고급 시스템 설정 --> 환경 변수 --> 시스템 변수: Path
-  - all paths are connected via semi-colon(;)
-  - former(left side) paths have more priorities than latter(right site) paths
+- 컴퓨터 + 마우스 오른쪽 --> 고급 시스템 설정 --> 환경 변수 --> 시스템 변수: Path
+- all paths are connected via semi-colon(;)
+- former(left side) paths have more priorities than latter(right site) paths
 
 * Linux utilities from git
-  - Git for windows install useful binaries
-    ex. C:\Program Files\Git\usr\bin
-  - the "bin" directory should be added to "Path" environment variable
-  - then, linux commands can be used
-    ex. ssh-keygen ssh-copy-id
+- Git for windows install useful binaries
+  ex. C:\Program Files\Git\usr\bin
+- the "bin" directory should be added to "Path" environment variable
+- then, linux commands can be used
+  ex. ssh-keygen ssh-copy-id
 
 * Emacs shortcut
-  "emacs.exe" open two windows, so "runemacs.exe" should be used as shortcut instead.
-  e.g. C:\Application\emacs-27.2-x86_64\bin\runemacs.exe
+"emacs.exe" open two windows, so "runemacs.exe" should be used as shortcut instead.
+e.g. C:\Application\emacs-27.2-x86_64\bin\runemacs.exe
 
-  For the consistent path without version, use the following path:
-       C:\Application\emacs-27.2-x86_64\bin\runemacs.exe
+For the consistent path without version, use the following path:
+     C:\Application\emacs-27.2-x86_64\bin\runemacs.exe
 
 * Environment variables for emacs
-  - add "C:\Application\emacs-27.2-x86_64\bin" to PATH environment variable
-  - add "C:\home" to HOME environment variable (and it should be the only value)
-    ( https://www.reddit.com/r/emacs/comments/a6ka23/change_home_folder_location_windows/ )
+- add "C:\Application\emacs-27.2-x86_64\bin" to PATH environment variable
+- add "C:\home" to HOME environment variable (and it should be the only value)
+  ( https://www.reddit.com/r/emacs/comments/a6ka23/change_home_folder_location_windows/ )
 
 * Startup folder
-  - Windows + R --> shell:startup
+- Windows + R --> shell:startup
 
 * Disable Windows update
-  https://badstorage.tistory.com/86
-  https://itshareit.tistory.com/3
+https://badstorage.tistory.com/86
+https://itshareit.tistory.com/3

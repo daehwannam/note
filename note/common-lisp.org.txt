@@ -1,571 +1,571 @@
 
 * Install
-  https://askubuntu.com/questions/670304/what-is-the-install-routine-for-common-lisp-slime-sbcl-quicklisp-on-ubuntu
-  https://lispcookbook.github.io/cl-cookbook/getting-started.html
+https://askubuntu.com/questions/670304/what-is-the-install-routine-for-common-lisp-slime-sbcl-quicklisp-on-ubuntu
+https://lispcookbook.github.io/cl-cookbook/getting-started.html
 ** install sbcl
-   $ sudo apt-get install sbcl
-   $ sudo apt install sbcl-source  # necessary for "slime-edit-definition" (M-.)
-   or
-   $ conda install -c conda-forge sbcl
+$ sudo apt-get install sbcl
+$ sudo apt install sbcl-source  # necessary for "slime-edit-definition" (M-.)
+or
+$ conda install -c conda-forge sbcl
 ** install quicklisp
-   https://www.quicklisp.org/
-   copy and past the code in the gray box of the website (https://www.quicklisp.org/)
+https://www.quicklisp.org/
+copy and past the code in the gray box of the website (https://www.quicklisp.org/)
 
-   Below is the summary (written at 2020.11.19):
-   $ curl -O https://beta.quicklisp.org/quicklisp.lisp
-   $ curl -O https://beta.quicklisp.org/quicklisp.lisp.asc
-   $ gpg --verify quicklisp.lisp.asc quicklisp.lisp
-   $ sbcl --load quicklisp.lisp
-   * (quicklisp-quickstart:install)
-   * (ql:system-apropos "vecto")
-   * (ql:quickload "vecto")
-   * (ql:add-to-init-file)
-   * (quit)
+Below is the summary (written at 2020.11.19):
+$ curl -O https://beta.quicklisp.org/quicklisp.lisp
+$ curl -O https://beta.quicklisp.org/quicklisp.lisp.asc
+$ gpg --verify quicklisp.lisp.asc quicklisp.lisp
+$ sbcl --load quicklisp.lisp
+* (quicklisp-quickstart:install)
+* (ql:system-apropos "vecto")
+* (ql:quickload "vecto")
+* (ql:add-to-init-file)
+* (quit)
 ** install slime by using quicklisp
-   $ sbcl
-   * (ql:quickload "quicklisp-slime-helper")
-   * (quit)
+$ sbcl
+* (ql:quickload "quicklisp-slime-helper")
+* (quit)
 ** after installing slime, it will say following:
-   - To use, add this to your ~/.emacs:
-     (load (expand-file-name "~/quicklisp/slime-helper.el"))
-     ;; Replace "sbcl" with the path to your implementation
-     (setq inferior-lisp-program "path/to/sbcl")
-   - you can get the path by "which sbcl"
+- To use, add this to your ~/.emacs:
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  ;; Replace "sbcl" with the path to your implementation
+  (setq inferior-lisp-program "path/to/sbcl")
+- you can get the path by "which sbcl"
 ** M-x slime
 ** run a script file in command line
-   $ sbcl --script source.lisp
+$ sbcl --script source.lisp
 
 * Debian
 ** library install
-   https://wiki.debian.org/CommonLisp
-   there are two ways to install libraries in debian
-   - via apt
-     - once a system has been installed, it can be loaded with "require"
-       - "asdf" should be loaded beforehand by (require "asdf")?
-   - via quicklisp
-     - "ql:quickload" tries downloading then loads a system
-     - once a system has been installed, it can be loaded with "require"
-       - "quicklisp" should be loaded beforehand
-       - quicklisp can be loaded by (load "~/quicklisp/setup.lisp")
-         unless "~/.sbclrc" is not updated by (ql:add-to-init-file)
+https://wiki.debian.org/CommonLisp
+there are two ways to install libraries in debian
+- via apt
+  - once a system has been installed, it can be loaded with "require"
+    - "asdf" should be loaded beforehand by (require "asdf")?
+- via quicklisp
+  - "ql:quickload" tries downloading then loads a system
+  - once a system has been installed, it can be loaded with "require"
+    - "quicklisp" should be loaded beforehand
+    - quicklisp can be loaded by (load "~/quicklisp/setup.lisp")
+      unless "~/.sbclrc" is not updated by (ql:add-to-init-file)
 
 * SLIME
 ** Emacs SLIME commands
-   - slime : runs REPL
-   - slime-repl-quit
-   - slime-quit-lisp
-   - slime-edit-definition (M-.) : go to definition from slime REPL
-     The source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
-     ( https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition )
-   - slime-sync-package-and-default-directory (C-c ~) : it will change
-     the current package of the REPL to the package of that file and
-     also set the current directory of the REPL to the parent
-     directory of the file
-   - slime-reindent-defun
+- slime : runs REPL
+- slime-repl-quit
+- slime-quit-lisp
+- slime-edit-definition (M-.) : go to definition from slime REPL
+  The source code should be loaded to find definitions (e.g. slime-load-system, slime-load-file)
+  ( https://slime-devel.common-lisp.narkive.com/aqHOQt9W/problem-with-slime-edit-definition )
+- slime-sync-package-and-default-directory (C-c ~) : it will change
+  the current package of the REPL to the package of that file and
+  also set the current directory of the REPL to the parent
+  directory of the file
+- slime-reindent-defun
 *** Completion
-    - C-c TAB (completion-at-point)
-    - M-/ (dabbrev-expand)
+- C-c TAB (completion-at-point)
+- M-/ (dabbrev-expand)
 *** Compilation vs Evaluation
-    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
-    There are a couple of pragmatic differences when choosing between
-    compiling or evaluating. In general, it is better to compile
-    top-level forms, for two reasons:
-    - Compiling a top-level form highlights warnings and errors in the editor, whereas evaluation does not.
-    - SLIME keeps track of line-numbers of compiled forms, but when a
-      top-level form is evaluated, the file line number information is
-      lost. That’s problematic for code navigation afterwards.
+https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
+There are a couple of pragmatic differences when choosing between
+compiling or evaluating. In general, it is better to compile
+top-level forms, for two reasons:
+- Compiling a top-level form highlights warnings and errors in the editor, whereas evaluation does not.
+- SLIME keeps track of line-numbers of compiled forms, but when a
+  top-level form is evaluated, the file line number information is
+  lost. That’s problematic for code navigation afterwards.
 *** compilation
-    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
-    - C-c C-k (slime-compile-and-load-file)
-    - M-x slime-compile-region
-    - C-c C-c (slime-compile-defun)
+https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
+- C-c C-k (slime-compile-and-load-file)
+- M-x slime-compile-region
+- C-c C-c (slime-compile-defun)
 *** Evaluation (not compilation)
-    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
-    - C-x C-e (slime-eval-last-expression) : the result is printed in the minibuffer.
-    - C-c C-p (slime-pprint-eval-last-expression) : eval and pretty-print the expression before point
-    - C-c C-r : evaluate a region
-    - C-M-x : evaluate a defun
-    - C-c C-e (slime-interactive-eval) : get a prompt that asks for code to eval in the current context
-    - C-c C-j (slime-eval-last-expression-in-repl): send this expression to the REPL and evaluate it
+https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#evaluating-and-compiling-lisp-in-slime
+- C-x C-e (slime-eval-last-expression) : the result is printed in the minibuffer.
+- C-c C-p (slime-pprint-eval-last-expression) : eval and pretty-print the expression before point
+- C-c C-r : evaluate a region
+- C-M-x : evaluate a defun
+- C-c C-e (slime-interactive-eval) : get a prompt that asks for code to eval in the current context
+- C-c C-j (slime-eval-last-expression-in-repl): send this expression to the REPL and evaluate it
 *** Finding referece source
-    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#searching-lisp-code
-    - C-c C-w c (slime-who-calls) : callers of a function
-    - C-c C-w m (slime-who-macroexpands) : places where a macro is expanded
-    - C-c C-w r (slime-who-references) : global variable references
-    - C-c C-w b (slime-who-bind) : global variable bindings
-    - C-c C-w s (slime-who-sets) : global variable setters
-    - C-c C-w a (slime-who-specializes) : methods specialized on a symbol
+https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#searching-lisp-code
+- C-c C-w c (slime-who-calls) : callers of a function
+- C-c C-w m (slime-who-macroexpands) : places where a macro is expanded
+- C-c C-w r (slime-who-references) : global variable references
+- C-c C-w b (slime-who-bind) : global variable bindings
+- C-c C-w s (slime-who-sets) : global variable setters
+- C-c C-w a (slime-who-specializes) : methods specialized on a symbol
 *** Documentation
-    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#lisp-documentation-in-emacs---learning-about-lisp-symbols
-    - C-c C-d d : shows the symbols’ documentation on a new window
-      it's the same result using "describe" function
-    - C-c C-d f : describes a function
-    - C-c C-d h : looks up the symbol documentation in CLHS by opening the web browser.
-      however, it works only on symbols, so there are two more bindings:
-      - C-c C-d # : for reader macros
-      - C-c C-d ~ : for format directives
+https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#lisp-documentation-in-emacs---learning-about-lisp-symbols
+- C-c C-d d : shows the symbols’ documentation on a new window
+  it's the same result using "describe" function
+- C-c C-d f : describes a function
+- C-c C-d h : looks up the symbol documentation in CLHS by opening the web browser.
+  however, it works only on symbols, so there are two more bindings:
+  - C-c C-d # : for reader macros
+  - C-c C-d ~ : for format directives
 *** Resource
-    - The Common Lisp Cookbook
-      https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
-      - SLIME REPL shortcuts
-        https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-slime-repl-shortcuts
-      - SLIME mode shortcuts
-        https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-other-slime-shortcuts
-    - Useful SLIME shortcuts
-      https://www.youtube.com/watch?v=sBcPNr1CKKw
+- The Common Lisp Cookbook
+  https://lispcookbook.github.io/cl-cookbook/emacs-ide.html
+  - SLIME REPL shortcuts
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-slime-repl-shortcuts
+  - SLIME mode shortcuts
+    https://lispcookbook.github.io/cl-cookbook/emacs-ide.html#all-other-slime-shortcuts
+- Useful SLIME shortcuts
+  https://www.youtube.com/watch?v=sBcPNr1CKKw
 ** Debugging
 *** Functions        
-    - (error "message" ...): shows backtrace
-    - (break): go into a debugger
+- (error "message" ...): shows backtrace
+- (break): go into a debugger
 *** interactive debugger shortcuts
-    pressing the following shortcuts on a stack trace frame provide debugging information
-    - v (sldb-show-source) shows the corresponding source file location
-    - e (sldb-eval-in-frame) evaluates an expression on the frame
-    - d (sldb-pprint-eval-in-frame) evaluates an expression on the frame with pretty format
+pressing the following shortcuts on a stack trace frame provide debugging information
+- v (sldb-show-source) shows the corresponding source file location
+- e (sldb-eval-in-frame) evaluates an expression on the frame
+- d (sldb-pprint-eval-in-frame) evaluates an expression on the frame with pretty format
 *** Stepping
-    0. [[*Compile with different optimizations][compile with maximum debugging information]]
-       e.g. "C-u C-c C-c"
-    1. The function to debug should inclue "(break)"
-       or run the function with "step"
-       https://www.reddit.com/r/lisp/comments/1q42pc/comment/cd92k9i/?utm_source=share&utm_medium=web2x&context=3
-       e.g.
-       #+begin_example
-       CL-USER> (step (some-func arg1 arg2))
-       #+end_example
-    2. Choose "STEP-INTO" to go inside the function
-    3. Now, you can use STEP-CONTINUE, STEP-OUT, STEP-NEXT and STEP-INTO
+0. [[*Compile with different optimizations][compile with maximum debugging information]]
+   e.g. "C-u C-c C-c"
+1. The function to debug should inclue "(break)"
+   or run the function with "step"
+   https://www.reddit.com/r/lisp/comments/1q42pc/comment/cd92k9i/?utm_source=share&utm_medium=web2x&context=3
+   e.g.
+   #+begin_example
+   CL-USER> (step (some-func arg1 arg2))
+   #+end_example
+2. Choose "STEP-INTO" to go inside the function
+3. Now, you can use STEP-CONTINUE, STEP-OUT, STEP-NEXT and STEP-INTO
 *** SLDB: the SLIME debugger
-    https://slime.common-lisp.dev/doc/html/Debugger.html
+https://slime.common-lisp.dev/doc/html/Debugger.html
 *** slime-repl-inspect (C-c I)
-    inspect an object, such as a variable, function or class
-    (you can call "(inspect 'symbol)" instead on REPL)
+inspect an object, such as a variable, function or class
+(you can call "(inspect 'symbol)" instead on REPL)
 *** trace & untrace
-    https://lispcookbook.github.io/cl-cookbook/debugging.html#trace
+https://lispcookbook.github.io/cl-cookbook/debugging.html#trace
 **** trace
-     when a traced function is called, it shows the all other function calls until the traced function is terminated
-     e.g.
-     #+begin_src lisp
-     (defun factorial (n)
-       (if (plusp n)
-           (* n (factorial (1- n)))
-           1))
-     (trace factorial)
+when a traced function is called, it shows the all other function calls until the traced function is terminated
+e.g.
+#+begin_src lisp
+(defun factorial (n)
+  (if (plusp n)
+      (* n (factorial (1- n)))
+      1))
+(trace factorial)
 
-     (factorial 2)
-     #+end_src
+(factorial 2)
+#+end_src
 *** untrace
-    an untraced function doesn't show its internal function calls anymore
-    e.g.
-    #+begin_src lisp
-    (untrace factorial)
-    #+end_src
+an untraced function doesn't show its internal function calls anymore
+e.g.
+#+begin_src lisp
+(untrace factorial)
+#+end_src
 
-    you can untrace all functions by passing no argument to "untrace"
-    e.g.
-    #+begin_src lisp
-    (untrace)
-    #+end_src
+you can untrace all functions by passing no argument to "untrace"
+e.g.
+#+begin_src lisp
+(untrace)
+#+end_src
 *** tracing with slime
 **** slime-trace-dialog-toggle-trace (C-c M-t)
-     you can toggle to trace/untrace a function with the slime command
+you can toggle to trace/untrace a function with the slime command
 **** slime-trace-dialog (C-c T)
-     it manages and showa tracing information
-     shortcuts:
-     - slime-trace-dialog-fetch-status (g): update status
-     - slime-trace-dialog-fetch-traces (G): update traces
+it manages and showa tracing information
+shortcuts:
+- slime-trace-dialog-fetch-status (g): update status
+- slime-trace-dialog-fetch-traces (G): update traces
 *** tracing recursive functions
-    recursive functions may not be traced due to optimization
-    in that case the optimization level should be lowered to trace recursion:
-    #+begin_src lisp
-    (declaim (optimize (debug 3)))
-    #+end_src
+recursive functions may not be traced due to optimization
+in that case the optimization level should be lowered to trace recursion:
+#+begin_src lisp
+(declaim (optimize (debug 3)))
+#+end_src
 *** tracing method invocation
-    https://lispcookbook.github.io/cl-cookbook/debugging.html#tracing-method-invocation
-    #+begin_src lisp
-    (trace foo :methods t)
-    #+end_src
+https://lispcookbook.github.io/cl-cookbook/debugging.html#tracing-method-invocation
+#+begin_src lisp
+(trace foo :methods t)
+#+end_src
 ** Compile with different optimizations
-   https://lispcookbook.github.io/cl-cookbook/debugging.html#compile-with-maximum-debugging-information
-   - C-u C-c C-c: compile with maximum debugging information
-     cf. optimization option
-     #+begin_src lisp
-     (declaim (optimize (speed 0) (space 0) (debug 3)))
-     #+end_src
-   - M-- C-c C-c: compile for speed
+https://lispcookbook.github.io/cl-cookbook/debugging.html#compile-with-maximum-debugging-information
+- C-u C-c C-c: compile with maximum debugging information
+  cf. optimization option
+  #+begin_src lisp
+  (declaim (optimize (speed 0) (space 0) (debug 3)))
+  #+end_src
+- M-- C-c C-c: compile for speed
 
 * CFFI
-  - tutorial: https://www.youtube.com/watch?v=lvHi5LyhxGk
+- tutorial: https://www.youtube.com/watch?v=lvHi5LyhxGk
 
 * Note
 ** Function arguments
-   http://www.gigamonkeys.com/book/functions.html
-   addtional arguments: optional, rest, keyword
+http://www.gigamonkeys.com/book/functions.html
+addtional arguments: optional, rest, keyword
 ** function(#') and lambda
-   https://stackoverflow.com/a/29346982/6710003
+https://stackoverflow.com/a/29346982/6710003
 
-   The results of following expresions are same:
-   > #'(lambda ...)
-   > (function (lambda ...))
-   > (lambda ...)
+The results of following expresions are same:
+> #'(lambda ...)
+> (function (lambda ...))
+> (lambda ...)
 
-   because lambda is a macro and the expanded form include function:
-   > (macroexpand-1 '(lambda (x) (+ x x x)))
-   ==> (function (lambda (x) (+ x x x)))
+because lambda is a macro and the expanded form include function:
+> (macroexpand-1 '(lambda (x) (+ x x x)))
+==> (function (lambda (x) (+ x x x)))
 *** sharping quote(#') vs. quote(')
-    https://lispcookbook.github.io/cl-cookbook/functions.html#referencing-functions-by-name-single-quote--or-sharpsign-quote-
-    - sharping quote(#') consider lexical scope and quote(') cannot do
-    - sharping quote(#') is usually prefered
-    
-** Macro
-   - examples: https://lispcookbook.github.io/cl-cookbook/macros.html
-** package
-   http://www.flownet.com/gat/packages.pdf
-   https://lispcookbook.github.io/cl-cookbook/packages.html
+https://lispcookbook.github.io/cl-cookbook/functions.html#referencing-functions-by-name-single-quote--or-sharpsign-quote-
+- sharping quote(#') consider lexical scope and quote(') cannot do
+- sharping quote(#') is usually prefered
 
-   - a package is a collection of symbols of distinct names
-   - a package cannot have symbols with the same name
-   - packages cannot have a same name.
+** Macro
+- examples: https://lispcookbook.github.io/cl-cookbook/macros.html
+** package
+http://www.flownet.com/gat/packages.pdf
+https://lispcookbook.github.io/cl-cookbook/packages.html
+
+- a package is a collection of symbols of distinct names
+- a package cannot have symbols with the same name
+- packages cannot have a same name.
 *** current package
-    a special variable ~*package*~ indicate the current package
-    #+begin_src lisp
-    ,*package*
-    #+end_src
+a special variable ~*package*~ indicate the current package
+#+begin_src lisp
+,*package*
+#+end_src
 *** initial package
-    common-lisp-user is the inital package
+common-lisp-user is the inital package
 *** making a package
-    a new package cange defined by 'defpackage'.
-    however, the command doesn't switch to the new package.
-    #+begin_src lisp
-    (defpackage :my-package
-      (:use :cl))
-    #+end_src
-    (also, package can be created by 'make-package' function, which is used defpackage)
+a new package cange defined by 'defpackage'.
+however, the command doesn't switch to the new package.
+#+begin_src lisp
+(defpackage :my-package
+  (:use :cl))
+#+end_src
+(also, package can be created by 'make-package' function, which is used defpackage)
 **** defpackage
-     - all of functionalieis about importing, exporting, shadowing, etc, can be processed by 'defpackage'
-     - you should not use other functions except 'defpackage'
-     - the arguments could be symbols, strings, keywords, etc,
-       however, you should refrain to pass symbols as arguments. otherwise, symbols would be interned before passing themselves as arguments
+- all of functionalieis about importing, exporting, shadowing, etc, can be processed by 'defpackage'
+- you should not use other functions except 'defpackage'
+- the arguments could be symbols, strings, keywords, etc,
+  however, you should refrain to pass symbols as arguments. otherwise, symbols would be interned before passing themselves as arguments
 *** switching package
-    change the current package by 'in-package' macro
-    #+begin_src lisp
-    (in-package :my-package)
-    #+end_src
+change the current package by 'in-package' macro
+#+begin_src lisp
+(in-package :my-package)
+#+end_src
 *** accessing symbols in packages
-    - package:exported-symbol
-    - package::non-exported-symbol.
+- package:exported-symbol
+- package::non-exported-symbol.
 *** importing symbols in other packages
 **** importing a symbol
-     #+begin_src lisp
-     (import 'some-package::some-function)
-     (some-function)
-     #+end_src
+#+begin_src lisp
+(import 'some-package::some-function)
+(some-function)
+#+end_src
 ***** import a list of symbols
-      #+begin_src lisp
-      (defpackage :some-package (:use :cl))
-      (in-package :some-package)
-      (defvar *symbols* '(foo bar))
-      (in-package :common-lisp-user)
-      (import some-package::*symbols*)  ; import 'foo and 'bar
-      (import 'some-package::*symbols*)  ; import '*symbols*
-      #+end_src
+#+begin_src lisp
+(defpackage :some-package (:use :cl))
+(in-package :some-package)
+(defvar *symbols* '(foo bar))
+(in-package :common-lisp-user)
+(import some-package::*symbols*)  ; import 'foo and 'bar
+(import 'some-package::*symbols*)  ; import '*symbols*
+#+end_src
 **** importing a symbol for package definition
-     #+begin_src lisp
-     (defpackage :my-package
-       (:import-from :some-package :func1 #:func2)
-       (:use :cl))
-     #+end_src
-     - 'my-package' shares symbols 'func1' and 'func2' with package 'some-package'
-     - packages and symbols can be expressed as keywords or sharpsign colon (#:some-name) forms
-     - if ":import-from" include only a package without addtional arguments, it doesn't import anything
-       however, recent ASDF can detect the dependency and load the system including the package
-       https://asdf.common-lisp.dev/asdf.html#The-package_002dinferred_002dsystem-extension
-     - "(:use :cl)" is needed to use exported symbols from "cl" package
+#+begin_src lisp
+(defpackage :my-package
+  (:import-from :some-package :func1 #:func2)
+  (:use :cl))
+#+end_src
+- 'my-package' shares symbols 'func1' and 'func2' with package 'some-package'
+- packages and symbols can be expressed as keywords or sharpsign colon (#:some-name) forms
+- if ":import-from" include only a package without addtional arguments, it doesn't import anything
+  however, recent ASDF can detect the dependency and load the system including the package
+  https://asdf.common-lisp.dev/asdf.html#The-package_002dinferred_002dsystem-extension
+- "(:use :cl)" is needed to use exported symbols from "cl" package
 **** importing all symbols for package definition
-     #+begin_src lisp
-     (defpackage :my-package
-       (:use :cl :ppcre))
-     #+end_src
-     all symbols exported from 'cl' and 'ppcre' are available in 'my-package'.
-     however, exploit 'use' only for importing symbols of your internal packages which you can control.
+#+begin_src lisp
+(defpackage :my-package
+  (:use :cl :ppcre))
+#+end_src
+all symbols exported from 'cl' and 'ppcre' are available in 'my-package'.
+however, exploit 'use' only for importing symbols of your internal packages which you can control.
 **** printing all exported packages
-     #+begin_src lisp
-     (let ((package-name "CL"))  ; the name should be capitalized
-       (do-external-symbols (s (find-package package-name))
-         (print s)))
-     #+end_src
+#+begin_src lisp
+(let ((package-name "CL"))  ; the name should be capitalized
+  (do-external-symbols (s (find-package package-name))
+    (print s)))
+#+end_src
 **** name conflicts of symbols
-     #+begin_src lisp
-     (defpackage :some-package
-       (:use :cl))
-     (in-package :some-package)
-     (defun some-function ()
-       "some-function")
-     (in-package :common-lisp-user)
-     (intern "SOME-FUNCTION")  ; interning a symbol of same name
-     (import 'some-package::some-function)  ; raise an error
-     #+end_src
+#+begin_src lisp
+(defpackage :some-package
+  (:use :cl))
+(in-package :some-package)
+(defun some-function ()
+  "some-function")
+(in-package :common-lisp-user)
+(intern "SOME-FUNCTION")  ; interning a symbol of same name
+(import 'some-package::some-function)  ; raise an error
+#+end_src
 *** home package
-    every symbol has a unique home package.
+every symbol has a unique home package.
 
-    in the below example, home package of 'foo is 'jane, although 'foo is also interned in 'bob
-    #+begin_src lisp
-    (defpackage :jane (:use :cl))
-    (in-package :jane)
-    'foo
-    (defpackage :bob (:use :cl))
-    (in-package bob)
-    (import 'jane::foo)
-    (defpackage :charlie (:use :cl))
-    (in-package charlie)
-    (print 'bob::foo)  ; (symbol-package 'bob::foo) => #<PACKAGE "JANE">
-    #+end_src
+in the below example, home package of 'foo is 'jane, although 'foo is also interned in 'bob
+#+begin_src lisp
+(defpackage :jane (:use :cl))
+(in-package :jane)
+'foo
+(defpackage :bob (:use :cl))
+(in-package bob)
+(import 'jane::foo)
+(defpackage :charlie (:use :cl))
+(in-package charlie)
+(print 'bob::foo)  ; (symbol-package 'bob::foo) => #<PACKAGE "JANE">
+#+end_src
 **** symbol-package
-     'symbol-package' is return the home package of a symbol
-     #+begin_src lisp
-     (symbol-package some-symbol)
-     (symbol-package 'symbol-name)
-     (symbol-package 'package-name::symbol-name)
-     #+end_src
+'symbol-package' is return the home package of a symbol
+#+begin_src lisp
+(symbol-package some-symbol)
+(symbol-package 'symbol-name)
+(symbol-package 'package-name::symbol-name)
+#+end_src
 *** exporting
-    related operations:
-    - export : add a symbol to the exported symbol list
-    - unexport : pop a symbol from the exported symbol list
-    - use-package : import all the exported symbols in a package
-    - unuse-package : unimport all the exported symbols in a package
+related operations:
+- export : add a symbol to the exported symbol list
+- unexport : pop a symbol from the exported symbol list
+- use-package : import all the exported symbols in a package
+- unuse-package : unimport all the exported symbols in a package
 **** shadowing
-     - a symbol added to the "shadowing symbols list" shadow or override symbols with the same name
-     (shadowing is used when use-package is called multiples times over packages exporting symbols with the same names)
-     - shadowing should be carefuly used
-       https://www-fourier.ujf-grenoble.fr/~sergerar/Papers/Packaging.pdf
-     - shadowing functions
-       - shadow: add a symbol into "shadowing symbols list" of a package (and intern the symbol if it wasn't),
-         then the package always use the symbol and doesn't use symbols with the same name from other packages
-       - shadowing-import: import a symbol from another package and the symbol shadow other symbols with the same name.
-     - 'unintern' cancel the effect of 'shadow' and 'shadowing-import'
-       'unintern' could raise name conflicts
+- a symbol added to the "shadowing symbols list" shadow or override symbols with the same name
+(shadowing is used when use-package is called multiples times over packages exporting symbols with the same names)
+- shadowing should be carefuly used
+  https://www-fourier.ujf-grenoble.fr/~sergerar/Papers/Packaging.pdf
+- shadowing functions
+  - shadow: add a symbol into "shadowing symbols list" of a package (and intern the symbol if it wasn't),
+    then the package always use the symbol and doesn't use symbols with the same name from other packages
+  - shadowing-import: import a symbol from another package and the symbol shadow other symbols with the same name.
+- 'unintern' cancel the effect of 'shadow' and 'shadowing-import'
+  'unintern' could raise name conflicts
 
-     #+begin_src lisp
-     (defpackage :p1 (:use :cl))
-     (in-package :p1)
-     (export '(x y z))
+#+begin_src lisp
+(defpackage :p1 (:use :cl))
+(in-package :p1)
+(export '(x y z))
 
-     (defpackage :p2 (:use :cl))
-     (in-package :p2)
-     (export '(x y z))
+(defpackage :p2 (:use :cl))
+(in-package :p2)
+(export '(x y z))
 
-     (defpackage :main (:use :cl))
-     (in-package :main)
+(defpackage :main (:use :cl))
+(in-package :main)
 
-     (shadow 'x)  ; (shadow 'x 'main) or (shadow "X")
-     (shadow "Y")  ; (find-symbol "Y") => :INTERNAL
-     (shadowing-import 'p1:y)  ; shadowing and import
-     (shadowing-import 'p2:z)  ; shadowing and import
+(shadow 'x)  ; (shadow 'x 'main) or (shadow "X")
+(shadow "Y")  ; (find-symbol "Y") => :INTERNAL
+(shadowing-import 'p1:y)  ; shadowing and import
+(shadowing-import 'p2:z)  ; shadowing and import
 
-     (use-package 'p1)
-     (use-package 'p2)
+(use-package 'p1)
+(use-package 'p2)
 
-     (print (symbol-package 'x))  ; #<PACKAGE "MAIN">
-     (print (symbol-package 'y))  ; #<PACKAGE "P1">
-     (print (symbol-package 'z))  ; #<PACKAGE "P2">
+(print (symbol-package 'x))  ; #<PACKAGE "MAIN">
+(print (symbol-package 'y))  ; #<PACKAGE "P1">
+(print (symbol-package 'z))  ; #<PACKAGE "P2">
 
-     ;; (unintern 'x)  ; => name conflicts between 'p1:x and 'p2:x
-     #+end_src
+;; (unintern 'x)  ; => name conflicts between 'p1:x and 'p2:x
+#+end_src
 **** exporting imported symbols
-     a package can export symbols which are imported from other packages
-     #+begin_src lisp
-     (defpackage :test-hwp (:use :cl :alexandria) (:export :copy-array))
-     #+end_src
+a package can export symbols which are imported from other packages
+#+begin_src lisp
+(defpackage :test-hwp (:use :cl :alexandria) (:export :copy-array))
+#+end_src
 ** symbol
 *** interning a symbol
-    http://www.flownet.com/gat/packages.pdf
-    - interning a symbol is an act of putting a symbol into a package
-    - 'intern' return two values: the created symbol and the symbol's type
-    - if a symbol is already interned, the 2nd value of results indicate whether it's internal or external
-      (whether inside or outside or the current package)
-    - interning a symbol into the current package
-      #+begin_src lisp
-      (intern "MY-SYMBOL")
-      #+end_src
-    - interning a symbol into a specific package
-      #+begin_src lisp
-      (intern "MY-SYMBOL" "SOME-PACKAGE-NAME")
-      #+end_src
+http://www.flownet.com/gat/packages.pdf
+- interning a symbol is an act of putting a symbol into a package
+- 'intern' return two values: the created symbol and the symbol's type
+- if a symbol is already interned, the 2nd value of results indicate whether it's internal or external
+  (whether inside or outside or the current package)
+- interning a symbol into the current package
+  #+begin_src lisp
+  (intern "MY-SYMBOL")
+  #+end_src
+- interning a symbol into a specific package
+  #+begin_src lisp
+  (intern "MY-SYMBOL" "SOME-PACKAGE-NAME")
+  #+end_src
 **** functions related to interning
 ***** import
-      'import' add a symbol into a package, so it does interning
-      #+begin_src lisp
-      (setq some-symbol (make-symbol "SOME-NAME"))
-      (print some-symbol)
-      (import some-symbol)
-      (print some-symbol)
-      (eq some-symbol 'some-name)
-      #+end_src
+'import' add a symbol into a package, so it does interning
+#+begin_src lisp
+(setq some-symbol (make-symbol "SOME-NAME"))
+(print some-symbol)
+(import some-symbol)
+(print some-symbol)
+(eq some-symbol 'some-name)
+#+end_src
 ***** unintern
-      'unintern' remove a symbol from a package.
-      it's a reverse operation of 'import'
-      #+begin_src lisp
-      (setq some-symbol 'some-name)
-      (unintern some-symbol)
-      (eq some-symbol 'some-name)  ; 'some-name is the newly interned symbol which is different with some-symbol
-      ;; (import some-symbol)  ; name-conflict error
-      #+end_src
+'unintern' remove a symbol from a package.
+it's a reverse operation of 'import'
+#+begin_src lisp
+(setq some-symbol 'some-name)
+(unintern some-symbol)
+(eq some-symbol 'some-name)  ; 'some-name is the newly interned symbol which is different with some-symbol
+;; (import some-symbol)  ; name-conflict error
+#+end_src
 ***** intern
-      'intern' take a name and make a symbol of the name and import it
-      if a symbol with the same name doesn't exist
+'intern' take a name and make a symbol of the name and import it
+if a symbol with the same name doesn't exist
 
-      definition of intern like:
-      #+begin_src lisp
-      (defun intern (name)
-        (or (find-symbol name)
-            (let ((s (make-symbol name)))
-              (import s)
-              s)))
-      #+end_src
+definition of intern like:
+#+begin_src lisp
+(defun intern (name)
+  (or (find-symbol name)
+      (let ((s (make-symbol name)))
+        (import s)
+        s)))
+#+end_src
 ***** symbol-name
-      'symbol-name' takes a symbol and return its name
-      #+begin_src lisp
-      (symbol-name 'cl:car)
-      (symbol-name 'car)
-      #+end_src
+'symbol-name' takes a symbol and return its name
+#+begin_src lisp
+(symbol-name 'cl:car)
+(symbol-name 'car)
+#+end_src
 ***** symbol-package
-      'symbol-package' returns the home package of a symbol
-      #+begin_src lisp
-      (symbol-package 'cl:car)
-      (symbol-package 'car)
-      #+end_src
+'symbol-package' returns the home package of a symbol
+#+begin_src lisp
+(symbol-package 'cl:car)
+(symbol-package 'car)
+#+end_src
 **** uninterned symbol
-     making uninterned symbols
-     - an uninterned symbol with a uniqure name can be created by 'gensym'
-     - an uninterned symbol with a given string can be created by 'make-symbol'
-     - or you can make a specific symols like #:some-name
-     #+begin_src lisp
-     (gensym)
-     (make-symbol "SOME-NAME")
-     (setf #:some-name 100)
-     #+end_src
+making uninterned symbols
+- an uninterned symbol with a uniqure name can be created by 'gensym'
+- an uninterned symbol with a given string can be created by 'make-symbol'
+- or you can make a specific symols like #:some-name
+#+begin_src lisp
+(gensym)
+(make-symbol "SOME-NAME")
+(setf #:some-name 100)
+#+end_src
 ***** sharpsign colon (#:some-name)
-     http://clhs.lisp.se/Body/02_dhe.htm
-     "#:" introduces an uninterned symbol whose name is
-     symbol-name. Every time this syntax is encountered, a distinct
-     uninterned symbol is created. The symbol-name must have the
-     syntax of a symbol with no package prefix.
+http://clhs.lisp.se/Body/02_dhe.htm
+"#:" introduces an uninterned symbol whose name is
+symbol-name. Every time this syntax is encountered, a distinct
+uninterned symbol is created. The symbol-name must have the
+syntax of a symbol with no package prefix.
 
-     http://www.flownet.com/gat/packages.pdf
-     Usually symbol with "#:" is uninterned symbol,
-     but the exact meaning of "#:" is a symbol without "home package".
-     There is a rare case of "#:", where a symbol is interned for a package but doesn't have a home package.
+http://www.flownet.com/gat/packages.pdf
+Usually symbol with "#:" is uninterned symbol,
+but the exact meaning of "#:" is a symbol without "home package".
+There is a rare case of "#:", where a symbol is interned for a package but doesn't have a home package.
 
-     #+begin_src lisp
-     (defpackage :jane (:use :cl))
-     (in-package :jane)
-     'foo
-     (defpackage :bob (:use :cl))
-     (in-package bob)
-     (import 'jane::foo)
-     (in-package :jane)
-     (unintern 'foo)
-     (print (symbol-package 'bob::foo))  ; => NIL
-     (print 'bob::foo)  ; => #:FOO
-     #+end_src
+#+begin_src lisp
+(defpackage :jane (:use :cl))
+(in-package :jane)
+'foo
+(defpackage :bob (:use :cl))
+(in-package bob)
+(import 'jane::foo)
+(in-package :jane)
+(unintern 'foo)
+(print (symbol-package 'bob::foo))  ; => NIL
+(print 'bob::foo)  ; => #:FOO
+#+end_src
 ***** equality between uninterned symbols
-      'make-symbol' make different symbols although the name is same
-      #+begin_src lisp
-      (setq symbol1 (make-symbol "MY-SYMBOL"))
-      (setq symbol2 (make-symbol "MY-SYMBOL"))
-      (eq symbol1 symbol2)  ; => NIL
+'make-symbol' make different symbols although the name is same
+#+begin_src lisp
+(setq symbol1 (make-symbol "MY-SYMBOL"))
+(setq symbol2 (make-symbol "MY-SYMBOL"))
+(eq symbol1 symbol2)  ; => NIL
 
-      (setq symbol3 'my-symbol)  ; 'my-symbol is a symbol made from Lisp reader, which use make-symbol
-      (setq symbol4 'my-symbol)  ; doesn't make a new symbol and return 'my-symbol
-      (eq symbol3 symbol4)  ; => T ; two symbols are same
-      #+end_src
+(setq symbol3 'my-symbol)  ; 'my-symbol is a symbol made from Lisp reader, which use make-symbol
+(setq symbol4 'my-symbol)  ; doesn't make a new symbol and return 'my-symbol
+(eq symbol3 symbol4)  ; => T ; two symbols are same
+#+end_src
 **** finding an interned symbol
-     #+begin_src lisp
-     (find-symbol "SOME-NAME")  ; the name should be capitalized
-     #+end_src
+#+begin_src lisp
+(find-symbol "SOME-NAME")  ; the name should be capitalized
+#+end_src
 **** uninterned symbols can be used for packages
-     https://lispcookbook.github.io/cl-cookbook/packages.html
-     https://microeducate.tech/uninterned-symbols-in-common-lisp/
-     #+begin_src lisp
-     (defpackage #:iterate
-       (:use :cl)
-       (:nicknames #:iter))
+https://lispcookbook.github.io/cl-cookbook/packages.html
+https://microeducate.tech/uninterned-symbols-in-common-lisp/
+#+begin_src lisp
+(defpackage #:iterate
+  (:use :cl)
+  (:nicknames #:iter))
 
-     (print "ITERATE")
-     (print "ITER")
+(print "ITERATE")
+(print "ITER")
 
-     (in-package #:iter)
-     #+end_src
+(in-package #:iter)
+#+end_src
 *** sharping dot (#.)
-    https://stackoverflow.com/a/59003160
-    sharpsign dot (#.) evaluates the next expression at read time
+https://stackoverflow.com/a/59003160
+sharpsign dot (#.) evaluates the next expression at read time
 
-    - example 1
-      #+begin_src lisp
-      (defvar *some-var* 42)
-      (print '(*some-var* #.*some-var*))
-      (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
-      #+end_src
-    - example 2
-      #+begin_src lisp
-      (defparameter *foo* 42)
-      (read-from-string "#.(setq *foo* \"gotcha\")")
-      (print *foo*)  ; "gotcha"
-      #+end_src
+- example 1
+  #+begin_src lisp
+  (defvar *some-var* 42)
+  (print '(*some-var* #.*some-var*))
+  (print '(*some-var* (* #.*some-var* pi) #.(* pi *some-var*)))
+  #+end_src
+- example 2
+  #+begin_src lisp
+  (defparameter *foo* 42)
+  (read-from-string "#.(setq *foo* \"gotcha\")")
+  (print *foo*)  ; "gotcha"
+  #+end_src
 ** loop
 *** loop with closures
-    #+begin_src lisp
-    (defun dice (n)
-      (lambda ()
-        (1+ (random n))))
+#+begin_src lisp
+(defun dice (n)
+  (lambda ()
+    (1+ (random n))))
 
-    (loop
-      with dice = (dice 6)
-      repeat 20
-      collect (funcall dice))
-    #+end_src
+(loop
+  with dice = (dice 6)
+  repeat 20
+  collect (funcall dice))
+#+end_src
 *** iterate package
 **** solving conflicts with loop macro
-     symbols 'for and 'iter are also used for loop macro.
-     Therefore, they should be shadowed.
-     #+begin_src lisp
-     (asdf:load-system "iterate")  ; (ql:quickload "iterate")
-     (shadowing-import 'iterate:for 'iterate:iter)
-     (use-package :iterate)
-     #+end_src
+symbols 'for and 'iter are also used for loop macro.
+Therefore, they should be shadowed.
+#+begin_src lisp
+(asdf:load-system "iterate")  ; (ql:quickload "iterate")
+(shadowing-import 'iterate:for 'iterate:iter)
+(use-package :iterate)
+#+end_src
 *** series
 **** #M reader macro
-     https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node351.html
+https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node351.html
 ** type
 *** subtypep
-    check if the 1st argument is the subtype of the 2nd argument
-    #+begin_src lisp
-    (subtypep 'ratio 'rational)
-    (subtypep 'integer 'rational)
-    #+end_src
+check if the 1st argument is the subtype of the 2nd argument
+#+begin_src lisp
+(subtypep 'ratio 'rational)
+(subtypep 'integer 'rational)
+#+end_src
 ** arrays and vectors
-   https://lispcookbook.github.io/cl-cookbook/data-structures.html#arrays-and-vectors
-   - a vector is 1-dimensional array
-   - a simple array is
-     - neither displaced (using :displaced-to, to point to another array)
-     - nor adjustable (:adjust-array), nor does it have a fill pointer
-       (fill-pointer, that moves when we add or remove elements).
-   - A simple vector is a simple array that is also not specialized
-     (it doesn’t use :element-type to set the types of the elements).
+https://lispcookbook.github.io/cl-cookbook/data-structures.html#arrays-and-vectors
+- a vector is 1-dimensional array
+- a simple array is
+  - neither displaced (using :displaced-to, to point to another array)
+  - nor adjustable (:adjust-array), nor does it have a fill pointer
+    (fill-pointer, that moves when we add or remove elements).
+- A simple vector is a simple array that is also not specialized
+  (it doesn’t use :element-type to set the types of the elements).
 *** displaced-to
-    https://stackoverflow.com/questions/40810796/displaced-multidimensional-arrays-in-common-lisp
-    https://lispcookbook.github.io/cl-cookbook/arrays.html#reductions
-    displaced arrays share storage with the original array.
-    e.g.
-    #+begin_src lisp
-    (let ((a (make-array '(3 3) :initial-contents 
-                         '((1 2 3) (2 3 1) (3 1 2)))))
-      (make-array 9 :displaced-to a))
-    ;; #(1 2 3 2 3 1 3 1 2)
-    #+end_src
+https://stackoverflow.com/questions/40810796/displaced-multidimensional-arrays-in-common-lisp
+https://lispcookbook.github.io/cl-cookbook/arrays.html#reductions
+displaced arrays share storage with the original array.
+e.g.
+#+begin_src lisp
+(let ((a (make-array '(3 3) :initial-contents 
+                     '((1 2 3) (2 3 1) (3 1 2)))))
+  (make-array 9 :displaced-to a))
+;; #(1 2 3 2 3 1 3 1 2)
+#+end_src
 ** miscellaneous
 *** asterisks(*) variable
-    https://stackoverflow.com/a/34595750
-    - * refers the last value retured by REPL
+https://stackoverflow.com/a/34595750
+- * refers the last value retured by REPL
 *** the meaning of "n" in destructive functions
-    https://stackoverflow.com/a/62145090
-    "The N stands for non-consing, meaning it doesn't need to allocate any new cons cells."
+https://stackoverflow.com/a/62145090
+"The N stands for non-consing, meaning it doesn't need to allocate any new cons cells."

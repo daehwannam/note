@@ -1,201 +1,201 @@
 
 * Setup (texlive)
 ** Install
-   https://www.how2shout.com/linux/install-tex-live-on-ubuntu-20-04-lts-a-free-typesetting-system/
-   #+begin_src bash
-   sudo apt update
-   sudo apt install texlive-full
-   #+end_src
+https://www.how2shout.com/linux/install-tex-live-on-ubuntu-20-04-lts-a-free-typesetting-system/
+#+begin_src bash
+sudo apt update
+sudo apt install texlive-full
+#+end_src
 ** Bash update examples (if necessary)
-   - /usr/local/texlive
-     #+begin_src bash
-     TEXLIVE_VERSION=2018
-     export PATH=/usr/local/texlive/${TEXLIVE_VERSION}/bin/x86_64-linux:$PATH
-     #+end_src
-   - /usr/share/texlive
-     (It may be installed by "apt install texlive-full")
-     ==> No need for path setting?
+- /usr/local/texlive
+  #+begin_src bash
+  TEXLIVE_VERSION=2018
+  export PATH=/usr/local/texlive/${TEXLIVE_VERSION}/bin/x86_64-linux:$PATH
+  #+end_src
+- /usr/share/texlive
+  (It may be installed by "apt install texlive-full")
+  ==> No need for path setting?
 
 * Error fix
 ** ! Undefined control sequence. \pgfsys@svg@newline ->\Hnewline
-   https://tex.stackexchange.com/a/232739
+https://tex.stackexchange.com/a/232739
 
-   1. Open /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-tex4ht.def
-   2. Find line with:
-      \def\pgfsys@svg@newline{\Hnewline}
-   3. Replace the line with:
-      \def\pgfsys@svg@newline{^^J}
+1. Open /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-tex4ht.def
+2. Find line with:
+   \def\pgfsys@svg@newline{\Hnewline}
+3. Replace the line with:
+   \def\pgfsys@svg@newline{^^J}
 
 * TikZ
 ** Manual
-   https://tex.stackexchange.com/a/147101
-   - CTAN: https://ctan.org/pkg/pgf
-   - Direct pdf link: https://pgf-tikz.github.io/pgf/pgfmanual.pdf
+https://tex.stackexchange.com/a/147101
+- CTAN: https://ctan.org/pkg/pgf
+- Direct pdf link: https://pgf-tikz.github.io/pgf/pgfmanual.pdf
 
 ** Externalizing
-   https://olezfdtd.wordpress.com/2012/03/28/precompile-pgfplots-using-tikzexternalize/
-   http://www.maths.adelaide.edu.au/anthony.roberts/LaTeX/pgfplotBasics.pdf
-   https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz,_matlab2tikz_or_pgfplots_figures,_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F
+https://olezfdtd.wordpress.com/2012/03/28/precompile-pgfplots-using-tikzexternalize/
+http://www.maths.adelaide.edu.au/anthony.roberts/LaTeX/pgfplotBasics.pdf
+https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz,_matlab2tikz_or_pgfplots_figures,_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F
 
-   tikzexternalize commands prevent compiling tikz images multiple times
+tikzexternalize commands prevent compiling tikz images multiple times
 
-   - Call latex with "shell-escape" option
-     e.g.
-     $ pdflatex --shell-escape mydocument.tex
-   - Add the folowing lines to the preamble:
-     #+begin_src
-     \usepgfplotslibrary{external} 
-     \tikzexternalize[prefix=TikzPictures/]
-     #+end_src
-   - (Optional) Use \tikzsetnextfilename{filename} before each \begin{tikzpicture}.
+- Call latex with "shell-escape" option
+  e.g.
+  $ pdflatex --shell-escape mydocument.tex
+- Add the folowing lines to the preamble:
+  #+begin_src
+  \usepgfplotslibrary{external} 
+  \tikzexternalize[prefix=TikzPictures/]
+  #+end_src
+- (Optional) Use \tikzsetnextfilename{filename} before each \begin{tikzpicture}.
 *** tikzexternalize with latexmk
-    https://tex.stackexchange.com/a/393039
-    https://tex.stackexchange.com/a/561409
+https://tex.stackexchange.com/a/393039
+https://tex.stackexchange.com/a/561409
 
-    option "-shell-escape" should be added:
-    #+begin_src sh
-    latexmk -latexoption="-synctex=1" -shell-escape -pdf doc.tex
-    #+end_src
+option "-shell-escape" should be added:
+#+begin_src sh
+latexmk -latexoption="-synctex=1" -shell-escape -pdf doc.tex
+#+end_src
 
 ** GUI tools
-   - tikzit: https://tikzit.github.io/
+- tikzit: https://tikzit.github.io/
 *** GUI tool comparison
-    https://www.canterbury.ac.nz/media/documents/research/latex_figures.pdf
+https://www.canterbury.ac.nz/media/documents/research/latex_figures.pdf
 
 * latexmk
-  http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkflow
+http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkflow
 ** tex to pdf
-   latexmk -pdf some-tex-file-name
+latexmk -pdf some-tex-file-name
 
 * rubber
-  https://scaron.info/blog/makefiles-for-latex.html
-  similar to latexmk and it has some more features
+https://scaron.info/blog/makefiles-for-latex.html
+similar to latexmk and it has some more features
 
 * pdfcrop
-  https://tex.stackexchange.com/questions/434404/remove-only-top-and-bottom-margins-using-pdfcrop
+https://tex.stackexchange.com/questions/434404/remove-only-top-and-bottom-margins-using-pdfcrop
 
-  - include only a specific page in pdf
-    https://tex.stackexchange.com/a/25807
+- include only a specific page in pdf
+  https://tex.stackexchange.com/a/25807
 
 * References
-  - arrows: http://www.sascha-frank.com/Arrow/latex-arrows.html
+- arrows: http://www.sascha-frank.com/Arrow/latex-arrows.html
 
 * Grammar
 ** \newcommand
-   https://ko.overleaf.com/learn/latex/Commands
-   It's used to define new command with its parameters and optional parameters
+https://ko.overleaf.com/learn/latex/Commands
+It's used to define new command with its parameters and optional parameters
 
 ** Arguments and optional arguments
 *** Arguments
-    arguments are passed into curly brackets '{}'.
-    e.g.
-    #+begin_src latex
-    \binom{n}{k} = \frac{n!}{k!(n-k)!}
-    #+end_src
+arguments are passed into curly brackets '{}'.
+e.g.
+#+begin_src latex
+\binom{n}{k} = \frac{n!}{k!(n-k)!}
+#+end_src
 *** Optional arguments
-    optional arguments are passed into square brackets '[]'.
-    the square brackets can be skipped.
-    #+begin_src latex
-    \begin{itemize}
-    \item This is my first point
-    \item Another point I want to make 
-    \item[!] A point to exclaim something!
-    \item[$\blacksquare$] Make the point fair and square.
-    \item[NOTE] This entry has no bullet
-    \item[] A blank label?
-    \end{itemize}
-    #+end_src
+optional arguments are passed into square brackets '[]'.
+the square brackets can be skipped.
+#+begin_src latex
+\begin{itemize}
+\item This is my first point
+\item Another point I want to make 
+\item[!] A point to exclaim something!
+\item[$\blacksquare$] Make the point fair and square.
+\item[NOTE] This entry has no bullet
+\item[] A blank label?
+\end{itemize}
+#+end_src
 ** multiple .bib files
-   https://tex.stackexchange.com/questions/84099/bibliographies-from-multiple-bib-files
+https://tex.stackexchange.com/questions/84099/bibliographies-from-multiple-bib-files
 
 * Commands
 ** setcitestyle
-   https://tex.stackexchange.com/a/367402
-   it changes citation style
-   #+begin_src latex
-   \setcitestyle{numbers}
-   \setcitestyle{square}
-   \setcitestyle{comma}
-   #+end_src
+https://tex.stackexchange.com/a/367402
+it changes citation style
+#+begin_src latex
+\setcitestyle{numbers}
+\setcitestyle{square}
+\setcitestyle{comma}
+#+end_src
 ** texttt
 *** texttt with courier
-    https://tex.stackexchange.com/a/24848
-    without using 'courier', texttt doesn't display text in courier font
-    #+begin_src latex
-    \documentclass{article}
-    \usepackage{courier}
-    \begin{document}
-    This is not Courier font. \texttt{This is Courier font.}
-    \end{document}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-    #+end_src
+https://tex.stackexchange.com/a/24848
+without using 'courier', texttt doesn't display text in courier font
+#+begin_src latex
+\documentclass{article}
+\usepackage{courier}
+\begin{document}
+This is not Courier font. \texttt{This is Courier font.}
+\end{document}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+#+end_src
 ** Greek fonts
-   https://tex.stackexchange.com/questions/487710/a-whole-list-of-math-fonts-for-greek-letters-in-latex
+https://tex.stackexchange.com/questions/487710/a-whole-list-of-math-fonts-for-greek-letters-in-latex
 ** Change lower cases to smaller upper cases
-   https://tex.stackexchange.com/a/56333
-   it makes characters capital but the charcters which were capital have bigger fonts
-   #+begin_src latex
-   \textsc{SomeText}
-   #+end_src
+https://tex.stackexchange.com/a/56333
+it makes characters capital but the charcters which were capital have bigger fonts
+#+begin_src latex
+\textsc{SomeText}
+#+end_src
 ** hyperref
 *** hyperlink without box
-    https://tex.stackexchange.com/a/324123
-    https://tex.stackexchange.com/a/12408
-    #+begin_src latex
-    \usepackage[hidelinks]{hyperref}
-    #+end_src
+https://tex.stackexchange.com/a/324123
+https://tex.stackexchange.com/a/12408
+#+begin_src latex
+\usepackage[hidelinks]{hyperref}
+#+end_src
 ** smash
-   smash can be used for identical heights of underlines.
-   #+begin_src latex
-   \underline{\smash{<stuff>}}
-   #+end_src
+smash can be used for identical heights of underlines.
+#+begin_src latex
+\underline{\smash{<stuff>}}
+#+end_src
 ** caption
 *** captions above tables
-    https://tex.stackexchange.com/a/428038
-    #+begin_src latex
-    \begin{figure}
-      \caption{A picture of a tucan.}
-      \begin{center}
-        \includegraphics{tucan.eps}
-      \end{center}
-    \end{figure}
-    #+end_src
+https://tex.stackexchange.com/a/428038
+#+begin_src latex
+\begin{figure}
+  \caption{A picture of a tucan.}
+  \begin{center}
+    \includegraphics{tucan.eps}
+  \end{center}
+\end{figure}
+#+end_src
 ** cref
 *** referring equations wihtout parenthesis
-    https://tex.stackexchange.com/a/373064
+https://tex.stackexchange.com/a/373064
 
-    #+begin_src latex
-    \usepackage[capitalize]{cleveref} % cref
-    \creflabelformat{equation}{#2\textup{#1}#3}
+#+begin_src latex
+\usepackage[capitalize]{cleveref} % cref
+\creflabelformat{equation}{#2\textup{#1}#3}
 
-    \cref{eq:formula1,eq:formula2,eq:formula3}
-    #+end_src
+\cref{eq:formula1,eq:formula2,eq:formula3}
+#+end_src
 
 * Custum commands
 ** denotation definition
-   % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
-   #+begin_src latex
-   \usepackage{stmaryrd}
+% https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
+#+begin_src latex
+\usepackage{stmaryrd}
 
-   \newcommand{\denotation}[2][]{
-   \left\llbracket#2\right\rrbracket_{#1}
-   }
-   #+end_src
+\newcommand{\denotation}[2][]{
+\left\llbracket#2\right\rrbracket_{#1}
+}
+#+end_src
 ** labels for table cells
-   % https://tex.stackexchange.com/a/356820
-   #+begin_src latex
-   \makeatletter
-   \newcommand\newtag[2]{#1\def\@currentlabel{#1}\label{#2}}
-   \makeatother
-   #+end_src
+% https://tex.stackexchange.com/a/356820
+#+begin_src latex
+\makeatletter
+\newcommand\newtag[2]{#1\def\@currentlabel{#1}\label{#2}}
+\makeatother
+#+end_src
 ** circled text
-   https://tex.stackexchange.com/a/7045
-   #+begin_src latex
-   \usepackage{tikz}
-   \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-       \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
-   #+end_src
+https://tex.stackexchange.com/a/7045
+#+begin_src latex
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+#+end_src
 ** bold font for both text and math
-   https://tex.stackexchange.com/a/347148
-   #+begin_src latex
-   \newcommand\boldtxt[1]{\textbf{\boldmath #1}}
-   #+end_src
+https://tex.stackexchange.com/a/347148
+#+begin_src latex
+\newcommand\boldtxt[1]{\textbf{\boldmath #1}}
+#+end_src

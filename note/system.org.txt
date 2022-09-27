@@ -1,7 +1,7 @@
 
 * BIOS
 ** Restore on AC Power Loss
-   https://mabc.tistory.com/entry/PC-%EC%9E%90%EB%8F%99-%EB%B6%80%ED%8C%85-%EC%BC%9C%EC%A7%90
-   - Power off
-   - Power on
-   - Last state: this option restores the computer as the last state before it lost power
+https://mabc.tistory.com/entry/PC-%EC%9E%90%EB%8F%99-%EB%B6%80%ED%8C%85-%EC%BC%9C%EC%A7%90
+- Power off
+- Power on
+- Last state: this option restores the computer as the last state before it lost power

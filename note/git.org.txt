@@ -1,161 +1,161 @@
 
 * clone repository with a specific directory name
-  $ git clone https://github.com/user-name/repository.git dir-name
+$ git clone https://github.com/user-name/repository.git dir-name
 
 * bare git directory
-  $ mkdir example.git
-  $ cd example.git
-  $ git init --bare
+$ mkdir example.git
+$ cd example.git
+$ git init --bare
 
 * remote repository path
-  the path is usually to a bare git repository
+the path is usually to a bare git repository
 ** examples
-   - ssh://user@server.name.ac.kr:/home/user/emacs.git
-   - ssh://user@server.name.ac.kr:60001/home/user/emacs.git
-   - ssh://user@domain.com:61112/home/user/work/gitbackup/sp_ae.git
+- ssh://user@server.name.ac.kr:/home/user/emacs.git
+- ssh://user@server.name.ac.kr:60001/home/user/emacs.git
+- ssh://user@domain.com:61112/home/user/work/gitbackup/sp_ae.git
 
-   (60001 and 61112 are port numbers of ssh)
+(60001 and 61112 are port numbers of ssh)
 
 * local repository path
 ** examples
-   - /path/to/the/repository.git
+- /path/to/the/repository.git
 
 * git daemon
 ** references
-   https://railsware.com/blog/2013/09/19/taming-the-git-daemon-to-quickly-share-git-repository/
-   https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon
+https://railsware.com/blog/2013/09/19/taming-the-git-daemon-to-quickly-share-git-repository/
+https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon
 
 ** setup & run server
-   $ ls repo_base_path -a
-   >> . .. my_repo_dir my_repo_dir2 my_repo_dir3
+$ ls repo_base_path -a
+>> . .. my_repo_dir my_repo_dir2 my_repo_dir3
 
-   $ git daemon --base-path=repo_base_path --export-all --reuseaddr --informative-errors --verbose
-   (The default port is 9418)
+$ git daemon --base-path=repo_base_path --export-all --reuseaddr --informative-errors --verbose
+(The default port is 9418)
 
-   ex)
-   $ ls
-   >> 20180927_job_3rd  20180927_original  20181112_samsung
-   $ git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
+ex)
+$ ls
+>> 20180927_job_3rd  20180927_original  20181112_samsung
+$ git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
 
 ** Access server
-   $ git clone git://ip.address.ac.kr/my_repo_dir
+$ git clone git://ip.address.ac.kr/my_repo_dir
 nn
-   ex)
-   $ git clone git://descarte.postech.ac.kr/20181112_samsung
-   $ cd 20181112_samsung
-   $ git pull
+ex)
+$ git clone git://descarte.postech.ac.kr/20181112_samsung
+$ cd 20181112_samsung
+$ git pull
 
 * when .gitignore is not working
-  git rm -r --cached .
-  http://www.randallkent.com/2010/04/30/gitignore-not-working/
+git rm -r --cached .
+http://www.randallkent.com/2010/04/30/gitignore-not-working/
 
 * submodule
-  https://stackoverflow.com/a/10054062
+https://stackoverflow.com/a/10054062
 
-  if you want to add additional submodules you have to perform git submodule init; git submodule update every time you clone the repo. It will not automatically get the submodules.
+if you want to add additional submodules you have to perform git submodule init; git submodule update every time you clone the repo. It will not automatically get the submodules.
 
-  $ cd src
-  $ git submodule init
-  $ git submodule update
+$ cd src
+$ git submodule init
+$ git submodule update
 
-  $ cd dhnamutil
-  $ git submodule init
-  $ git submodule update
+$ cd dhnamutil
+$ git submodule init
+$ git submodule update
 ** initialize & update all submodules
-   - initialize all submodules
-     #+begin_src sh
-     git submodule update --init --recursive
-     #+end_src
-   - update all submodules
-     https://nochoco-lee.tistory.com/88
-     #+begin_src 
-     $ git submodule update --recursive
-     #+end_src
+- initialize all submodules
+  #+begin_src sh
+  git submodule update --init --recursive
+  #+end_src
+- update all submodules
+  https://nochoco-lee.tistory.com/88
+  #+begin_src 
+  $ git submodule update --recursive
+  #+end_src
 ** remove remaining submodule information from .git
-   https://tkim.info/ko/devnote/d061-%EC%9E%98%EB%AA%BB%EB%90%9C-submodule-path%EA%B0%80-.git%EC%97%90-%EB%82%A8%EC%95%84%EC%9E%88%EC%9D%84-%EB%95%8C-%EC%82%AD%EC%A0%9C%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/
-   $ git rm -r --cached --ignore-unmatch path/to/target/
+https://tkim.info/ko/devnote/d061-%EC%9E%98%EB%AA%BB%EB%90%9C-submodule-path%EA%B0%80-.git%EC%97%90-%EB%82%A8%EC%95%84%EC%9E%88%EC%9D%84-%EB%95%8C-%EC%82%AD%EC%A0%9C%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/
+$ git rm -r --cached --ignore-unmatch path/to/target/
 
 * set name and email
-  https://www.lainyzine.com/ko/article/how-to-set-git-repository-username-and-email/
+https://www.lainyzine.com/ko/article/how-to-set-git-repository-username-and-email/
 ** global config
-   $ git config --global user.name "Your Name"
-   $ git config --global user.email "you@example.com"
+$ git config --global user.name "Your Name"
+$ git config --global user.email "you@example.com"
 ** local config
-   $ git config user.name "Your Name"
-   $ git config user.email "you@example.com"
+$ git config user.name "Your Name"
+$ git config user.email "you@example.com"
 ** check config
-   $ git config user.name
-   $ git config user.email
+$ git config user.name
+$ git config user.email
 
 * magit
 ** See previous revision without magit
-   https://emacs.stackexchange.com/a/7657
+https://emacs.stackexchange.com/a/7657
 
-   - C-x v ~
-   - magit-find-file
+- C-x v ~
+- magit-find-file
 ** See previous revision with magit
-   https://emacs.stackexchange.com/a/7683
+https://emacs.stackexchange.com/a/7683
 
-   M-x magit-find-file
+M-x magit-find-file
 ** initialize upstream repository
-   https://emacs.stackexchange.com/a/6023
-   C-x g b u
+https://emacs.stackexchange.com/a/6023
+C-x g b u
 ** update all sub modules
-   Submodule(o) -> Update(u) -> Type "*"
+Submodule(o) -> Update(u) -> Type "*"
 
 * git clone shallowly
-  $ git clone --depth=1 user@github.com:joe/hello-world.git
+$ git clone --depth=1 user@github.com:joe/hello-world.git
 
 * git clone a specific commit
-  https://stackoverflow.com/a/14091182
+https://stackoverflow.com/a/14091182
 
-  $ git clone $URL
-  $ cd $PROJECT_NAME
-  $ git reset --hard $COMMIT_HASH
+$ git clone $URL
+$ cd $PROJECT_NAME
+$ git reset --hard $COMMIT_HASH
 
 * git clone a specific tag
-  git clone --depth 1 --branch <tag_name> <repo_url>
-  ("--depth 1" is optional)
+git clone --depth 1 --branch <tag_name> <repo_url>
+("--depth 1" is optional)
 
 * github
 ** github example
-   https://github.com/daehwannam/emacs-config.git
+https://github.com/daehwannam/emacs-config.git
 
 ** Generating access token
-   https://jootc.com/p/201905122828
+https://jootc.com/p/201905122828
 
-   - Github login
-   - Menu button at the upper-right corner -> Settings
-   - Development setting at the bottom-left side
-   - Personal access tokens
-   - Generate new token
-     - Fill in "Note"
-       - e.g. "bash access"
-     - Check all "repo" options (or only neccessary options)
-     - Generate token
-   - Use the token instead of a password
+- Github login
+- Menu button at the upper-right corner -> Settings
+- Development setting at the bottom-left side
+- Personal access tokens
+- Generate new token
+  - Fill in "Note"
+    - e.g. "bash access"
+  - Check all "repo" options (or only neccessary options)
+  - Generate token
+- Use the token instead of a password
 
 ** ssh key registration
-   https://syung05.tistory.com/20
+https://syung05.tistory.com/20
 
 ** Caching your GitHub credentials in Git
-   https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
+https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
 *** Windows
-    $ git config --global credential.helper wincred
+$ git config --global credential.helper wincred
 *** Linux
-    In Terminal, enter the following:
-    $ # Set git to use the credential memory cache
-    $ # The default duration for timeout is 15 minutes
-    $ git config --global credential.helper cache
+In Terminal, enter the following:
+$ # Set git to use the credential memory cache
+$ # The default duration for timeout is 15 minutes
+$ git config --global credential.helper cache
 
-    To change the default password cache timeout, enter the following:
-    $ # Set the cache to timeout after 1 hour (setting is in seconds)
-    $ git config --global credential.helper 'cache --timeout=3600'
+To change the default password cache timeout, enter the following:
+$ # Set the cache to timeout after 1 hour (setting is in seconds)
+$ git config --global credential.helper 'cache --timeout=3600'
 
 ** git config list
-   $ git config --list
+$ git config --list
 
 * Git for Windows
 ** Using linux utility
-   add "C:\Program Files\Git\usr\bin" to 'Path' variable
-   (The default path is "C:\Program Files\Git" but the actual path may be different)
+add "C:\Program Files\Git\usr\bin" to 'Path' variable
+(The default path is "C:\Program Files\Git" but the actual path may be different)

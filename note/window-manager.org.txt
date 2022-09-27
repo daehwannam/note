@@ -1,338 +1,338 @@
 
 * exwm
 ** GUI login option
-   create a file /usr/share/xsessions/emacs.desktop
-   #+begin_example
-   [Desktop Entry]
-   Name=Emacs
-   Exec=emacs --exwm  # --exwm is defined in ~/.emacs.d
-   Type=Application
-   #+end_example
+create a file /usr/share/xsessions/emacs.desktop
+#+begin_example
+[Desktop Entry]
+Name=Emacs
+Exec=emacs --exwm  # --exwm is defined in ~/.emacs.d
+Type=Application
+#+end_example
 ** Virtual console start option
-   https://github.com/ch11ng/exwm/wiki#bootstrap
-   - copy exwm-*/xinitrc to ~/.xinitrc
-     e.g.
-     $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
-   - change emacs's command line options in "~/.xinitrc"
-     #+begin_example
-     emacs --exwm
-     #+end_example
-   - run from virtual console
-     - change to virtual console by "Ctrl + Alt + F2" where function can be changed
-     - then runn the following command
-       $ xinit -- vt02  # where 02 is the number of function key
+https://github.com/ch11ng/exwm/wiki#bootstrap
+- copy exwm-*/xinitrc to ~/.xinitrc
+  e.g.
+  $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
+- change emacs's command line options in "~/.xinitrc"
+  #+begin_example
+  emacs --exwm
+  #+end_example
+- run from virtual console
+  - change to virtual console by "Ctrl + Alt + F2" where function can be changed
+  - then runn the following command
+    $ xinit -- vt02  # where 02 is the number of function key
 
 ** using application's key binding
-   https://emacs.stackexchange.com/a/52248/26068
+https://emacs.stackexchange.com/a/52248/26068
 
-   run exwm-input-send-next-key (C-c C-q) then type application's key binding
-   e.g. C-c C-q C-c --> copy text in web browser
+run exwm-input-send-next-key (C-c C-q) then type application's key binding
+e.g. C-c C-q C-c --> copy text in web browser
 ** emacs inside exwm
-   - exwm-input-release-keyboard (C-c C-k): exwm releases keys
-   - exwm-reset (s-r): exwm catches keys
+- exwm-input-release-keyboard (C-c C-k): exwm releases keys
+- exwm-reset (s-r): exwm catches keys
 ** ibus setup
-   https://askubuntu.com/questions/389903/ibus-doesnt-seem-to-restart
-   - add the following code into some startup script
-     #+begin_src sh
-     # enable ibus
-     https://unix.stackexchange.com/a/471615
-     ibus-daemon -d --xim
-     #+end_src
-     where
-     * -d is daemon start optoin
-     * --xim enable multiple users(tty sesssions) use ibus
-   - if switch language doesn't work, run "M-x toggle-input-method"
+https://askubuntu.com/questions/389903/ibus-doesnt-seem-to-restart
+- add the following code into some startup script
+  #+begin_src sh
+  # enable ibus
+  https://unix.stackexchange.com/a/471615
+  ibus-daemon -d --xim
+  #+end_src
+  where
+  * -d is daemon start optoin
+  * --xim enable multiple users(tty sesssions) use ibus
+- if switch language doesn't work, run "M-x toggle-input-method"
 ** fcitx setup
-   - start fcitx daemon
-     $ fcitx
-     or
-     $ fcitx -d
-   - start fcitx without daemon
-     $ fcitx -D
+- start fcitx daemon
+  $ fcitx
+  or
+  $ fcitx -d
+- start fcitx without daemon
+  $ fcitx -D
 *** xinit config
-    https://wiki.archlinux.org/title/fcitx#Set_environment_variables_for_IM_modules
-    the following code should be added to xinit config file
-    #+begin_src sh
-    export GTK_IM_MODULE=fcitx
-    export QT_IM_MODULE=fcitx
-    export XMODIFIERS=@im=fcitx
-    fcitx &  # run fcitx daemon
-    #+end_src
+https://wiki.archlinux.org/title/fcitx#Set_environment_variables_for_IM_modules
+the following code should be added to xinit config file
+#+begin_src sh
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+fcitx &  # run fcitx daemon
+#+end_src
 *** when Hangul key doesn't work
-    https://ieworld.tistory.com/4
-    
+https://ieworld.tistory.com/4
+
 ** slock
-   - install
-     $ sudo apt-get install slock
-   - run
-     $ slock
-   - enter passwd to unlock screen
+- install
+  $ sudo apt-get install slock
+- run
+  $ slock
+- enter passwd to unlock screen
 ** xbacklight
-   xbacklight adjusts brightness of screen
-   - install
-     $ sudo apt install xbacklight
+xbacklight adjusts brightness of screen
+- install
+  $ sudo apt install xbacklight
 ** polybar setup
-   https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Desktop-05.org
-   https://www.youtube.com/watch?v=usCfMstCZ7E
+https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Desktop-05.org
+https://www.youtube.com/watch?v=usCfMstCZ7E
 *** installing polybar
-    [[file:polybar.org.txt::*Install][Install]]
+[[file:polybar.org.txt::*Install][Install]]
 ** startup scripts example
-   - ~/.profile
-      #+begin_src sh
-      # conda path setting
-      CONDA=miniconda3  # anaconda3 or miniconda3 or ...
-      export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
+- ~/.profile
+   #+begin_src sh
+   # conda path setting
+   CONDA=miniconda3  # anaconda3 or miniconda3 or ...
+   export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
 
-      if ! pgrep dropbox >/dev/null 2>&1
-      then
-          nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1 &
-      fi
+   if ! pgrep dropbox >/dev/null 2>&1
+   then
+       nohup ~/.dropbox-dist/dropboxd > /dev/null 2>&1 &
+   fi
 
-      if timeout 1s xset q &>/dev/null; then
-          xset r rate 250 50
-          # ibus-daemon -d --xim  # it's unnecessary if you use fcitx
-      fi
-      #+end_src
-   - gui-init.sh
-     [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
+   if timeout 1s xset q &>/dev/null; then
+       xset r rate 250 50
+       # ibus-daemon -d --xim  # it's unnecessary if you use fcitx
+   fi
+   #+end_src
+- gui-init.sh
+  [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
 ** multiple monitor setup
-   - find monitors
-     $ xrandr
-   - list only monitors
-     $ xrandr | grep " connected" | cut -f1 -d " "
-   - find devices noted as "connected"
-     #+begin_example
-     DVI-I-1 connected primary 1920x1080+1920+0 (normal left inverted right x axis y axis) 598mm x 336mm
-     HDMI-4 connected 1920x1080+3840+0 (normal left inverted right x axis y axis) 598mm x 336mm
-     HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm
-     #+end_example
-   - dual monitor config example
-     - with left-of
-       #+begin_src sh
-       xrandr --output DVI-I-1 --left-of HDMI-4 --auto
-       #+end_src
-     - with right-of
-       #+begin_src 
-       xrandr --output DVI-I-1 --right-of HDMI-1-1 --auto
-       #+end_src
-   - triple monitor config example
-     #+begin_src sh
-     xrandr --output DVI-I-1 --auto \
-            --output HDMI-1-1 --auto --left-of DVI-I-1 \
-            --output HDMI-4 --auto --right-of DVI-I-1
-     #+end_src
-     layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
+- find monitors
+  $ xrandr
+- list only monitors
+  $ xrandr | grep " connected" | cut -f1 -d " "
+- find devices noted as "connected"
+  #+begin_example
+  DVI-I-1 connected primary 1920x1080+1920+0 (normal left inverted right x axis y axis) 598mm x 336mm
+  HDMI-4 connected 1920x1080+3840+0 (normal left inverted right x axis y axis) 598mm x 336mm
+  HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 598mm x 336mm
+  #+end_example
+- dual monitor config example
+  - with left-of
+    #+begin_src sh
+    xrandr --output DVI-I-1 --left-of HDMI-4 --auto
+    #+end_src
+  - with right-of
+    #+begin_src 
+    xrandr --output DVI-I-1 --right-of HDMI-1-1 --auto
+    #+end_src
+- triple monitor config example
+  #+begin_src sh
+  xrandr --output DVI-I-1 --auto \
+         --output HDMI-1-1 --auto --left-of DVI-I-1 \
+         --output HDMI-4 --auto --right-of DVI-I-1
+  #+end_src
+  layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
 ** Google chrome setting
-   - make profile directory
-     $ mkdir -p ~/profile/google-chrome-user
-   - make desktop entry
-     [[*Chrome browser for multiple tty sessions][Chrome browser for multiple tty sessions]]
+- make profile directory
+  $ mkdir -p ~/profile/google-chrome-user
+- make desktop entry
+  [[*Chrome browser for multiple tty sessions][Chrome browser for multiple tty sessions]]
 ** usage
-   - exwm-workspace-move-window: it can move an X window to another workspace
-   - exwm-input-move-event: super & left-mouse-click
-   - exwm-input-resize-event: super & right-mouse-click
+- exwm-workspace-move-window: it can move an X window to another workspace
+- exwm-input-move-event: super & left-mouse-click
+- exwm-input-resize-event: super & right-mouse-click
 
 * StumpWM
-  [[file:stumpwm.org.txt][file:~/record/note/stumpwm.org.txt]]
+[[file:stumpwm.org.txt][file:~/record/note/stumpwm.org.txt]]
 
 * i3
 ** tutorial
-   https://fedoramagazine.org/getting-started-i3-window-manager/
+https://fedoramagazine.org/getting-started-i3-window-manager/
 ** install
-   $ sudo apt install i3
+$ sudo apt install i3
 
 * Xephyr
-  running window managers in other window managers
+running window managers in other window managers
 ** install
-   $ sudo apt-get install xserver-xephyr
+$ sudo apt-get install xserver-xephyr
 ** Usage
-   http://egloos.zum.com/seoz/v/3677520
-   https://www.dedoimedo.com/computers/xephyr.html
+http://egloos.zum.com/seoz/v/3677520
+https://www.dedoimedo.com/computers/xephyr.html
 *** command
-    - basic usage
-      $ Xephyr -ac -screen <resolution> -br -reset -terminate 2> /dev/null :1 &
-      -ac = disables access control restrictions
-      -screen = screen size
-      -br = background color to black or chosen one
-      -reset -terminate = Xephyr closes automatically after the last X session has be killed
-      >2 /dev/null = redirect error messages
-      :1 = display number
-      & = Xephyr running background
+- basic usage
+  $ Xephyr -ac -screen <resolution> -br -reset -terminate 2> /dev/null :1 &
+  -ac = disables access control restrictions
+  -screen = screen size
+  -br = background color to black or chosen one
+  -reset -terminate = Xephyr closes automatically after the last X session has be killed
+  >2 /dev/null = redirect error messages
+  :1 = display number
+  & = Xephyr running background
 
-    - other options
-      -fullscreen : try to lunch Xephyr with full screen
-      -noreset
+- other options
+  -fullscreen : try to lunch Xephyr with full screen
+  -noreset
 *** example
-    - running Xephyr
-      $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
-    - connect8
-      $ DISPLAY=:3 emacs
+- running Xephyr
+  $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+- connect8
+  $ DISPLAY=:3 emacs
 ** clipboard sharing between main and nested x sessions
-   https://github.com/flesueur/mi-lxc/issues/42#issuecomment-803263452
-   run "xclipsync" in nested X sessions
-   $ git clone https://github.com/apenwarr/xclipsync.git
-   $ cd xclipsync
-   $ xclipsync
+https://github.com/flesueur/mi-lxc/issues/42#issuecomment-803263452
+run "xclipsync" in nested X sessions
+$ git clone https://github.com/apenwarr/xclipsync.git
+$ cd xclipsync
+$ xclipsync
 *** (error) xclipsync: ./xclipfrom: /usr/bin/wish: bad interpreter: No such file or directory
-    install wish:
-    $ sudo apt install wish
-   
-** Gnome within Xephyr
-   https://www.youtube.com/watch?v=ECHH2JFA8SM
-   - run Xephyr
-     # $ Xephyr -host-cursor -screen 400x600 -noreset :1 &
-     $ Xephyr -host-cursor -screen 400x300 -noreset :1 &
-   - run Gnome
-     $ DISPLAY=:1 dbus-run-session gnome-shell
-   - kill Xephyr
-     $ pkill -f Xephyr
-** EXWM within Xephyr
-   Xephyr cannot concurrently run the same application
-   therefore, you should prepare multiple similar programs
-   e.g. google-chrome profile for each Xephyr connection
-*** run Xephyr
-    $ Xephyr -host-cursor -screen 1200x800 -noreset :1 &
-    $ Xephyr -host-cursor -screen 1200x800 -noreset :2 &
-    $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
-*** run emacs daemon
-    $ emacs --daemon --exwm  # --exwm is defined by me
-*** change emacs's font size
-    https://stackoverflow.com/a/296316
-    #+begin_src elisp
-    (set-face-attribute 'default nil :height 120)
-    #+end_src
-*** run the first emacs client
-    $ DISPLAY=:1 emacsclient -c
+install wish:
+$ sudo apt install wish
 
-    then evaluate the following code to make next frames fullscreen
-    #+begin_src elisp
-    (add-to-list 'default-frame-alist '(fullscreen . maximized))
-    #+end_src
+** Gnome within Xephyr
+https://www.youtube.com/watch?v=ECHH2JFA8SM
+- run Xephyr
+  # $ Xephyr -host-cursor -screen 400x600 -noreset :1 &
+  $ Xephyr -host-cursor -screen 400x300 -noreset :1 &
+- run Gnome
+  $ DISPLAY=:1 dbus-run-session gnome-shell
+- kill Xephyr
+  $ pkill -f Xephyr
+** EXWM within Xephyr
+Xephyr cannot concurrently run the same application
+therefore, you should prepare multiple similar programs
+e.g. google-chrome profile for each Xephyr connection
+*** run Xephyr
+$ Xephyr -host-cursor -screen 1200x800 -noreset :1 &
+$ Xephyr -host-cursor -screen 1200x800 -noreset :2 &
+$ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+*** run emacs daemon
+$ emacs --daemon --exwm  # --exwm is defined by me
+*** change emacs's font size
+https://stackoverflow.com/a/296316
+#+begin_src elisp
+(set-face-attribute 'default nil :height 120)
+#+end_src
+*** run the first emacs client
+$ DISPLAY=:1 emacsclient -c
+
+then evaluate the following code to make next frames fullscreen
+#+begin_src elisp
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+#+end_src
 *** run other emacs clients
-    $ DISPLAY=:2 emacsclient -c
-    $ DISPLAY=:3 emacsclient -c
+$ DISPLAY=:2 emacsclient -c
+$ DISPLAY=:3 emacsclient -c
 * toggle mouse release
-  Ctrl+Shift
+Ctrl+Shift
 
 * Pop Shell: Gnome extension
-  https://github.com/pop-os/shell
+https://github.com/pop-os/shell
 ** install
-   https://www.linuxuprising.com/2020/05/how-to-install-pop-shell-tiling.html
+https://www.linuxuprising.com/2020/05/how-to-install-pop-shell-tiling.html
 
-   #+begin_src sh
-   sudo apt install node-typescript make git
+#+begin_src sh
+sudo apt install node-typescript make git
 
-   cd ~/program
-   git clone https://github.com/pop-os/shell pop-shell
-   cd pop-shell
-   make local-install
-   #+end_src
+cd ~/program
+git clone https://github.com/pop-os/shell pop-shell
+cd pop-shell
+make local-install
+#+end_src
 ** install keyboard shortcuts
-   https://mugiberkah.com/how-to-install-the-pop-shell-window-tiling-extension-on-ubuntu-20-04/
-   #+begin_src sh
-   sudo apt install cargo rustc libgtk-3-dev
-   cd ~/program
-   git clone https://github.com/pop-os/shell-shortcuts pop-shell-shortcuts
-   cd pop-shell-shortcuts
-   make
-   sudo make install
-   #+end_src
+https://mugiberkah.com/how-to-install-the-pop-shell-window-tiling-extension-on-ubuntu-20-04/
+#+begin_src sh
+sudo apt install cargo rustc libgtk-3-dev
+cd ~/program
+git clone https://github.com/pop-os/shell-shortcuts pop-shell-shortcuts
+cd pop-shell-shortcuts
+make
+sudo make install
+#+end_src
 
 ** remove
-   - disable pop shell
-     $ gnome-tweaks
-     then, open "Extensions" and disable "Pop shell"
-   - remove pop-shell directory
-     $ rm -r ~/.local/share/gnome-shell/extensions/pop-shell@system76.com
-   - reset keyboard shortcuts
-     "Settings" -> "Keyboard Shortcuts" -> "Reset All..."
-   # - (CAUTION) (optional) if you've installed the Pop Shell Shortcuts, you can remove this
-   #   CAUTION: if you want to reinstall pop shell after removing these shortcuts, the shortcuts would not be applied
-   #   $ sudo rm /usr/local/bin/pop-shell-shortcuts
+- disable pop shell
+  $ gnome-tweaks
+  then, open "Extensions" and disable "Pop shell"
+- remove pop-shell directory
+  $ rm -r ~/.local/share/gnome-shell/extensions/pop-shell@system76.com
+- reset keyboard shortcuts
+  "Settings" -> "Keyboard Shortcuts" -> "Reset All..."
+# - (CAUTION) (optional) if you've installed the Pop Shell Shortcuts, you can remove this
+#   CAUTION: if you want to reinstall pop shell after removing these shortcuts, the shortcuts would not be applied
+#   $ sudo rm /usr/local/bin/pop-shell-shortcuts
 
 * DWM
 ** workspace setting for multi monitors
-   https://www.reddit.com/r/suckless/comments/hc5qvs/dwm_switching_all_tags_between_multiple_monitors/
-   https://dwm.suckless.org/patches/single_tagset/
+https://www.reddit.com/r/suckless/comments/hc5qvs/dwm_switching_all_tags_between_multiple_monitors/
+https://dwm.suckless.org/patches/single_tagset/
 ** DWL: DWM for Wayland
-   https://github.com/djpohly/dwl
+https://github.com/djpohly/dwl
 
 * Common
 ** winndow manager comparisons
 *** StumpWM vs EXWM
-    https://news.ycombinator.com/item?id=19128285
-    both StumpWM and EXWM are manual tiling managers and there are a few other choices
+https://news.ycombinator.com/item?id=19128285
+both StumpWM and EXWM are manual tiling managers and there are a few other choices
 ** Gnome
-   gnome applications are working as server-client relationships
-   therefore, gnome-session should be running to start gnome applications, such as gnome-control-center or gnome-terminal
+gnome applications are working as server-client relationships
+therefore, gnome-session should be running to start gnome applications, such as gnome-control-center or gnome-terminal
 
-   e.g. gnome-terminal-server should be runnign to execute gnome-terminal
-   https://askubuntu.com/questions/1346536/why-does-starting-a-terminal-on-a-different-tty-end-up-opening-the-program-on-th
+e.g. gnome-terminal-server should be runnign to execute gnome-terminal
+https://askubuntu.com/questions/1346536/why-does-starting-a-terminal-on-a-different-tty-end-up-opening-the-program-on-th
 *** runing gnome session
-    https://wiki.archlinux.org/title/GNOME#Manually
+https://wiki.archlinux.org/title/GNOME#Manually
 *** related
-    - gnome-settings-daemon
-    - gnome-shell
+- gnome-settings-daemon
+- gnome-shell
 ** kill programs running in other sessions
-   https://askubuntu.com/a/121602
-   $ killall https://askubuntu.com/a/121602
+https://askubuntu.com/a/121602
+$ killall https://askubuntu.com/a/121602
 ** same of similar application for each session
 *** Chrome browser for multiple tty sessions
-    https://superuser.com/a/647363
-    distinguised chromes are needed for exwm emacsclients
+https://superuser.com/a/647363
+distinguised chromes are needed for exwm emacsclients
 
-    first, make a directory for chrome user's profile
-    $ mkdir -p ~/profile/google-chrome-user-1
+first, make a directory for chrome user's profile
+$ mkdir -p ~/profile/google-chrome-user-1
 **** Desktop Entry
-     make desktop entry
-     e.g. ~/.local/share/applications/gchrome1.desktop
-     #+begin_src sh
-     [Desktop Entry]
-     Type=Application
-     Terminal=false  # or true when the program output into terminal
-     Name="Google-chrome 1"  # Its name should be different with "Google Chrome". Desktop entries with the same names are not allowed.
-     Icon=/path/to/icon/icon.svg
-     Exec=google-chrome --user-data-dir=profile/google-chrome-user-1
-     #+end_src
-     where 'user-data-dir' means a path form user's home directory
-     e.g. "profile/google-chrome-user-1" becomes "/home/user/profile/google-chrome-user-1"
+make desktop entry
+e.g. ~/.local/share/applications/gchrome1.desktop
+#+begin_src sh
+[Desktop Entry]
+Type=Application
+Terminal=false  # or true when the program output into terminal
+Name="Google-chrome 1"  # Its name should be different with "Google Chrome". Desktop entries with the same names are not allowed.
+Icon=/path/to/icon/icon.svg
+Exec=google-chrome --user-data-dir=profile/google-chrome-user-1
+#+end_src
+where 'user-data-dir' means a path form user's home directory
+e.g. "profile/google-chrome-user-1" becomes "/home/user/profile/google-chrome-user-1"
 **** Bash command (optional)
-     - make chrome execution command "~/script/command/gchrome1"
-       #+begin_src sh
-       google-chrome --user-data-dir=profile/google-chrome-user-1
-       #+end_src
-     - chmod +x ~/script/gchrome1
-     - update "~/.bashrc"
-       #+begin_src sh
-       export PATH="/home/dhnam/script/command:$PATH"
-       #+end_src
+- make chrome execution command "~/script/command/gchrome1"
+  #+begin_src sh
+  google-chrome --user-data-dir=profile/google-chrome-user-1
+  #+end_src
+- chmod +x ~/script/gchrome1
+- update "~/.bashrc"
+  #+begin_src sh
+  export PATH="/home/dhnam/script/command:$PATH"
+  #+end_src
 ** DPI setting
-   https://unix.stackexchange.com/a/461525
-   https://unix.stackexchange.com/a/461525
+https://unix.stackexchange.com/a/461525
+https://unix.stackexchange.com/a/461525
 *** Find the proper DPI
-    #+begin_src bash :results output
-    xdpyinfo | grep -B 2 resolution
-    #+end_src
+#+begin_src bash :results output
+xdpyinfo | grep -B 2 resolution
+#+end_src
 
-    #+RESULTS:
-    : screen #0:
-    :   dimensions:    11520x2160 pixels (1813x340 millimeters)
-    :   resolution:    161x161 dots per inch
+#+RESULTS:
+: screen #0:
+:   dimensions:    11520x2160 pixels (1813x340 millimeters)
+:   resolution:    161x161 dots per inch
 
-    In the above result, the proper DPI is 161
+In the above result, the proper DPI is 161
 *** Update ~/.Xresources
-    Add the following line:
-    #+begin_example
-    Xft.dpi: 161
-    #+end_example
+Add the following line:
+#+begin_example
+Xft.dpi: 161
+#+end_example
 *** Update .xinitrc
-    Add the following line:
-    #+begin_src sh
-    xrdb -merge ~/.Xresources
-    #+end_src
+Add the following line:
+#+begin_src sh
+xrdb -merge ~/.Xresources
+#+end_src
 ** Xresources
 *** Mouse size
-    https://unix.stackexchange.com/a/612138/502857
-    #+begin_example
-    Xcursor.size: 22
-    #+end_example
+https://unix.stackexchange.com/a/612138/502857
+#+begin_example
+Xcursor.size: 22
+#+end_example

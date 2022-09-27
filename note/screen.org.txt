@@ -1,19 +1,19 @@
 
 * Terminal commands
-  https://linuxize.com/post/how-to-use-linux-screen/
+https://linuxize.com/post/how-to-use-linux-screen/
 ** starting named socket
-   $ screen -S socket_name
+$ screen -S socket_name
 ** detach socket
-   $ screen -d
+$ screen -d
 ** list sockets
-   $ screen -ls
+$ screen -ls
 ** reattach to a linux screen
-   $ screen -r socket_name
+$ screen -r socket_name
 ** logging
-   $ screen -S socken_name -L
-   by default logfile name is "./screenlog.0"
+$ screen -S socken_name -L
+by default logfile name is "./screenlog.0"
 ** logging wiht file-name
-   $ screen -S socken_name -L -Logfile log_file_name
+$ screen -S socken_name -L -Logfile log_file_name
 ** kill all sessions
-   # https://unix.stackexchange.com/a/94528
-   $ pskill screen
+# https://unix.stackexchange.com/a/94528
+$ pskill screen

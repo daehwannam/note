@@ -1,33 +1,33 @@
 
 * SQL
 ** Basic concepts
-   - A database has multiple tables
-   - A table has data entries arranged in rows and columns
-   - A field = A column
-   - A record = A row
-   - SQL keywords are NOT case sensitive: select is the same as SELECT
-   - Semicolon (;) is the standard way to separate each SQL statement in database systems that allow more than one SQL statement to be executed in the same call to the server
-     It's a good practice to always terminate a statement with a semicolon as it's described in ANSI SQL standards ( https://stackoverflow.com/a/710700 )
-   - The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
+- A database has multiple tables
+- A table has data entries arranged in rows and columns
+- A field = A column
+- A record = A row
+- SQL keywords are NOT case sensitive: select is the same as SELECT
+- Semicolon (;) is the standard way to separate each SQL statement in database systems that allow more than one SQL statement to be executed in the same call to the server
+  It's a good practice to always terminate a statement with a semicolon as it's described in ANSI SQL standards ( https://stackoverflow.com/a/710700 )
+- The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
 
 ** Cartesian product
-   WHERE with multiple tables has the effect of cartesian product
+WHERE with multiple tables has the effect of cartesian product
 
-   The following example return |Orders| x |Customers| number of rows:
-   #+begin_src sql
-   -- https://www.w3schools.com/sql/sql_alias.asp
-   -- https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_alias_no
-   SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
-   FROM Customers, Orders;
-   #+end_src
+The following example return |Orders| x |Customers| number of rows:
+#+begin_src sql
+-- https://www.w3schools.com/sql/sql_alias.asp
+-- https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_alias_no
+SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
+FROM Customers, Orders;
+#+end_src
 
-   The following example only returns meaningful rows by conditioning on Customers.CustomerID=Orders.CustomerID :
-   #+begin_src sql
-   -- https://www.w3schools.com/sql/sql_alias.asp
-   -- https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_alias_no
-   SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
-   FROM Customers, Orders
-   WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;
-   #+end_src
+The following example only returns meaningful rows by conditioning on Customers.CustomerID=Orders.CustomerID :
+#+begin_src sql
+-- https://www.w3schools.com/sql/sql_alias.asp
+-- https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_alias_no
+SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
+FROM Customers, Orders
+WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;
+#+end_src
 
-   Therefore, the above code has the same effect with a query with (INNER) JOIN.
+Therefore, the above code has the same effect with a query with (INNER) JOIN.
