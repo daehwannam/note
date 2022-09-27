@@ -183,6 +183,11 @@
     #+end_example
 ** clone-indirect-buffer-other-window (C-x 4 c)
    clone the current buffer to the other window
+** apply a function over multiple buffers
+   - ibuffer
+   - ibuffer-mark-by-name-regexp (% n) to mark buffers by their name, using a regexp.
+   - ibuffer-do-eval (E) to evaluate a lisp expression
+   - ibuffer-do-save (S)
 * My command
 ** xah-open-in-external-app
    it opens a file with an external program within dired-mode.
@@ -456,6 +461,14 @@
      C-c C-e l p (org-latex-export-to-pdf)
 *** dired-do-async-shell-command (&)
     run an executable asynchronously
+*** find and open multiples files
+    1. find-dired
+       e.g.
+       - M-x find-dired
+       - Run find in directory: ~/record/note/
+       - Run find (with args): -name *.txt
+    2. dired-toggle-marks (t)
+    3. dired-do-find-marked-files (F)
 
 ** Tramp
 *** Remote
