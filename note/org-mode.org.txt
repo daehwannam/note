@@ -7,6 +7,12 @@ these commands change
 
 * Agenda
 - j (org-agenda-goto-date): make agenda starting from the date
+** When 'org-agenda-files' wasn't updated
+'org-agenda-files' variable may read old paths by 'custom-set-variables' function in 'custom-file'
+1. "M-x eval-expression (find-file custom-file)" or
+   "M-: (find-file custom-file)" to open the custom file
+2. If 'org-agenda-files' read old paths, remove the custom-file
+
 
 * Calendar
 - M-x calendar
@@ -14,6 +20,9 @@ these commands change
   https://emacs.stackexchange.com/questions/29632/org-mode-calendar-integration
 
 * LaTeX
+** equations
+- \(\alpha, \beta, \gamma\)
+- $\alpha, \beta, \gamma$
 ** example latex formula in org mode
 \[E=mc^2\]
 

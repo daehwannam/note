@@ -1,9 +1,9 @@
 
 * (old) Install conda
- - run bash Anaconda-latest-Linux-x86_64.sh
-   - install location: /home/dhnam/program/anaconda3
- - append the following to .bashrc
-   : export PATH="/home/dhnam/program/anaconda3/bin:$PATH"
+- run bash Anaconda-latest-Linux-x86_64.sh
+  - install location: /home/dhnam/program/anaconda3
+- append the following to .bashrc
+  : export PATH="/home/dhnam/program/anaconda3/bin:$PATH"
 #    - or, ad conda env bin path to .bashrc
 #      : export PATH="/home/dhnam/program/anaconda3/envs/default/bin:$PATH"
 

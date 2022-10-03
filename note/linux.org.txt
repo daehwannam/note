@@ -1091,6 +1091,16 @@ shopt -s extglob
 cd parent
 rm -rf !(some-dir-name)
 #+end_src
+** iptable
+- list entries
+  #+begin_src sh
+  sudo iptables -L --line-numbers
+  #+end_src
+- e.g. add an delete an entry
+  #+begin_src sh
+  sudo iptables -A INPUT -p tcp --tcp-flags RST RST --sport 443 -j DROP
+  sudo iptables -D INPUT 2
+  #+end_src
 
 * NVIDIA GPU & CUDA
 ** components
