@@ -338,6 +338,11 @@ The 1st and 2nd zeros means disabling 'standby' and 'suspend'
 - 'standby' mode usually puts all devices in a low-power state,
    and only keeps system memory refreshed and the CPU idling.
    https://www.techrepublic.com/article/are-you-sleeping-understanding-hibernation-standby-and-other-power-management-features/
+** Change screen saver time 2
+https://wiki.archlinux.org/title/Display_Power_Management_Signaling#Modify_DPMS_and_screensaver_settings_with_a_command
+#+begin_src sh
+xset s 1800 1800
+#+end_src
 
 * Drawing
 ** Inkscape
