@@ -117,6 +117,38 @@ $ git reset --hard $COMMIT_HASH
 git clone --depth 1 --branch <tag_name> <repo_url>
 ("--depth 1" is optional)
 
+* download a specific directory via svn
+https://stackoverflow.com/a/39317180/6710003
+#+begin_src sh
+svn export <repository>/trunk/<directory> -r <revision>
+#+end_src
+
+e.g.
+#+begin_src sh
+svn export https://github.com/huggingface/notebooks.git/trunk/transformers_doc/en/pytorch
+svn export https://github.com/huggingface/notebooks.git/trunk/transformers_doc/en/pytorch -r 747
+#+end_src
+
+** find revision
+#+begin_src sh
+svn log <repository> -l <number of entries>  # -l means --limit
+#+end_src
+
+e.g.
+#+begin_src sh
+svn log https://github.com/huggingface/notebooks.git -l 4
+#+end_src
+
+** install svn
+- install svn via conda
+  #+begin_src sh
+  conda install -c conda-forge subversion
+  #+end_src
+- install svn via apt
+  #+begin_src sh
+  sudo apt install subversion
+  #+end_src
+
 * github
 ** github example
 https://github.com/daehwannam/emacs-config.git
