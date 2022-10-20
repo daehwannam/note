@@ -12,11 +12,25 @@ this code can execute the block of __main__ in "module.py"
 
 * Python virtualenv
 ** make a virtualenv
-$ python -m venv .venv
+#+begin_src sh
+python -m venv .venv
+#+end_src
+where ".venv" is a directory name
 ** switch to a virtualenv
-$ source .venv/bin/activate
+#+begin_src sh
+source .venv/bin/activate
+#+end_src
+
+Then, python in virtualenv is now used:
+#+begin_src sh
+which python
+#+end_src
+
+such as "/home/<user>/some-dir/.venv/bin/python".
 ** deactivate
-$ deactivate
+#+begin_src sh
+deactivate
+#+end_src
 
 * Python language
 ** tail call optimization
@@ -159,6 +173,15 @@ $ python -m pip [command] [args]
   $ python -m pip install stanfordnlp==
 - install specified version
   $ python -m pip install stanfordnlp==0.2.0
+- install a package with an extra option
+  https://stackoverflow.com/questions/46775346/what-do-square-brackets-mean-in-pip-install
+  $ pip install "project[extra]"
+  e.g.
+  $ pip install "transformers[sentencepiece]"
+- install a package with a version and an extra option
+  $ pip install "transformers[sentencepiece]==4.23.1"
+- uninstall a package
+  $ pip uninstall "transformers[sentencepiece]==4.23.1"
 ** setup
 - install from a local directory
   $ pip install /path/to/directory

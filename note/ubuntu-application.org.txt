@@ -261,6 +261,11 @@ https://github.com/kovidgoyal/kitty/issues/530
 #+begin_example
 cursor_stop_blinking_after 0.1
 #+end_example
+**** cursor color
+#+begin_example
+# cursor magenta
+cursor #E38AAE
+#+end_example
 ** Alacritty
 terminal program to repace gnome-terminal
 *** install
