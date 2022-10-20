@@ -1,0 +1,20 @@
+
+* Change cache directory
+https://huggingface.co/docs/transformers/installation#cache-setup
+
+#+begin_src sh
+# Example 1
+TRANSFORMERS_CACHE=./some/path python code.py
+
+# Example 3
+TRANSFORMERS_CACHE=~/some/path python code.py
+#+end_src
+
+* Auto classes
+https://huggingface.co/docs/transformers/model_doc/auto#auto-classes
+- AutoTokenizer
+- AutoModel
+  - AutoModelForSeq2SeqLM
+  - AutoModelForSequenceClassification
+  - etc
+- AutoConfig
