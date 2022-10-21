@@ -331,6 +331,7 @@ Add the following line:
 xrdb -merge ~/.Xresources
 #+end_src
 ** Xresources
+~/.Xresources
 *** Mouse size
 https://unix.stackexchange.com/a/612138/502857
 #+begin_example
