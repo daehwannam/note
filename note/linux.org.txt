@@ -548,6 +548,11 @@ https://unix.stackexchange.com/a/77050
   8x16 is the maximum size
 - restart service
   $ sudo service console-setup restart
+** change font size of virtual console 2
+https://unix.stackexchange.com/a/206931
+#+begin_src sh
+sudo dpkg-reconfigure console-setup
+#+end_src
 ** keyboard layout changes
 https://tolovefeels.tistory.com/58
 

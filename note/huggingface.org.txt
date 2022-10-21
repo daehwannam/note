@@ -12,12 +12,23 @@ TRANSFORMERS_CACHE=~/some/path python code.py
 
 * Auto classes
 https://huggingface.co/docs/transformers/model_doc/auto#auto-classes
+https://huggingface.co/docs/transformers/autoclass_tutorial
 - AutoTokenizer
 - AutoModel
   - AutoModelForSeq2SeqLM
   - AutoModelForSequenceClassification
   - etc
 - AutoConfig
+- etc
+** AutoProcessor
+https://huggingface.co/docs/transformers/preprocessing
+
+- AutoProcessor is more general than AutoTokenizer or AutoFeatureExtractor
+- AutoProcessor also can be used to preprocess multi-modal data
+- e.g.
+  #+begin_src python
+  type(AutoProcessor.from_pretrained("bert-base-cased")) is type(AutoTokenizer.from_pretrained("bert-base-cased"))
+  #+end_src
 
 * Examples
 ** run a model after a tokenizer
@@ -34,4 +45,11 @@ pt_outputs = pt_model(**pt_batch)
 #+begin_src python
 from transformers import pipeline
 generator = pipeline(task="text-generation", model=model, tokenizer=tokenizer)
+#+end_src
+** tokenize and decode
+#+begin_src python
+from transformers import AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+encoded_input = tokenizer("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
+tokenizer.decode(encoded_input["input_ids"])
 #+end_src

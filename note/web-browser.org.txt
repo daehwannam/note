@@ -188,6 +188,14 @@ https://support.mozilla.org/en-US/kb/compact-mode-workaround-firefox
 8. Choose "Compact (not supported)" from the menu options.
 9. Click "Done".
 
+** Full screen
+*** Hide tab-bar and address bar without going full-screen
+https://www.reddit.com/r/firefox/comments/ngchbi/comment/gyszirk/?utm_source=share&utm_medium=web2x&context=3
+- Enter "about:config" as address
+- Change "full-screen-api.ignore-widgets" to "true".
+*** Automatic full screen
+https://addons.mozilla.org/en-US/firefox/addon/i-auto-fullscreen/
+
 * EAF browser
 https://github.com/emacs-eaf/emacs-application-framework
 emacs-application-framework browser
