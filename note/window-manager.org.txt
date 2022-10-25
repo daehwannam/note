@@ -308,7 +308,6 @@ e.g. "profile/google-chrome-user-1" becomes "/home/user/profile/google-chrome-us
   #+end_src
 ** DPI setting
 https://unix.stackexchange.com/a/461525
-https://unix.stackexchange.com/a/461525
 *** Find the proper DPI
 #+begin_src bash :results output
 xdpyinfo | grep -B 2 resolution
@@ -331,6 +330,7 @@ Add the following line:
 xrdb -merge ~/.Xresources
 #+end_src
 ** Xresources
+~/.Xresources
 *** Mouse size
 https://unix.stackexchange.com/a/612138/502857
 #+begin_example
