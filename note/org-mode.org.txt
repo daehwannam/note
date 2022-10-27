@@ -177,7 +177,11 @@ https://orgmode.org/worg/org-tutorials/
 ** remove hard indentation
 use "org-unindent-buffer"
 ** add hard indentation
-use "org-indent-region"
+use "org-indent-region" when "org-indent-mode" is nil
+#+begin_src elisp
+(org-indent-mode -1)
+(org-indent-region (point-min) (point-max))
+#+end_src
 ** switch between odd/oddeven bullet levels
 https://orgmode.org/manual/Hard-indentation.html
 - M-x org-convert-to-odd-levels
