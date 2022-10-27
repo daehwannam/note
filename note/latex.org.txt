@@ -199,3 +199,85 @@ https://tex.stackexchange.com/a/347148
 #+begin_src latex
 \newcommand\boldtxt[1]{\textbf{\boldmath #1}}
 #+end_src
+
+* Customization
+** Find location of latex library file
+e.g.
+#+begin_src sh
+# beamer
+kpsewhich beamer.cls
+
+# beamer theme
+kpsewhich beamerthemeMadrid.sty
+kpsewhich beamerthemeAnnArbor.sty
+
+# inner theme
+kpsewhich beamerinnerthemedefault.sty
+#+end_src
+** Redefining the title style of beamer
+https://tex.stackexchange.com/a/155686
+
+The orginal source of theme styles can be found by kpsewhich command
+e.g.
+#+begin_src sh
+kpsewhich beamerinnerthemedefault.sty
+kpsewhich beamerinnerthemerounded.sty
+#+end_src
+
+Use the template and replace "default" with "supdefault"
+
+e.g.
+#+begin_src latex
+% Redefining title style
+% https://tex.stackexchange.com/a/155686
+% 
+% The orginal source can be found by
+% $ kpsewhich beamerinnerthemedefault.sty
+% 
+% and replace "default" with "supdefault"
+
+\defbeamertemplate*{title page}{supdefault}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+  \centering
+  \vskip1em\par  % added by dhnam
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \vskip1em\par  % added by dhnam
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+
+% Round title
+%
+% The orginal source can be found by
+% $ kpsewhich beamerinnerthemerounded.sty
+% 
+% and replace "default" with "supdefault"
+
+\setbeamertemplate{title page}[supdefault][colsep=-4bp,rounded=true]
+% \DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
+% \ExecuteOptionsBeamer{shadow=false}
+% \ProcessOptionsBeamer
+
+% \setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
+#+end_src
