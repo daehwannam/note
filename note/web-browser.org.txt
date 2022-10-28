@@ -151,6 +151,13 @@ click some text then search
   https://support.mozilla.org/en-US/questions/1284841
 - fixed hiding
   https://www.reddit.com/r/firefox/comments/8dlb5j/comment/dxopy23/?utm_source=share&utm_medium=web2x&context=3
+** hide tab bar and address bar
+https://superuser.com/a/1269912
+https://www.reddit.com/r/FirefoxCSS/comments/hyqj5y/comment/fzhhbe4/?utm_source=share&utm_medium=web2x&context=3
+- Go to "about:config"
+- Change "toolkit.legacyUserProfileCustomizations.stylesheets" -> true
+- Add the following code into userChrome.css
+  https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/autohide_toolbox.css
 ** use another profile
 - make a new profile
   https://support.mozilla.org/en-US/questions/1262935
