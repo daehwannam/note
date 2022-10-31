@@ -224,7 +224,7 @@ kpsewhich beamerinnerthemedefault.sty
 kpsewhich beamerinnerthemerounded.sty
 #+end_src
 
-Use the template and replace "default" with "supdefault"
+Use the template and replace "default" with other term such as "supdefault"
 
 e.g.
 #+begin_src latex
@@ -234,7 +234,7 @@ e.g.
 % The orginal source can be found by
 % $ kpsewhich beamerinnerthemedefault.sty
 % 
-% and replace "default" with "supdefault"
+% and replace "default" with other term such as "supdefault"
 
 \defbeamertemplate*{title page}{supdefault}[1][]
 {
@@ -272,7 +272,7 @@ e.g.
 % The orginal source can be found by
 % $ kpsewhich beamerinnerthemerounded.sty
 % 
-% and replace "default" with "supdefault"
+% and replace "default" with other term such as "supdefault"
 
 \setbeamertemplate{title page}[supdefault][colsep=-4bp,rounded=true]
 % \DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
