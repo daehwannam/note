@@ -62,6 +62,15 @@ latexmk -latexoption="-synctex=1" -shell-escape -pdf doc.tex
 *** GUI tool comparison
 https://www.canterbury.ac.nz/media/documents/research/latex_figures.pdf
 
+** Examples
+*** help line
+#+begin_src latex
+\begin{tikzpicture}
+  % \draw[help lines] (-5, -2) grid (5, 2);
+  \draw[help lines, blue] (-5, -2) grid (5, 2);
+\end{tikzpicture}
+#+end_src
+
 * latexmk
 http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkflow
 ** tex to pdf
