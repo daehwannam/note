@@ -208,6 +208,31 @@ https://tex.stackexchange.com/a/347148
 #+begin_src latex
 \newcommand\boldtxt[1]{\textbf{\boldmath #1}}
 #+end_src
+** defining a command with keyword arguments
+https://tex.stackexchange.com/a/34314
+
+#+begin_src latex
+\documentclass{article}
+
+\usepackage{xargs}
+\usepackage{keyval}
+
+\define@key{mykvexample}{first}{\def\kv@first{#1}}
+\define@key{mykvexample}{second}{\def\kv@second{#1}}
+\define@key{mykvexample}{third}{\def\kv@third{#1}}
+\define@key{mykvexample}{fourth}{\def\kv@fourth{#1}}
+\setkeys{mykvexample}{first={default of 1st}, second=2222, third=default of 3rd, fourth={4444}}
+\newcommand{\mykvexample}[2][]{
+  \setkeys{mykvexample}{#1} % set new keys
+  \textbf{
+    Keyword arguments : \kv@first, \kv@second, \kv@third, \kv@fourth.\\
+    Non-keyword arguments : #2
+  }}
+
+\begin{document}
+\mykvexample[first=new value]{Here is the passed argument}
+\end{document}
+#+end_src
 
 * Customization
 ** Find location of latex library file

@@ -981,10 +981,28 @@ in my case, /mnt/lib doesn't have most files
 - battery infomation
   $ acpi
 ** xset
-- chnage keyboard speed
-  "xset r rate [delay [rate]]"
-  e.g.
-  $ xset r rate 250 60
+*** current status
+#+begin_src sh
+xset q
+#+end_src
+*** chnage keyboard speed
+"xset r rate [delay [rate]]"
+e.g.
+#+begin_src sh
+xset r rate 250 60
+#+end_src
+*** set change sreen-off time
+https://wiki.archlinux.org/title/Display_Power_Management_Signaling
+https://shallowsky.com/linux/x-screen-blanking.html
+https://deois.tistory.com/entry/xset-설정
+#+begin_src sh
+# sreen saver
+xset s 1800 1800
+
+# dpms
+# the arguments are time for standby, suspend and off
+xset dpms 2100 2400 2700
+#+end_src
 ** cpupower
 *** current frequency governor
 $ cpupower frequency-info -p
