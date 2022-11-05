@@ -576,6 +576,18 @@ https://www.youtube.com/watch?v=WeMuvjgM2U0
   #+begin_src sh
   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pcie_aspm=force acpi_backlight_native"
   #+end_src
+** change screen resolution of virtual console
+https://ubuntuhandbook.org/index.php/2021/05/screen-resolution-grub-boot-menu-ubuntu/
+1. update GRUB_GFXMODE in "/etc/default/grub"
+   e.g.
+   #+begin_src sh
+   GRUB_GFXMODE=640x480
+   #+end_src
+2. update grub
+   #+begin_src sh
+   sudo update-grub
+   #+end_src
+3. reboot
 ** fix screen brightness 2
 https://www.youtube.com/watch?v=PQqvKnalipM
 https://www.bobjohnson.com/blog/adventures-with-linux-installing-ubuntu-on-a-panasonic-toughbook-cf31/
