@@ -428,3 +428,11 @@ sudo apt-get install ubuntu-desktop
 sudo rm /etc/X11/xorg.conf
 echo 'nouveau' | sudo tee -a /etc/modules
 #+end_src
+** /user.slice/user-1000.slice/session-1.scope is not a snap cgroup
+snap bug fix
+https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1951491/comments/66
+https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1951491
+#+begin_src 
+unset DBUS_SESSION_BUS_ADDRESS
+#+end_src
+
