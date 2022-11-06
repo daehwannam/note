@@ -110,7 +110,7 @@ xrdp is a server program for rdp
   $ sudo ufw enable
 # - (optional) you may want to disable firewall
 #   $ sudo ufw status
-** fix error of black screen in xrdp
+*** fix error of black screen in xrdp
 - edit "/etc/xrdp/startwm.sh"
   add below lines after "/etc/profile" is used
   #+begin_example

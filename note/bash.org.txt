@@ -1,0 +1,189 @@
+* Bash tip
+** make empty file
+$ touch file.txt
+
+** Queuing processes
+https://superuser.com/a/462673
+$ command1 &
+$ wait; command2-1 && command2-2 &
+$ wait; command3 &
+$ ...
+
+** run if previous command succeed
+https://unix.stackexchange.com/a/22727
+$ previous_command
+$ if [ $? -eq 0 ]; then
+$     next_command
+$ fi
+
+** check if a file exists
+https://stackoverflow.com/a/638980
+$ if [ ! -f /tmp/foo.txt ]; then
+$     echo "File not found!"
+$ fi
+
+** array
+https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays
+
+** command line arguments
+https://tecadmin.net/tutorial/bash-scripting/bash-command-arguments/
+
+** arguments to array
+https://stackoverflow.com/a/12711853
+$ myArray=("$@")
+
+** adding custom commands
+https://unix.stackexchange.com/a/84694
+- make a directory that contains command scripts or executables
+  $ mkdir ~/command
+- update ~/.bashrc
+  $ export PATH="$HOME/command:$PATH"
+
+  In this case, commands in "$HOME/command" have higher priorities.
+  If you want them to have lower priorities:
+
+  $ export PATH="$PATH:$HOME/command"
+
+** keep running a process although its terminals is closed
+https://unix.stackexchange.com/a/4006
+
+#+begin_src sh
+emacs &
+disown
+#+end_src
+or
+#+begin_src sh
+emacs & disown
+#+end_src
+
+if you want terminal as soon as the program starts,
+#+begin_src sh
+emacs & disown && exit
+#+end_src
+
+** editing with emacs
+This option is useful when a program (e.g. git) rerquires external editor to modify text
+*** EDITOR vs. VISUAL
+https://unix.stackexchange.com/a/4861
+*** EDITOR variable
+https://unix.stackexchange.com/a/502691
+$ EDITOR=emacs virsh edit win10
+$ EDITOR=emacsclient virsh edit win10
+$ EDITOR="emacs -nw" virsh edit win10
+
+You can also export the default editor in ~/.bashrc
+$ export EDITOR=emacs
+$ export EDITOR=emacsclient
+$ export EDITOR="emacs -nw"
+*** VISUAL variable
+https://stackoverflow.com/a/116570
+
+- GUI version
+  #+begin_src sh
+  emacs --daemon  # M-x server-start
+  emacsclient
+  VISUAL=emacsclient virsh edit win10
+  export VISUAL=emacsclient
+  #+end_src
+
+- Terminal version
+  #+begin_src sh
+  emacs --daemon  # M-x server-start
+  emacsclient -t
+  VISUAL=emacsclient virsh edit win10  # don't add [-t] option
+  export VISUAL=emacsclient
+  #+end_src
+
+** wait until all background jobs are finished
+https://stackoverflow.com/a/1131511
+
+use "wait $(jobs -rp)"
+
+- jobs options
+  https://www.cyberciti.biz/faq/unix-linux-jobs-command-examples-usage-syntax/
+  -r : display only running jobs
+  -p : display only PIDs
+
+e.g. waiting until 3 jobs are finished
+#+begin_src bash
+sleep 7 && echo "done 1st" &
+sleep 2 && echo "done 2nd" &
+sleep 3 && echo "done 3rd" &
+
+wait $(jobs -rp)
+echo "after wait"
+#+end_src
+
+** check if command is installed
+https://stackoverflow.com/a/677212
+
+$ command -v <the_command>
+
+e.g. install autoconf unless it exists
+#+begin_src sh
+if ! command -v autoconf &> /dev/null
+then
+    # install autoconf first, if it's not installed
+    conda install -c conda-forge autoconf
+fi
+#+end_src
+
+** .bashrc vs. profile
+https://serverfault.com/a/500071
+- .profile should also be loaded when starting a graphical desktop session.
+- .profile is executed in login shell
+  https://unix.stackexchange.com/a/29811
+  $ su -l <id>
+  "su <id>" doesn't execute .profile
+
+** check if command is failed or not
+#+begin_src bash
+# https://unix.stackexchange.com/a/22728
+if some-command ; then
+    echo "Command succeeded"
+else
+    echo "Command failed"
+fi
+#+end_src
+
+e.g.
+#+begin_src bash
+# https://unix.stackexchange.com/a/22728
+if cd some-directory ; then
+    echo "Success to change the current directory"
+else
+    echo "Fail to change the current directory"
+fi
+#+end_src
+
+* Configuration of ~/.bashrc
+#+begin_src bash
+# added by Anaconda3 4.4.0 installer
+# export PATH="/home/dhnam/bin/anaconda3/bin:$PATH"
+# source activate default  # after installing "conda create -n default python=3 anaconda"
+# alias emacs='emacs25'  # alias emacs='emacs24'
+
+# CUDA path config
+export PATH=/usr/local/cuda-10.1/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/dhnam/program/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/dhnam/program/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/dhnam/program/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/dhnam/program/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="/home/dhnam/program/anaconda3/envs/default/bin:$PATH"
+source activate default  # after installing "conda create -n default python=3 anaconda"
+#+end_src
+
+#+RESULTS:

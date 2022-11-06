@@ -1,0 +1,430 @@
+* Initial Ubuntu setup
+** optimize linux laptop battery life with 'tlp'
+https://pstudio411.tistory.com/entry/Ubuntu-2004-%EB%85%B8%ED%8A%B8%EB%B6%81%EC%97%94-%ED%95%84%EC%88%98-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC
+*** tlp
+power managerment tool
+- install
+  #+begin_src sh
+  sudo add-apt-repository ppa:linrunner/tlp
+  sudo apt update
+  sudo apt install tlp tlp-rdw
+
+  sudo tlp start
+  #+end_src
+- configuration file path
+  /etc/tlp.conf
+- check status
+  $ tlp-stat -s
+*** Slimbook Battery
+https://itlearningcenter.tistory.com/entry/%E3%80%90Ubuntu-2004-LTS%E3%80%91%EB%85%B8%ED%8A%B8%EB%B6%81-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC-%EB%8F%84%EA%B5%AC-%EC%84%A4%EC%B9%98
+"Slimbook Battery" is tlp-based GUI tool
+
+- install
+  #+begin_src bash
+  sudo add-apt-repository ppa:slimbook/slimbook
+  sudo apt-get update
+  sudo apt-get install slimbookbattery
+  #+end_src
+  - bug fix: <ModuleNotFoundError: No module named 'gi'>
+    $ conda install -c conda-forge pygobject
+- run "Slimbook Battery" application
+- enable the option "Autostart application"
+- modify screen brightness for Saving/Balanced/Maximum modes
+** swap CapsLock with Ctrl
+[[file:emacs.org.txt::*Keyboard configuration with XKBOPTIONS][Keyboard configuration with XKBOPTIONS]]
+** ibus korean keyboard setting
+https://pstudio411.tistory.com/entry/Ubuntu-2004-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%EB%B0%A9%EB%B2%95
+remove "Korean" from "Installed Languages" and reinstall it
+if "Hangul" cannot be added to ibus's Input Method
+** fcitx korean settting
+https://velog.io/@yujo/Ubuntu-20.04%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5%EA%B8%B0-%EC%84%A4%EC%B9%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+- install
+  $ sudo apt-get update
+  $ sudo apt-get install fcitx-hangul
+- "Setting" -> "Region & Language" -> "Manage installed Languages"
+   -> "Keyboard input method system" -> "fcitx"
+- reboot
+*** disable fcitx shortcuts
+https://askubuntu.com/a/884288
+- edit "/usr/share/fcitx/addon/fcitx-vk.conf"
+- add "Enable=False"
+*** fcitx config
+$ fcitx-configtool
+*** set default language
+- open config
+  $ fcitx-configtool
+- Global Config
+- Show Advanced Options (at the left bottom corner)
+- Program
+- Default Input Method State -> Active
+** error fix for typing korean in gnome
+https://github.com/fcitx/fcitx-hangul/issues/4#issuecomment-282241511
+#+begin_src sh
+gsettings set org.gnome.settings-daemon.plugins.keyboard active false
+#+end_src
+** shortcuts change
+Settings -> Keyboard Shortcuts
+- Alt+Space -> Disabled (needed to be disabled for emacs)
+- Alt+Tab -> "Switch windows directly"
+
+* Initial Development setup
+You can refer configuration files in "~/record/config-scripts/"
+1. Clone the record repository
+   #+begin_src bash
+   cd ~
+   git clone https://github.com/daehwannam/record.git
+   #+end_src
+2. Install conda: [[file:conda.org.txt::*Install conda][Install conda]]
+   - make the default environment
+3. Install emacs via conda
+   $ conda install -c conda-forge emacs
+4. Emacs config setup
+   - Clone emacs-config
+     #+begin_src bash
+     cd ~
+     git clone https://github.com/daehwannam/emacs-config.git
+     if [ -d ~/.emacs.d ]; then
+         echo '~/.emacs.d exists already'
+     else
+         mv emacs-config ~/.emacs.d
+     fi
+     #+end_src
+   - Update "~/.emacs.d/config/options.txt"
+     e.g. (machine-id eglot-setup miniconda-env python-setup programming basic)
+          (machine-id min-elpy-setup miniconda-env programming basic)
+          (machine-id elpy-setup miniconda-env programming basic)
+          (machine-id lsp-mode min-elpy-setup miniconda-env programming basic)
+   - (Optional) Install eglot: [[file:eglot.org::*Setup][Setup]]
+   - (Optional) Install elpy: [[file:elpy.org.txt::*Setup][Setup]]
+5. Install tmux via conda
+   - copy ~/.tmux.conf from "~/record/config-scripts/.tmux.conf"
+     $ cp ~/record/config-scripts/.tmux.conf ~/.tmux.conf
+   - (Optional) install logging plugin: [[file:tmux.org.txt::*logging][logging]]
+6. Install screen via conda
+   - copy ~/.screenrc from "~/record/config-scripts/.screenrc"
+     $ cp ~/record/config-scripts/.screenrc ~/.screenrc
+7. (Optional) Install the latest nvidia driver: [[*NVIDIA Driver][NVIDIA Driver]]
+8. (Optional) Install cudatoolkit & cudnn: [[*install guides][install guides]]
+   1) CUDA driver: [[*manual install][manual install]]
+   2) CUDA toolkit
+      - Download: [[*download][download]]
+      - Install: [[*install toolkit only, without extraction (recommended)][install toolkit only, without extraction (recommended)]]
+   3) cuDNN: [[*cuDNN install][cuDNN install]]
+   4) path setup: [[*Multiple CUDAs (CUDA toolkits)][Multiple CUDAs (CUDA toolkits)]]
+9. (Optional) Install others via conda
+   - git
+   - ...
+
+* Ubuntu tips
+** .Trash location
+https://askubuntu.com/questions/102099/where-is-the-trash-folder
+/home/$USER/.local/share/Trash
+or
+/home/$USER/.local/share/Trash/files/
+** Upgrade ubuntu version
+type "do-release-upgrade" in shell
+- apt-get update & upgrade may procede
+** apt-get
+*** install latested package
+https://askubuntu.com/a/303547
+
+'apt-get update' updates the package lists from repositories
+$ apt-get update
+$ apt-get install <package-name>
+*** update vs upgrade
+You should first run update, then upgrade. Neither of them automatically runs the other.
+https://askubuntu.com/a/94104
+** apt-cache
+*** find package by name
+https://askubuntu.com/questions/32238/find-package-name-using-terminal
+$ apt-cache search <name>
+the most relevant results will be at the last since it is the terminal
+** dpkg
+*** package install location
+https://askubuntu.com/a/408785
+dpkg -L <packagename>
+*** package version
+https://unix.stackexchange.com/a/89590
+$ dpkg -s <package> | grep Version
+*** install .deb package
+https://askubuntu.com/a/40781
+$ sudo dpkg -i DEB_PACKAGE
+*** remove package
+https://askubuntu.com/a/22204
+- remove package
+  $ sudo dpkg -r package_name
+
+- removing package and configuration files together
+  $ sudo dpkg --purge package_name
+** Creating a new user
+$ sudo adduser username
+** Add a sudo user to sudo group
+$ sudo usermod -aG sudo username  # for Ubuntu
+$ usermod -aG wheel username  # for Red Hat
+** Login as another user
+https://askubuntu.com/questions/222984/can-i-log-in-with-other-users-account
+- $ su username
+- $ login username
+- $ sudo -u username
+** unicode output setting
+https://emacs.stackexchange.com/questions/10223/how-to-display-unicode-utf-8-as-unicode
+
+in ~/.basrc:
+
+# unicode output setting
+# https://emacs.stackexchange.com/questions/10223/how-to-display-unicode-utf-8-as-unicode
+$ LANG=en_EN.UTF8
+$ export LC_ALL=en_US.UTF-8
+$ export LANG=en_US.UTF-8
+$ export LANGUAGE=en_US.UTF-8
+** Change hostname
+https://www.cyberciti.biz/faq/ubuntu-change-hostname-command/
+1. Type the following command to edit /etc/hostname using nano or vi text editor:
+   $ sudo nano /etc/hostname
+   Delete the old name and setup new name.
+2. Next Edit the /etc/hosts file:
+   $ sudo nano /etc/hosts
+   Replace any occurrence of the existing computer name with your new one.
+3. Re-login or reboot the system to changes take effect:
+   $ sudo reboot
+** Ubuntu version
+https://askubuntu.com/questions/686239/how-do-i-check-the-version-of-ubuntu-i-am-running
+$ lsb_release -a
+** Network
+*** MAC address
+$ cat /sys/class/net/enp1s0/address
+*** Wifi WPA2/PEAP conneciton
+Check "No CA certificate is required"
+** ModuleNotFoundError: No module named 'distro'
+https://stackoverflow.com/a/62635184
+$ pip install distro
+** Terminal
+*** Change terminal color
+https://www.linuxfordevices.com/tutorials/ubuntu/change-ubuntu-terminal-color
+1. make new profile
+   Colors -> Palette -> XTerm (or other schemes)
+2. apply the profile
+   - use "Set as default" for newly created terminals
+   - or mouse right click -> Profiles -> select your profile
+*** copy/paste text from/to terminal
+- Copy: Ctrl+Shift+c (or drag region with mouse)
+- Paste: Ctrl+Shift+v (or Shift+<insert>)
+** Workspace
+*** config in Ubuntu 20.04
+- setup
+  $ sudo apt install gnome-tweaks
+- run
+  $ gnome-tweaks
+- config for multiple monitors
+  https://askubuntu.com/questions/1059479/dual-monitor-workspaces-in-ubuntu-18-04
+  - open gnome-tweaks
+    $ gnome-tweaks
+  - "Workspaces" -> "Display Handling" -> "Workspaces span displays"
+**** bindings
+- overview
+  <super>
+- switch
+  - Ctrl-Alt-<arrow>  ; <arrow> is one of <up>, <down>, <left> and <right>
+- switching with moving the current window
+  - Ctrl-Alt-Shift-<arrow>
+** Add program to application
+https://askubuntu.com/a/141247
+
+make a file named ~/.local/share/applications/${your_app}.desktop
+#+begin_src sh
+[Desktop Entry]
+Type=Application
+Terminal=false  # or true when the program output into terminal
+Name="Your Application Name"
+Icon=/path/to/icon/icon.svg
+Exec=/path/to/file/program
+#+end_src
+The "Name" of application should be different with others
+*** location of desktop entries
+- ~/.local/share/applications
+- /usr/share/applications
+- /usr/local/share/applications
+*** Run ~/.bashrc initially
+https://askubuntu.com/a/498718
+
+run the program with -c option
+#+begin_src sh
+Exec=bash -ic "emacs"
+#+end_src
+** Change default applications
+https://help.ubuntu.com/stable/ubuntu-help/net-default-browser.html.en
+Settings -> Default Applications
+** Show installed packages
+https://askubuntu.com/a/17829
+
+The command print all installed package whose name contain "libwebkit2gtk"
+$ apt list --installed | grep libwebkit2gtk
+** Enable touch pad
+https://askubuntu.com/a/624929
+https://askubuntu.com/a/1308399/820403
+
+- show names and IDs of devices
+  $ xinput list
+- enable touch pad
+  $ xinput set-prop <ID of touchpat> "Device Enabled" 1
+- eanble touch pad's tap-to-click
+  $ xinput set-prop "Name of touchpad" "libinput Tapping Enabled" 1
+** start GUI session in virtual console
+https://askubuntu.com/a/562808
+
+- type Ctrl + Alt + F3        (or other function key)
+- run command in virtual console
+  $ startx -- :3              (3 is the function key number)
+
+starting EXWM from virtual console would not work
+if there's already EXWM running.
+** boot in virtual console
+https://askubuntu.com/a/859637
+
+- update "/etc/default/grub"
+  #+begin_src sh
+  GRUB_CMDLINE_LINUX_DEFAULT="text"
+  GRUB_TERMINAL=console
+  #+end_src
+- run the commands below
+  #+begin_src sh
+  sudo update-grub
+  sudo systemctl enable multi-user.target --force
+  sudo systemctl set-default multi-user.target
+  #+end_src
+- undoing text-mode
+  #+begin_src sh
+  sudo systemctl enable graphical.target --force
+  sudo systemctl set-default graphical.target
+  #+end_src
+** change font size of virtual console
+https://unix.stackexchange.com/a/77050
+- update "/etc/default/console-setup"
+  #+begin_example
+  FONTSIZE="8x16"
+  #+end_example
+  8x16 is the maximum size
+- restart service
+  $ sudo service console-setup restart
+** change font size of virtual console 2
+https://unix.stackexchange.com/a/206931
+#+begin_src sh
+sudo dpkg-reconfigure console-setup
+#+end_src
+** keyboard layout changes
+https://tolovefeels.tistory.com/58
+
+- update "/etc/default/keyboard"
+  #+begin_example
+  XKBVARIANT="kr(kr104)
+  #+end_example
+- Reconfigure
+  $ sudo dpkg-reconfigure keyboard-configuration
+** disable sleep / suspend / hibernate
+https://askubuntu.com/questions/473037/how-to-permanently-disable-sleep-suspend
+$ sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+** Ubuntu auto-log out disable
+https://linuxconfig.org/disable-turn-off-lock-screen-on-ubuntu-20-04-focal-fossa-linux
+"Settings" -> "Privacy" -> "Screen Lock" -> disable "Automatic Screen Lock"
+** fix screen brightness 1
+https://www.youtube.com/watch?v=WeMuvjgM2U0
+- open "/etc/default/grub"
+- add "GRUB_CMDLINE_LINUX_DEFAULT" options "pcie_aspm=force acpi_backlight_native"
+  e.g.
+  #+begin_src sh
+  GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pcie_aspm=force acpi_backlight_native"
+  #+end_src
+** fix screen brightness 2
+https://www.youtube.com/watch?v=PQqvKnalipM
+https://www.bobjohnson.com/blog/adventures-with-linux-installing-ubuntu-on-a-panasonic-toughbook-cf31/
+** change printer protocol
+https://askubuntu.com/a/1267529
+- stop cups
+  $ sudo systemctl stop cups
+- change a printer's DeviceURI from "/etc/cups/printers.conf"
+  e.g.
+  #+begin_example
+  DeviceURI lpd://141.223.91.249:9100  # lpb is used for LDP/LPR protocold
+  #+end_example
+- restart cups
+  $ sudo systemctl restart cups
+** running gnome-control-center's category in command line
+https://askubuntu.com/a/121606
+$ gnome-control-center sound
+*** rollback
+$ sudo systemctl set-default graphical.target
+** Enable dock bar
+https://askubuntu.com/a/1186456
+- method 1
+  - run the following command
+    $ gnome-shell-extension-prefs
+  - change "Ubuntu Dock" as "ON"
+    - if extensions are inactivated, enable it by clicking the button at the top right corner
+- method 2
+  - run gnome-tweaks
+    $ gnome-tweaks
+  - Extensions -> change "Ubuntu dock" as "ON"
+    - if extensions are inactivated, enable it by clicking the button at the top right corner
+*** change dock bar config
+https://linuxconfig.org/how-to-customize-dock-panel-on-ubuntu-20-04-focal-fossa-linux
+if you cannot find Settings -> Appearance, you can try below method
+- install dconf-editor
+  $ sudo apt install dconf-editor
+- run dconf-editor
+  $ dconf-editor
+- find "/org/gnome/shell/extensions/dash-to-dock/dock-position"
+- change "Custom value"
+** running .desktop file from command line
+if "some-app.desktop" is located in one of
+- /usr/share/applications
+# - /usr/local/share/applications
+- ~/.local/share/applications
+
+$ gtk-launch app
+or
+$ gtk-launch app.desktop
+** change default application
+https://askubuntu.com/questions/1030281/change-default-applications-from-script
+https://askubuntu.com/a/251738
+
+update "~/.config/mimeapps.list"
+** enable desktop icons
+- open gnome-tweaks
+  $ gnome-tweaks
+- "Extensions" -> "Desktop icons"
+** install recomended drivers
+https://pstudio411.tistory.com/entry/Ubuntu-2004-Nvidia%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+drivers such as nvidia-driver are installed
+$ sudo ubuntu-drivers autoinstall
+
+* error fix
+** /sbin/init: No such file or directory
+/etc/init: Permission denied
+/bin/sh: 0: can't access tty; job control turned off
+
+https://askubuntu.com/a/906917
+https://askubuntu.com/a/906493
+
+you need to mount a partition where root directory exists
+$ mount -rw -o remount /dev/sda1 /mnt
+where sda1 could be replaced with other partition based on your system
+** Cannot run in framebuffer mode. Please specify busIDs
+*** (testing) disable framebuffer
+https://wiki.archlinux.org/title/GRUB/Tips_and_tricks#Disable_framebuffer
+edit "/etc/default/grub"
+#+begin_src sh
+GRUB_TERMINAL_OUTPUT=console
+#+end_src
+or if you wan to use text mode
+#+begin_src sh
+GRUB_GFXPAYLOAD_LINUX=text
+#+end_src
+*** remove all nvidia-drivers
+this method disable to use some applications that require nvidia-drivers
+https://askubuntu.com/a/206289
+#+begin_src sh
+sudo apt-get remove --purge '^nvidia-.*'
+sudo apt-get install ubuntu-desktop
+sudo rm /etc/X11/xorg.conf
+echo 'nouveau' | sudo tee -a /etc/modules
+#+end_src

@@ -1,0 +1,13 @@
+
+* Arch linux
+** rolling release
+https://frameboxxindore.com/windows/is-arch-linux-a-rolling-release.html
+Arch Linux uses a rolling release model, meaning there are no “major releases” of completely new versions of the system; a regular system update is all that is needed to obtain the latest Arch software; the installation images released every month by the Arch team are simply up-to-date snapshots of the main system
+
+A Linux rolling release distribution is continuously updated in all areas of the operating system, including the Linux kernel, the desktop environment, all utilities and all applications. Getting the latest development, hardware support and new features much sooner with a rolling release.
+
+* OpenSUSE
+
+* Debian
+
+* Guix System
