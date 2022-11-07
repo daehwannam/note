@@ -550,3 +550,20 @@ dd can be used to make bootable usb.
 # https://linuxhint.com/create_bootable_linux_usb_flash_drive/
 sudo dd bs=4M if=path/to/some-os.iso of=/dev/sdx status=progress oflag=sync
 #+end_src
+** split
+
+split is used to divide a large file into smaller ones and copose the parts into the complete one
+
+e.g. copy a large file into FAT32 filesystem by splitting the file into 4G files
+#+begin_src sh
+# https://superuser.com/a/1622389
+
+# Splitting the file
+split --bytes=$((2**32-1)) path/to/the/input/file /media/some-fat32-drive/output/prefix
+# (2**32-1) == 4294967295
+#
+# the output files are: prefixaa, prefixab, prefixac ...
+
+# Composing files into one
+cat /media/some-fat32-drive/output/prefix?? > path/to/a/new/file
+#+end_src
