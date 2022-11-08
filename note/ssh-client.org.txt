@@ -6,7 +6,7 @@ type the followings in the client side:
 
 #+begin_src sh
 ssh-keygen
-ssh-copy-id -p 22 -i user@address
+ssh-copy-id -p 22 user@address
 ssh user@address
 #+end_src
 

@@ -42,7 +42,8 @@ https://velog.io/@yujo/Ubuntu-20.04%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5%EA%B8%B
   $ sudo apt-get update
   $ sudo apt-get install fcitx-hangul
 - "Setting" -> "Region & Language" -> "Manage installed Languages"
-   -> "Keyboard input method system" -> "fcitx"
+  - if a prompt for update occurs, execute the update
+  - "Keyboard input method system" -> "fcitx"
 - reboot
 *** disable fcitx shortcuts
 https://askubuntu.com/a/884288
@@ -50,6 +51,15 @@ https://askubuntu.com/a/884288
 - add "Enable=False"
 *** fcitx config
 $ fcitx-configtool
+*** add Hangul input method
+- Input Method
+- click "+"
+- search "Hangul" and press "OK"
+- Make "Hangul" has the highest priority
+*** Change hot key
+- Global Config
+- Trigger Input Method
+- press <Hangul> key
 *** set default language
 - open config
   $ fcitx-configtool
@@ -435,4 +445,6 @@ https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1951491
 #+begin_src 
 unset DBUS_SESSION_BUS_ADDRESS
 #+end_src
-
+** Emacs doesn't receive C-M-p key
+- "Setting" -> "Keyboard" -> "Input Sources"
+- make "English (US)" has higher priority than "Korean"

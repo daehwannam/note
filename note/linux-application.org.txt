@@ -428,3 +428,26 @@ $ sudo apt install ./zoom_amd64.deb
 ** install
 https://snapcraft.io/whatsapp-for-linux
 $ sudo snap install whatsapp-for-linux
+
+* Dropbox
+** install
+https://www.dropbox.com/install-linux
+#+begin_src sh
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+# "wget -O - <url>" means saving the file to STDOUT
+#+end_src
+
+After the commands "~/.dropboxd" is created
+** Running dropbox daemon
+#+begin_src sh
+~/.dropbox-dist/dropboxd
+#+end_src
+
+- At the first time, it will redirect you to the dropbox page to register the new device.
+- In Gnome environment, "sudo" may be required to avoid the error [[*Error: 'GTK_IS_WIDGET (widget)' failed][Error: 'GTK_IS_WIDGET (widget)' failed]]
+** Error: 'GTK_IS_WIDGET (widget)' failed
+Error message
+#+begin_example
+(dropbox:22839): Gtk-CRITICAL **: 01:52:18.296: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+#+end_example

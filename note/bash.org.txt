@@ -1,6 +1,15 @@
 * Bash tip
 ** make empty file
-$ touch file.txt
+#+begin_src sh
+touch file.txt
+#+end_src
+
+*** make an empty file without changing modification time
+https://unix.stackexchange.com/a/404855
+use "-a" option
+#+begin_src sh
+touch -a file.txt
+#+end_src
 
 ** Queuing processes
 https://superuser.com/a/462673

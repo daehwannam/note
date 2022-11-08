@@ -132,7 +132,9 @@ click some text then search
 ** userChrome.css
 - make userChrome.css
   https://www.userchrome.org/how-create-userchrome-css.html
-  - menu (3-bar) button -> "Help" -> "More Troubleshooting Information"
+  - Enter "about:support"
+    - or you can open the page by
+      menu (3-bar) button -> "Help" -> "More Troubleshooting Information"
   - open the path displayed in "Profile Directory"
     e.g. /home/dhnam/.mozilla/firefox/t6ziesp7.default-release
   - make directory chrome and userChrome.css in it
@@ -146,6 +148,12 @@ click some text then search
   * set "toolkit.legacyUserProfileCustomizations.stylesheets" as true
   * restart the browser.
 - exit and reload firefox
+** preference file
+https://support.mozilla.org/si/questions/965842
+https://mkaz.blog/misc/using-firefox-user-js-settings-file/
+- "prefs.js" is the preference file located in the profile directory
+- "prefs.js" should not be directly modified
+- "user.js" can be used to customize preference
 ** hide tab bar
 - auto-hiding
   https://support.mozilla.org/en-US/questions/1284841

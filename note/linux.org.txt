@@ -567,3 +567,19 @@ split --bytes=$((2**32-1)) path/to/the/input/file /media/some-fat32-drive/output
 # Composing files into one
 cat /media/some-fat32-drive/output/prefix?? > path/to/a/new/file
 #+end_src
+** stow
+https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/
+stow makes symbolic link of files in a specific directory
+
+*** create symbolic link
+#+begin_src sh
+stow -t path/to/target -d path/to/dir some-dir-name
+# "some-dir-name" should be in "path/to/dir"
+#+end_src
+If a symbolic link exist already, it doesn't create it again.
+*** delete symbolic link
+#+begin_src sh
+stow -t path/to/target -d path/to/dir some-dir-name
+# "some-dir-name" should be in "path/to/dir"
+#+end_src
+If a symbolic link doesn't exsit already, it doesn't delete it again.
