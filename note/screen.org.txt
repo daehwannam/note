@@ -17,3 +17,34 @@ $ screen -S socken_name -L -Logfile log_file_name
 ** kill all sessions
 # https://unix.stackexchange.com/a/94528
 $ pskill screen
+
+* Shortcuts
+https://www.pixelbeat.org/lkdb/screen.html
+
+A shortcut is the form of <prefix> + <key>
+
+| Key     | Action                                   | Notes                                                     |
+|---------+------------------------------------------+-----------------------------------------------------------|
+| c       | new window                               |                                                           |
+| n       | next window                              | I bind F12 to this                                        |
+| p       | previous window                          | I bind F11 to this                                        |
+| "       | select window from list                  | I have window list in the status line                     |
+|         | previous window viewed                   |                                                           |
+|---------+------------------------------------------+-----------------------------------------------------------|
+| S       | split terminal horizontally into regions | c to create new window there                              |
+| ❘       | split terminal vertically into regions   | Requires screen >= 4.1                                    |
+| :resize | resize region                            |                                                           |
+| :fit    | fit screen size to new terminal size     | F is the same. Do after resizing xterm                    |
+| :remove | remove region                            | X is the same                                             |
+| tab     | Move to next region                      |                                                           |
+|---------+------------------------------------------+-----------------------------------------------------------|
+| d       | detach screen from terminal              | Start screen with -r option to reattach                   |
+| A       | set window title                         |                                                           |
+| x       | lock session                             | Enter user password to unlock                             |
+| [       | enter scrollback/copy mode               | Enter to start and end copy region.  ] to leave this mode |
+| ]       | paste buffer                             | Supports pasting between windows                          |
+| >       | write paste buffer to file               | useful for copying between screens                        |
+| <       | read paste buffer from file              | useful for pasting between screens                        |
+|---------+------------------------------------------+-----------------------------------------------------------|
+| ?       | show key bindings/command names          | Note unbound commands only in man page                    |
+| :       | goto screen command prompt               | up shows last command entered                             |
