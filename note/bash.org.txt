@@ -1,4 +1,35 @@
 * Bash tip
+** pipe (|)
+https://en.wikipedia.org/wiki/Pipeline_(Unix)
+https://www.techtarget.com/whatis/definition/pipe
+https://unix.stackexchange.com/a/597087
+
+- pipe is a buffer that connects two commands where the buffer is
+  - the standard output of the 1st command and
+  - the input of the 2nd command
+- a pipe buffer is passed as the last argument of the 2nd command
+
+- example 1
+  #+begin_src sh
+  # make a file
+  printf "b\na\nc\ne\nd\n" > temp-file
+
+  # sort file directly
+  sort temp-file
+
+  # sort the result of cat command
+  cat temp-file | sort
+  #+end_src
+
+- example 2
+  #+begin_src sh
+  # grep with a file
+  ps -ef > temp-file
+  grep systemd temp-file
+
+  # grep with the result from the 1st command
+  ps -ef | grep systemd
+  #+end_src
 ** make empty file
 #+begin_src sh
 touch file.txt
