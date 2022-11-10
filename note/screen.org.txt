@@ -9,6 +9,9 @@ $ screen -d
 $ screen -ls
 ** reattach to a linux screen
 $ screen -r socket_name
+** detach socket
+$ screen -d (-r) socket_name
+Detach the elsewhere running screen (and reattach here).
 ** logging
 $ screen -S socken_name -L
 by default logfile name is "./screenlog.0"
