@@ -223,7 +223,13 @@ sudo apt install dunst
 
 * Miscellaneous
 ** Tagging for heading
-Type 'C-c C-c' on the line of heading
-Then, you can insert a tag
+- Type 'C-c C-c' on the line of heading.
+  Then, you can insert a tag
+- You can also use 'C-c C-q' (org-set-tags-command) in the body of the section
+*** tags
+| Tag        | Description                   |
+|------------+-------------------------------|
+| :noexport: | It doesn't export the section |
+
 ** Insert properties
 type 'C-c C-x p' to insert properties in a specific heading
