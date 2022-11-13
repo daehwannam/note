@@ -245,6 +245,9 @@ https://sw.kovidgoyal.net/kitty/
 https://github.com/kovidgoyal/kitty
 *** install
 $ sudo apt install kitty
+*** shortcuts
+- Copy: ctrl + shift + c
+- Paste: ctrl + shift + v / shift + insert
 *** config
 update "~/.config/kitty/kitty.conf"
 **** font

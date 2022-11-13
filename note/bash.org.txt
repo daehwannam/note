@@ -196,6 +196,19 @@ else
 fi
 #+end_src
 
+** stop running bash script when an error occurs
+https://stackoverflow.com/a/2871034
+- Method 1: modify a script file
+  #+begin_src bash
+  #!/bin/bash
+  set -e
+  # any subsequent(*) commands which fail will cause the shell script to exit immediately
+  #+end_src
+- Method 2: command line argument option
+  #+begin_src bash
+  bash -e some_script.sh
+  #+end_src
+
 * Configuration of ~/.bashrc
 #+begin_src bash
 # added by Anaconda3 4.4.0 installer

@@ -24,6 +24,7 @@ Check slurm queue
 
 [Commands]
 $ squeue
+$ squeue -u $USER
 
 [Output]
 JOBID  NAME          STATE     USER     GROUP    PARTITION  NODE NODELIST(REASON)  CPUS TRES_PER_NODE TIME_LIMIT  TIME_LEFT  
