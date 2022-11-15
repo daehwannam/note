@@ -454,3 +454,7 @@ Error message
 #+begin_example
 (dropbox:22839): Gtk-CRITICAL **: 01:52:18.296: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
 #+end_example
+
+* Package management tool
+** snap
+** platpak

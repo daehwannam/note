@@ -80,6 +80,24 @@ org-edit-special (C-c ')
  - org-edit-src-exit (C-c ')
  - org-edit-src-abort (C-c C-k)
  - <code evaluation> (C-c C-c)
+** tangle: extract source code from org-mode
+- Add :tangle with a file name
+  #+begin_src sh :tangle some-code.sh
+  echo "This code block is exported to 'some-code.sh'"
+  #+end_src
+
+  #+begin_src sh :tangle some-code.sh
+  echo "This code block is also exported to 'some-code.sh'"
+  #+end_src
+- Run org-babel-tangle (C-c C-v t)
+*** using tangle from bash
+#+begin_src sh
+emacs --no-init --batch --eval='(progn (set-buffer (find-file-noselect "some-note.org" nil nil nil)) (org-babel-tangle))'
+#+end_src
+*** add shebang
+#+begin_src bash :tangle setup.sh :shebang "#!/bin/bash"
+set -e  # stop the bash script when an error occurs
+#+end_src
 
 * Export
 - C-c C-e: org-export-dispatch

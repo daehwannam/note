@@ -583,3 +583,32 @@ stow -t path/to/target -d path/to/dir some-dir-name
 # "some-dir-name" should be in "path/to/dir"
 #+end_src
 If a symbolic link doesn't exsit already, it doesn't delete it again.
+** module
+https://github.com/dasandata/Open_HPC/blob/master/Document/User%20Guide/4_app_env/4.2_Module.md
+
+- 'module' is a user interface to the Modules package.
+- Modules package provides for the dynamic modification of the user's environment
+
+- available modules
+  #+begin_src sh
+  module av
+  #+end_src
+- unload and load
+  e.g. loading cuda 10.1 instead of 11.2
+  #+begin_src sh
+  module unload cuda/11.2 nccl/cuda/11.2/2.8.3 cuDNN/cuda/11.2/8.1.0.77
+  module load cuda/10.1 nccl/cuda/10.1/2.8.3 cuDNN/cuda/10.1/7.6.4.38
+  #+end_src
+*** apply module in the current terminal by running shell script
+
+1. Save module commands as a shell script file
+   e.g. Assume the following file is saved as "path/to/load-cuda-10.1.sh"
+   #+begin_src sh
+   #!/usr/bin/sh
+   module unload cuda/11.2 nccl/cuda/11.2/2.8.3 cuDNN/cuda/11.2/8.1.0.77
+   module load cuda/10.1 nccl/cuda/10.1/2.8.3 cuDNN/cuda/10.1/7.6.4.38
+   #+end_src
+2. Source the shell script file
+   #+begin_src sh
+   source path/to/load-cuda-10.1.sh
+   #+end_src
