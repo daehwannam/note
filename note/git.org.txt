@@ -173,19 +173,27 @@ https://syung05.tistory.com/20
 ** Caching your GitHub credentials in Git
 https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
 *** Windows
-$ git config --global credential.helper wincred
+#+begin_src sh
+git config --global credential.helper wincred
+#+end_src
 *** Linux
 In Terminal, enter the following:
-$ # Set git to use the credential memory cache
-$ # The default duration for timeout is 15 minutes
-$ git config --global credential.helper cache
+#+begin_src sh
+# Set git to use the credential memory cache
+# The default duration for timeout is 15 minutes
+git config --global credential.helper cache
+#+end_src
 
 To change the default password cache timeout, enter the following:
-$ # Set the cache to timeout after 1 hour (setting is in seconds)
-$ git config --global credential.helper 'cache --timeout=3600'
+#+begin_src sh
+# Set the cache to timeout after 1 hour (setting is in seconds)
+git config --global credential.helper 'cache --timeout=3600'
+#+end_src
 
 ** git config list
-$ git config --list
+#+begin_src sh
+git config --list
+#+end_src
 
 * Git for Windows
 ** Using linux utility
