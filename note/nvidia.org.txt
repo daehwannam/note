@@ -2,42 +2,60 @@
 * components of NVIDIA
 https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
 1. NVIDIA Driver (ex. 390.77)
-   $ nvidia-smi  # the version appears at the left upper corner
+   #+begin_src sh
+   nvidia-smi  # the version appears at the left upper corner
+   #+end_src
 2. CUDA toolkits or just CUDA (ex. v9.0)
-   $ nvcc --version  # it may be different with the version by nvidia-smi
-   $ # the version is determined after setting up CUDA toolkit's path
+   #+begin_src sh
+   nvcc --version  # it may be different with the version by nvidia-smi
+   # the version is determined after setting up CUDA toolkit's path
+   #+end_src
 3. cuDNN (ex. v7.2.1)
-   $ cat /usr/local/cuda-8.0/include/cudnn.h | grep CUDNN_MAJOR -A 2
+   #+begin_src sh
+   cat /usr/local/cuda-8.0/include/cudnn.h | grep CUDNN_MAJOR -A 2
+   #+end_src
 * quick start
 1. NVIDIA Driver
    install latest NVIDIA Driver by apt (latest NVIDIA Driver can cover all cuda toolkits)
 2. CUDA toolkit
    Download CUDA toolkit as '.run' file
    install CUDA toolkit only, without extraction
-   $ sudo sh cuda-10.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
+   #+begin_src sh
+   sudo sh cuda-10.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
+   # You can also install cuda toolkit in your home directory without sudo priviledge
+   # e.g. sh cuda-10.1.run --silent --toolkit --toolkitpath=/home/some-user/usr/local/cuda-10.1
+   #+end_src
 3. cuDNN
    download page: https://developer.nvidia.com/rdp/cudnn-download
    - download the version of cuDNN for the corresponding version of CUDA toolkit
    https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installlinux-tar
    1. Navigate to your <cudnnpath> directory containing the cuDNN Tar file.
    2. Unzip the cuDNN package.
-      $ tar -xzvf cudnn-10.1-linux-x64-v7.6.5.32.tgz
+      #+begin_src sh
+      tar -xzvf cudnn-10.1-linux-x64-v7.6.5.32.tgz
+      #+end_src
    3. Copy the following files into the CUDA Toolkit directory, and change the file permissions.
-  $ sudo cp cuda/include/cudnn.h /usr/local/cuda-10.1/include
-  $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
-  $ sudo chmod a+r /usr/local/cuda-10.1/include/cudnn.h /usr/local/cuda-10.1/lib64/libcudnn*
+      #+begin_src sh
+      sudo cp cuda/include/cudnn.h /usr/local/cuda-10.1/include
+      sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
+      sudo chmod a+r /usr/local/cuda-10.1/include/cudnn.h /usr/local/cuda-10.1/lib64/libcudnn*
+      #+end_src
   The path of CUDA toolkit and cuDNN should corresponds to "/usr/local/cuda-10.1/"
 4. Update .bashrc for path information
    add following commands to ~/.bashrc
-   $ export PATH=/usr/local/cuda-10.1/bin:$PATH
-   $ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+   #+begin_src sh
+   export PATH=/usr/local/cuda-10.1/bin:$PATH
+   export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+   #+end_src
 * CUDA path
 conventionally, /usr/local/cuda-x.x is used for CUDA path.
 However, each user's local directory can be used as CUDA directory
 e.g.
   https://blog.csdn.net/weixin_41278720/article/details/81255265
+  #+begin_src sh
   export PATH=$HOME/cuda-10.2/bin:$PATH
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/cuda-10.2/lib64/
+  #+end_src
 
 * install guides
 ** NVIDIA Driver
@@ -45,34 +63,48 @@ e.g.
   https://eungbean.github.io/2018/08/08/Ubuntu-Installation1/
 - using apt
   https://medium.com/@zhanwenchen/install-cuda-and-cudnn-for-tensorflow-gpu-on-ubuntu-79306e4ac04e
-  $ sudo apt-get install nvidia-384 nvidia-modprobe
+  #+begin_src sh
+  sudo apt-get install nvidia-384 nvidia-modprobe
+  #+end_src
 - install latest nvidia drivers (in ubuntu 14.04) (it may not working)
   https://www.binarytides.com/install-nvidia-drivers-ubuntu-14-04/
 
   setup the xorg-edgers ppa
-  $ sudo add-apt-repository ppa:xorg-edgers/ppa -y
-  $ sudo apt-get update
+  #+begin_src sh
+  sudo add-apt-repository ppa:xorg-edgers/ppa -y
+  sudo apt-get update
+  #+end_src
 
   install a specific driver
-  $ sudo apt-get install nvidia-334
+  #+begin_src sh
+  sudo apt-get install nvidia-334
+  #+end_src
 
   or install the latest version
-  $ sudo apt-get install nvidia-current
+  #+begin_src sh
+  sudo apt-get install nvidia-current
+  #+end_src
 - install latest nvidia drivers (another way)
   http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux
-  $ sudo apt-get purge nvidia*
-  $ sudo add-apt-repository ppa:graphics-drivers
-  $ sudo apt-get update
-  $ sudo apt-get install nvidia-430
+  #+begin_src sh
+  sudo apt-get purge nvidia*
+  sudo add-apt-repository ppa:graphics-drivers
+  sudo apt-get update
+  sudo apt-get install nvidia-430
+  #+end_src
 - minimum driver version
   https://stackoverflow.com/a/30820690
 *** manual install
 - download .run file from NVIDIA site
 - remove existing nvidia drivers
-  $ sudo apt-get remove --purge nvidia-*
+  #+begin_src sh
+  sudo apt-get remove --purge nvidia-*
+  #+end_src
 - install the new nvidia driver
-  $ sudo service lightdm stop ## if you are using 11.04 replace `lightdm` with `gdm`
-  $ sudo sh NVIDIA-Linux-x86_64-285.05.09.run
+  #+begin_src sh
+  sudo service lightdm stop ## if you are using 11.04 replace `lightdm` with `gdm`
+  sudo sh NVIDIA-Linux-x86_64-285.05.09.run
+  #+end_src
 - reboot
 *** Disabling nouveau kernel driver
 https://askubuntu.com/a/951892
@@ -89,7 +121,9 @@ https://askubuntu.com/a/951892
 https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
 
 *** Check globally installed CUDAs
-$ ls -d /usr/local/cuda-*/
+#+begin_src sh
+ls -d /usr/local/cuda-*/
+#+end_src
 
 *** Multiple CUDAs (CUDA toolkits)
 https://kaen2891.tistory.com/24
@@ -98,38 +132,52 @@ https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
 https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
 
 add following commands to ~/.bashrc
-$ export PATH=/usr/local/cuda-8.0/bin:$PATH
-$ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
+#+begin_src sh
+export PATH=/usr/local/cuda-8.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
+#+end_src
 
 *** CUDA runfile
 **** prerequisites
 - disable nouveau
-https://medium.com/@abhiksingla10/installing-cuda-9-2-and-cudnn-7-1-on-ubuntu-16-04-d194cee27cba
+  https://medium.com/@abhiksingla10/installing-cuda-9-2-and-cudnn-7-1-on-ubuntu-16-04-d194cee27cba
 - X-server should be shutdown before installing NVIDIA driver
-https://medium.com/@abhiksingla10/installing-cuda-9-2-and-cudnn-7-1-on-ubuntu-16-04-d194cee27cba
-stop light dm
-https://ericplayground.com/2017/09/26/how-to-stop-and-restart-an-x-server-on-ubuntu/
-$ sudo service lightdm stop
-$ sudo init 3
+  https://medium.com/@abhiksingla10/installing-cuda-9-2-and-cudnn-7-1-on-ubuntu-16-04-d194cee27cba
+  #+begin_src sh
+  stop light dm
+  #+end_src
+  https://ericplayground.com/2017/09/26/how-to-stop-and-restart-an-x-server-on-ubuntu/
+  #+begin_src sh
+  sudo service lightdm stop
+  sudo init 3
+  #+end_src
 **** download
 https://developer.nvidia.com/cuda-toolkit-archive
 **** extract NVIDIA driver, CUDA installer and CUDA samples from runfile
 https://medium.com/@zhanwenchen/install-cuda-and-cudnn-for-tensorflow-gpu-on-ubuntu-79306e4ac04e
-$ bash ./cuda_*.run --extract=$HOME  # an absolute path
+#+begin_src sh
+bash ./cuda_*.run --extract=$HOME  # an absolute path
+#+end_src
 
 **** install all without extraction
 https://blog.kovalevskyi.com/multiple-version-of-cuda-libraries-on-the-same-machine-b9502d50ae77
-$ sudo sh cuda-9.1.run --silent
+#+begin_src sh
+sudo sh cuda-9.1.run --silent
+#+end_src
 
 other options:
 --override (https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/)
 
 **** install toolkit only, without extraction (recommended)
 https://blog.kovalevskyi.com/multiple-version-of-cuda-libraries-on-the-same-machine-b9502d50ae77
-$ sudo sh cuda-9.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-9.1
+#+begin_src sh
+sudo sh cuda-9.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-9.1
+#+end_src
 
 **** all options of runfile
-$ sudo sh cuda-9.1.run --help
+#+begin_src sh
+sudo sh cuda-9.1.run --help
+#+end_src
 
 ** cuDNN install
 https://medium.com/repro-repo/install-cuda-and-cudnn-for-tensorflow-gpu-on-ubuntu-79306e4ac04e
@@ -140,16 +188,33 @@ download page: https://developer.nvidia.com/rdp/cudnn-download
 https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installlinux-tar
 1. Navigate to your <cudnnpath> directory containing the cuDNN Tar file.
 2. Unzip the cuDNN package.
-   $ tar -xzvf cudnn-10.2-linux-x64-v7.6.5.32.tgz
+   #+begin_src sh
+   tar -xf cudnn-linux-x86_64-8.5.0.96_cuda11-archive.tar.xz
+
+   # or
+   # tar -xzvf cudnn-10.2-linux-x64-v7.6.5.32.tgz
+   #+end_src
 3. Copy the following files into the CUDA Toolkit directory, and change the file permissions.
-   $ sudo cp cuda/include/cudnn.h /usr/local/cuda-10.2/include
-   $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.2/lib64
-   $ sudo chmod a+r /usr/local/cuda-10.2/include/cudnn.h /usr/local/cuda-10.2/lib64/libcudnn*
+   #+begin_src sh
+   cp cuda/include/cudnn.h /home/dhnam/usr/local/cuda-11.3/include
+   cp cuda/lib/libcudnn* /home/dhnam/usr/local/cuda-11.3/lib64
+   chmod a+r /home/dhnam/usr/local/cuda-11.3/include/cudnn.h /home/dhnam/usr/local/cuda-11.3/lib64/libcudnn* 
+   #+end_src
+
+   #+begin_src sh
+   sudo cp cuda/include/cudnn.h /usr/local/cuda-10.2/include
+   sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.2/lib64
+   sudo chmod a+r /usr/local/cuda-10.2/include/cudnn.h /usr/local/cuda-10.2/lib64/libcudnn*
+   #+end_src
+
+   libcudnn* could be copied from cuda/lib/ or cuda/lib64/
 
 ** Install CUDA toolkit and cuDNN via conda
-$ conda install -c anaconda cudatoolkit=10.2
-$ conda install -c nvidia nvcc_linux-64
-$ conda install -c anaconda cudnn
+#+begin_src sh
+conda install -c anaconda cudatoolkit=10.2
+conda install -c nvidia nvcc_linux-64
+conda install -c anaconda cudnn
+#+end_src
 *** conda cudatoolkit vs nvidia cudatoolkit
 https://programmersought.com/article/60204317600/
 
@@ -165,33 +230,49 @@ Conda nvcc_linux-64 package has several versions.
 However, the version is not corresponding to actual that of nvcc
 
 When I installed it by
-$ conda install -c nvidia nvcc_linux-64=10.0
+#+begin_src sh
+conda install -c nvidia nvcc_linux-64=10.0
+#+end_src
 
 The installed nvcc had version 10.2
-$ which nvcc
-$ nvcc -V
+#+begin_src sh
+which nvcc
+nvcc -V
+#+end_src
 
 * get gpu information
 - Information of 1st GPU
   https://askubuntu.com/a/604167
-  $ cat /proc/driver/nvidia/gpus/0000:01:00.0/information
+  #+begin_src sh
+  cat /proc/driver/nvidia/gpus/0000:01:00.0/information
+  #+end_src
 - NVIDIA diver version and gpu usage
-  $ nvidia-smi
+  #+begin_src sh
+  nvidia-smi
+  #+end_src
 - Detailed information with nvidia-smi
-  $ nvidia-smi -q  # https://askubuntu.com/questions/5417/how-to-get-the-gpu-info/929163#929163
+  #+begin_src sh
+  nvidia-smi -q  # https://askubuntu.com/questions/5417/how-to-get-the-gpu-info/929163#929163
+  #+end_src
 - CUDA version command
-  $ nvcc --version
+  #+begin_src sh
+  nvcc --version
+  #+end_src
 
 * use cuda with python
-# https://stackoverflow.com/a/34776814
-# https://stackoverflow.com/a/37901914
-$ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES= python main.py  # no gpu
-$ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1 python main.py  # gpu #1
-$ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=0,2 python main.py  # gpu #0 #2
+https://stackoverflow.com/a/34776814
+https://stackoverflow.com/a/37901914
+#+begin_src sh
+CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES= python main.py  # no gpu
+CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1 python main.py  # gpu #1
+CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=0,2 python main.py  # gpu #0 #2
+#+end_src
 
 * gpustat
 - Install
-  $ conda install -c conda-forge gpustat
+  #+begin_src sh
+  conda install -c conda-forge gpustat
+  #+end_src
 - Show GPU usage with users and process IDs
 
 * monitoring GPUs of remote servers

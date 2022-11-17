@@ -243,7 +243,13 @@ https://en.wikipedia.org/wiki/Chmod
 ** wget
 *** download a file to a specific directory
 https://www.tecmint.com/wget-download-file-to-specific-directory/
+#+begin_src sh
 wget https://some-site.com/some-file.txt -P /some/path/to/dir
+#+end_src
+*** download a file with a different name
+#+begin_src sh
+wget -O new-file-name https://some-site.com/some-file.txt
+#+end_src
 
 ** lscpu
 show cpu information
