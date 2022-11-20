@@ -216,10 +216,10 @@ map <c-h> showHelp
 map <a-q>o createTab
 map <a-q>k. removeTab
 map <a-q><c-k> removeTab
-map <a-q>k/ restoreTab
-map <a-q>k* closeOtherTabs
-map <a-q>k( closeTabsOnLeft
-map <a-q>k) closeTabsOnRight
+map <a-q>/ restoreTab
+map <a-q>* closeOtherTabs
+map <a-q>( closeTabsOnLeft
+map <a-q>) closeTabsOnRight
 
 map <a-q><a-k>/ restoreTab
 map <a-q><a-k>* closeOtherTabs
