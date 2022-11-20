@@ -1,17 +1,30 @@
 
-* pyls
-** setup
+* python
+** pylsp
+https://github.com/python-lsp/python-lsp-server
+*** setup
+https://github.com/python-lsp/python-lsp-server#installation
+#+begin_src sh
+pip install "python-lsp-server[all]"
+#+end_src
+*** uninstall
+#+begin_src sh
+pip uninstall "python-lsp-server[all]"
+#+end_src
+
+** pyls (not updated for long time)
+*** setup
 https://github.com/palantir/python-language-server
 
 Install pyls in global environment:
 $ pip install python-language-server
 # $ conda install python-language-server
 
-** Configuration
+*** Configuration
 https://github.com/palantir/python-language-server#configuration
 The default of pyls configuraiton is ~/.config/pycodestyle
 
-*** pycodestyle
+**** pycodestyle
 https://pycodestyle.pycqa.org/en/latest/intro.html#configuration
 -------------- ~/.config/pycodestyle --------------
 [pycodestyle]

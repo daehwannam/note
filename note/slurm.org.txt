@@ -4,7 +4,9 @@
 Check recource
 
 [Command]
-$ sinfo
+#+begin_src sh
+sinfo
+#+end_src
 
 [Output]
 PARTITION  CPUS(A/I/O/T)  STATE  NODELIST  NODES GRES             MEMORY  TIMELIMIT   AVAIL_FEATURES
@@ -23,8 +25,10 @@ titanxp    0/40/0/40      idle   n[12-13]  2     gpu:TITANXP:8    120000  3-00:0
 Check slurm queue
 
 [Commands]
-$ squeue
-$ squeue -u $USER
+#+begin_src sh
+squeue
+squeue -u $USER
+#+end_src
 
 [Output]
 JOBID  NAME          STATE     USER     GROUP    PARTITION  NODE NODELIST(REASON)  CPUS TRES_PER_NODE TIME_LIMIT  TIME_LEFT  
@@ -49,11 +53,43 @@ squeue -u dhnam --format "%R"
 
 ** Check job information
 - Job ID
-  $ echo $SLURM_JOBID
+  #+begin_src sh
+  echo $SLURM_JOBID
+  #+end_src
 - Job Info
-  $ scontrol show job [job_id]
+  #+begin_src sh
+  scontrol show job [job_id]
+  #+end_src
 - Node Info
-  $ scontrol show node [running_node_name]
+  #+begin_src sh
+  scontrol show node [running_node_name]
+  #+end_src
+*** Chek remaining GPUs
+https://stackoverflow.com/a/69691547
+#+begin_src sh
+scontrol show node [running_node_name]
+#+end_src
+
+- 'CfgTRES' says the configured GPUs
+  e.g. the node has 8 GPUs
+  #+begin_example
+  CfgTRES=cpu=20,mem=250000M,billing=48,gres/gpu=8
+  #+end_example
+
+- AllocTRES says the allocated GPUs
+  e.g. the node has 2 GPUs allocated
+  #+begin_example
+  AllocTRES=cpu=1,gres/gpu=2
+  #+end_example
+
+  e.g. no resource (including GPU) is used
+  #+begin_example
+  AllocTRES=
+  #+end_example
+
+- The number of available GPUs in a node is
+  "num-of-configured-GPUs - num-of-allocated-GPUs"
+  e.g. 8 - 2 = 6 GPUs are available
 
 ** Run
 - interactive: run shell with resources
@@ -69,26 +105,36 @@ squeue -u dhnam --format "%R"
 **** srun only
 2 nodes, 2 gpu per node
 
-$ srun -p titanxp -N 2 -n 4  -t 00:30:00 --gres=gpu:2 --pty /bin/bash -l  # resource allocation
-$ exit  # exit from queue
+#+begin_src sh
+srun -p titanxp -N 2 -n 4  -t 00:30:00 --gres=gpu:2 --pty /bin/bash -l  # resource allocation
+exit  # exit from queue
+#+end_src
 ***** examples
 - 1 cpu
-  $ srun -N 1 -n 1 -t 3-00:00:00 --pty /bin/bash -l
-  $ srun -p [partition] -N 1 -n 1  -t 3-00:00:00 --pty /bin/bash -l
+  #+begin_src sh
+  srun -N 1 -n 1 -t 3-00:00:00 --pty /bin/bash -l
+  srun -p [partition] -N 1 -n 1  -t 3-00:00:00 --pty /bin/bash -l
+  #+end_src
 - 2 cpus
-  $ srun -N 1 -n 1 --cpus-per-task=2 -t 3-00:00:00 --pty /bin/bash -l
+  #+begin_src sh
+  srun -N 1 -n 1 --cpus-per-task=2 -t 3-00:00:00 --pty /bin/bash -l
+  #+end_src
 **** salloc & srun
 1) Allocate resources with salloc
 2) Run tasks with srun
 
-$ salloc -N 1 -n 6  -t 00:30:00  /bin/bash -l  # resource allocation
-$ srun execution.sh  # run task with the resources
-$ exit  # exit from queue
+#+begin_src sh
+salloc -N 1 -n 6  -t 00:30:00  /bin/bash -l  # resource allocation
+srun execution.sh  # run task with the resources
+exit  # exit from queue
+#+end_src
 
 *** Batch run
 1) Write script with SBATCH options
 2) run the script with sbatch commands
-   $ sbatch tf-2gpu.slurm.sh
+   #+begin_src sh
+   sbatch tf-2gpu.slurm.sh
+   #+end_src
 
 [Example script]
 #+begin_src sh
@@ -148,6 +194,10 @@ echo  "##### END #####"
 
 ** Stop jobs
 - stop all my jobs
-  $ scancel -u [user_id]
+  #+begin_src sh
+  scancel -u [user_id]
+  #+end_src
 - stop a specific job
-  $ scancel [job_id]
+  #+begin_src sh
+  scancel [job_id]
+  #+end_src

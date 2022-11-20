@@ -1,12 +1,18 @@
 
 * Python execution
 ** run string input (-c)
-$ python -c 'import torch; print(torch.__version__)'
+#+begin_src sh
+python -c 'import torch; print(torch.__version__)'
+#+end_src
 ** run string input with echo
+#+begin_src sh
 echo -e "for i in range(3):\n    print(i)" | python
 echo -e "import nltk\nnltk.download('averaged_perceptron_tagger')\nnltk.download('wordnet')" | python
+#+end_src
 ** python run file as module (-m)
-$ python -m pack1.pack2.module  # pack1/pack2/module.py is the module's path
+#+begin_src sh
+python -m pack1.pack2.module  # pack1/pack2/module.py is the module's path
+#+end_src
 
 this code can execute the block of __main__ in "module.py"
 

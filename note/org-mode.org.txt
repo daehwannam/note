@@ -66,12 +66,16 @@ print("hello world")
 
 #+RESULTS:
 : hello world
-** displaying other file's content
+** output without colon (:)
 https://emacs.stackexchange.com/a/36643
+
+e.g. displaying other file's content
 #+BEGIN_SRC sh :results output drawer
 # cat data.csv  # print all cotents
-head -n 3 ~/.bashrc  # print first 5 lines
+head -n 3 ~/.bashrc  # print first 3 lines
 #+END_SRC
+
+'drawer' option doesn't add a colon (:) for each line.
 ** python virtual environment
 Change python environment before evaluating code block by "M-x pyvenv-workon"
 ** edit code black in a special buffer
@@ -98,6 +102,46 @@ emacs --no-init --batch --eval='(progn (set-buffer (find-file-noselect "some-not
 #+begin_src bash :tangle setup.sh :shebang "#!/bin/bash"
 set -e  # stop the bash script when an error occurs
 #+end_src
+** choosing a working directory
+https://orgmode.org/manual/Environment-of-a-Code-Block.html
+- local
+  #+BEGIN_SRC R :file myplot.png :dir ~/Work
+    matplot(matrix(rnorm(100), 10), type="l")
+  #+END_SRC
+- remote
+  #+BEGIN_SRC R :file plot.png :dir /scp:dand@yakuba.princeton.edu:
+    plot(1:10, main=system("hostname", intern=TRUE))
+  #+END_SRC
+- referencing a remote file
+  #+begin_example
+  [[file:/scp:dand@yakuba.princeton.edu:/home/dand/plot.png][plot.png]]
+  #+end_example
+** session
+- babel with a session keep the process
+- name of session is optional
+- sesssion can be seen in 'list-processes' and kill it by pressing 'd' (process-menu-delete-process)
+
+#+begin_src sh :session some-session-name
+SOME_VAR='some-value'
+#+end_src
+
+#+begin_src sh :session some-session-name
+echo $SOME_VAR
+#+end_src
+
+** running python with a conda environment
+https://www.reddit.com/r/emacs/comments/9jg58b/comment/e6sg3st/?utm_source=share&utm_medium=web2x&context=3
+#+begin_src emacs-lisp
+;; (pyvenv-activate "~/path/to/.venv")
+;; or
+;; (pyvenv-workon "some-env")
+(pyvenv-workon "test")
+#+end_src
+
+#+begin_src python :results output
+import sys
+print('\n'.join(sys.path))
+#+end_src
 
 * Export
 - C-c C-e: org-export-dispatch
@@ -110,6 +154,29 @@ https://orgmode.org/manual/Handling-links.html
 - C-c l     (org-store-link)
 - C-c C-l     (org-insert-link)
 - C-c C-o     (org-open-at-point)
+** Format
+- link with string to display
+  #+begin_example
+  [[/path/to/file::reference][string-to-display]]
+  #+end_example
+- link only
+  #+begin_example
+  [[/path/to/file::reference]]
+  #+end_example
+- reference by string match
+  'reference' could be a line number or string.
+  - [[./org-mode.org.txt::*Format][Link to Format section]]
+    #+begin_example
+    [[./org-mode.org.txt::*Format][Link to Format section]]
+    # or
+    [[file:./org-mode.org.txt::*Format][Link to Format section]]
+    #+end_example
+  - [[./org-mode.org.txt::113][Link to line 113]]
+    #+begin_example
+    [[./org-mode.org.txt::113][Link to line 113]]
+    # or
+    [[file:./org-mode.org.txt::113][Link to line 113]]
+    #+end_example
 
 * Table
 ** Install Inconsolata font for org-mode tables with CJK characters
