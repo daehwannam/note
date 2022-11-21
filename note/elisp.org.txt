@@ -46,3 +46,17 @@ when an elisp file is loaded, the value of ~load-file-name~ variable is the path
 (defconst path-to-script-file load-file-name)
 (defconst path-to-directory-of-script (file-name-directory load-file-name))
 #+end_src
+
+* finding a directory path containing a specific file name
+https://stackoverflow.com/a/64020275/6710003
+
+- ~locate-dominating-file~: starting at FILE, look up directory hierarchy for directory containing NAME.
+- It can be used to find the path to a emacs lisp script, such as ".dir-locals.el".
+
+#+begin_src elisp
+;; return the directory path containing ".dir-locals.el"
+(locate-dominating-file default-directory ".dir-locals.el")
+
+;; return the directory path containing ".git"
+(locate-dominating-file default-directory ".git")
+#+end_src
