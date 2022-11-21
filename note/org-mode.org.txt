@@ -128,20 +128,32 @@ SOME_VAR='some-value'
 #+begin_src sh :session some-session-name
 echo $SOME_VAR
 #+end_src
-
 ** running python with a conda environment
 https://www.reddit.com/r/emacs/comments/9jg58b/comment/e6sg3st/?utm_source=share&utm_medium=web2x&context=3
 #+begin_src emacs-lisp
 ;; (pyvenv-activate "~/path/to/.venv")
 ;; or
-;; (pyvenv-workon "some-env")
-(pyvenv-workon "test")
+(pyvenv-workon "some-env")
 #+end_src
 
 #+begin_src python :results output
 import sys
 print('\n'.join(sys.path))
 #+end_src
+** inline code block
+https://orgmode.org/manual/Structure-of-Code-Blocks.html
+
+- inline code block also can be evaluated by "C-c C-c" command
+
+#+begin_example
+src_<language>{<body>}
+# or
+src_<language>[<header arguments>]{<body>}
+#+end_example
+
+e.g.
+- src_sh{echo 'hello world!'}
+- src_python[:results output]{print("hello world!")}
 
 * Export
 - C-c C-e: org-export-dispatch
