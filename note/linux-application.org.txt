@@ -301,10 +301,70 @@ $ sudo update-alternatives --config x-terminal-emulator
 * Xpra
 https://unix.stackexchange.com/a/608235
 
-Xpra is the X equivalent of screen or tmux, providing a virtual X
-environment and the ability to display the desktop or individual
-application windows locally or remotely, attaching and detaching as
-necessary.
+- Xpra is the X equivalent of screen or tmux, providing a virtual X
+  environment and the ability to display the desktop or individual
+  application windows locally or remotely, attaching and detaching as
+  necessary.
+- Xpra enable to run GUI application via web browser
+
+** commands
+https://help.ubuntu.com/community/Xpra
+
+| command                          | description                              |
+|----------------------------------+------------------------------------------|
+| xpra attach :100                 | show xpra servers                        |
+| xpra attach :7                   | attach to display :7                     |
+| xpra attach ssh:server-address:7 | attach to display :7 in a server via ssh |
+| xpra stop :7                     | stop the server of display :7            |
+
+** examples
+*** attach to local host
+**** make a daemon process
+#+begin_src sh
+xpra start :100 --start=kitty
+#+end_src
+where :100 is DISPLAY
+**** attach to the daemon
+#+begin_src sh
+xpra attach :100
+#+end_src
+*** attach to remote host
+https://bytexd.com/xpra/
+**** server
+#+begin_src sh
+xpra start :100 --start=kitty
+#+end_src
+where :100 is DISPLAY
+**** client
+#+begin_src sh
+xpra attach ssh:user@server-address:100
+#+end_src
+*** attach to remote host via web browser
+- Access a server and enable port forwarding via ssh
+  #+begin_src sh
+  # ssh user@address -L port:host:hostpo
+  ssh user@address -L 8000:localhost:9000
+  #+end_src
+  Now, client's port "8000" is forwarded to the remote server's "localhost:9000"
+- Run xpra in the server side
+  #+begin_src sh
+  # xpra start --bind-tcp=0.0.0.0:9000 -html=on --start-child=xterm
+  xpra start --bind-tcp=0.0.0.0:9000 --html=on --start-child=kitty
+  #+end_src
+- Access the xpra server via browser
+  #+begin_src sh
+  firefox localhost:8000
+  #+end_src
+*** directly running command in xpra on remote host
+https://wiki.archlinux.org/title/Xpra#Run_application_"single_shot"
+#+begin_src sh
+xpra start ssh:user@host --exit-with-children --start-child="command"
+#+end_src
+where "--exit-with-children" options enable to exit daemon when command of "--start-child" is finished.
+
+* gotty
+- gotty enable to access terminal environment via web browser
+- gotty is similar to xpra except that gotty provides terminal environment rather than gui
 
 * unclutter
 hide mouse when it's not moving

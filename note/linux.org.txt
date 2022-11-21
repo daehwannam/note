@@ -107,7 +107,32 @@ ssh -J user1@host1:61111 user2@host2
 ssh -J user1@host1:61111 user2@host2 -p 22
 ssh -J user1@host1:61111,user2@host2:61112 user3@host3 -p 61113
 #+end_src
+*** Port/socket forwarding
+"-L" option specifies that connections to the given TCP port or Unix socket on the local (client) host are
+to be forwarded to the given host and port, or Unix socket, on the remote side.
 
+- forwarding local machine's port to remote host's port
+  #+begin_src sh
+  ssh user@address -L port:host:hostport
+  #+end_src
+
+**** Exapmle: port forwarding for xpra
+https://www.youtube.com/watch?v=Ukqs5M5Fthg
+- Access a server and enable port forwarding via ssh
+  #+begin_src sh
+  # ssh user@address -L port:host:hostpo
+  ssh user@address -L 8000:localhost:9000
+  #+end_src
+  Now, client's port "8000" is forwarded to the remote server's "localhost:9000"
+- Run xpra in the server side
+  #+begin_src sh
+  # xpra start --bind-tcp=0.0.0.0:9000 -html=on --start-child=xterm
+  xpra start --bind-tcp=0.0.0.0:9000 --html=on --start-child=kitty
+  #+end_src
+- Access the xpra server via browser
+  #+begin_src sh
+  firefox localhost:8000
+  #+end_src
 ** ls
 *** Explanation for "ls -l"
 - drwxrwxrwx
