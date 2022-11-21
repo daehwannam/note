@@ -36,3 +36,13 @@ key-description is the reverse of kbd
 (key-description (kbd "M-DEL"))
 ;; (key-description [134217855])
 #+end_src
+
+* path of emacs lisp script file
+https://stackoverflow.com/a/26991492/6710003
+
+when an elisp file is loaded, the value of ~load-file-name~ variable is the path to the loaded elisp file
+
+#+begin_src elisp
+(defconst path-to-script-file load-file-name)
+(defconst path-to-directory-of-script (file-name-directory load-file-name))
+#+end_src
