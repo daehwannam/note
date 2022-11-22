@@ -312,6 +312,7 @@ https://help.ubuntu.com/community/Xpra
 
 | command                          | description                              |
 |----------------------------------+------------------------------------------|
+| xpra list                        | list xpra servers                        |
 | xpra attach :100                 | show xpra servers                        |
 | xpra attach :7                   | attach to display :7                     |
 | xpra attach ssh:server-address:7 | attach to display :7 in a server via ssh |
@@ -361,6 +362,11 @@ https://wiki.archlinux.org/title/Xpra#Run_application_"single_shot"
 xpra start ssh:user@host --exit-with-children --start-child="command"
 #+end_src
 where "--exit-with-children" options enable to exit daemon when command of "--start-child" is finished.
+*** connect to xpra server via ssh with a specific ssh port
+#+begin_src sh
+# xpra attach ssh:user@address:some-port:display
+xpra attach ssh:user@address:11111:100
+#+end_src
 
 * gotty
 - gotty enable to access terminal environment via web browser
