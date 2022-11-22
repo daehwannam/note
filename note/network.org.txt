@@ -33,3 +33,8 @@ network manager with text-based UI
   $ wifi on
 
   If a wifi is connected, '*' is attached to the SSID of connected wifi.
+
+* bluetooth
+** bluetoothctl
+https://wiki.archlinux.org/title/bluetooth
+https://www.makeuseof.com/manage-bluetooth-linux-with-bluetoothctl/
