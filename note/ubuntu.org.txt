@@ -26,7 +26,9 @@ https://itlearningcenter.tistory.com/entry/%E3%80%90Ubuntu-2004-LTS%E3%80%91%EB%
   sudo apt-get install slimbookbattery
   #+end_src
   - bug fix: <ModuleNotFoundError: No module named 'gi'>
-    $ conda install -c conda-forge pygobject
+    #+begin_src sh
+    conda install -c conda-forge pygobject
+    #+end_src
 - run "Slimbook Battery" application
 - enable the option "Autostart application"
 - modify screen brightness for Saving/Balanced/Maximum modes
