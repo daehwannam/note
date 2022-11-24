@@ -19,16 +19,22 @@ power managerment tool
 https://itlearningcenter.tistory.com/entry/%E3%80%90Ubuntu-2004-LTS%E3%80%91%EB%85%B8%ED%8A%B8%EB%B6%81-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC-%EB%8F%84%EA%B5%AC-%EC%84%A4%EC%B9%98
 "Slimbook Battery" is tlp-based GUI tool
 
-- install
-  #+begin_src bash
-  sudo add-apt-repository ppa:slimbook/slimbook
-  sudo apt-get update
-  sudo apt-get install slimbookbattery
-  #+end_src
-  - bug fix: <ModuleNotFoundError: No module named 'gi'>
-    #+begin_src sh
-    conda install -c conda-forge pygobject
-    #+end_src
+*** install
+#+begin_src bash
+sudo add-apt-repository ppa:slimbook/slimbook
+sudo apt-get update
+sudo apt-get install slimbookbattery
+#+end_src
+*** bug fix
+**** <ModuleNotFoundError: No module named 'gi'>
+#+begin_src sh
+conda install -c conda-forge pygobject
+#+end_src
+**** ValueError: Namespace Gtk not available
+#+begin_src sh
+conda install -c conda-forge gtk3
+#+end_src
+*** usage
 - run "Slimbook Battery" application
 - enable the option "Autostart application"
 - modify screen brightness for Saving/Balanced/Maximum modes
