@@ -60,3 +60,10 @@ https://stackoverflow.com/a/64020275/6710003
 ;; return the directory path containing ".git"
 (locate-dominating-file default-directory ".git")
 #+end_src
+
+* re-mapping key binding
+https://www.reddit.com/r/emacs/comments/gp9u2m/comment/frkpk10/?utm_source=share&utm_medium=web2x&context=3
+use "remap" to change the mapped function.
+#+begin_src elisp
+(define-key company-mode-map [remap indent-for-tab-command] #'company-indent-or-complete-common)
+#+end_src
