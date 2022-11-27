@@ -36,6 +36,12 @@ key-description is the reverse of kbd
 (key-description (kbd "M-DEL"))
 ;; (key-description [134217855])
 #+end_src
+** shell-command-to-string
+https://stackoverflow.com/a/12292714
+shell-command-to-string makes the output of a bash command as string
+#+begin_src sh
+(shell-command-to-string "ls -a")
+#+end_src
 
 * path of emacs lisp script file
 https://stackoverflow.com/a/26991492/6710003
@@ -59,4 +65,52 @@ https://stackoverflow.com/a/64020275/6710003
 
 ;; return the directory path containing ".git"
 (locate-dominating-file default-directory ".git")
+#+end_src
+
+* font-lock-mode
+** font-lock-keyword-face example
+http://xahlee.info/emacs/emacs/elisp_font_lock_mode.html
+
+#+begin_src elisp
+;; a simple major mode, my-mode
+(defvar my-highlights nil "first element for `font-lock-defaults'")
+
+(setq my-highlights
+      '(("<h1>\\|</h1>" . 'font-lock-function-name-face)
+        ("<h1>\\([^<]+?\\)</h1>" . (1 'font-lock-constant-face))
+        ("<h1>\\(<h2>\\([^<]+?\\)</h2>\\)</h1>" . (2 'font-lock-comment-face))))
+
+(define-derived-mode my-mode fundamental-mode "my"
+  "major mode for editing my language code."
+  (setq font-lock-defaults '(my-highlights)))
+#+end_src
+where integer 1 and 2 means the level of nested parenthesis to applied to faces
+
+#+begin_example
+<h1>first</h1>
+<h1><h2>second</h2></h1>
+#+end_example
+- the face of "first" is 'font-lock-constant-face
+- the face of "second" is 'font-lock-comment-face
+
+* get the mapped function from a key
+https://stackoverflow.com/a/15647443
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Functions-for-Key-Lookup.html
+** functions from a key of the current keymaps
+#+begin_src elisp
+(key-binding (kbd "C-h m"))
+#+end_src
+** functions from a key of a specific map
+#+begin_src elisp
+(lookup-key (current-global-map) (kbd "TAB")) ; => indent-for-tab-command
+(lookup-key org-mode-map (kbd "TAB")) ; => org-cycle
+(lookup-key text-mode-map (kbd "TAB")) ; => nil
+(lookup-key isearch-mode-map (kbd "TAB")) ; => isearch-printing-char
+#+end_src
+
+* get the mapped key from a function
+https://emacs.stackexchange.com/a/54260
+#+begin_src elisp
+(substitute-command-keys "\\[keyboard-quit]") ; "C-g"
+(substitute-command-keys "\\[org-ctrl-c-ctrl-c]") ; "C-c C-c"
 #+end_src
