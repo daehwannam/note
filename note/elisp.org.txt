@@ -113,4 +113,10 @@ https://emacs.stackexchange.com/a/54260
 #+begin_src elisp
 (substitute-command-keys "\\[keyboard-quit]") ; "C-g"
 (substitute-command-keys "\\[org-ctrl-c-ctrl-c]") ; "C-c C-c"
+
+* re-mapping key binding
+https://www.reddit.com/r/emacs/comments/gp9u2m/comment/frkpk10/?utm_source=share&utm_medium=web2x&context=3
+use "remap" to change the mapped function.
+#+begin_src elisp
+(define-key company-mode-map [remap indent-for-tab-command] #'company-indent-or-complete-common)
 #+end_src
