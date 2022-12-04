@@ -170,7 +170,11 @@ enable/disable menu-bar
 ** toggle-input-method
 - "C-\" : change to the default input method if it exists
 - "C-u C-\" : choose an input method and change to it
-** query-replace-regexp
+** query-replace-regexp & replace-regexp
+*** notation
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Regexp-Replace.html
+- '\&': the entire match
+- '\d': the 'd'th parenthesized group in regex. the number starts from 1
 *** replace numbers with rounded numbers
 https://stackoverflow.com/a/23644015
 #+begin_example
@@ -181,6 +185,24 @@ https://stackoverflow.com/a/23644015
 #+begin_example
 <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.1f" (* \#& 100)) <RET>
 #+end_example
+*** swap the order of two expressions
+#+begin_example
+<C-M-%> \([._a-zA-Z0-9]+\) \(#[^#]+#\) <RET> \2 \1  <RET>
+#+end_example
+
+#+begin_src
+M-x replace-regexp \([._a-zA-Z0-9]+\) \(#[^#]+#\) <RET> \2 \1  <RET>
+#+end_src
+
+- e.g.
+  - input
+    #+begin_example
+    AAA #aaa#, BBB #bbb#
+    #+end_example
+  - output
+    #+begin_example
+    #aaa# AAA, #bbb# BBB
+    #+end_example
 ** clone-indirect-buffer-other-window (C-x 4 c)
 clone the current buffer to the other window
 ** apply a function over multiple buffers
@@ -376,7 +398,7 @@ https://gist.github.com/kiennq/0f3e65098725b1f9708da8c92972e705
   #+begin_example
   Done. The new package has been installed and saved to
   /home/dhnam/program/emacs/emacs-nativecomp_1f03d0de-1_amd64.deb
-  You can remove it from your system anytime using: 
+  You can remove it from your system anytime using:
   $ dpkg -r emacs-nativecomp
   #+end_example
 
