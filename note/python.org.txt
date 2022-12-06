@@ -265,6 +265,7 @@ https://stackoverflow.com/questions/38346577/debuggin-with-pdb-within-a-conda-en
    ex) /home/dhnam/program/anaconda3/envs/py3/bin/python
 
  in this example, pyvenv-workon should be applied for "py3"
+
 ** debugging without pdb.py
 https://realpython.com/python-debugging-pdb/
 - use <breakpoint()>
@@ -275,6 +276,21 @@ https://stackoverflow.com/a/35302880
 
 *** ignoring breakpoints
 $ PYTHONBREAKPOINT=0 python main.py
+
+** debugging a module
+https://stackoverflow.com/a/53173317
+
+to run and debug ~some/package/module.py~ as a module:
+#+begin_src sh
+python -m pdb -m some.package.module
+#+end_src
+
+if ~module.py~ prints the current working directory,
+it prints the path to the directory that contains ~some~.
+#+begin_src python
+import os
+print(os.path.abspath(os.getcwd()))
+#+end_src
 
 * Other packages
 ** Spacy

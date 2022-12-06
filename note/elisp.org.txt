@@ -120,3 +120,23 @@ use "remap" to change the mapped function.
 #+begin_src elisp
 (define-key company-mode-map [remap indent-for-tab-command] #'company-indent-or-complete-common)
 #+end_src
+
+* hook
+** minor mode hook
+https://emacs.stackexchange.com/a/47092
+minor mode's hook is called both when activating and deactivating the minor mode
+
+** buffer-local add-hook
+when 4th argument of ~add-hook~ is non-nil, the hook becomes buffer-local
+
+e.g.
+#+begin_src elisp
+(add-hook 'my-minor-mode-name-hook
+          (lambda ()
+            (if my-minor-mode-name
+                (add-hook 'after-save-hook #'a-func-from-my-minor-mode nil t)
+              (remove-hook 'after-save-hook #'a-func-from-my-minor-mode t))))
+#+end_src
+
+when ~my-minor-mode~ is activated, ~a-func-from-my-minor-mode~ is added to the buffer-local ~after-save-hook~.
+when ~my-minor-mode~ is deactivated, ~a-func-from-my-minor-mode~ is removed from the buffer-local ~after-save-hook~.
