@@ -108,6 +108,11 @@ https://www.gnu.org/software/emacs/manual/html_node/elisp/Functions-for-Key-Look
 (lookup-key isearch-mode-map (kbd "TAB")) ; => isearch-printing-char
 #+end_src
 
+* unbind global commands
+#+begin_src elisp
+(mapcar #'global-unset-key (where-is-internal 'make-frame-command))
+#+end_src
+
 * get the mapped key from a function
 https://emacs.stackexchange.com/a/54260
 #+begin_src elisp
