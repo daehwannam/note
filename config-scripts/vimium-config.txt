@@ -229,7 +229,15 @@ map <a-q><a-k>) closeTabsOnRight
 # visual mode
 map v enterVisualMode
 map V enterVisualLineMode
+map <a-q>s LinkHints.activateModeToSelect
+# map <a-q>e LinkHints.activateCopyLinkText
 # c is mapped to caret mode
+
+# movement key binding in visual mode
+# https://github.com/philc/vimium/issues/3248
+#
+# f -> w
+mapkey f w
 
 # movement in visual mode
 # https://github.com/philc/vimium/issues/3248#issuecomment-464564492

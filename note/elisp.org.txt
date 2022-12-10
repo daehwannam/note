@@ -131,7 +131,18 @@ use "remap" to change the mapped function.
 https://emacs.stackexchange.com/a/47092
 minor mode's hook is called both when activating and deactivating the minor mode
 
+e.g.
+#+begin_src elisp
+(add-hook 'my-minor-mode-name-hook
+          (lambda ()
+            (if my-minor-mode-name
+                (add-hook 'after-save-hook #'a-func-from-my-minor-mode nil t)
+              (remove-hook 'after-save-hook #'a-func-from-my-minor-mode t))))
+#+end_src
+
 ** buffer-local add-hook
+https://emacs.stackexchange.com/a/47092
+
 when 4th argument of ~add-hook~ is non-nil, the hook becomes buffer-local
 
 e.g.
