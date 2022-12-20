@@ -209,6 +209,27 @@ https://stackoverflow.com/a/2871034
   bash -e some_script.sh
   #+end_src
 
+** get the path of a bash script running from a command line
+#+begin_src sh
+THIS_FILE_PATH=`realpath $0`
+THIS_DIR_PATH=`dirname $THIS_FILE_PATH`
+#+end_src
+
+** get a relative path
+https://stackoverflow.com/a/28523143
+
+#+begin_src sh
+realpath --relative-to="$file1" "$file2"
+#+end_src
+
+e.g.
+#+begin_src sh
+realpath --relative-to=/usr/bin/nmap /tmp/testing
+#+end_src
+
+#+RESULTS:
+: ../../../tmp/testing
+
 * Configuration of ~/.bashrc
 #+begin_src bash
 # added by Anaconda3 4.4.0 installer

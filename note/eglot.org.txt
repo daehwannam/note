@@ -3,13 +3,20 @@
 ** pylsp
 https://github.com/python-lsp/python-lsp-server
 *** setup
-https://github.com/python-lsp/python-lsp-server#installation
-#+begin_src sh
-pip install "python-lsp-server[all]"
-#+end_src
-*** uninstall
-#+begin_src sh
-pip uninstall "python-lsp-server[all]"
+**** python-lsp-server
+- install
+  https://github.com/python-lsp/python-lsp-server#installation
+  #+begin_src sh
+  pip install "python-lsp-server[all]"
+  #+end_src
+- uninstall
+  #+begin_src sh
+  pip uninstall "python-lsp-server[all]"
+  #+end_src
+**** pyright
+https://github.com/microsoft/pyright
+#+begin_src python
+pip install pyright
 #+end_src
 
 ** pyls (not updated for long time)

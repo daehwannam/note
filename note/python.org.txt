@@ -277,9 +277,19 @@ https://stackoverflow.com/a/35302880
 *** ignoring breakpoints
 $ PYTHONBREAKPOINT=0 python main.py
 
-** up/down command 
+** where, frame, up, down
 https://stackoverflow.com/a/23488594
-u(p) and d(own) commands switch the current frame in the call stack
+- w(here) prints stack frames
+- f(rame) switch to a specific frame
+  - e.g. switch to frame of number 2
+    #+begin_example
+    (Pdb++) f 2
+    #+end_example
+  - e.g. switch to the last frame
+    #+begin_example
+    (Pdb++) f -1
+    #+end_example
+- u(p) and d(own) commands switch the current frame in the call stack
 
 ** debugging a module
 https://stackoverflow.com/a/53173317

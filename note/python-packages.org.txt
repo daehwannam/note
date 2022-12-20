@@ -1,0 +1,30 @@
+
+* sqlglot
+https://github.com/tobymao/sqlglot
+
+SQL parser
+
+#+begin_src python
+from sqlglot import parse_one
+
+expr = parse_one(
+"""SELECT T2.name, T2.budget
+FROM instructor as T1 JOIN department as
+T2 ON T1.department_id = T2.id
+GROUP BY T1.department_id
+HAVING avg(T1.salary) >
+(SELECT avg(salary) FROM instructor)""")
+
+# The first column of SELECT
+print(repr(expr.args["expressions"][0].args))
+# {'this': (IDENTIFIER this: name, quoted: False), 'table': (IDENTIFIER this: T2, quoted: False)}
+
+# The name of the first column
+print(repr(expr.args["expressions"][0].args["this"].args["this"]))
+
+# The table name of the first column
+print(repr(expr.args["expressions"][0].args["table"].args["this"]))
+
+# The HAVING expression
+print(repr(expr.args["having"]))
+#+end_src

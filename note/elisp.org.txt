@@ -156,3 +156,24 @@ e.g.
 
 when ~my-minor-mode~ is activated, ~a-func-from-my-minor-mode~ is added to the buffer-local ~after-save-hook~.
 when ~my-minor-mode~ is deactivated, ~a-func-from-my-minor-mode~ is removed from the buffer-local ~after-save-hook~.
+
+* change indentation of a macro
+e.g. change indentation of user-defined macro "comment"
+#+begin_src elisp
+(defmacro comment (&rest args)
+  `nil)
+
+(progn
+  ;; fix emacs-lisp's indentation as common-lisp's
+  ;; https://emacs.stackexchange.com/a/13202
+  (require 'cl-indent)
+  (progn
+    ;; emacs-lisp's indentation
+    (put 'comment 'lisp-indent-function
+         (get 'progn 'common-lisp-indent-function)))
+  (progn
+    ;; common-lisp's indentation
+    (put 'comment 'common-lisp-indent-function
+         (get 'progn 'common-lisp-indent-function))))
+#+end_src
+where "comment" has the same indentation rule with "progn"
