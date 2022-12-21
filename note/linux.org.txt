@@ -543,6 +543,20 @@ udisksctl info -b /dev/sdb
 *** toggle Caps Lock
 https://askubuntu.com/a/607915
 $ xte "key Caps_Lock"
+** xcape
+*** install
+#+begin_src sh
+sudo apt-get install xcape
+#+end_src
+*** make short-pressed Ctrl behave like Escape
+https://gist.github.com/tanyuan/55bca522bf50363ae4573d4bdcf06e2e
+http://tiborsimko.org/capslock-escape-control.html
+
+#+begin_src sh
+# make short-pressed Ctrl behave like Escape:
+xcape -e 'Control_L=Escape'
+#+end_src
+To run the script automatically, add the code to "~/.xprofile"
 ** command
 *** check a program exists
 https://stackoverflow.com/a/677212
