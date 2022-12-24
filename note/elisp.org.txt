@@ -24,6 +24,21 @@ otherwise, setq-default and setq have no difference
 - 'setq' assigns a variable a local value for the current buffer
 - 'setq-local' assigns ...
 
+* package
+** package-activated-list
+https://emacs.stackexchange.com/a/44378
+"package-activated-list" is the list of loaded packages
+#+begin_src elisp
+package-activated-list
+#+end_src
+** featurep
+chekc if a feature is available
+#+begin_src elisp
+(featurep 'some-package) # nil
+(provide 'some-package)
+(featurep 'some-package) # t
+#+end_src
+
 * functions
 ** executable-find
 check if an executable exists
