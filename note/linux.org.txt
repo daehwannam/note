@@ -543,6 +543,22 @@ udisksctl info -b /dev/sdb
 *** toggle Caps Lock
 https://askubuntu.com/a/607915
 $ xte "key Caps_Lock"
+** xmodmap
+*** keysyms
+https://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
+The page list symbols such as: LiraSign, EuroSign, VoidSymbol
+*** mapping to a void symbol
+https://emacs.stackexchange.com/a/36276
+
+#+begin_src sh
+xmodmap  -e 'keycode 255 = VoidSymbol'
+xcape -t 175 -e 'Control_L=VoidSymbol'
+#+end_src
+
+#+begin_src elisp
+(define-key evil-insert-state-map (kbd "<VoidSymbol>") 'evil-normal-state)
+(define-key evil-visual-state-map (kbd "<VoidSymbol>") 'evil-normal-state)
+#+end_src
 ** xcape
 *** install
 #+begin_src sh
@@ -552,11 +568,24 @@ sudo apt-get install xcape
 https://gist.github.com/tanyuan/55bca522bf50363ae4573d4bdcf06e2e
 http://tiborsimko.org/capslock-escape-control.html
 
+- short-pressed Ctrl to send Escape
+  #+begin_src sh
+  # make short-pressed Ctrl behave like Escape:
+  xcape -e 'Control_L=Escape'
+  #+end_src
+- To run the script automatically, add the code to "~/.xprofile"
+- To stop xcape, kill the process
+  #+begin_src sh
+  pkill -f xcape
+  #+end_src
+*** timeout
+"-t" options specific milliseconds (ms) for timeout
 #+begin_src sh
-# make short-pressed Ctrl behave like Escape:
-xcape -e 'Control_L=Escape'
+xcape -t 200 -e 'Control_L=Escape' # 0.2 seconds
 #+end_src
-To run the script automatically, add the code to "~/.xprofile"
+*** keycode
+https://gist.github.com/rickyzhang82/8581a762c9f9fc6ddb8390872552c250
+- In X11 server, the keycode of "a" 38
 ** command
 *** check a program exists
 https://stackoverflow.com/a/677212

@@ -25,6 +25,8 @@ otherwise, setq-default and setq have no difference
 - 'setq-local' assigns ...
 
 * package
+** define-package
+"define-package" declare a package
 ** package-activated-list
 https://emacs.stackexchange.com/a/44378
 "package-activated-list" is the list of loaded packages
@@ -37,6 +39,31 @@ chekc if a feature is available
 (featurep 'some-package) # nil
 (provide 'some-package)
 (featurep 'some-package) # t
+#+end_src
+** with-eval-after-load
+*** evaluate when a feature is provided
+#+begin_src elisp
+(with-eval-after-load 'dired
+  (comment do something))
+#+end_src
+*** evaluate when a file with a matched name is loaded
+Assume that the file name is: "~/.emacs.d/some/path/to/file.el"
+Then, following expressions are evaluated when the file is loaded:
+#+begin_src elisp
+(with-eval-after-load "file"
+  (comment do something))
+
+(with-eval-after-load "file.el"
+  (comment do something))
+
+(with-eval-after-load "~/.emacs.d/some/path/to/file.el"
+  (comment do something))
+
+(with-eval-after-load "~/.emacs.d/some/path/to/file"
+  (comment do something))
+
+(with-eval-after-load "path/to/file"
+  (comment do something))
 #+end_src
 
 * functions
@@ -56,6 +83,13 @@ https://stackoverflow.com/a/12292714
 shell-command-to-string makes the output of a bash command as string
 #+begin_src sh
 (shell-command-to-string "ls -a")
+#+end_src
+** string-to-*
+convert a string to a list, a vector, or a character
+#+begin_src sh
+(string-to-list (kbd "C-n C-n"))
+(string-to-vector (kbd "C-n C-n"))
+(string-to-char (kbd "C-n"))
 #+end_src
 
 * path of emacs lisp script file
