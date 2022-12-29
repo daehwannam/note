@@ -584,6 +584,7 @@ http://tiborsimko.org/capslock-escape-control.html
 xcape -t 200 -e 'Control_L=Escape' # 0.2 seconds
 #+end_src
 *** keycode
+https://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
 https://gist.github.com/rickyzhang82/8581a762c9f9fc6ddb8390872552c250
 - In X11 server, the keycode of "a" 38
 ** command

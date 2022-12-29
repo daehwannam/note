@@ -244,3 +244,7 @@ https://stackoverflow.com/a/4932922
 (send-string-to-terminal "\033]12;red\007")
 (send-string-to-terminal "\033]12;orchid\007")
 #+end_src
+** get GUI emacs cursor color
+#+begin_src elisp
+(face-attribute 'cursor :background)
+#+end_src
