@@ -328,6 +328,9 @@ $ BASH_ENV=~/.bashrc emacs
     ;; do something if --exwm is passed from command line
     (progn '(do something))))
 #+END_SRC
+** cursor color
+- check and change the current cursor color
+  ~M-x customize-face cursor~
 
 * Install Emacs
 ** Emacs 25

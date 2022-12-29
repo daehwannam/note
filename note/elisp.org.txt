@@ -226,3 +226,21 @@ e.g. change indentation of user-defined macro "comment"
          (get 'progn 'common-lisp-indent-function))))
 #+end_src
 where "comment" has the same indentation rule with "progn"
+
+* change cursor color
+** check color code
+~M-x list-colors-display~
+** change GUI emacs cursor color
+https://stackoverflow.com/a/4932922
+#+begin_src elisp
+(set-cursor-color "#ffffff")  ; white
+(set-cursor-color "red")
+(set-cursor-color "cyan")
+(set-cursor-color "orchid")
+#+end_src
+** change terminal emacs cursor color
+#+begin_src elisp
+(send-string-to-terminal "\033]12;#ffffff\007")
+(send-string-to-terminal "\033]12;red\007")
+(send-string-to-terminal "\033]12;orchid\007")
+#+end_src
