@@ -574,12 +574,22 @@ https://emacs.stackexchange.com/a/36276
 
 #+begin_src sh
 xmodmap  -e 'keycode 255 = VoidSymbol'
-xcape -t 175 -e 'Control_L=VoidSymbol'
+xcape -t 200 -e 'Control_L=VoidSymbol'
 #+end_src
 
 #+begin_src elisp
 (define-key evil-insert-state-map (kbd "<VoidSymbol>") 'evil-normal-state)
 (define-key evil-visual-state-map (kbd "<VoidSymbol>") 'evil-normal-state)
+#+end_src
+*** keycode mapping is changed after running "systemctl suspend"
+After running "systemctl suspend", some value mapped to keycode could be changed.
+For example, key code 255, 254 and 253 are modified.
+Therefore, "xcape" processes should be quit first, then they should be restarted.
+
+e.g. restarting a xcape process
+#+begin_src sh
+pkill -f xcape
+xcape -t 200 -e 'Control_L=VoidSymbol'
 #+end_src
 ** xcape
 *** install

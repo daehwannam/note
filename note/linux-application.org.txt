@@ -244,7 +244,15 @@ $ export TERM=xterm-256color
 https://sw.kovidgoyal.net/kitty/
 https://github.com/kovidgoyal/kitty
 *** install
-$ sudo apt install kitty
+- installation with .deb package
+  #+begin_src sh
+  sudo apt install kitty
+  #+end_src
+- install pre-build binaries
+  #+begin_src sh
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  #+end_src
+  =~/.local/kitty.app/bin/kitty=
 *** shortcuts
 - Copy: ctrl + shift + c
 - Paste: ctrl + shift + v / shift + insert
