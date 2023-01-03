@@ -13,11 +13,6 @@ https://github.com/python-lsp/python-lsp-server
   #+begin_src sh
   pip uninstall "python-lsp-server[all]"
   #+end_src
-**** pyright
-https://github.com/microsoft/pyright
-#+begin_src python
-pip install pyright
-#+end_src
 
 ** pyls (not updated for long time)
 *** setup
@@ -38,6 +33,28 @@ https://pycodestyle.pycqa.org/en/latest/intro.html#configuration
 count = False
 ignore = E226,E302,E41
 ---------------------------------------------------
+
+** pyright
+*** setup
+https://github.com/microsoft/pyright
+#+begin_src python
+pip install pyright
+#+end_src
+**** check the installed pyright
+#+begin_src sh
+pyright-langserver
+#+end_src
+***** Error: 
+#+begin_src sh
+conda install -c rmg glibc
+#+end_src
+
+** jedi-language-server
+https://github.com/pappasam/jedi-language-server
+*** setup
+#+begin_src sh
+pip install -U jedi-language-server
+#+end_src
 
 * digedtif
 https://github.com/astoff/digestif

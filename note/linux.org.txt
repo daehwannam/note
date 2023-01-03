@@ -50,6 +50,28 @@ if ! timeout 1s xset q &>/dev/null; then
     exit 1
 fi
 #+end_src
+** install program locally
+*** Example: glibc
+- Download file from https://ftp.gnu.org/gnu/glibc/
+  #+begin_src sh
+  wget https://ftp.gnu.org/gnu/glibc/glibc-2.36.tar.xz
+  #+end_src
+- uncompress the file
+  #+begin_src sh
+  tar -xf glibc-2.36.tar.xz
+  #+end_src
+- install
+  #+begin_src sh
+  mkdir glibc-build
+  cd glibc-build
+  ../glibc-2.36/configure --prefix=/home/${USER}/.local/bin
+  make
+  make install
+  #+end_src
+- uninstall
+  #+begin_src sh
+  make uninstall  # make file may not have this option
+  #+end_src
 
 * Utilities
 ** ssh
@@ -687,3 +709,17 @@ https://github.com/dasandata/Open_HPC/blob/master/Document/User%20Guide/4_app_en
    #+begin_src sh
    source path/to/load-cuda-10.1.sh
    #+end_src
+** tar
+*** extract .xz , .gz , ...
+#+begin_src sh
+tar -xf archive.tar.xz
+tar -xf archive.tar.gz
+#+end_src
+*** extract a file with verbose option
+#+begin_src sh
+tar -xvf archive.tar.gz
+#+end_src
+*** extracta a file into a specific location
+#+begin_src sh
+tar -xf archive.tar.gz -C some/path/to/a/diredctory
+#+end_src

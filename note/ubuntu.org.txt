@@ -142,7 +142,7 @@ or
 ** Upgrade ubuntu version
 type "do-release-upgrade" in shell
 - apt-get update & upgrade may procede
-** apt-get
+** apt (apt-get)
 *** install latested package
 https://askubuntu.com/a/303547
 
@@ -152,6 +152,10 @@ $ apt-get install <package-name>
 *** update vs upgrade
 You should first run update, then upgrade. Neither of them automatically runs the other.
 https://askubuntu.com/a/94104
+*** install package locally with "apt source"
+https://askubuntu.com/a/193704
+https://unix.stackexchange.com/a/42569
+https://askubuntu.com/a/350
 ** apt-cache
 *** find package by name
 https://askubuntu.com/questions/32238/find-package-name-using-terminal

@@ -1,0 +1,16 @@
+
+* Material
+https://systemcrafters.cc/craft-your-system-with-guix/
+- https://systemcrafters.cc/craft-your-system-with-guix/introduction
+- https://systemcrafters.cc/craft-your-system-with-guix/installing-the-package-manager/
+- https://systemcrafters.cc/craft-your-system-with-guix/everyday-package-management/
+- https://systemcrafters.cc/craft-your-system-with-guix/using-package-channels/
+- https://systemcrafters.cc/craft-your-system-with-guix/full-system-install/
+
+* Install
+- Download from https://guix.gnu.org/en/download/
+  #+begin_src sh
+  wget https://ftpmirror.gnu.org/gnu/guix/guix-binary-1.4.0.x86_64-linux.tar.xz
+  # If the issued certificate has expired:
+  # wget --no-check-certificate https:s//ftpmirror.gnu.org/gnu/guix/guix-binary-1.4.0.x86_64-linux.tar.xz
+  #+end_src
