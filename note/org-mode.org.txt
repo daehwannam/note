@@ -330,3 +330,11 @@ sudo apt install dunst
 
 ** Insert properties
 type 'C-c C-x p' to insert properties in a specific heading
+
+** org-emphasis-alist
+Adding new emphasis rules
+https://emacs.stackexchange.com/a/5892
+#+begin_src elisp
+(add-to-list 'org-emphasis-alist
+             '("*" (:foreground "red")))
+#+end_src

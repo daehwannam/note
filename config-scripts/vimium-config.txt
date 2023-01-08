@@ -103,8 +103,8 @@ map <a-q><a-l> LinkHints.activateOpenInNewForegroundTab  # map <c-x><c-F> LinkHi
 map <a-q><a-o> LinkHints.activateOpenInNewTab  #map <c-x><a-F> LinkHints.activateOpenInNewTab
 map <a-q><a-O> LinkHints.activateWithQueue  # map <c-x><a-f> LinkHints.activateWithQueue
 
-map <a-q><c-a-b> goBack reuse=-1  # only available in vimium-c
-map <a-q><c-a-f> goForward reuse=-1  # only available in vimium-c
+map <a-q><c-a-[> goBack reuse=-1  # only available in vimium-c
+map <a-q><c-a-]> goForward reuse=-1  # only available in vimium-c
 
 # Similar to Emacs `list-directory`.
 map <c-x><c-d> Vomnibar.activate
