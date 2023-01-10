@@ -12,3 +12,6 @@ both .expand and .repeat can change the size of dimensions.
 but theres some differences:
 - .expand cannot change the number of dimensions
 - .expand doesn't copy memory
+
+* examples of pack_padded_sequence and pad_packed_sequence
+https://gist.github.com/Tushar-N/dfca335e370a2bc3bc79876e6270099e

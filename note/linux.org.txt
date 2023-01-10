@@ -412,6 +412,21 @@ https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install
 make
 make install
 #+end_src
+*** variable assignment statements
+https://stackoverflow.com/a/448973
+#+begin_src makefile
+# Lazy Set
+VARIABLE = value
+
+# Immediate Set
+VARIABLE := value
+
+# Lazy Set If Absent
+VARIABLE ?= value
+
+# Append
+VARIABLE += value
+#+end_src
 ** nohup
 https://joonyon.tistory.com/98
 https://unix.stackexchange.com/a/45915
