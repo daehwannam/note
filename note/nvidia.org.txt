@@ -1,16 +1,18 @@
 
 * components of NVIDIA
 https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
-1. NVIDIA Driver (ex. 390.77)
+1. NVIDIA Driver (e.g. 390.77)
    #+begin_src sh
-   nvidia-smi  # the version appears at the left upper corner
+   nvidia-smi
+   # the driver's version appears at the left upper corner.
+   # the cuda version means the highest compatible version.
    #+end_src
-2. CUDA toolkits or just CUDA (ex. v9.0)
+2. CUDA toolkits or just CUDA (e.g. v9.0)
    #+begin_src sh
-   nvcc --version  # it may be different with the version by nvidia-smi
+   nvcc --version  # it doesn't need to be same with the cuda version by nvidia-smi
    # the version is determined after setting up CUDA toolkit's path
    #+end_src
-3. cuDNN (ex. v7.2.1)
+3. cuDNN (e.g. v7.2.1)
    #+begin_src sh
    cat /usr/local/cuda-8.0/include/cudnn.h | grep CUDNN_MAJOR -A 2
    #+end_src
@@ -20,32 +22,74 @@ https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
 2. CUDA toolkit
    Download CUDA toolkit as '.run' file
    install CUDA toolkit only, without extraction
-   #+begin_src sh
-   sudo sh cuda-10.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
-   # You can also install cuda toolkit in your home directory without sudo priviledge
-   # e.g. sh cuda-10.1.run --silent --toolkit --toolkitpath=/home/some-user/usr/local/cuda-10.1
-   #+end_src
+
+   For example,
+   - Install cuda 11.6 to a local directory
+     #+begin_src sh
+     sh cuda_11.6.0_510.39.01_linux.run --silent --toolkit --toolkitpath=/home/user/usr/local/cuda-11.6
+     #+end_src
+   - Install cuda 10.1 to a shared directory
+     #+begin_src sh
+     sudo sh cuda-10.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
+     # You can also install cuda toolkit in your home directory without sudo priviledge
+     # e.g. sh cuda-10.1.run --silent --toolkit --toolkitpath=/home/some-user/usr/local/cuda-10.1
+     #+end_src
 3. cuDNN
    download page: https://developer.nvidia.com/rdp/cudnn-download
    - download the version of cuDNN for the corresponding version of CUDA toolkit
    https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installlinux-tar
    1. Navigate to your <cudnnpath> directory containing the cuDNN Tar file.
    2. Unzip the cuDNN package.
-      #+begin_src sh
-      tar -xzvf cudnn-10.1-linux-x64-v7.6.5.32.tgz
-      #+end_src
+      For example,
+      - Decompress .xz file
+        #+begin_src sh
+        tar -xf cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz
+        #+end_src
+      - Decompress .tgz file
+        #+begin_src sh
+        tar -xzvf cudnn-10.1-linux-x64-v7.6.5.32.tgz
+        #+end_src
    3. Copy the following files into the CUDA Toolkit directory, and change the file permissions.
-      #+begin_src sh
-      sudo cp cuda/include/cudnn.h /usr/local/cuda-10.1/include
-      sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
-      sudo chmod a+r /usr/local/cuda-10.1/include/cudnn.h /usr/local/cuda-10.1/lib64/libcudnn*
-      #+end_src
-  The path of CUDA toolkit and cuDNN should corresponds to "/usr/local/cuda-10.1/"
-4. Update .bashrc for path information
-   add following commands to ~/.bashrc
+      For example,
+      - Install cuda 11.6 to a local directory
+        #+begin_src sh
+        cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/include/cudnn.h ~/usr/local/cuda-11.6/include
+        cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/lib/libcudnn* ~/usr/local/cuda-11.6/lib64  # copy files in lib to lib64
+        chmod a+r ~/usr/local/cuda-11.6/include/cudnn.h ~/usr/local/cuda-11.6/lib64/libcudnn*
+        #+end_src
+      - Install cuda 10.1 to a shared directory
+        #+begin_src sh
+        sudo cp cuda/include/cudnn.h /usr/local/cuda-10.1/include
+        sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
+        sudo chmod a+r /usr/local/cuda-10.1/include/cudnn.h /usr/local/cuda-10.1/lib64/libcudnn*
+        #+end_src
+  The path of CUDA toolkit and cuDNN corresponds to
+  - "~/usr/local/cuda-11.6"
+  - "/usr/local/cuda-10.1/"
+4. Update .bashrc for path information.
+   Add following commands to ~/.bashrc
    #+begin_src sh
-   export PATH=/usr/local/cuda-10.1/bin:$PATH
-   export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+   # cuda-11.6
+   export PATH=/home/dhnam/usr/local/cuda-11.6/bin:$PATH
+   export LD_LIBRARY_PATH=/home/dhnam/usr/local/cuda-11.6/lib64:$LD_LIBRARY_PATH
+
+   # cuda 10.1
+   # export PATH=/usr/local/cuda-10.1/bin:$PATH
+   # export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
+   #+end_src
+
+   You can also save the export commands as a .sh file then dynamically load it:
+   #+begin_src sh
+   CUDA_SCRIPT_PATH=~/gpu/cuda-11.6.sh
+
+   # Make cuda load script
+   mkdir -p $(dirname $CUDA_SCRIPT_PATH)
+   touch $CUDA_SCRIPT_PATH
+   echo 'export PATH=/home/dhnam/usr/local/cuda-11.6/bin:$PATH' >> $CUDA_SCRIPT_PATH
+   echo 'export LD_LIBRARY_PATH=/home/dhnam/usr/local/cuda-11.6/lib64:$LD_LIBRARY_PATH' >> $CUDA_SCRIPT_PATH
+
+   # Load cuda
+   source $CUDA_SCRIPT_PATH
    #+end_src
 * CUDA path
 conventionally, /usr/local/cuda-x.x is used for CUDA path.

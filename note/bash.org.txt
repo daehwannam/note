@@ -230,6 +230,44 @@ realpath --relative-to=/usr/bin/nmap /tmp/testing
 #+RESULTS:
 : ../../../tmp/testing
 
+** exit bash script
+https://stackoverflow.com/a/1378284
+
+#+begin_src sh
+exit 1
+#+end_src
+
+** conditioning
+*** check a value is empty or not
+https://serverfault.com/a/382740
+*** check if a directory is empty or not
+https://superuser.com/a/1361548
+
+- check a directory is empty
+  #+begin_src sh
+  DIR_PATH=some/path/to/dir
+  if test -n "$(find $DIR_PATH -maxdepth 0 -empty)" ; then
+      echo "The directory '$DIR_PATH' is empty"
+      exit 1
+  fi
+  #+end_src
+- check a directory is not empty
+  #+begin_src sh
+  DIR_PATH=some/path/to/dir
+  if test ! -n "$(find $DIR_PATH -maxdepth 0 -empty)" ; then
+      echo "The directory '$DIR_PATH' is NOT empty"
+      exit 1
+  fi
+  #+end_src
+**** check if a directory exists and it's not empty
+#+begin_src sh
+DIR_PATH=some/path/to/dir
+if [[ -d $DIR_PATH  &&  ! -n "$(find $DIR_PATH -maxdepth 0 -empty)" ]]; then
+    echo "The directory '$DIR_PATH' already exists and it's not empty."
+    exit 1
+fi
+#+end_src
+
 * Configuration of ~/.bashrc
 #+begin_src bash
 # added by Anaconda3 4.4.0 installer
