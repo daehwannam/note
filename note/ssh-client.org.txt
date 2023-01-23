@@ -47,6 +47,13 @@ and check to make sure that only the key(s) you wanted were added.
 dhnam@ubuntu:~$ ssh user@address
 
 #+end_example
+** ssh copy key via proxy
+#+begin_src sh
+ssh-copy-id -o ProxyJump=user1@proxy.address.com:22 -p 22 user2@remote.host.com
+ssh -J user1@proxy.address.com:22 -p 22 user2@remote.host.com
+#+end_src
+
+where the 1st "22" is the ssh port of proxy and the 2nd 22 is the ssh port of the remote host.
 
 ** ssh client for Windows
 *** Putty
