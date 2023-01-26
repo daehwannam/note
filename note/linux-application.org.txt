@@ -532,3 +532,20 @@ Error message
 * Package management tool
 ** snap
 ** platpak
+
+* Antivirus
+** clamav
+*** install
+https://adamtheautomator.com/install-clamav-on-ubuntu/
+#+begin_src sh
+# install
+sudo apt update -y
+sudo apt install clamav clamav-daemon -y
+
+# check version
+clamscan --version
+#+end_src
+*** install gui-tool
+#+begin_src sh
+sudo apt install clamtk -y
+#+end_src
