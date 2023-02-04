@@ -55,6 +55,20 @@ ssh -J user1@proxy.address.com:22 -p 22 user2@remote.host.com
 
 where the 1st "22" is the ssh port of proxy and the 2nd 22 is the ssh port of the remote host.
 
+** ssh key locations
+https://danthetech.netlify.app/Backend/configure-ssh-key-based-authentication-on-a-linux-server
+
+*** client side
+- private key: =/home/$USER/.ssh/id_rsa/id_rsa=
+- public key: =/home/$USER/.ssh/id_rsa/id_rsa.pub=
+*** server side
+- copied public keys: =/home/$USER/.ssh/authorized_keys=
+
+** known_hosts
+https://junho85.pe.kr/667
+When accessing a server first time, ssh ask that: "Are you sure you want to continue connecting (yes/no)?"
+If you type "yes", the host is added to =~/.ssh/known_hosts=, then ssh doesn't ask the question again for the server.
+
 ** ssh client for Windows
 *** Putty
 **** Putty manual for emacs

@@ -31,34 +31,54 @@
 ** Install packages
 - install pip
   https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
-  $ conda install pip
+  #+begin_src sh
+  conda install pip
+  #+end_src
 - search specific version
-  $ conda search spacy
+  #+begin_src sh
+  conda search spacy
+  #+end_src
 - install specific package
-  $ conda install spacy=2.2.3
+  #+begin_src sh
+  conda install spacy=2.2.3
+  #+end_src
 
 * Conda environment
 ** install / delete / update
 *** Python 2
-$ conda create -n py2 python=2.7 anaconda
+#+begin_src sh
+conda create -n $ENV_NAME python=2.7 anaconda
+#+end_src
 *** Python 3
-$ conda create -n py3 python=3.8 anaconda
+#+begin_src sh
+conda create -n $ENV_NAME python=3.8 anaconda
+#+end_src
 *** Python 3 without specifying anaconda
-$ conda create -n py3 python=3
+#+begin_src sh
+conda create -n $ENV_NAME python=3
+#+end_src
 
 - append "anaconda" results in install all things for base anaconda,
   such as "jupyter", "spyder", etc
 - https://stackoverflow.com/questions/38066873/create-anaconda-python-environment-with-all-packages
 *** Simple Python 3 version
-$ conda create -n default python=3
+#+begin_src sh
+conda create -n $ENV_NAME python=3
+#+end_src
 *** Removing environments
 # https://stackoverflow.com/a/49128056/6710003
-$ conda env remove -n ENV_NAME
+#+begin_src sh
+conda env remove -n $ENV_NAME
+#+end_src
 *** List environment directories
 https://stackoverflow.com/a/54155338
-$ conda config --show envs_dirs
+#+begin_src sh
+conda config --show envs_dirs
+#+end_src
 *** Install anaconda package in a minconda's environment
-$ conda install anaconda
+#+begin_src sh
+conda install anaconda
+#+end_src
 ** Check conda version
 $ conda --version
 ** The path of the current conda environment
@@ -77,13 +97,19 @@ conda env create --file environment.yaml
 
 * Packages
 ** Check the versions of an installed package
-$ conda list -n <env> -f <package>
+#+begin_src sh
+conda list -n $ENV_NAME -f <package>
+#+end_src
 e.g
-  $ conda list -n tabert cudatoolkit
-  $ conda list -n tabert -f pytorch
+  #+begin_src sh
+  conda list -n tabert cudatoolkit
+  conda list -n tabert -f pytorch
+  #+end_src
 
 * Anaconda update
+#+begin_src sh
 conda install pytorch torchvision -c pytorch
+#+end_src
 
 * Activating bash script
 https://blog.kovalevskyi.com/multiple-version-of-cuda-libraries-on-the-same-machine-b9502d50ae77

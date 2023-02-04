@@ -705,12 +705,17 @@ stow -t path/to/target -d path/to/dir some-dir-name
 # "some-dir-name" should be in "path/to/dir"
 #+end_src
 If a symbolic link doesn't exsit already, it doesn't delete it again.
-** module
+** environment module
 https://github.com/dasandata/Open_HPC/blob/master/Document/User%20Guide/4_app_env/4.2_Module.md
+https://modules.readthedocs.io
 
 - 'module' is a user interface to the Modules package.
 - Modules package provides for the dynamic modification of the user's environment
 
+- currently loaded modules
+  #+begin_src sh
+  module list
+  #+end_src
 - available modules
   #+begin_src sh
   module av
@@ -734,6 +739,18 @@ https://github.com/dasandata/Open_HPC/blob/master/Document/User%20Guide/4_app_en
    #+begin_src sh
    source path/to/load-cuda-10.1.sh
    #+end_src
+*** module config location
+"~/.lmod.d"
+*** save the default config
+https://arc.umich.edu/default-modules/
+#+begin_src sh
+module save default
+#+end_src
+*** location of modulefiles
+https://modules.readthedocs.io/en/latest/cookbook/modulepaths-persist-over-sudo.html
+#+begin_src sh
+echo $MODULEPATH
+#+end_src
 ** tar
 *** extract .xz , .gz , ...
 #+begin_src sh

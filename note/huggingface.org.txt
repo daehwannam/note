@@ -1,13 +1,27 @@
 
 * Change cache directory
 https://huggingface.co/docs/transformers/installation#cache-setup
+https://stackoverflow.com/questions/61798573/where-does-hugging-faces-transformers-save-models
 
+The default path of cache directory is
+- "~/.cache/huggingface/hub" as of transformers 4.22
+- "~/.cache/torch/transformers" otherwise
+
+If you want to change it, specify the path with =HUGGINGFACE_HUB_CACHE= or =TRANSFORMERS_CACHE=.
+
+e.g. Running python code with a specified cache location
 #+begin_src sh
-# Example 1
-TRANSFORMERS_CACHE=./some/path python code.py
+# absolute path
+HUGGINGFACE_HUB_CACHE=./some/path python code.py
+# TRANSFORMERS_CACHE=./some/path python code.py
 
-# Example 3
-TRANSFORMERS_CACHE=~/some/path python code.py
+# path with user's home
+HUGGINGFACE_HUB_CACHE=~/some/path python code.py
+# TRANSFORMERS_CACHE=~/some/path python code.py
+
+# export the path
+export HUGGINGFACE_HUB_CACHE=some/path
+python code.py
 #+end_src
 
 * Auto classes
@@ -31,6 +45,9 @@ https://huggingface.co/docs/transformers/preprocessing
   #+end_src
 
 * Examples
+** running with scripts
+https://huggingface.co/docs/transformers/run_scripts
+https://github.com/huggingface/transformers/tree/main/examples/pytorch
 ** run a model after a tokenizer
 #+begin_src python
 from transformers import AutoTokenizer

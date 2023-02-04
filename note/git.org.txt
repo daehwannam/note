@@ -1,31 +1,39 @@
 
-* clone repository with a specific directory name
+* Git
+** fetch vs. pull
+https://stackoverflow.com/a/18903881
+- "fetch" copies a remote branch to a local repository.
+  The copied branch is named as <remote>/<branch> (e.g. origin/master)
+- "pull" first performs "fetch" then may perform "merge" or "rebase"
+  with the local version of the branch
+
+** clone repository with a specific directory name
 $ git clone https://github.com/user-name/repository.git dir-name
 
-* bare git directory
+** bare git directory
 $ mkdir example.git
 $ cd example.git
 $ git init --bare
 
-* remote repository path
+** remote repository path
 the path is usually to a bare git repository
-** examples
+*** examples
 - ssh://user@server.name.ac.kr:/home/user/emacs.git
 - ssh://user@server.name.ac.kr:60001/home/user/emacs.git
 - ssh://user@domain.com:61112/home/user/work/gitbackup/sp_ae.git
 
 (60001 and 61112 are port numbers of ssh)
 
-* local repository path
-** examples
+** local repository path
+*** examples
 - /path/to/the/repository.git
 
-* git daemon
-** references
+** git daemon
+*** references
 https://railsware.com/blog/2013/09/19/taming-the-git-daemon-to-quickly-share-git-repository/
 https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon
 
-** setup & run server
+*** setup & run server
 $ ls repo_base_path -a
 >> . .. my_repo_dir my_repo_dir2 my_repo_dir3
 
@@ -37,7 +45,7 @@ $ ls
 >> 20180927_job_3rd  20180927_original  20181112_samsung
 $ git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
 
-** Access server
+*** Access server
 $ git clone git://ip.address.ac.kr/my_repo_dir
 nn
 ex)
@@ -45,11 +53,11 @@ $ git clone git://descarte.postech.ac.kr/20181112_samsung
 $ cd 20181112_samsung
 $ git pull
 
-* when .gitignore is not working
+** when .gitignore is not working
 git rm -r --cached .
 http://www.randallkent.com/2010/04/30/gitignore-not-working/
 
-* submodule
+** submodule
 https://stackoverflow.com/a/10054062
 
 if you want to add additional submodules you have to perform git submodule init; git submodule update every time you clone the repo. It will not automatically get the submodules.
@@ -61,7 +69,7 @@ $ git submodule update
 $ cd dhnamutil
 $ git submodule init
 $ git submodule update
-** initialize & update all submodules
+*** initialize & update all submodules
 - initialize all submodules
   #+begin_src sh
   git submodule update --init --recursive
@@ -71,59 +79,59 @@ $ git submodule update
   #+begin_src 
   $ git submodule update --recursive
   #+end_src
-** remove remaining submodule information from .git
+*** remove remaining submodule information from .git
 https://tkim.info/ko/devnote/d061-%EC%9E%98%EB%AA%BB%EB%90%9C-submodule-path%EA%B0%80-.git%EC%97%90-%EB%82%A8%EC%95%84%EC%9E%88%EC%9D%84-%EB%95%8C-%EC%82%AD%EC%A0%9C%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/
 $ git rm -r --cached --ignore-unmatch path/to/target/
 
-** change location of a submodule
+*** change location of a submodule
 #+begin_src sh
 # https://stackoverflow.com/a/6310246
 git mv old/path/of/submodule new/path/of/submodule
 #+end_src
 
-* set name and email
+** set name and email
 https://www.lainyzine.com/ko/article/how-to-set-git-repository-username-and-email/
-** global config
+*** global config
 $ git config --global user.name "Your Name"
 $ git config --global user.email "you@example.com"
-** local config
+*** local config
 $ git config user.name "Your Name"
 $ git config user.email "you@example.com"
-** check config
+*** check config
 $ git config user.name
 $ git config user.email
 
-* magit
-** See previous revision without magit
+** magit
+*** See previous revision without magit
 https://emacs.stackexchange.com/a/7657
 
 - C-x v ~
 - magit-find-file
-** See previous revision with magit
+*** See previous revision with magit
 https://emacs.stackexchange.com/a/7683
 
 M-x magit-find-file
-** initialize upstream repository
+*** initialize upstream repository
 https://emacs.stackexchange.com/a/6023
 C-x g b u
-** update all sub modules
+*** update all sub modules
 Submodule(o) -> Update(u) -> Type "*"
 
-* git clone shallowly
+** git clone shallowly
 $ git clone --depth=1 user@github.com:joe/hello-world.git
 
-* git clone a specific commit
+** git clone a specific commit
 https://stackoverflow.com/a/14091182
 
 $ git clone $URL
 $ cd $PROJECT_NAME
 $ git reset --hard $COMMIT_HASH
 
-* git clone a specific tag
+** git clone a specific tag
 git clone --depth 1 --branch <tag_name> <repo_url>
 ("--depth 1" is optional)
 
-* download a specific directory via svn
+** download a specific directory via svn
 https://stackoverflow.com/a/39317180/6710003
 #+begin_src sh
 svn export <repository>/trunk/<directory> -r <revision>
@@ -135,7 +143,7 @@ svn export https://github.com/huggingface/notebooks.git/trunk/transformers_doc/e
 svn export https://github.com/huggingface/notebooks.git/trunk/transformers_doc/en/pytorch -r 747
 #+end_src
 
-** find revision
+*** find revision
 #+begin_src sh
 svn log <repository> -l <number of entries>  # -l means --limit
 #+end_src
@@ -145,7 +153,7 @@ e.g.
 svn log https://github.com/huggingface/notebooks.git -l 4
 #+end_src
 
-** install svn
+*** install svn
 - install svn via conda
   #+begin_src sh
   conda install -c conda-forge subversion
@@ -154,6 +162,25 @@ svn log https://github.com/huggingface/notebooks.git -l 4
   #+begin_src sh
   sudo apt install subversion
   #+end_src
+
+** Passing a configuration parameter to the command ("-c" option)
+https://stackoverflow.com/a/15884261
+https://git-scm.com/docs/git
+
+"-c" can temporarily overrides a configuration option
+
+#+begin_src sh
+git -c <attribute>=<value> <command>
+#+end_src
+
+e.g.
+#+begin_src sh
+# https://stackoverflow.com/a/15884261
+git -c http.proxy=someproxy clone https://github.com/user/repo.git
+
+# https://www.atlassian.com/git/tutorials/git-lfs#speeding-up-pulls
+git -c filter.lfs.smudge= -c filter.lfs.required=false pull && git lfs pull
+#+end_src
 
 * github
 ** github example
@@ -205,3 +232,44 @@ git config --list
 ** Using linux utility
 add "C:\Program Files\Git\usr\bin" to 'Path' variable
 (The default path is "C:\Program Files\Git" but the actual path may be different)
+
+* Git LFS
+** tutorials
+- https://www.atlassian.com/git/tutorials/git-lfs
+
+** install with conda
+#+begin_src sh
+conda install -y -c conda-forge git-lfs
+git-lfs install
+#+end_src
+
+** git-lfs install
+~git-lfs install~ works differently when the current directory is managed by git or not
+
+*** on a non-git directory
+https://www.atlassian.com/git/tutorials/git-lfs#installing-git-lfs
+the command globally initialize git lfs (by updating "~/.gitconfig").
+this initialization is needed only once.
+*** on a git directory
+https://www.atlassian.com/git/tutorials/git-lfs#creating-new-repository
+the commands initialize git lfs globally and locally.
+the initialization updates .git directory.
+
+** git lfs track <pattern>
+https://www.atlassian.com/git/tutorials/git-lfs#tracking-files
+
+~git lfs track <pattern>~ makes lfs tracks files of specific patterns or names.
+
+The pattern is relative to the directory in which you runs the command.
+The command updates =.gitattributes= in the current directory.
+To keep things simple, it is best to run git lfs track from the root of your repository.
+
+e.g
+#+begin_src sh
+git lfs track "*.ogg"
+git lfs track "Assets/*"
+#+end_src
+
+** .gitattributes
+https://huggingface.co/docs/hub/repositories-getting-started
+git-lfs uses ".gitattributes" to efficiently track changes to large files.
