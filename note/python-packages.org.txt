@@ -28,3 +28,41 @@ print(repr(expr.args["expressions"][0].args["table"].args["this"]))
 # The HAVING expression
 print(repr(expr.args["having"]))
 #+end_src
+
+* wandb
+** disabling wandb
+https://github.com/berlino/tensor2struct-public
+#+begin_src sh
+wandb off
+#+end_src
+
+* Spacy
+#+begin_src sh
+conda install -c conda-forge spacy  # spacy-2.2.3
+conda install -c conda-forge spacy-lookups-data  # spacy-lookups-data-0.2.0
+python -m spacy download en_core_web_sm  # en-core-web-sm-2.2.5
+#+end_src
+
+* NLTK
+** setup
+#+begin_src python
+import nltk
+nltk.download('averaged_perceptron_tagger')  # pos_tag
+nltk.download('wordnet')
+nnltk.download('punkt')  # tokenizer
+#+end_src
+
+or
+
+#+begin_src sh
+echo -e "import nltk\nnltk.download('averaged_perceptron_tagger')\nnltk.download('wordnet')" | python
+echo -e "import nltk\nnltk.download('punkt')" | python
+#+end_src
+** download path
+#+begin_src python
+import nltk
+nltk.data.path
+#+end_src
+
+* unicode
+https://stackoverflow.com/a/35536228
