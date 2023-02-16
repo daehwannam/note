@@ -212,6 +212,16 @@ https://movment.tistory.com/5
 - Noto Sans CJK KR Medium
 - 백묵 돋음
 
+* lutris
+- Gaming platform
+- It can be combined with wine
+** Install
+https://linuxconfig.org/install-lutris-on-ubuntu-20-04-focal-fossa-linux
+** Usage
+https://horangi.tistory.com/437
+** e-sync & f-sync
+https://www.reddit.com/r/Lutris/comments/u2vsqa/comment/i4md9wq/
+
 * PDF reader
 ** okular
 *** install
@@ -531,7 +541,12 @@ Error message
 
 * Package management tool
 ** snap
-** platpak
+** flatpak
+*** adding flathub repository
+https://flatpak.org/setup/Ubuntu
+#+begin_src sh
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+#+end_src
 
 * Antivirus
 ** clamav
