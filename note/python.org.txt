@@ -306,35 +306,25 @@ import os
 print(os.path.abspath(os.getcwd()))
 #+end_src
 
-* Other packages
-** Spacy
-$ conda install -c conda-forge spacy  # spacy-2.2.3
-$ conda install -c conda-forge spacy-lookups-data  # spacy-lookups-data-0.2.0
-$ python -m spacy download en_core_web_sm  # en-core-web-sm-2.2.5
-
-** NLTK
-*** setup
->>> import nltk
->>> nltk.download('averaged_perceptron_tagger')  # pos_tag
->>> nltk.download('wordnet')
->>> nnltk.download('punkt')  # tokenizer
-
-or 
-
-$ echo -e "import nltk\nnltk.download('averaged_perceptron_tagger')\nnltk.download('wordnet')" | python
-$ echo -e "import nltk\nnltk.download('punkt')" | python
-*** download path
->>> import nltk
->>> nltk.data.path
-
-** unicode
-https://stackoverflow.com/a/35536228
+** ipdb
+*** changing the default debugger for "breakpoint()"
+https://kortina.nyc/notes/use-ipdb-as-the-default-python-debugger-with-breakpoint-and-pythonbreakpoint/
+#+begin_src sh
+export PYTHONBREAKPOINT="ipdb.set_trace"
+#+end_src
+*** changing context size
+https://stackoverflow.com/a/66474153
+#+begin_src sh
+export IPDB_CONTEXT_SIZE=10
+#+end_src
 
 * IPython
 ** Convert ipython notebook file(.ipynb) to python file(.py)
 https://stackoverflow.com/a/37799207
-$ jupyter nbconvert --to script 'my-notebook.ipynb'
-$ jupyter nbconvert --to python 'my-notebook.ipynb'
+#+begin_src sh
+jupyter nbconvert --to script 'my-notebook.ipynb'
+jupyter nbconvert --to python 'my-notebook.ipynb'
+#+end_src
 
 * unittest
 https://m.blog.naver.com/wideeyed/221841799910
