@@ -16,7 +16,9 @@ https://github.com/mhayashi1120/Emacs-langtool
   #+end_src
 ** install jave 8
 - java version check
-  $ java -version
+  #+begin_src sh
+  java -version
+  #+end_src
 ** download langtool package
 #+begin_src sh
 cd ~/.emacs.d/package

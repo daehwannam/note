@@ -43,11 +43,15 @@ xfreerdp has problems of pressing some keys such as CTRL and ALT.
 (I haven't tested for the latest version)
 *** install
 https://www.youtube.com/watch?v=Tpw75B5fOIY
-$ sudo apt install freerdp2-x11 freerdp2-shadow-x11
+#+begin_src sh
+sudo apt install freerdp2-x11 freerdp2-shadow-x11
+#+end_src
 *** version check
-$ xfreerdp --version
-$ sudo apt update
-$ sudo apt install freerdp2-x11 freerdp2-shadow-x11
+#+begin_src sh
+xfreerdp --version
+sudo apt update
+sudo apt install freerdp2-x11 freerdp2-shadow-x11
+#+end_src
 
 xfreerdp version 2.2.0 is working better
 *** connect
@@ -64,13 +68,19 @@ xfreerdp /f /u:USERNAME /v:HOST[:PORT]  # without passwd in the command
 /v:HOST[:PORT] is an IP address or name of the computer to which the remote table is connected. PORT optional (recommended: “Windows Computer name: how to change and use”)
 *** multiple monitors
 - list monitor numbers(IDs)
-  $ xfreerdp /monitor-list
+  #+begin_src sh
+  xfreerdp /monitor-list
+  #+end_src
 - using one monitor
-  $ xfreerdp /monitors:2 /multimon /v:<host>
+  #+begin_src sh
+  xfreerdp /monitors:2 /multimon /v:<host>
+  #+end_src
 - using multiple monitors
   e.g.
-  $ xfreerdp /monitors:2,0,1 /multimon /v:<host>
-  $ xfreerdp /monitors:2,0,1 /multimon /u:some-user  /v:192.168.111.100
+  #+begin_src sh
+  xfreerdp /monitors:2,0,1 /multimon /v:<host>
+  xfreerdp /monitors:2,0,1 /multimon /u:some-user  /v:192.168.111.100
+  #+end_src
 
   - the first monitor number (=2) indicates the primary monitor
   - other orders of monitor number are not important
@@ -85,29 +95,45 @@ https://ko.linux-console.net/?p=393
 xrdp is a server program for rdp
 
 - install
-  $ sudo apt install xrdp
+  #+begin_src sh
+  sudo apt install xrdp
+  #+end_src
 - check if rdp server is running (active)
-  $ sudo systemctl status xrdp
+  #+begin_src sh
+  sudo systemctl status xrdp
+  #+end_src
 - add user xrdp to ssl-cert group
-  $ sudo adduser xrdp ssl-cert
+  #+begin_src sh
+  sudo adduser xrdp ssl-cert
+  #+end_src
 - (optional) change rdp port
   - update config
-    $ sudo vi /etc/xrdp/xrdp.ini
+    #+begin_src sh
+    sudo vi /etc/xrdp/xrdp.ini
+    #+end_src
     #+begin_example 
     [globals]
 
     port=61110 ; default value is 3389
     #+end_example
   - restart xrdp
-    $ sudo service xrdp restart
-    $ sudo systemctl status xrdp
+    #+begin_src sh
+    sudo service xrdp restart
+    sudo systemctl status xrdp
+    #+end_src
 - add firewall rule
-  $ sudo ufw allow from 192.168.2.0/24 to any port 61110
+  #+begin_src sh
+  sudo ufw allow from 192.168.2.0/24 to any port 61110
+  #+end_src
 - reload firewall
-  $ sudo ufw reload
-  $ sudo ufw status
+  #+begin_src sh
+  sudo ufw reload
+  sudo ufw status
+  #+end_src
 - (optional) if firewall is inactive
-  $ sudo ufw enable
+  #+begin_src sh
+  sudo ufw enable
+  #+end_src
 # - (optional) you may want to disable firewall
 #   $ sudo ufw status
 *** fix error of black screen in xrdp
@@ -118,7 +144,9 @@ xrdp is a server program for rdp
   unset XDG_RUNTIME_DIR
   #+end_example
 - restart xrdp
-  $ sudo service xrdp restart
+  #+begin_src sh
+  sudo service xrdp restart
+  #+end_src
 
 * Samba
 https://psychoria.tistory.com/678
@@ -148,27 +176,41 @@ directory mode = 0777
 
 you can skip some information
 ** change samba password
-$ sudo smbpasswd -a <user>
+#+begin_src sh
+sudo smbpasswd -a <user>
+#+end_src
 ** run samba
-$ sudo service smbd restart
+#+begin_src sh
+sudo service smbd restart
+#+end_src
 ** connect to samba from linux
 https://askubuntu.com/a/1050499
 https://www.linuxfordevices.com/tutorials/linux/linux-samba
 
 - install smbclient
-  $ sudo apt install smbclient
+  #+begin_src sh
+  sudo apt install smbclient
+  #+end_src
 - install cifs-utils (and nfs-kernel-server)
   https://askubuntu.com/a/946133
-  $ sudo apt install cifs-utils  # for winows file system
+  #+begin_src sh
+  sudo apt install cifs-utils  # for winows file system
+  #+end_src
   # $ sudo apt install nfs-kernel-server  # for unix file system
 - list server's shared folders
-  $ smbclient -L //myServerIpAdress
+  #+begin_src sh
+  smbclient -L //myServerIpAdress
+  #+end_src
 - make empy directory and mount the shared directory to it
-  $ sudo mkdir /mnt/myFolder
-  $ sudo mount -vt cifs -o username=serverUserName //myServerIpAdress/shareName /path/to/client/folder
+  #+begin_src sh
+  sudo mkdir /mnt/myFolder
+  sudo mount -vt cifs -o username=serverUserName //myServerIpAdress/shareName /path/to/client/folder
+  #+end_src
   (-v option is for verbose output)
 - you can unmount samba by
-  $ sudo umount /path/to/client/folder
+  #+begin_src sh
+  sudo umount /path/to/client/folder
+  #+end_src
 ** write to the shared folder wihtout 777 permision
 https://unix.stackexchange.com/a/206310
 
@@ -184,16 +226,26 @@ https://unix.stackexchange.com/a/206310
   force user = someuser
   #+end_example
 - restart (server side)
-  $ sudo service smbd restart
+  #+begin_src sh
+  sudo service smbd restart
+  #+end_src
 - mount (client side)
-  $ sudo mount -t cifs -o username=serverUserName,uid=1000,gid=1000 //myServerIpAdress/shareName /path/to/client/folder
+  #+begin_src sh
+  sudo mount -t cifs -o username=serverUserName,uid=1000,gid=1000 //myServerIpAdress/shareName /path/to/client/folder
+  #+end_src
   where you should insert correct uid and gid of 'someuser'
   the IDs can be found by
-  $ id someuser
+  #+begin_src sh
+  id someuser
+  #+end_src
 ** check the current status
-$ sudo smbstatus
+#+begin_src sh
+sudo smbstatus
+#+end_src
 ** check shared folders
-$ smbclient -L localhost
+#+begin_src sh
+smbclient -L localhost
+#+end_src
 ** start samba automatically from booting
 https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-samba-startstop.html
 "By default, the smb service does not start automatically at boot time."
@@ -205,7 +257,9 @@ https://www.tecmint.com/install-nfs-server-on-ubuntu/
 https://www.nemonein.xyz/2020/09/4260/
 ** server side
 - install
-  $ sudo apt install nfs-kernel-server
+  #+begin_src sh
+  sudo apt install nfs-kernel-server
+  #+end_src
 - update config
   edit "/etc/exports"
   #+begin_example
@@ -214,29 +268,45 @@ https://www.nemonein.xyz/2020/09/4260/
   where the subnet means the range of clients
   all clients in the subnet 24 can access this host
 - expor
-  $ sudo exportfs -a
-  $ sudo systemctl restart nfs-kernel-server
+  #+begin_src sh
+  sudo exportfs -a
+  sudo systemctl restart nfs-kernel-server
+  #+end_src
 - allow nfs access through the firewall
-  $ sudo ufw allow from 192.168.43.0/24 to any port nfs
-  $ sudo ufw enable
-  $ sudo ufw status
+  #+begin_src sh
+  sudo ufw allow from 192.168.43.0/24 to any port nfs
+  sudo ufw enable
+  sudo ufw status
+  #+end_src
 ** client side
 - install
-  $ sudo apt install nfs-common
+  #+begin_src sh
+  sudo apt install nfs-common
+  #+end_src
 - make mount point
-  $ mkdir /path/to/mount
+  #+begin_src sh
+  mkdir /path/to/mount
+  #+end_src
 - mount
-  $ sudo mount 192.168.43.21:/path/to/data /path/to/mount
+  #+begin_src sh
+  sudo mount 192.168.43.21:/path/to/data /path/to/mount
+  #+end_src
 
 * sshfs
 https://blog.leocat.kr/notes/2018/04/23/sshfs-mount-remote-server-using-ssh
 ** install
-$ sudo apt-get install sshfs
+#+begin_src sh
+sudo apt-get install sshfs
+#+end_src
 ** mounting
 - make directory to mount
-  $ mkdir path/to/local/dir
+  #+begin_src sh
+  mkdir path/to/local/dir
+  #+end_src
 - mount to server's directory
-  $ sshfs -o reconnect user@x.x.x.x:/path/to/server/remote/dir path/to/local/dir
+  #+begin_src sh
+  sshfs -o reconnect user@x.x.x.x:/path/to/server/remote/dir path/to/local/dir
+  #+end_src
   where the option "-o reconnect" reconnects to the server when it's disconnected
 ** enable option 'allow_other'
 https://askubuntu.com/a/309242
@@ -245,7 +315,9 @@ update "/etc/fuse.conf"
 user_allow_other
 #+end_src
 ** unmounting
-$ umount path/to/local/dir
+#+begin_src sh
+umount path/to/local/dir
+#+end_src
 ** sshfs for Windows
 https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-using-sshfs-e29c7ca81c87
 

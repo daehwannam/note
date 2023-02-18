@@ -3,10 +3,14 @@
 https://askubuntu.com/questions/670304/what-is-the-install-routine-for-common-lisp-slime-sbcl-quicklisp-on-ubuntu
 https://lispcookbook.github.io/cl-cookbook/getting-started.html
 ** install sbcl
-$ sudo apt-get install sbcl
-$ sudo apt install sbcl-source  # necessary for "slime-edit-definition" (M-.)
+#+begin_src sh
+sudo apt-get install sbcl
+sudo apt install sbcl-source  # necessary for "slime-edit-definition" (M-.)
+#+end_src
 or
-$ conda install -c conda-forge sbcl
+#+begin_src sh
+conda install -c conda-forge sbcl
+#+end_src
 ** install quicklisp
 https://www.quicklisp.org/
 copy and past the code in the gray box of the website (https://www.quicklisp.org/)

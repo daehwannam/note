@@ -14,7 +14,9 @@
 - "Do you wish the installer to initialize Miniconda3 by running conda init?"
  ==> yes
 - Make the default environment
- $ conda create -n default python=3
+  #+begin_src sh
+  conda create -n default python=3
+  #+end_src
 - Update ~/.bashrc to replace "base" with "default"
  e.g.
  #+begin_src bash
@@ -80,9 +82,13 @@ conda config --show envs_dirs
 conda install anaconda
 #+end_src
 ** Check conda version
-$ conda --version
+#+begin_src sh
+conda --version
+#+end_src
 ** The path of the current conda environment
-$ echo $CONDA_PREFIX
+#+begin_src sh
+echo $CONDA_PREFIX
+#+end_src
 ** yml
 https://3months.tistory.com/441
 *** conda environment to .yaml (or .yml)

@@ -63,13 +63,19 @@ exec /usr/local/bin/stumpwm  # path by "which stumpwm"
 #+end_src
 
 then, make the file executable
-$ chmod +x ~/.xinitrc
+#+begin_src sh
+chmod +x ~/.xinitrc
+#+end_src
 ** (optional) check default display manager in Ubuntu
-$ cat /etc/X11/default-display-manager
+#+begin_src sh
+cat /etc/X11/default-display-manager
+#+end_src
 # /usr/sbin/gdm3 is the output in Ubuntu 20.04
 ** Add desktop entry of StumpWM for login
 - You can check the current login desktop file
-  $ ls /usr/share/xsessions
+  #+begin_src sh
+  ls /usr/share/xsessions
+  #+end_src
 
 - Make /usr/share/xsessions/stumpwm.desktop
   #+begin_src sh

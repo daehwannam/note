@@ -44,12 +44,16 @@ bash /home/user/project/src/bash/search_random.sh
 #+end_src
 
 * mpirun
-$ mpirun python hello.py
+#+begin_src sh
+mpirun python hello.py
+#+end_src
 
 * qsub
 qsub command submits a task defined by a batch script
 
-$ qsub train.sh
+#+begin_src sh
+qsub train.sh
+#+end_src
 
 The command may need to be executed in a specific directory.
 e.g.
@@ -69,14 +73,22 @@ qsub -I -l select=1:ncpus=1:ompthreads=1 -l walltime=12:00:00 -q debug -A etc
 qstat command shows job informations
 
 - user's jobs
-  $ qstat -u [username]
+  #+begin_src sh
+  qstat -u [username]
+  #+end_src
 - job info per node
-  $ qstat -Q
+  #+begin_src sh
+  qstat -Q
+  #+end_src
 - job info per server
-  $ qstat -B
+  #+begin_src sh
+  qstat -B
+  #+end_src
 - option -f
   Showing detailed information
-  $ qstat -f -u [username]
+  #+begin_src sh
+  qstat -f -u [username]
+  #+end_src
 
 ** Task state
 R: running
@@ -85,7 +97,9 @@ Q: waiting in the queue
 * qdel
 qdel cancels a task
 
-$ qdel [task-id]
+#+begin_src sh
+qdel [task-id]
+#+end_src
 
 * showq
 show queue's information

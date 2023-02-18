@@ -70,7 +70,9 @@ Then, following expressions are evaluated when the file is loaded:
 ** executable-find
 check if an executable exists
 e.g.
-$ (executable-find "pdfgrep")
+#+begin_src sh
+(executable-find "pdfgrep")
+#+end_src
 ** key-description
 https://stackoverflow.com/a/7292684
 key-description is the reverse of kbd

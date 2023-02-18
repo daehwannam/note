@@ -6,17 +6,21 @@ http://chillaranand.github.io/emacs-py-ide/
 * Setup
 https://elpy.readthedocs.io/en/latest/introduction.html
 
-$ conda create -n elpy-rpc python=3
-$ conda activate elpy-rpc
+#+begin_src sh
+conda create -n elpy-rpc python=3
+conda activate elpy-rpc
 # $ python -m pip install 'jedi<0.18.0' flake8 importmagic autopep8 black yapf pylint
-$ python -m pip install 'jedi<0.17.2' flake8 importmagic autopep8 black yapf pylint
+python -m pip install 'jedi<0.17.2' flake8 importmagic autopep8 black yapf pylint
 # elpy-goto-definition doesn't work with jedi-0.18.x
 # pylint is similar to flake8 but has more functions
 # $ python -m pip install jedi flake8 importmagic autopep8 black yapf pylint
+#+end_src
 
 
 if flake8 is not installed:
-$ conda install flake8
+#+begin_src sh
+conda install flake8
+#+end_src
 
 also, some emacs packages are needed
 - flycheck
@@ -28,7 +32,9 @@ M-x elpy-config
 https://emacs.stackexchange.com/a/57823
 
 setup with the default rpc python:
-$ /home/dhnam/.emacs.d/elpy/rpc-venv/bin/python -m pip install jedi flake8 importmagic autopep8 black yapf # if black is not installed, remove it from the list.
+#+begin_src sh
+/home/dhnam/.emacs.d/elpy/rpc-venv/bin/python -m pip install jedi flake8 importmagic autopep8 black yapf # if black is not installed, remove it from the list.
+#+end_src
 
 * flake setting
 http://flake8.pycqa.org/en/latest/user/configuration.html

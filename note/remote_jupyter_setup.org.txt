@@ -5,16 +5,24 @@ In Jupyter Notebook, run following code:
 >> passwd()
 
 Then the result would be:
-$ Enter password: ....
-$ Verify password: ....
-$ 'sha1:...............'
+#+begin_example
+Enter password: ....
+Verify password: ....
+'sha1:...............'
+#+end_example
+
 
 ** Make config file
 Type:
-$ jupyter notebook --generate-config
+#+begin_src sh
+jupyter notebook --generate-config
+#+end_src
 
 Result:
-$ Writing default config to : PATH\jupyter_notebook_config.py
+#+begin_example
+Writing default config to : PATH\jupyter_notebook_config.py
+#+end_example
+
 
 ** Copy hash code
 Open "PATH\jupyter_notebook_config.py", then write the following code:
@@ -27,7 +35,9 @@ Open "PATH\jupyter_notebook_config.py", then write the following code:
   c.NotebookApp.password = u'sha1:......................'
 
 ** Run server
-$ jupyter notebook --ip=xxx.xxx.xxx.xxx --port=yyyyy
+#+begin_src sh
+jupyter notebook --ip=xxx.xxx.xxx.xxx --port=yyyyy
+#+end_src
 You can change IP and port
 
 ** Connect from a remote client

@@ -12,7 +12,9 @@ Type=Application
 https://github.com/ch11ng/exwm/wiki#bootstrap
 - copy exwm-*/xinitrc to ~/.xinitrc
   e.g.
-  $ cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
+  #+begin_src sh
+  cp ~/.emacs.d/elpa/exwm-0.26/xinitrc ~/.xinitrc
+  #+end_src
 - change emacs's command line options in "~/.xinitrc"
   #+begin_example
   emacs --exwm
@@ -20,7 +22,9 @@ https://github.com/ch11ng/exwm/wiki#bootstrap
 - run from virtual console
   - change to virtual console by "Ctrl + Alt + F2" where function can be changed
   - then runn the following command
-    $ xinit -- vt02  # where 02 is the number of function key
+    #+begin_src sh
+    xinit -- vt02  # where 02 is the number of function key
+    #+end_src
 
 ** using application's key binding
 https://emacs.stackexchange.com/a/52248/26068
@@ -44,11 +48,17 @@ https://askubuntu.com/questions/389903/ibus-doesnt-seem-to-restart
 - if switch language doesn't work, run "M-x toggle-input-method"
 ** fcitx setup
 - start fcitx daemon
-  $ fcitx
+  #+begin_src sh
+  fcitx
+  #+end_src
   or
-  $ fcitx -d
+  #+begin_src sh
+  fcitx -d
+  #+end_src
 - start fcitx without daemon
-  $ fcitx -D
+  #+begin_src sh
+  fcitx -D
+  #+end_src
 *** xinit config
 https://wiki.archlinux.org/title/fcitx#Set_environment_variables_for_IM_modules
 the following code should be added to xinit config file
@@ -63,14 +73,20 @@ https://ieworld.tistory.com/4
 
 ** slock
 - install
-  $ sudo apt-get install slock
+  #+begin_src sh
+  sudo apt-get install slock
+  #+end_src
 - run
-  $ slock
+  #+begin_src sh
+  slock
+  #+end_src
 - enter passwd to unlock screen
 ** xbacklight
 xbacklight adjusts brightness of screen
 - install
-  $ sudo apt install xbacklight
+  #+begin_src sh
+  sudo apt install xbacklight
+  #+end_src
 ** polybar setup
 https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Desktop-05.org
 https://www.youtube.com/watch?v=usCfMstCZ7E
@@ -97,9 +113,13 @@ https://www.youtube.com/watch?v=usCfMstCZ7E
   [[file:~/record/config-scripts/gui-init.sh][file:~/record/config-scripts/gui-init.sh]]
 ** multiple monitor setup
 - find monitors
-  $ xrandr
+  #+begin_src sh
+  xrandr
+  #+end_src
 - list only monitors
-  $ xrandr | grep " connected" | cut -f1 -d " "
+  #+begin_src sh
+  xrandr | grep " connected" | cut -f1 -d " "
+  #+end_src
 - find devices noted as "connected"
   #+begin_example
   DVI-I-1 connected primary 1920x1080+1920+0 (normal left inverted right x axis y axis) 598mm x 336mm
@@ -124,7 +144,9 @@ https://www.youtube.com/watch?v=usCfMstCZ7E
   layout is : HDMI-1-1 <--> DVI-I-1 <--> HDMI-4
 ** Google chrome setting
 - make profile directory
-  $ mkdir -p ~/profile/google-chrome-user
+  #+begin_src sh
+  mkdir -p ~/profile/google-chrome-user
+  #+end_src
 - make desktop entry
   [[*Chrome browser for multiple tty sessions][Chrome browser for multiple tty sessions]]
 ** usage
@@ -139,18 +161,26 @@ https://www.youtube.com/watch?v=usCfMstCZ7E
 ** tutorial
 https://fedoramagazine.org/getting-started-i3-window-manager/
 ** install
-$ sudo apt install i3
+#+begin_src sh
+sudo apt install i3
+#+end_src
 
 * Xephyr
 running window managers in other window managers
 ** install
-$ sudo apt-get install xserver-xephyr
+#+begin_src sh
+sudo apt-get install xserver-xephyr
+#+end_src
 ** Usage
 http://egloos.zum.com/seoz/v/3677520
 https://www.dedoimedo.com/computers/xephyr.html
 *** command
 - basic usage
-  $ Xephyr -ac -screen <resolution> -br -reset -terminate 2> /dev/null :1 &
+  #+begin_src sh
+  Xephyr -ac -screen <resolution> -br -reset -terminate 2> /dev/null :1 &
+  #+end_src
+
+  where
   -ac = disables access control restrictions
   -screen = screen size
   -br = background color to black or chosen one
@@ -164,15 +194,21 @@ https://www.dedoimedo.com/computers/xephyr.html
   -noreset
 *** example
 - running Xephyr
-  $ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+  #+begin_src sh
+  Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+  #+end_src
 - connect8
-  $ DISPLAY=:3 emacs
+  #+begin_src sh
+  DISPLAY=:3 emacs
+  #+end_src
 ** clipboard sharing between main and nested x sessions
 https://github.com/flesueur/mi-lxc/issues/42#issuecomment-803263452
 run "xclipsync" in nested X sessions
-$ git clone https://github.com/apenwarr/xclipsync.git
-$ cd xclipsync
-$ xclipsync
+#+begin_src sh
+git clone https://github.com/apenwarr/xclipsync.git
+cd xclipsync
+xclipsync
+#+end_src
 *** (error) xclipsync: ./xclipfrom: /usr/bin/wish: bad interpreter: No such file or directory
 install wish:
 $ sudo apt install wish
@@ -181,36 +217,50 @@ $ sudo apt install wish
 https://www.youtube.com/watch?v=ECHH2JFA8SM
 - run Xephyr
   # $ Xephyr -host-cursor -screen 400x600 -noreset :1 &
-  $ Xephyr -host-cursor -screen 400x300 -noreset :1 &
+  #+begin_src sh
+  Xephyr -host-cursor -screen 400x300 -noreset :1 &
+  #+end_src
 - run Gnome
-  $ DISPLAY=:1 dbus-run-session gnome-shell
+  #+begin_src sh
+  DISPLAY=:1 dbus-run-session gnome-shell
+  #+end_src
 - kill Xephyr
-  $ pkill -f Xephyr
+  #+begin_src sh
+  pkill -f Xephyr
+  #+end_src
 ** EXWM within Xephyr
 Xephyr cannot concurrently run the same application
 therefore, you should prepare multiple similar programs
 e.g. google-chrome profile for each Xephyr connection
 *** run Xephyr
-$ Xephyr -host-cursor -screen 1200x800 -noreset :1 &
-$ Xephyr -host-cursor -screen 1200x800 -noreset :2 &
-$ Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+#+begin_src sh
+Xephyr -host-cursor -screen 1200x800 -noreset :1 &
+Xephyr -host-cursor -screen 1200x800 -noreset :2 &
+Xephyr -host-cursor -screen 1200x800 -noreset :3 &
+#+end_src
 *** run emacs daemon
-$ emacs --daemon --exwm  # --exwm is defined by me
+#+begin_src sh
+emacs --daemon --exwm  # --exwm is defined by me
+#+end_src
 *** change emacs's font size
 https://stackoverflow.com/a/296316
 #+begin_src elisp
 (set-face-attribute 'default nil :height 120)
 #+end_src
 *** run the first emacs client
-$ DISPLAY=:1 emacsclient -c
+#+begin_src sh
+DISPLAY=:1 emacsclient -c
+#+end_src
 
 then evaluate the following code to make next frames fullscreen
 #+begin_src elisp
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+end_src
 *** run other emacs clients
-$ DISPLAY=:2 emacsclient -c
-$ DISPLAY=:3 emacsclient -c
+#+begin_src sh
+DISPLAY=:2 emacsclient -c
+DISPLAY=:3 emacsclient -c
+#+end_src
 * toggle mouse release
 Ctrl+Shift
 
@@ -240,10 +290,14 @@ sudo make install
 
 ** remove
 - disable pop shell
-  $ gnome-tweaks
+  #+begin_src sh
+  gnome-tweaks
+  #+end_src
   then, open "Extensions" and disable "Pop shell"
 - remove pop-shell directory
-  $ rm -r ~/.local/share/gnome-shell/extensions/pop-shell@system76.com
+  #+begin_src sh
+  rm -r ~/.local/share/gnome-shell/extensions/pop-shell@system76.com
+  #+end_src
 - reset keyboard shortcuts
   "Settings" -> "Keyboard Shortcuts" -> "Reset All..."
 # - (CAUTION) (optional) if you've installed the Pop Shell Shortcuts, you can remove this
@@ -275,14 +329,18 @@ https://wiki.archlinux.org/title/GNOME#Manually
 - gnome-shell
 ** kill programs running in other sessions
 https://askubuntu.com/a/121602
-$ killall https://askubuntu.com/a/121602
+#+begin_src sh
+killall https://askubuntu.com/a/121602
+#+end_src
 ** same of similar application for each session
 *** Chrome browser for multiple tty sessions
 https://superuser.com/a/647363
 distinguised chromes are needed for exwm emacsclients
 
 first, make a directory for chrome user's profile
-$ mkdir -p ~/profile/google-chrome-user-1
+#+begin_src sh
+mkdir -p ~/profile/google-chrome-user-1
+#+end_src
 **** Desktop Entry
 make desktop entry
 e.g. ~/.local/share/applications/gchrome1.desktop

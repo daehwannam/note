@@ -1,19 +1,31 @@
 
 * Emacs execution
 ** emacs without gui
-$ emacs --no-window-system
-$ or
-$ emacs -nw
+#+begin_src sh
+emacs --no-window-system
+#+end_src
+
+or
+
+#+begin_src sh
+emacs -nw
+#+end_src
 ** emacsclient
 *** multiple daemon
 https://emacs.stackexchange.com/questions/495/multiple-emacs-instances-each-with-their-own-server/505#505
-$ emacs --daemon=workspaceN
-$ emacsclient -t -s workspaceN
+#+begin_src sh
+emacs --daemon=workspaceN
+emacsclient -t -s workspaceN
+#+end_src
 **** list daemons
-$ ps -fu dhnam | grep "emacs --daemon"
+#+begin_src sh
+ps -fu dhnam | grep "emacs --daemon"
+#+end_src
 *** open a file with existing emacs frame of running server
 https://www.emacswiki.org/emacs/EmacsClient#h5o-4
-$ emacsclient --alternate-editor="" some-file.extention
+#+begin_src sh
+emacsclient --alternate-editor="" some-file.extention
+#+end_src
 ** user-defined command-line arguments
 https://stackoverflow.com/a/2112346/6710003
 https://stackoverflow.com/questions/10909738/emacs-custom-command-line-arguments
@@ -306,7 +318,9 @@ https://stackoverflow.com/a/296316
 ** running custom shell commands
 https://stackoverflow.com/a/12228646
 alias, script or custom command defined in ~/.bashrc can be used once BASH_ENV is set to the config
-$ BASH_ENV=~/.bashrc emacs
+#+begin_src sh
+BASH_ENV=~/.bashrc emacs
+#+end_src
 ** custom command line argument
 #+BEGIN_SRC elisp
 (progn
@@ -340,7 +354,9 @@ sudo apt-get update
 sudo apt-get install emacs25
 ** Install emacs with conda-forge
 https://anaconda.org/conda-forge/emacs
-$ conda install -c conda-forge emacs
+#+begin_src sh
+conda install -c conda-forge emacs
+#+end_src
 eamcs can be installed in virtual env
 ** Installing source
 https://emacs.stackexchange.com/questions/7184/where-are-emacs-lisp-files
@@ -358,13 +374,21 @@ cp -R emacs-emacs-25.3/lisp/* /usr/share/emacs/25.3/lisp
 it's compiled with native-comp option
 https://www.reddit.com/r/emacs/comments/ob5pzw/comment/h3ne358/?utm_source=share&utm_medium=web2x&context=3
 *** install snap
-$ sudo apt update
-$ sudo apt install snapd
+#+begin_src sh
+sudo apt update
+#+end_src
+#+begin_src sh
+sudo apt install snapd
+#+end_src
 *** install emacs
-$ sudo snap install emacs --edge --classic
+#+begin_src sh
+sudo snap install emacs --edge --classic
+#+end_src
 # $ sudo snap install emacs --classic
 *** uninstall
-$ sudo snap remove <package>
+#+begin_src sh
+sudo snap remove <package>
+#+end_src
 *** path to the emacs
 "/snap/emacs/current/usr/bin/emacs"
 ** build emacs with native comp
@@ -401,9 +425,12 @@ https://gist.github.com/kiennq/0f3e65098725b1f9708da8c92972e705
   #+begin_example
   Done. The new package has been installed and saved to
   /home/dhnam/program/emacs/emacs-nativecomp_1f03d0de-1_amd64.deb
-  You can remove it from your system anytime using:
-  $ dpkg -r emacs-nativecomp
   #+end_example
+
+  You can remove it from your system anytime using:
+  #+begin_src sh
+  dpkg -r emacs-nativecomp
+  #+end_src
 
 - (optional )re-install emacs from .deb
   #+begin_src sh
@@ -588,7 +615,9 @@ https://jblevins.org/projects/markdown-mode/
 - markdown-preview (C-c C-c p): preview in the current page
 *** error fix: Markdown command markdown is not found
 install 'markdown'
-$ sudo apt install markdown
+#+begin_src sh
+sudo apt install markdown
+#+end_src
 ** AucTex
 *** error "LaTeX: there were unresolved citations, {6} pages"
 - M-x TeX-command-master (C-c C-c) BibTeX
@@ -607,18 +636,24 @@ http://autohotkey.com/docs/FAQ.htm#Startup
 *** Ubuntu
 **** gnome-tweak-tool (CapsLock as Ctrl - Not swapping)
 - install gnome-tweak-tool
-  $ sudo apt-get install gnome-tweak-tool
+  #+begin_src sh
+  sudo apt-get install gnome-tweak-tool
+  #+end_src
 - run gnome-tweak-tool
-  $ gnome-tweaks
-  $ # or
-  $ gnome-tweak-tool
+  #+begin_src sh
+  gnome-tweaks
+  # or
+  gnome-tweak-tool
+  #+end_src
 - Keyboard & Mouse -> Keyboard -> Additional Layout Options
   -> Ctrl position (or Caps Lock behavior)
 **** remapping key for virtual console (tty terminal)
 https://askubuntu.com/a/44125
 ***** simple version
 https://wiki.kldp.org/HOWTO/html/Keyboard-and-Console/Keyboard-and-Console-HOWTO-15.html
-$ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
+#+begin_src sh
+echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
+#+end_src
 or
 #+begin_src sh
 sudo loadkeys
@@ -630,14 +665,20 @@ keycode 29 = Caps_Lock
 https://linuxcommando.blogspot.com/2008/03/remap-caps-lock-key-for-virtual-console.html
 - Find key codes
   showkey command print codes of typed keys for 10 seconds
-  $ sudo showkey
+  #+begin_src sh
+  sudo showkey
+  #+end_src
   - Caps Lock: code 58
 - Find symbolic names of keys
-  $ sudo dumpkeys -l |grep -i ctrl
+  #+begin_src sh
+  sudo dumpkeys -l |grep -i ctrl
+  #+end_src
   - Left Ctrl has symbolic name of "CtrlL"
     (Catuion: the name CtrlL would not work in virtual console)
 - Map a key code to a symbolic name
-  $ echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
+  #+begin_src sh
+  echo -e "$(sudo dumpkeys | grep ^keymaps)\nkeycode 58 = Control\nkeycode 29 = Caps_Lock" | sudo loadkeys
+  #+end_src
 **** Keyboard configuration with XKBOPTIONS
 https://askubuntu.com/a/418773
 https://superuser.com/a/623453
@@ -649,8 +690,10 @@ https://superuser.com/a/623453
   then, reboot
 - Method 2: reconfigure
   https://wiki.debian.org/Keyboard
-  $ sudo dpkg-reconfigure keyboard-configuration
-  $ service keyboard-setup restart
+  #+begin_src sh
+  sudo dpkg-reconfigure keyboard-configuration
+  service keyboard-setup restart
+  #+end_src
 *** xmodemap
 https://unix.stackexchange.com/questions/107566/how-to-swap-ctrl-and-capslock-using-xmodmap
 https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automatically-on-startup/
@@ -671,7 +714,9 @@ https://destinmoulton.com/blog/2020/remap-capslock-to-ctrl-with-xmodmap-automati
   #+end_example
 
 - Running Xmodemap
-  $ xmodmap ~/.Xmodmap
+  #+begin_src sh
+  xmodmap ~/.Xmodmap
+  #+end_src
 
 - Startup setting
   (todo)

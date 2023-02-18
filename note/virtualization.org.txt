@@ -34,15 +34,23 @@ https://hiseon.me/server/ubuntu-kvm-install/
 *** install
 https://hiseon.me/server/ubuntu-kvm-install/
 - install
-  $ sudo apt-get update
-  $ sudo apt-get install qemu-kvm libvirt-daemon-system virtinst bridge-utils cpu-checker
+  #+begin_src sh
+  sudo apt-get update
+  sudo apt-get install qemu-kvm libvirt-daemon-system virtinst bridge-utils cpu-checker
+  #+end_src
 - add an user to the group named kvm for convenient use of kvm
-  $ sudo adduser some-user kvm
+  #+begin_src sh
+  sudo adduser $USER kvm
+  #+end_src
 - check installation
-  $ kvm-ok
+  #+begin_src sh
+  kvm-ok
+  #+end_src
 - list virtual machines
   https://welcome1208.tistory.com/63
-  $ virsh list --all
+  #+begin_src sh
+  virsh list --all
+  #+end_src
 - reboot to run libvirt daemon (libvirtd -d)
 *** install the latest KVM (optional)
 https://www.qemu.org/download/#source
@@ -61,11 +69,17 @@ https://www.qemu.org/download/#source
   #+end_src
 - output directory: ./build
 - check version
-  $ ./build/qemu-x86_64 --version
+  #+begin_src sh
+  ./build/qemu-x86_64 --version
+  #+end_src
 - install
-  $ make install
+  #+begin_src sh
+  make install
+  #+end_src
 - version check
-  $ kvm --version
+  #+begin_src sh
+  kvm --version
+  #+end_src
 *** bridged mode setup (optional)
 - NAT vs Bridged mode
   https://developerin.tistory.com/18
@@ -79,9 +93,13 @@ https://welcome1208.tistory.com/65
 
 It's a GUI tool for managing virtual machines, although kvm commands can do too
 - install
-  $ sudo apt install virt-manager
+  #+begin_src sh
+  sudo apt install virt-manager
+  #+end_src
 - run
-  $ virt-manager
+  #+begin_src sh
+  virt-manager
+  #+end_src
 *** install guest Windows
 https://www.youtube.com/watch?v=RLy1zozJ9W0
 https://dennisnotes.com/note/20180614-ubuntu-18.04-qemu-setup/
@@ -95,12 +113,16 @@ https://dennisnotes.com/note/20180614-ubuntu-18.04-qemu-setup/
 - "Add Hardware" -> "Video" -> "Finish"
    repeat it as many as the number of additional screens
 - connect to the VM via remote-viewer
-  $ remote-viewer spice://localhost:5900
+  #+begin_src sh
+  remote-viewer spice://localhost:5900
+  #+end_src
   - where the port number 5900 can be found from:
     "Show virtual hardware details" -> "Display Spice"
 *** connecting to VM remotely
 https://techienotes.blog/2014/12/17/how-to-connect-to-a-vm-hosted-on-qemu-remotely-using-virt-viewer/
-$ virt-viewer --connect qemu+ssh://aamr@hobba/system winVM
+#+begin_src sh
+virt-viewer --connect qemu+ssh://aamr@hobba/system winVM
+#+end_src
 
 where
 * virt-viewer: the command itself
@@ -113,11 +135,15 @@ where
 
 *** resize image's capacity
 https://superuser.com/a/375847
-$ qemu-img resize $IMAGE.qcow2 +$TOTAL_SIZE
+#+begin_src sh
+qemu-img resize $IMAGE.qcow2 +$TOTAL_SIZE
+#+end_src
 where $IMAGE.qcow2 is the VM's image path ( [[*path of virtual machine image][path of virtual machine image]] )
 
 https://maunium.net/blog/resizing-qcow2-images/
-$ qemu-img resize $IMAGE.qcow2 +$ADDITIONAL_SIZE
+#+begin_src sh
+qemu-img resize $IMAGE.qcow2 +$ADDITIONAL_SIZE
+#+end_src
 e.g. qemu-img resize win10.qcow2 +10G
 
 https://superuser.com/a/1174602
@@ -128,8 +154,10 @@ http://woshub.com/kvm-expand-shrink-vm-disk/
 
 [Caution]
 Shrinking VM's can remove data in your image
-$ sudo qemu-img resize --shrink $IMAGE.qcow2 40G
-$ sudo qemu-img resize --shrink $IMAGE.qcow2 -20G
+#+begin_src sh
+sudo qemu-img resize --shrink $IMAGE.qcow2 40G
+sudo qemu-img resize --shrink $IMAGE.qcow2 -20G
+#+end_src
 *** enable screen resize ability
 https://stackoverflow.com/a/41990601
 
@@ -148,24 +176,32 @@ you can copy your image (.qcow2 file) into another computer,
 then create the same virtual machine.
 
 before create the image on the other machine, you may need to change the permission:
-$ sudo chmod 777 my_image.qcow2
+#+begin_src sh
+sudo chmod 777 my_image.qcow2
+#+end_src
 *** edit guest VM's XML configuration
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-managing_guest_virtual_machines_with_virsh-editing_a_guest_virtual_machines_configuration_file
 
 - list VMs then edit
-  $ virsh list --all  # list all VMs
-  $ virsh edit <VM's name>
+  #+begin_src sh
+  virsh list --all  # list all VMs
+  virsh edit <VM's name>
+  #+end_src
 
 - editing with emacs:
   https://unix.stackexchange.com/a/502691
-  $ EDITOR=emacs virsh edit win10
-  $ EDITOR=emacsclient virsh edit win10
-  $ EDITOR="emacs -nw" virsh edit win10
+  #+begin_src sh
+  EDITOR=emacs virsh edit win10
+  EDITOR=emacsclient virsh edit win10
+  EDITOR="emacs -nw" virsh edit win10
+  #+end_src
 
   You can also export the default editor in ~/.bashrc
-  $ export EDITOR=emacs
-  $ export EDITOR=emacsclient
-  $ export EDITOR="emacs -nw"
+  #+begin_src sh
+  export EDITOR=emacs
+  export EDITOR=emacsclient
+  export EDITOR="emacs -nw"
+  #+end_src
 *** sharing via samba
 https://unix.stackexchange.com/a/183609
 https://unix.stackexchange.com/a/86083
@@ -187,7 +223,9 @@ https://psychoria.tistory.com/678
   directory mode = 0777
   #+end_example
 - restart to apply config
-  $ sudo service smbd restart
+  #+begin_src sh
+  sudo service smbd restart
+  #+end_src
 **** connect to samba from windows guest
 https://www.techrepublic.com/article/how-to-connect-to-linux-samba-shares-from-windows-10/
 - right mouse click on PC
@@ -198,7 +236,9 @@ https://www.techrepublic.com/article/how-to-connect-to-linux-samba-shares-from-w
   # where 10.0.2.2 means host machine's IP
   e.g. "\\192.168.122.1\shared data"
   - you can find ip address of host for virtual machines :
-    $ ip addr  # type this command in the host terminal
+    #+begin_src sh
+    ip addr  # type this command in the host terminal
+    #+end_src
     you can get IP from a network driver such as 'virbr0'
 - input user's id and samba's password
   and check "Remember credentials"
@@ -221,11 +261,17 @@ https://forums.unraid.net/topic/46634-passthrough-hard-drive-to-vm/?do=findComme
 It's working with windows
 
 - find UUID of filesystem
-  $ sudo blkid
+  #+begin_src sh
+  sudo blkid
+  #+end_src
 - list VMs
-  $ virsh list --all
+  #+begin_src sh
+  virsh list --all
+  #+end_src
 - Edit XML config to add a disk
-  $ virsh edit <VM name>
+  #+begin_src sh
+  virsh edit <VM name>
+  #+end_src
   #+begin_example
   <disk type='block' device='disk'>
     <driver name='qemu' type='raw' cache='writeback'/>
@@ -244,7 +290,9 @@ https://unix.stackexchange.com/a/635636
 
 https://virtio-fs.gitlab.io/
 qemu-kvm needs a higher version
-$ kvm --version
+#+begin_src sh
+kvm --version
+#+end_src
 **** update VM's XML config
 https://libvirt.org/kbase/virtiofs.html
 #+begin_src xml
@@ -271,19 +319,27 @@ https://libvirt.org/kbase/virtiofs.html
 https://easyengine.io/tutorials/kvm/convert-qcow2-to-raw-format/
 
 - backup VM config
-  $ virsh dumpxml <vmname> > ~/path/to/vmname.xml
+  #+begin_src sh
+  virsh dumpxml <vmname> > ~/path/to/vmname.xml
+  #+end_src
 - image conversion
   - run the following command
-    $virsh dumpxml <vmname> | grep file
+    #+begin_src sh
+    virsh dumpxml <vmname> | grep file
+    #+end_src
   - then the output is like the following
     #+begin_example
     <disk type='file' device='disk'>
       <source file='path/to/vmname.qcow2'/>
     #+end_example
   - convert
-    $ sudo qemu-img convert path/to/vmname.qcow2 path/to/vmname.raw
+    #+begin_src sh
+    sudo qemu-img convert path/to/vmname.qcow2 path/to/vmname.raw
+    #+end_src
   - edit VM config
-    $ EDITOR=emacsclient virsh edit <vmname>
+    #+begin_src sh
+    EDITOR=emacsclient virsh edit <vmname>
+    #+end_src
     - find lines like below
       #+begin_example
       <disk type='file' device='disk'>
@@ -303,7 +359,9 @@ https://easyengine.io/tutorials/kvm/convert-qcow2-to-raw-format/
       </disk>
       #+end_example
   - start vm with virsh
-    $ virsh start <vmname>
+    #+begin_src sh
+    virsh start <vmname>
+    #+end_src
 *** Port forwarding
 https://wiki.libvirt.org/page/Networking#Forwarding_Incoming_Connections
 https://serverfault.com/a/733736
@@ -386,13 +444,21 @@ https://unix.stackexchange.com/a/223890
 *** virsh commands
 https://computingforgeeks.com/virsh-commands-cheatsheet/
 - list VMs
-  $ virsh list --all
+  #+begin_src sh
+  virsh list --all
+  #+end_src
 - start VM
-  $ virsh start <vm-name>
+  #+begin_src sh
+  virsh start <vm-name>
+  #+end_src
 - stop VM
-  $ virsh shutdown <vm-name>
+  #+begin_src sh
+  virsh shutdown <vm-name>
+  #+end_src
 - shutdown VM by force
-  $ virsh destroy <vm-name>
+  #+begin_src sh
+  virsh destroy <vm-name>
+  #+end_src
 *** switching from guest to host
 https://superuser.com/a/1452377
 

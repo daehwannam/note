@@ -48,10 +48,14 @@ deactivate
 - https://www.reddit.com/r/Python/comments/96i85o/convenient_tail_call_elimination_decorator_for/
 
 ** python2 to python3
-$ 2to3 -w example.py [or directory]
+#+begin_src sh
+2to3 -w example.py [or directory]
+#+end_src
 
 if you don't want to make backup files:
-$ 2to3 -wn example.py [or directory]
+#+begin_src sh
+2to3 -wn example.py [or directory]
+#+end_src
 
 ** typing
 *** traverse types
@@ -88,16 +92,26 @@ https://github.com/hylang/hy-mode
 *** install
 **** hy
 - specific version
-  $ python -m pip install hy==0.18.0
+  #+begin_src sh
+  python -m pip install hy==0.18.0
+  #+end_src
 - stable version(0.17.0): https://github.com/hylang/hy
-  $ pip3 install hy
+  #+begin_src sh
+  pip3 install hy
+  #+end_src
   or 
-  $ pip3 install --user hy  # install scripts in /home/dhnam/.local/bin/
+  #+begin_src sh
+  pip3 install --user hy  # install scripts in /home/dhnam/.local/bin/
+  #+end_src
 - latest master version: https://docs.hylang.org/en/stable/quickstart.html
-  $ pip install git+https://github.com/hylang/hy.git
+  #+begin_src sh
+  pip install git+https://github.com/hylang/hy.git
+  #+end_src
 **** jedhy
 https://github.com/ekaschalk/jedhy
-$ pip install jedhy  # it may be installed without virtual env (with base python)
+#+begin_src sh
+pip install jedhy  # it may be installed without virtual env (with base python)
+#+end_src
 *** note
 **** tuple unpacking
 https://groups.google.com/forum/#!searchin/hylang-discuss/unpacking%7Csort:date/hylang-discuss/zk4Ck3fU4pA/F1gr4C09BAAJ
@@ -172,7 +186,9 @@ num_list_dict: dict[str, list[int]] = {'abc': [1, 2, 3], 'xyz': [4, 5, 6]}
 
 * pip
 ** command
-$ python -m pip [command] [args]
+#+begin_src sh
+python -m pip [command] [args]
+#+end_src
 ** version check
 https://stackoverflow.com/a/26664162/6710003
 #+begin_src sh
@@ -249,15 +265,19 @@ pip freeze > requirements.txt
 
 * pdb
 ** pdb command
-$ python -m pdb example.py
+#+begin_src sh
+python -m pdb example.py
+#+end_src
 or
-$ pdb example.py  # this command requires pdb setup for different environments
+#+begin_src sh
+pdb example.py  # this command requires pdb setup for different environments
+#+end_src
 ** pdb setting for conda environments
 https://stackoverflow.com/questions/38346577/debuggin-with-pdb-within-a-conda-environment
 1. source activate py3
-2. find pdb path by "$ which pdb" for python2 or "$ which pdb3" for Python3
+2. find pdb path by =which pdb= for python2 or =which pdb3= for Python3
    ex) /usr/bin/pdb or /usr/bin/pdb3
-3. find python path by "$ which python"
+3. find python path by =which python=
    ex) /home/dhnam/program/anaconda3/envs/py3/bin/python
 4. copy /usr/bin/pdb or pdb3 to /home/dhnam/program/anaconda3/envs/py3/bin/pdb
 5. then open /home/dhnam/program/anaconda3/envs/py3/bin/pdb
@@ -275,7 +295,9 @@ https://stackoverflow.com/a/35302880
 'interact' command enables to execute generators with 'self' objects
 
 *** ignoring breakpoints
-$ PYTHONBREAKPOINT=0 python main.py
+#+begin_src sh
+PYTHONBREAKPOINT=0 python main.py
+#+end_src
 
 ** where, frame, up, down
 https://stackoverflow.com/a/23488594

@@ -15,7 +15,9 @@ https://www.baeldung.com/linux/run-script-on-startup
 https://stackoverflow.com/a/46924468
 
 - enter cron
-  $ EDITOR=emacsclient crontab -e
+  #+begin_src sh
+  EDITOR=emacsclient crontab -e
+  #+end_src
 - add the following line
   #+begin_example
   @reboot sh /absolute/path/to/the/script
@@ -24,7 +26,9 @@ https://stackoverflow.com/a/46924468
 https://askubuntu.com/a/45618
 
 - check partitions
-  $ sudo blkid
+  #+begin_src sh
+  sudo blkid
+  #+end_src
 - modify "/etc/fstab"
   - e.g. mount partition to an user's folder and change ownership:
     #+begin_example
@@ -32,7 +36,9 @@ https://askubuntu.com/a/45618
     #+end_example
     where
     - uid and gid can be obtained by:
-      $ id
+      #+begin_src sh
+      id
+      #+end_src
     - umask=007 make its permission as "drwxrwx---"
   - if the mounted partition is gonna be shared via sshfs, set "umask=000"
     e.g.
@@ -42,7 +48,9 @@ https://askubuntu.com/a/45618
 - reboot
 ** get gid from group name
 https://askubuntu.com/a/639998
-$ cut -d: -f3 < <(getent group $GROUP_NAME)
+#+begin_src sh
+cut -d: -f3 < <(getent group $GROUP_NAME)
+#+end_src
 ** check if X server is running or not
 #+begin_src sh
 if ! timeout 1s xset q &>/dev/null; then
@@ -76,7 +84,9 @@ fi
 * Utilities
 ** ssh
 *** install ssh server
-$ sudo apt install openssh-server
+#+begin_src sh
+sudo apt install openssh-server
+#+end_src
 *** SSH multiple port setup
 - update "/etc/ssh/sshd_config"
   #+begin_example
@@ -84,7 +94,9 @@ $ sudo apt install openssh-server
   Port 61112
   #+end_example
 - then type as follow:
-  $ sudo service ssh restart
+  #+begin_src sh
+  sudo service ssh restart
+  #+end_src
 *** restrict port to a specific user
 https://serverfault.com/questions/247291/forced-per-user-ssh-port
 - update "/etc/ssh/sshd_config"
@@ -93,13 +105,17 @@ https://serverfault.com/questions/247291/forced-per-user-ssh-port
   AllowUsers someuser
   #+end_example
 - then type as follow:
-  $ sudo service ssh restart
+  #+begin_src sh
+  sudo service ssh restart
+  #+end_src
 *** initialize known hosts
 https://superuser.com/a/159510
 remove "~/.ssh/known_hosts"
 *** using x11 forwarding from linux
 https://askubuntu.com/a/436751/820403
-$ ssh -X remote_login@192.168.1.12
+#+begin_src sh
+ssh -X remote_login@192.168.1.12
+#+end_src
 
 In "/etc/ssh/sshd_config" of the server, "X11Forwarding" should be enabled
 #+begin_example
@@ -118,7 +134,9 @@ https://stackoverflow.com/a/49572001
    #+end_src
 *** making firewall allow ssh port
 https://www.cyberciti.biz/faq/ufw-allow-incoming-ssh-connections-from-a-specific-ip-address-subnet-on-ubuntu-debian/
-$ sudo ufw allow 61112/tcp
+#+begin_src sh
+sudo ufw allow 61112/tcp
+#+end_src
 where 61112 is the port number
 *** jump to a server via intermediate hops
 https://wiki.gentoo.org/wiki/SSH_jump_host
@@ -167,31 +185,47 @@ https://www.youtube.com/watch?v=Ukqs5M5Fthg
  - 3rd rwx : other permission
 
 - Permission change examples:
- $ chmod 755 file-name
- $ chmod 711 file-name
- $ chmod 777 file-name
+  #+begin_src sh
+  chmod 755 file-name
+  chmod 711 file-name
+  chmod 777 file-name
+  #+end_src
 
 ** scp example
 - with port number
-  $ scp -P 60001 user@domain.name.com:/home/user/some_file ./copied_file
+  #+begin_src sh
+  scp -P 60001 user@domain.name.com:/home/user/some_file ./copied_file
+  #+end_src
   - '-P' indicate port number
   - directory cannot be copied
 - copy recursively
+  #+begin_src sh
   scp -r ./source_directory user@domain.name.com:/home/user/some_directory/
   scp -r ./source_directory user@domain.name.com:/home/user/some_directory/target_directory
+  #+end_src
 - verbose option -v
+  #+begin_src sh
   scp -v -P 60001 user@domain.name.com:/home/user/some_file ./copied_file
+  #+end_src
 
 ** ps
 - list all options
-  $ ps --help all
+  #+begin_src sh
+  ps --help all
+  #+end_src
 - show processes made by a user
-  $ ps -u user_name
-  $ ps -fu dhnam  # with full-format
+  #+begin_src sh
+  ps -u user_name
+  ps -fu dhnam  # with full-format
+  #+end_src
 - show all processes(-e) with full-format(-f)
-  $ ps -ef
+  #+begin_src sh
+  ps -ef
+  #+end_src
 - show all users with processes
-  $ ps -ef | awk 'NR>1 {print $1}' | sort -u
+  #+begin_src sh
+  ps -ef | awk 'NR>1 {print $1}' | sort -u
+  #+end_src
 
   note:
   - NR>1 : skip the first row
@@ -199,15 +233,21 @@ https://www.youtube.com/watch?v=Ukqs5M5Fthg
 
 ** alias
 ex)
-$ alias emacs=emacs25
-$ alias emacsclient=emacsclient25
-$ alias ll='ls -A'
+#+begin_src sh
+alias emacs=emacs25
+alias emacsclient=emacsclient25
+alias ll='ls -A'
+#+end_src
 
 if you write alias in ~/.bashrc, you have to update it by:
-$ source ~/.bashrc
+#+begin_src sh
+source ~/.bashrc
+#+end_src
 ** ln
 *** making symbolic link
-$ ln -s /path/to/file /path/to/link
+#+begin_src sh
+ln -s /path/to/file /path/to/link
+#+end_src
 
 ** simple commands
 - <ls -lh> to see the detail sizes of files
@@ -218,16 +258,24 @@ df -h
 
 ** du
 - show directory size
-  $ sudo du -sh /path/to/dir
+  #+begin_src sh
+  sudo du -sh /path/to/dir
+  #+end_src
 
 - show files' sizes in the directory
-  $ du -sh /path/to/dir/*
+  #+begin_src sh
+  du -sh /path/to/dir/*
+  #+end_src
 
   e.g. show each user's directory size
-  $ du -sh /home/*
+  #+begin_src sh
+  du -sh /home/*
+  #+end_src
 
 - show all files' sizes in the current directory
-  $ du -hs .[^.]*
+  #+begin_src sh
+  du -hs .[^.]*
+  #+end_src
 
 ** find
 *** options
@@ -241,12 +289,16 @@ df -h
 -print: print the found files (default action)
 *** remove found files
 https://stackoverflow.com/a/41386937
-$ find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
+#+begin_src sh
+find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
+#+end_src
 *** change permissions of found files
 https://unix.stackexchange.com/a/39133
 
 e.g. change permissions of files whose names start with .#
-$ find . -type f -name '.#*' -exec chmod +w {} \;
+#+begin_src sh
+find . -type f -name '.#*' -exec chmod +w {} \;
+#+end_src
 *** parenthesis
 parenthesis group target files then you can apply them with the same action
 
@@ -273,15 +325,21 @@ e.g.
 xargs sends the standard input as arguments of another command
 
 e.g.
-$ find . -name '*.aux' -o '*.log' | xargs rm -f
+#+begin_src sh
+find . -name '*.aux' -o '*.log' | xargs rm -f
+#+end_src
 
 ** chmod
 https://en.wikipedia.org/wiki/Chmod
 
 - change to an executable for the user(owner)
-  $ chmod u+x ./path/to/file
+  #+begin_src sh
+  chmod u+x ./path/to/file
+  #+end_src
 - change to an executable for all the users (recommended)
-  $ chmod a+x ./path/to/file
+  #+begin_src sh
+  chmod a+x ./path/to/file
+  #+end_src
 - you may need shebang(#!) at the top line to indicate a program to run the script
   e.g. #!/bin/bash
   e.g. #!/home/user/program/miniconda3/envs/default/bin/python
@@ -300,11 +358,15 @@ wget -O new-file-name https://some-site.com/some-file.txt
 
 ** lscpu
 show cpu information
-$ lscpu
+#+begin_src sh
+lscpu
+#+end_src
 
 ** free
 show memory usage
-$ free -h
+#+begin_src sh
+free -h
+#+end_src
 
 ** date
 - changing current time manually (sudo is required)
@@ -313,21 +375,29 @@ $ free -h
   the format is "월일시간년도.초"
 
   e.g.
-  $ date 031211572018.00
+  #+begin_src sh
+  date 031211572018.00
+  #+end_src
   ==> Mon Mar 12 11:57:00 KST 2018
-  $ date
+  #+begin_src sh
+  date
+  #+end_src
   ==> Mon Mar 12 11:57:02 KST 2018
 
 ** mkdir
 - mkdir "all directories in the path" when "directories don't exist"
-  $ mkdir -p some/path/to/a/directory
+  #+begin_src sh
+  mkdir -p some/path/to/a/directory
+  #+end_src
 
 ** xdg-open
 This is a command for GUI.
 xdg-open - opens a file or URL in the user's preferred application
 
 e.g.
-$ xdg-open "example.pdf"
+#+begin_src sh
+xdg-open "example.pdf"
+#+end_src
 *** change default applications of xdg-open
 https://unix.stackexchange.com/a/59088
 https://stackoverflow.com/a/67185532
@@ -352,48 +422,78 @@ https://stackoverflow.com/a/67185532
 - or you can directly change "~/.config/mimeapps.list"
 ** pskill
 https://stackoverflow.com/a/27820938
-$ pkill -f python
+#+begin_src sh
+pkill -f python
+#+end_src
 ** killall
 https://www.linkedin.com/pulse/use-killall-kill-commands-stop-processes-linux-kuldeep-saxena
-$ killall gnome-control-center
+#+begin_src sh
+killall gnome-control-center
+#+end_src
 ** chown &* chgrp
 Basic usage
-$ chown user some/file/or/directory
-$ chgrp user some/file/or/directory
+#+begin_src sh
+chown user some/file/or/directory
+chgrp user some/file/or/directory
+#+end_src
 
 Change owner and group of multiple files recursively
 https://superuser.com/a/260939
-$ chown -R user:group file1 file2
+#+begin_src sh
+chown -R user:group file1 file2
+#+end_src
 ** shutdown
 - scheduled shutdown
   https://askubuntu.com/questions/505929/shutdown-after-a-certain-time
-  $ date  # to check the current time
-  $ sudo shutdown -P 8:30
+  #+begin_src sh
+  date  # to check the current time
+  sudo shutdown -P 8:30
+  #+end_src
 - cancel scheduled shutdown
-  $ sudo shutdown -c
+  #+begin_src sh
+  sudo shutdown -c
+  #+end_src
 ** suspend & hibernate
 - suspend
   https://www.cyberciti.biz/faq/linux-command-to-suspend-hibernate-laptop-netbook-pc/
-  $ systemctl suspend
+  #+begin_src sh
+  systemctl suspend
+  #+end_src
 - hibernate
-  $ systemctl hibernate
+  #+begin_src sh
+  systemctl hibernate
+  #+end_src
 ** zip & unzip
 *** zip
 - compress a directory
-  $ zip -r compressed.zip path/to/dir
+  #+begin_src sh
+  zip -r compressed.zip path/to/dir
+  #+end_src
 - compress multiple directories
-  $ zip -r compressed.zip path/to/dir1 path/to/dir2 path/to/dir3
+  #+begin_src sh
+  zip -r compressed.zip path/to/dir1 path/to/dir2 path/to/dir3
+  #+end_src
 - add a file to the existing .zip file
-  $ zip compressed.zip path/to/file
+  #+begin_src sh
+  zip compressed.zip path/to/file
+  #+end_src
 - zip silently (-q option)
-  $ zip -rq compressed.zip path/to/dir
+  #+begin_src sh
+  zip -rq compressed.zip path/to/dir
+  #+end_src
 *** unzip
 - list files in .zip file
-  $ unzip -l compressed.zip
+  #+begin_src sh
+  unzip -l compressed.zip
+  #+end_src
 - uncompressing .zip file
-  $ unzip compressed.zip
+  #+begin_src sh
+  unzip compressed.zip
+  #+end_src
 - uncompressing .zip file to a specific directory
-  $ unzip compressed.zip -d path/to/dir
+  #+begin_src sh
+  unzip compressed.zip -d path/to/dir
+  #+end_src
 ** terminal spreadsheets
 https://www.reddit.com/r/emacs/comments/kxinju/org_tables_for_big_spreadsheets/
 - emacs SES
@@ -403,7 +503,9 @@ https://www.reddit.com/r/emacs/comments/kxinju/org_tables_for_big_spreadsheets/
 ** xkill
 https://koreaubuntu.wordpress.com/2009/08/19/%EC%9A%B0%EB%B6%84%ED%88%AC%EC%9D%98-ctrlaltdel%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/
 In GUI, you can kill a program by clicking its window after running 'xkill'
-$ xkill
+#+begin_src sh
+xkill
+#+end_src
 ** make
 *** make process
 https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install
@@ -435,13 +537,21 @@ https://stackoverflow.com/a/10408906
 nohup = no hang up
 
 - nohup in background
-  $ nohup command &
+  #+begin_src sh
+  nohup command &
+  #+end_src
 - redirect stdout(1>) and stderr(2>)
-  $ nohup command 1> result.out 2> result.err &
+  #+begin_src sh
+  nohup command 1> result.out 2> result.err &
+  #+end_src
 - redirect stdout(1>) and stderr(2>) into the same file
-  $ nohup command > result.log 2>&1 &
+  #+begin_src sh
+  nohup command > result.log 2>&1 &
+  #+end_src
 - without nohup.out
-  $ nohup command > /dev/null 2>&1   # doesn't create nohup.out
+  #+begin_src sh
+  nohup command > /dev/null 2>&1   # doesn't create nohup.out
+  #+end_src
 ** chroot
 change root directory
 *** error of "failed to run command ‘/bin/bash’: No such file or directory"
@@ -449,9 +559,13 @@ https://unix.stackexchange.com/a/606895
 in my case, /mnt/lib doesn't have most files
 ** acpi
 - install
-  $ sudo apt-get install acpi
+  #+begin_src sh
+  sudo apt-get install acpi
+  #+end_src
 - battery infomation
-  $ acpi
+  #+begin_src sh
+  acpi
+  #+end_src
 ** xset
 *** current status
 #+begin_src sh
@@ -477,12 +591,18 @@ xset dpms 2100 2400 2700
 #+end_src
 ** cpupower
 *** current frequency governor
-$ cpupower frequency-info -p
+#+begin_src sh
+cpupower frequency-info -p
+#+end_src
 or
-$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+#+begin_src sh
+cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+#+end_src
 *** change frequency governor
 https://wiki.archlinux.org/title/CPU_frequency_scaling#Scaling_governors
-$ cpupower frequency-set -g <governor>
+#+begin_src sh
+cpupower frequency-set -g <governor>
+#+end_src
 e.g.
 #+begin_src sh
 sudo cpupower frequency-set -g ondemand
@@ -507,23 +627,33 @@ then reboot
 ** startx
 *** running X11 simply
 https://en.wikibooks.org/wiki/Guide_to_X11/Starting_Sessions#xinit_and_startx
-$ startx
+#+begin_src sh
+startx
+#+end_src
 *** run x session in another tty
 https://askubuntu.com/a/546334
 e.g.
-$ startx -display :2 -- :2 vt3 &
+#+begin_src sh
+startx -display :2 -- :2 vt3 &
+#+end_src
 where
 - :2 means display number. you can get the current display by
-  $ echo $DISPLAY
+  #+begin_src sh
+  echo $DISPLAY
+  #+end_src
 - vt3 means tty number. you can get the current tty by
-  $ tty
+  #+begin_src sh
+  tty
+  #+end_src
 ** dmesg
 https://man7.org/linux/man-pages/man1/dmesg.1.html
 "dmesg is used to examine or control the kernel ring buffer."
 dmesg can print kernel log
 ** fdisk
 list disks
-$ sudo fdisk -l
+#+begin_src sh
+sudo fdisk -l
+#+end_src
 
 e.g. example output of a disk
 #+begin_example
@@ -539,17 +669,21 @@ Disk identifier: 0x8eddc49c
 https://www.tutorialspoint.com/how-to-mount-usb-drive-in-a-linux-system
 e.g.
 #+begin_src sh
-$ sudo mount /dev/sdb1 /mnt  # not '/dev/sdb' (entire disk) but '/dev/sdb1' (partition)
+sudo mount /dev/sdb1 /mnt  # not '/dev/sdb' (entire disk) but '/dev/sdb1' (partition)
 #+end_src
 ** lsblk
 https://www.linkedin.com/pulse/use-killall-kill-commands-stop-processes-linux-kuldeep-saxena
 https://www.reddit.com/r/emacs/comments/btvsk7/comment/ep3eepc/?utm_source=share&utm_medium=web2x&context=3
 lsblk lists information about block devices.
-$ lsblk
+#+begin_src sh
+lsblk
+#+end_src
 *** Check if a device is SDD or HDD
 https://unix.stackexchange.com/a/227458
 Check whether a mounted device, such as sda or sdb, is SDD or HDD:
-$ lsblk -d -o name,rota
+#+begin_src sh
+lsblk -d -o name,rota
+#+end_src
 
 The example output is:
     NAME ROTA
@@ -579,7 +713,9 @@ udisksctl info -b /dev/sdb
 ** xte
 *** toggle Caps Lock
 https://askubuntu.com/a/607915
-$ xte "key Caps_Lock"
+#+begin_src sh
+xte "key Caps_Lock"
+#+end_src
 ** xmodmap
 *** keysyms
 https://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
@@ -637,7 +773,9 @@ https://gist.github.com/rickyzhang82/8581a762c9f9fc6ddb8390872552c250
 ** command
 *** check a program exists
 https://stackoverflow.com/a/677212
-$ command -v pdfgrep
+#+begin_src sh
+command -v pdfgrep
+#+end_src
 ** pdfcrop
 remove margin of pdf
 #+begin_src sh

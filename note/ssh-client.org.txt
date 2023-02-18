@@ -96,12 +96,16 @@ https://askubuntu.com/questions/971171/how-to-use-putty-to-get-x11-connections-o
 https://stackoverflow.com/q/54976656
 
 write the following line in ~/.bashrc
-$ # to support 256color for ssh-clients like MobaXterm
-$ export TERM=xterm-256color
+#+begin_src sh
+# to support 256color for ssh-clients like MobaXterm
+export TERM=xterm-256color
+#+end_src
 
 but it may cause problem in tmux (https://superuser.com/q/424086/908614)
-so write the following line in ~/.bashrc
-$ export TERM=screen-256color
+so write the following line in "~/.bashrc" :
+#+begin_src sh
+export TERM=screen-256color
+#+end_src
 
 # but it may cause problem in tmux (https://emacs.stackexchange.com/a/18291)
 # so write the following line in ~/.bashrc

@@ -192,7 +192,9 @@ https://orgmode.org/manual/Handling-links.html
 
 * Table
 ** Install Inconsolata font for org-mode tables with CJK characters
-$ sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
+#+begin_src sh
+sudo apt-get install fonts-inconsolata  # for Ubuntu 16.04
+#+end_src
 or, for Windows, download from https://candyfonts.com/font/inconsolata.htm
 ** transpose
 - org-table-transpose-table-at-point

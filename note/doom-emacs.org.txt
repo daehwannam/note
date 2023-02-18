@@ -34,10 +34,16 @@ Have fun!
 --------------------------------------------------------------------------
 
 * Doctor example
-$ bin/doom doctor
+#+begin_src sh
+bin/doom doctor
+#+end_src
 
 Couldn't find the `fd' binary; project file searches will be slightly slower
-$ apt-get install fd
+#+begin_src sh
+apt-get install fd
+#+end_src
 
 Couldn't find shellcheck. Shell script linting will not work
-$ conda install -c conda-forge shellcheck
+#+begin_src sh
+conda install -c conda-forge shellcheck
+#+end_src

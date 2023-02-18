@@ -2,24 +2,40 @@
 * Terminal commands
 https://linuxize.com/post/how-to-use-linux-screen/
 ** starting named socket
-$ screen -S socket_name
+#+begin_src sh
+screen -S socket_name
+#+end_src
 ** detach socket
-$ screen -d
+#+begin_src sh
+screen -d
+#+end_src
 ** list sockets
-$ screen -ls
+#+begin_src sh
+screen -ls
+#+end_src
 ** reattach to a linux screen
-$ screen -r socket_name
+#+begin_src sh
+screen -r socket_name
+#+end_src
 ** detach socket
-$ screen -d (-r) socket_name
+#+begin_src sh
+screen -d (-r) socket_name
+#+end_src
 Detach the elsewhere running screen (and reattach here).
 ** logging
-$ screen -S socken_name -L
+#+begin_src sh
+screen -S socken_name -L
+#+end_src
 by default logfile name is "./screenlog.0"
 ** logging wiht file-name
-$ screen -S socken_name -L -Logfile log_file_name
+#+begin_src sh
+screen -S socken_name -L -Logfile log_file_name
+#+end_src
 ** kill all sessions
 # https://unix.stackexchange.com/a/94528
-$ pskill screen
+#+begin_src sh
+pskill screen
+#+end_src
 
 * Shortcuts
 https://www.pixelbeat.org/lkdb/screen.html

@@ -1,6 +1,8 @@
 * qutebrowser
 ** install with pip
-$ pip install qutebrowser
+#+begin_src sh
+pip install qutebrowser
+#+end_src
 ** install manually with virtual/conda environment
 https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc#installing-qutebrowser-with-virtualenv
 #+begin_src sh
@@ -34,13 +36,17 @@ xdg-mime default qutebrowser.desktop text/html
 xdg-mime default qutebrowser.desktop application/xhtml+xml
 #+end_src
 *** running
-$ ~/program/qutebrowser/.venv/bin/python -m qutebrowser
+#+begin_src sh
+~/program/qutebrowser/.venv/bin/python -m qutebrowser
+#+end_src
 
 if crash occurs a few seconds after starting this app,
 you may need to install nvidia-driver (or nouveau drivers?)
 ** install with apt
 https://qutebrowser.org/doc/install.html#_on_debian_ubuntu
-$ sudo apt install qutebrowser
+#+begin_src sh
+sudo apt install qutebrowser
+#+end_src
 ** help
 :help
 ** config
@@ -51,7 +57,9 @@ https://qutebrowser.org/doc/help/configuring.html#configpy
   ~/.config/qutebrowser/config.py
 ** run private mode from command line
 https://www.reddit.com/r/qutebrowser/comments/j284pg/comment/g74m3vw/?utm_source=share&utm_medium=web2x&context=3
-$ qutebrowser ':open -p'
+#+begin_src sh
+qutebrowser ':open -p'
+#+end_src
 ** dark mode
 https://www.reddit.com/r/qutebrowser/comments/cc5vov/comment/etks6t4/?utm_source=share&utm_medium=web2x&context=3
 #+begin_example
@@ -65,19 +73,27 @@ e.g.
 #+end_example
 ** (not tested yet) ad-block
 https://www.reddit.com/r/qutebrowser/comments/lahfyc/comment/glnzo03/?utm_source=share&utm_medium=web2x&context=3
-$ sudo pacman -S python-adblock
+#+begin_src sh
+sudo pacman -S python-adblock
+#+end_src
 ** change profile
 https://github.com/qutebrowser/qutebrowser/issues/519#issuecomment-207421399
-$ qutebrowser --basedir /home/${USER}/app-profile/qutebrowser1
+#+begin_src sh
+qutebrowser --basedir /home/${USER}/app-profile/qutebrowser1
+#+end_src
 or
-$ qutebrowser --basedir app-profile/qutebrowser1
+#+begin_src sh
+qutebrowser --basedir app-profile/qutebrowser1
+#+end_src
 
 both make directory in a user's home (~)
 CAUTION: don't use '~', which is recognized as a directory named "~" in "/home/${USER}/"
 *** config for profile
 https://www.reddit.com/r/qutebrowser/comments/7l8rtl/can_i_use_multiple_user_profiles_with_qutebrowser/
 - move to basedir "/home/${USER}/app-profile/qutebrowser1"
-  $ cd /home/${USER}/app-profile/qutebrowser1
+  #+begin_src sh
+  cd /home/${USER}/app-profile/qutebrowser1
+  #+end_src
 - method1: replace config with symbol link
   #+begin_src sh
   rm -Rf config
@@ -178,7 +194,9 @@ https://www.reddit.com/r/FirefoxCSS/comments/hyqj5y/comment/fzhhbe4/?utm_source=
     e.g. /home/dhnam/.mozilla/firefox/p37s9w6u.sub
   - run firefox with "-profile" argument
     e.g.
-    $ firefox -profile /home/dhnam/.mozilla/firefox/p37s9w6u.sub
+    #+begin_src sh
+    firefox -profile /home/dhnam/.mozilla/firefox/p37s9w6u.sub
+    #+end_src
 ** remove "import bookmarks ..." in toolbar
 - Menu ≡
 - "More tools"
@@ -231,15 +249,21 @@ $PYTHON install-eaf.py --install-all-apps
 #+end_src** 
 ** error fix
 *** ModuleNotFoundError: No module named 'epc'
-$ sudo apt-get install python3-epc
+#+begin_src sh
+sudo apt-get install python3-epc
+#+end_src
 *** python3: ../nouveau/pushbuf.c:723: nouveau_pushbuf_data: Assertion `kref' failed.
 need to install graphic driver
 **** install nvidia driver
 https://pstudio411.tistory.com/entry/Ubuntu-2004-Nvidia%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
 - check available drivers
-  $ ubuntu-drivers devices
+  #+begin_src sh
+  ubuntu-drivers devices
+  #+end_src
 - install a driver
-  $ sudo apt install nvidia-driver-470
+  #+begin_src sh
+  sudo apt install nvidia-driver-470
+  #+end_src
 
 * Nyxt
 ** manual installation
@@ -271,12 +295,16 @@ https://nyxt.atlas.engineer/download
 Ubuntu package is supported
 *** dependencies for installing from source (optional)
 https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#gnulinux-freebsd-gtk-dependencie
-$ sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev xclip enchant-2
+#+begin_src sh
+sudo apt install sbcl libwebkit2gtk-4.0-dev gobject-introspection glib-networking gsettings-desktop-schemas libfixposix-dev xclip enchant-2
+#+end_src
 *** Youtube video fix
 https://discourse.atlas.engineer/t/youtube-error-your-browser-cant-play-this-video/188/12
 
 'gstreamer1.0-libav' need to be installed
-$ sudo apt-get install gstreamer1.0-libav
+#+begin_src sh
+sudo apt-get install gstreamer1.0-libav
+#+end_src
 *** "WebKitJavascriptError", Code: 699
 https://github.com/atlas-engineer/nyxt/issues/1657#issuecomment-886022638
 https://github.com/atlas-engineer/nyxt/issues/1883#issuecomment-1004048147
@@ -337,7 +365,9 @@ https://github.com/atlas-engineer/nyxt/issues/1478#issuecomment-855752985
   #+end_srcn
 **** using distinct sockets
 use "-S" option
-$ nyxt -S https://google.com/
+#+begin_src sh
+nyxt -S https://google.com/
+#+end_src
 *** prompt buffer (with emacs-mode)
 - C-x C-c: copy
 - C-x C-x: cut
@@ -376,4 +406,6 @@ Run the following code in REPL of Nyxt
 ** Misc
 *** delete cached history
 https://discourse.atlas.engineer/t/global-history-tree-your-map-of-the-internet/82/3
-$ rm -R  ~/.local/share/nyxt/history
+#+begin_src sh
+rm -R  ~/.local/share/nyxt/history
+#+end_src

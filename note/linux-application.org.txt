@@ -6,7 +6,9 @@
   - download .deb file
     https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
   - install .deb file
-    $ sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
+    #+begin_src sh
+    sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
+    #+end_src
 - change language to Korean
   https://hamonikr.org/Free_Board/88075
   http://no1linux.org/screenshot/37778
@@ -35,7 +37,9 @@ https://nooree.com/74
 - download .deb file
   https://drive.google.com/file/d/1Xv8Gd5nGlz_rPFMGMYv4u_lEvLLPyF3V/view?usp=sharing
 - install .deb file
-  $ sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
+  #+begin_src sh
+  sudo dpkg -i hoffice-viewer_11.20.0.991_amd64.deb
+  #+end_src
 ** LibreOffice
 file:~/record/note/libre-office.org.txt
 ** OnlyOffice
@@ -46,9 +50,13 @@ OnlyOffice Desktop is offered free of charge for both personal and commercial us
 *** install
 - .dep install
   https://www.onlyoffice.com/download-desktop.aspx
-  $ sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
+  #+begin_src sh
+  sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
+  #+end_src
 - snap install
-  $ snap install onlyoffice-desktopeditors
+  #+begin_src sh
+  snap install onlyoffice-desktopeditors
+  #+end_src
 *** change default language for new document
 #+begin_src sh
 cd /opt/onlyoffice/desktopeditors/converter/empty
@@ -70,15 +78,21 @@ to use the functionally restricted version of the Software
 *** install WPS
 - download WPS package from https://www.wps.com/
 - install WPS
-  $ sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
+  #+begin_src sh
+  sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb 
+  #+end_src
 *** font update from ttf-mscorefonts-installer
 https://ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
 https://kairos03.github.io/2018/09/07/ubuntu18.04-wps-office-install.html
 
 - install font
-  $ sudo apt install ttf-mscorefonts-installer
+  #+begin_src sh
+  sudo apt install ttf-mscorefonts-installer
+  #+end_src
 - update font cache
-  $ sudo fc-cache -f -v
+  #+begin_src sh
+  sudo fc-cache -f -v
+  #+end_src
 *** font update for "Wingdings, Wingdings 2, Wingdings 3, MT Extra"
 https://askubuntu.com/a/1000144
 #+begin_src sh
@@ -104,10 +118,14 @@ fc-cache -f -v
 ** Flameshot
 *** install
 https://vitux.com/ubuntu-screenshot-flameshot/
-$ sudo apt install flameshot
+#+begin_src sh
+sudo apt install flameshot
+#+end_src
 *** usage
 https://www.tecmint.com/install-flameshot-in-linux/
-$ flameshot gui
+#+begin_src sh
+flameshot gui
+#+end_src
 ** Kazam
 video recording and image capture tool
 ** shortcuts
@@ -120,30 +138,42 @@ Windows key + CTRL + Q = Quit recording.
 * Recording (screencast)
 ** peek
 *** install
-$ sudo apt install peek
+#+begin_src sh
+sudo apt install peek
+#+end_src
 
 * Video editing
 ** kdenlive
 *** install
-$ sudo apt install kdenlive
+#+begin_src sh
+sudo apt install kdenlive
+#+end_src
 
 * Image viewer
 ** Nomacs
 *** install
+#+begin_src sh
 sudo apt install nomacs
+#+end_src
 ** feh
 image viewer
 *** install
-$ sudo apt install feh
+#+begin_src sh
+sudo apt install feh
+#+end_src
 *** usage
 - up/down key -> zome in/out
 - open image with fitting
-  $ feh --scale-down --auto-zoom
+  #+begin_src sh
+  feh --scale-down --auto-zoom
+  #+end_src
 *** other shortcuts
 http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
 *** change default launch option
 - copy .desktop
-  $ cp /usr/share/applications/feh.desktop ~/.local/share/applications/
+  #+begin_src sh
+  cp /usr/share/applications/feh.desktop ~/.local/share/applications/
+  #+end_src
 - update "Exec" in "~/.local/share/applications/"
   #+begin_src sh
   Exec=feh --scale-down --auto-zoom %F  # Exec=feh %F
@@ -170,15 +200,19 @@ https://movment.tistory.com/5
   sudo apt install --install-recommends winehq-stable
   #+end_src
 - set wine for 32bit applications
-  -run command
-    $ WINEARCH=win32 winecfg
+  - run command
+    #+begin_src sh
+    WINEARCH=win32 winecfg
+    #+end_src
   - don't need to install Mono and Gecko
   - set "Windows version" to "Windows 10"
 *** install KakaoTalk
 - download KakaoTalk for windows
   https://www.kakaocorp.com/service/KakaoTalk
 - run the following command
-  $ LANG="ko_KR.UTF-8" wine ~/Downloads/KakaoTalk_Setup.exe
+  #+begin_src sh
+  LANG="ko_KR.UTF-8" wine ~/Downloads/KakaoTalk_Setup.exe
+  #+end_src
 - uncheck
   - "시작메뉴에 바로가기 만들기"
   - "Daum을 시작페이지로 설정"
@@ -203,9 +237,13 @@ https://movment.tistory.com/5
 - log out session
 *** (optional) system tray
 - install topicons plus
-  $ sudo apt install gnome-shell-extension-top-icons-plus
+  #+begin_src sh
+  sudo apt install gnome-shell-extension-top-icons-plus
+  #+end_src
 - enable topicons plus
-  $ gnome-tweaks
+  #+begin_src sh
+  gnome-tweaks
+  #+end_src
   Extensions -> Topicons plus
 *** (optional) fonts for korean
 - Noto Sans CJK TC Medium
@@ -225,7 +263,9 @@ https://www.reddit.com/r/Lutris/comments/u2vsqa/comment/i4md9wq/
 * PDF reader
 ** okular
 *** install
-$ sudo apt-get install okular
+#+begin_src sh
+sudo apt-get install okular
+#+end_src
 *** disable thumbnails at startup
 https://forum.kde.org/viewtopic.php?f=20&t=95947
 Menu -> "Settings" -> uncheck "Navigation panel"
@@ -237,19 +277,27 @@ https://tex.stackexchange.com/questions/161797/how-to-configure-emacs-and-auctex
 ** evince
 pdf viewer
 *** install
-$ sudo apt install evince
+#+begin_src sh
+sudo apt install evince
+#+end_src
 
 * PDF split
 ** qdpf
 - install
-  $ sudo apt-get install qpdf
+  #+begin_src sh
+  sudo apt-get install qpdf
+  #+end_src
 - example
-  $ qpdf input.pdf --pages . 1-10 -- output.pdf
+  #+begin_src sh
+  qpdf input.pdf --pages . 1-10 -- output.pdf
+  #+end_src
 
 * terminal emulator
 ** xterm-256color
 you can update "~/.bashrc" for xterm-256color but it may cause trouble with "M-x shell" or "M-x ansi-term"
-$ export TERM=xterm-256color
+#+begin_src sh
+export TERM=xterm-256color
+#+end_src
 ** Kitty
 https://sw.kovidgoyal.net/kitty/
 https://github.com/kovidgoyal/kitty
@@ -314,7 +362,9 @@ font:
 #+end_src
 *** change default terminal
 https://itsfoss.com/change-default-terminal-ubuntu/
-$ sudo update-alternatives --config x-terminal-emulator 
+#+begin_src sh
+sudo update-alternatives --config x-terminal-emulator
+#+end_src
 
 * Xpra
 https://unix.stackexchange.com/a/608235
@@ -393,31 +443,45 @@ xpra attach ssh:user@address:11111:100
 * unclutter
 hide mouse when it's not moving
 ** install
-$ sudo apt install unclutter
+#+begin_src sh
+sudo apt install unclutter
+#+end_src
 ** change time waiting
 https://askubuntu.com/a/684638
-$ unclutter -idle 3 -root
+#+begin_src sh
+unclutter -idle 3 -root
+#+end_src
 
 * amixer
 a tool for configure sound
 ** Usage
-$ amixer set Master 15%
+#+begin_src sh
+amixer set Master 15%
+#+end_src
 
 * xbacklight
 *** install and usage
 https://askubuntu.com/a/149265
 
 - install
-  $ sudo apt-get install xbacklight
+  #+begin_src sh
+  sudo apt-get install xbacklight
+  #+end_src
 - increase brightness
-  $ xbacklight -inc 10
+  #+begin_src sh
+  xbacklight -inc 10
+  #+end_src
 - decrease brightness
-  $ xbacklight -dec 10 
+  #+begin_src sh
+  xbacklight -dec 10 
+  #+end_src
 
 * xrandr
 ** change screen resolution
 https://unix.stackexchange.com/a/227879
-$ xrandr -s 800x60n0
+#+begin_src sh
+xrandr -s 800x60n0
+#+end_src
 
 * xset
 ** Change screen saver time
@@ -450,24 +514,36 @@ https://inkscape.org/ko/learn/tutorials/
 Help -> Tutorials -> ...
 *** remove svg margin
 https://stackoverflow.com/a/64116358/6710003
-$ inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
+#+begin_src sh
+inkscape --export-plain-svg --export-filename="your path to the edited svg" --export-area-drawing "path to the svg with whitspace"
+#+end_src
 *** export
 **** svg to eps
 https://stackoverflow.com/a/30539923
-$ inkscape input.svg -o output.eps --export-ignore-filters --export-ps-level=3
+#+begin_src sh
+inkscape input.svg -o output.eps --export-ignore-filters --export-ps-level=3
+#+end_src
 **** svg to pdf
-$ inkscape input.svg -o output.pdf
+#+begin_src sh
+inkscape input.svg -o output.pdf
+#+end_src
 ***** deprecated method
 https://mjmorse.com/blog/export-pdf-inkscape/
-$ inkscape --file=input.svg --without-gui --export-pdf=output.pdf
+#+begin_src sh
+inkscape --file=input.svg --without-gui --export-pdf=output.pdf
+#+end_src
 
 * scrcpy
 https://sean.tistory.com/59
 ** install
 - scrcpy
-  $ sudo apt install scrcpy
+  #+begin_src sh
+  sudo apt install scrcpy
+  #+end_src
 - other necessary packages
-  $ sudo apt install adb ffmpeg libsdl2-2.0-0 make gcc pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev android-tools-adb android-tools-fastboot
+  #+begin_src sh
+  sudo apt install adb ffmpeg libsdl2-2.0-0 make gcc pkg-config meson ninja-build libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev android-tools-adb android-tools-fastboot
+  #+end_src
 ** enable development option (개발자 옵션)
 https://sean.tistory.com/23?category=874763
 - 개발자 옵션 활성화
@@ -481,24 +557,36 @@ https://sean.tistory.com/23?category=874763
 - check the connected device
   if the device is connected it shows 'device' rather than 'unauthorized'
   e.g.
-  $ adb devices
+  #+begin_src sh
+  adb devices
+  #+end_src
+  
+  the expected output:
   #+begin_example
   List of devices attached
   3200eb5294938489	device
   #+end_example
 - run scrcpy
-  $ scrcpy
+  #+begin_src sh
+  scrcpy
+  #+end_src
 * sndcpy
 https://kibua20.tistory.com/182
 ** requirements
 - vlc should be installed
-  $ which vlc
+  #+begin_src sh
+  which vlc
+  #+end_src
 ** install
-$ curl -L -O https://github.com/rom1v/sndcpy/releases/download/v1.0/sndcpy-v1.0.zip
-$ unzip sndcpy-v1.0.zip -d ~/program/sndcpy
+#+begin_src sh
+curl -L -O https://github.com/rom1v/sndcpy/releases/download/v1.0/sndcpy-v1.0.zip
+unzip sndcpy-v1.0.zip -d ~/program/sndcpy
+#+end_src
 ** run
-$ cd ~/program/sndcpy
-$ ./sndcpy
+#+begin_src sh
+cd ~/program/sndcpy
+./sndcpy
+#+end_src
 
 ** Korean input
 http://no1linux.org/board_WEnl84/38786
@@ -508,13 +596,17 @@ install app "Gboaard - Google keyboard"
 ** install
 https://pstudio411.tistory.com/entry/Ubuntu-2004-LTS화상회의-필수인-ZOOM-설치-법
 
-$ wget https://zoom.us/client/latest/zoom_amd64.deb
-$ sudo apt install ./zoom_amd64.deb
+#+begin_src sh
+wget https://zoom.us/client/latest/zoom_amd64.deb
+sudo apt install ./zoom_amd64.deb
+#+end_src
 
 * WhatsApp
 ** install
 https://snapcraft.io/whatsapp-for-linux
-$ sudo snap install whatsapp-for-linux
+#+begin_src sh
+sudo snap install whatsapp-for-linux
+#+end_src
 
 * Dropbox
 ** install

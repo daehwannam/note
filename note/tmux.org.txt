@@ -7,7 +7,9 @@ tmux -V
 ** tmux plugin manager
 https://github.com/tmux-plugins/tpm
 
-$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#+begin_src sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#+end_src
 Then add <run '~/.tmux/plugins/tpm/tpm'> to "~/.tmux.conf"
 
 if "~/.tmux.conf" lists plugins to be installed, use the command <prefix & shift + i>
@@ -60,7 +62,9 @@ set -g history-limit 50000  # enhance the limitation of saving the complete hist
 run '~/.tmux/plugins/tpm/tpm'
 
 * list manual
-$ man tmux
+#+begin_src sh
+man tmux
+#+end_src
 
 * Commands
 ** toggle status bar
@@ -69,16 +73,22 @@ https://superuser.com/questions/420776/can-you-toggle-the-visibility-of-the-stat
 
 ** nested local tmux
 https://github.com/tmux/tmux/issues/146
-$ tmux -L test new
+#+begin_src sh
+tmux -L test new
+#+end_src
 
 or
 
-$ tmux -L socket-name new
-$ tmux -L socket-name new -s session-name
-$ tmux -L socket-name a -t session-name
+#+begin_src sh
+tmux -L socket-name new
+tmux -L socket-name new -s session-name
+tmux -L socket-name a -t session-name
+#+end_src
 
 ** kill all nested sessions
-$ tmux -L socket-name kill-server
+#+begin_src sh
+tmux -L socket-name kill-server
+#+end_src
 
 ** swap window order
 https://superuser.com/a/343574
@@ -86,10 +96,14 @@ ex) <prefix> : swap-window -s 3 -t 1
 this swaps window 3 with window 1
 
 ** copy mode via command
-$ tmux -L emacs-term copy-mode
+#+begin_src sh
+tmux -L emacs-term copy-mode
+#+end_src
 
 ** list all sockets (-L)
-$ lsof | grep tmp/tmux
+#+begin_src sh
+lsof | grep tmp/tmux
+#+end_src
 
 "default" is the default socket (when run without -L option)
 

@@ -41,7 +41,9 @@ tikzexternalize commands prevent compiling tikz images multiple times
 
 - Call latex with "shell-escape" option
   e.g.
-  $ pdflatex --shell-escape mydocument.tex
+  #+begin_src sh
+  pdflatex --shell-escape mydocument.tex
+  #+end_src
 - Add the folowing lines to the preamble:
   #+begin_src
   \usepgfplotslibrary{external} 

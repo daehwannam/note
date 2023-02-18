@@ -45,7 +45,9 @@ alias polybar='polybar-git'
     #+end_src
 
 - install icon fonts
-  $ sudo apt install fonts-font-awesome fonts-material-design-icons-iconfont
+  #+begin_src sh
+  sudo apt install fonts-font-awesome fonts-material-design-icons-iconfont
+  #+end_src
 
 * Config
 config file is ".config/polybar/config"
@@ -192,4 +194,6 @@ label-warn-foreground = ${colors.secondary}
 #+end_example
 
 * run
-$ polybar panel
+#+begin_src sh
+polybar panel
+#+end_src

@@ -44,23 +44,29 @@ touch -a file.txt
 
 ** Queuing processes
 https://superuser.com/a/462673
-$ command1 &
-$ wait; command2-1 && command2-2 &
-$ wait; command3 &
-$ ...
+#+begin_src sh
+command1 &
+wait; command2-1 && command2-2 &
+wait; command3 &
+...
+#+end_src
 
 ** run if previous command succeed
 https://unix.stackexchange.com/a/22727
-$ previous_command
-$ if [ $? -eq 0 ]; then
-$     next_command
-$ fi
+#+begin_src sh
+previous_command
+if [ $? -eq 0 ]; then
+    next_command
+fi
+#+end_src
 
 ** check if a file exists
 https://stackoverflow.com/a/638980
-$ if [ ! -f /tmp/foo.txt ]; then
-$     echo "File not found!"
-$ fi
+#+begin_src sh
+if [ ! -f /tmp/foo.txt ]; then
+    echo "File not found!"
+fi
+#+end_src
 
 ** array
 https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays
@@ -70,19 +76,27 @@ https://tecadmin.net/tutorial/bash-scripting/bash-command-arguments/
 
 ** arguments to array
 https://stackoverflow.com/a/12711853
-$ myArray=("$@")
+#+begin_src sh
+myArray=("$@")
+#+end_src
 
 ** adding custom commands
 https://unix.stackexchange.com/a/84694
 - make a directory that contains command scripts or executables
-  $ mkdir ~/command
+  #+begin_src sh
+  mkdir ~/command
+  #+end_src
 - update ~/.bashrc
-  $ export PATH="$HOME/command:$PATH"
+  #+begin_src sh
+  export PATH="$HOME/command:$PATH"
+  #+end_src
 
   In this case, commands in "$HOME/command" have higher priorities.
   If you want them to have lower priorities:
 
-  $ export PATH="$PATH:$HOME/command"
+  #+begin_src sh
+  export PATH="$PATH:$HOME/command"
+  #+end_src
 
 ** keep running a process although its terminals is closed
 https://unix.stackexchange.com/a/4006
@@ -107,14 +121,18 @@ This option is useful when a program (e.g. git) rerquires external editor to mod
 https://unix.stackexchange.com/a/4861
 *** EDITOR variable
 https://unix.stackexchange.com/a/502691
-$ EDITOR=emacs virsh edit win10
-$ EDITOR=emacsclient virsh edit win10
-$ EDITOR="emacs -nw" virsh edit win10
+#+begin_src sh
+EDITOR=emacs virsh edit win10
+EDITOR=emacsclient virsh edit win10
+EDITOR="emacs -nw" virsh edit win10
+#+end_src
 
 You can also export the default editor in ~/.bashrc
-$ export EDITOR=emacs
-$ export EDITOR=emacsclient
-$ export EDITOR="emacs -nw"
+#+begin_src sh
+export EDITOR=emacs
+export EDITOR=emacsclient
+export EDITOR="emacs -nw"
+#+end_src
 *** VISUAL variable
 https://stackoverflow.com/a/116570
 
@@ -157,7 +175,9 @@ echo "after wait"
 ** check if command is installed
 https://stackoverflow.com/a/677212
 
-$ command -v <the_command>
+#+begin_src sh
+command -v <the_command>
+#+end_src
 
 e.g. install autoconf unless it exists
 #+begin_src sh
@@ -173,7 +193,9 @@ https://serverfault.com/a/500071
 - .profile should also be loaded when starting a graphical desktop session.
 - .profile is executed in login shell
   https://unix.stackexchange.com/a/29811
-  $ su -l <id>
+  #+begin_src sh
+  su -l <id>
+  #+end_src
   "su <id>" doesn't execute .profile
 
 ** check if command is failed or not

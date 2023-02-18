@@ -19,7 +19,9 @@ https://github.com/python-lsp/python-lsp-server
 https://github.com/palantir/python-language-server
 
 Install pyls in global environment:
-$ pip install python-language-server
+#+begin_src sh
+pip install python-language-server
+#+end_src
 # $ conda install python-language-server
 
 *** Configuration

@@ -1,15 +1,21 @@
 
 * Setup
 Install the following packages in the environment your're using:
-$ python -m pip install python-language-server[all]  # install various packages
+#+begin_src sh
+python -m pip install python-language-server[all]  # install various packages
+#+end_src
 
 Also you can additionally install other packages:
-$ python -m pip install pyls-black pyls-isort pyls-mypy
+#+begin_src sh
+python -m pip install pyls-black pyls-isort pyls-mypy
+#+end_src
 
 ** Fixing a pyls-mypy issue
 https://github.com/tomv564/pyls-mypy/issues/37
 mypy package may have an issue due to a missing future import
-$ pip install future
+#+begin_src sh
+pip install future
+#+end_src
 
 ** Customization
 M-x customize-group RET lsp-pyls

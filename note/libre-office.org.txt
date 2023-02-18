@@ -1,7 +1,9 @@
 
 * Common
 ** install
-$ sudo apt install libreoffice
+#+begin_src sh
+sudo apt install libreoffice
+#+end_src
 ** command line export
 https://askubuntu.com/questions/60778/how-can-i-convert-an-odt-file-to-a-pdf
 #+begin_src bash
