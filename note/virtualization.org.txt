@@ -52,7 +52,7 @@ https://hiseon.me/server/ubuntu-kvm-install/
   virsh list --all
   #+end_src
 - reboot to run libvirt daemon (libvirtd -d)
-*** install the latest KVM (optional)
+*** (optional) install the latest KVM
 https://www.qemu.org/download/#source
 - prerequisite
   #+begin_src sh
@@ -517,3 +517,8 @@ Use "-z" option or GDK_SCALE variable
   # GDK_SCALE=2 virt-viewer --domain-name my-vn
   # GDK_DPI_SCALE=1.5 virt-viewer --domain-name my-vn
   #+end_src
+
+* Android
+** Android x86
+*** example
+https://hamonikr.org/board_bFBk25/105775
