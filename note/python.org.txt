@@ -313,6 +313,14 @@ https://stackoverflow.com/a/23488594
     #+end_example
 - u(p) and d(own) commands switch the current frame in the call stack
 
+** conditional breakpoint
+https://stackoverflow.com/a/44336430
+e.g. making a conditional breakpoint on line 4 where breakpoint is triggered when =node_num > 4=
+#+begin_example
+# In "(Pdb)" prompt
+b 4, node_num > 4
+#+end_example
+
 ** debugging a module
 https://stackoverflow.com/a/53173317
 

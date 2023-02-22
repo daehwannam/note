@@ -71,6 +71,37 @@ fi
 ** array
 https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays
 
+** array slice
+#+begin_src bash :results output drawer
+X=(11 22 33 44 55 66 77 88 99)
+echo ${X[@]:2}
+echo ${X[@]:2:4}
+#+end_src
+
+#+RESULTS:
+:results:
+33 44 55 66 77 88 99
+33 44 55 66
+:end:
+
+*** slice for command line arguments
+https://unix.stackexchange.com/questions/225943/except-the-1st-argument
+#+begin_src bash
+echo ${@:2}   # 2nd to last
+echo ${@:2:3} # 2nd to 4th ; 3 items are printed
+#+end_src
+
+** string slice
+#+begin_src bash :results output drawer
+Y='ABCDEFGHIJK'
+echo ${Y:2}
+#+end_src
+
+#+RESULTS:
+:results:
+CDEFGHIJK
+:end:
+
 ** command line arguments
 https://tecadmin.net/tutorial/bash-scripting/bash-command-arguments/
 
