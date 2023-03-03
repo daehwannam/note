@@ -24,6 +24,17 @@ export HUGGINGFACE_HUB_CACHE=some/path
 python code.py
 #+end_src
 
+* Downloading a model
+https://huggingface.co/docs/hub/models-downloading
+
+#+begin_src sh
+git lfs install
+
+MODEL_NAME=facebook/bart-base
+MODEL_URL=https://huggingface.co/$MODEL_NAME
+git clone git clone $MODEL_URL
+#+end_src
+
 * Auto classes
 https://huggingface.co/docs/transformers/model_doc/auto#auto-classes
 https://huggingface.co/docs/transformers/autoclass_tutorial

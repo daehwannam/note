@@ -93,19 +93,35 @@ echo $CONDA_PREFIX
 https://3months.tistory.com/441
 *** conda environment to .yaml (or .yml)
 #+begin_src sh
-conda activate my-env
+conda activate $ENV_NAME
 conda env export > environment.yaml
 #+end_src
 *** create conda environment from .yaml
 #+begin_src sh
 conda env create --file environment.yaml
 #+end_src
+*** update
+Update a conda environment:
+#+begin_src sh
+conda env update --file environment.yaml --prune
+#+end_src
+where the nane of the environment is specified in .yaml file.
+
+Update a  conda environment a different name:
+#+begin_src sh
+conda env update --name $ENV_NAME --file environment.yaml --prune
+#+end_src
+
+where ~--prune~ uninstalls packages that were removed from the .yaml file.
+To keep packages, don't use ~--prune~.
 
 * Packages
 ** Check the versions of an installed package
 #+begin_src sh
 conda list -n $ENV_NAME -f <package>
 #+end_src
+where "-f" option can be skipped
+
 e.g
   #+begin_src sh
   conda list -n tabert cudatoolkit

@@ -356,6 +356,15 @@ wget https://some-site.com/some-file.txt -P /some/path/to/dir
 wget -O new-file-name https://some-site.com/some-file.txt
 #+end_src
 
+** curl
+*** wget vs. curl
+https://wooono.tistory.com/279
+
+|             | wget          | curl                                       |
+|-------------+---------------+--------------------------------------------|
+| Output path | Supported     | Supported only in versions >= 7.73.0 ([[https://stackoverflow.com/a/63843412][REF]]) |
+| Pipe        | Not supported | Supported                                  |
+
 ** lscpu
 show cpu information
 #+begin_src sh

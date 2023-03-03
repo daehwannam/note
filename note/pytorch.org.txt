@@ -14,4 +14,39 @@ but theres some differences:
 - .expand doesn't copy memory
 
 * examples of pack_padded_sequence and pad_packed_sequence
-https://gist.github.com/Tushar-N/dfca335e370a2bc3bc79876e6270099e
+- https://gist.github.com/Tushar-N/dfca335e370a2bc3bc79876e6270099e
+- https://gist.github.com/MikulasZelinka/9fce4ed47ae74fca454e88a39f8d911a
+
+* Structure of last_hidden & last_cell of LSTM
+https://pytorch.org/docs/1.8.0/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM
+https://pytorch.org/docs/1.8.0/generated/torch.nn.RNN.html?highlight=rnn#torch.nn.RNN
+
+The returned value ~h_n~ and ~c_n~ of LSTM has the shape of ~(num_layers * num_directions, batch, hidden_size)~.
+It can be reshaped as ~h_n.view(num_layers, num_directions, batch, hidden_size)~.
+
+#+begin_src python
+import torch
+
+seq_len = 5
+batch_size = 3
+input_size = 10
+
+hidden_size = 20
+num_layers = 2
+dropout = 0.3
+bidirectional = True
+num_directions = 2 if bidirectional else 1
+
+rnn = torch.nn.LSTM(input_size, hidden_size, num_layers, bidirectional=bidirectional)
+
+input = torch.randn(seq_len, batch_size, input_size)
+h0 = torch.randn(num_layers * num_directions, batch_size, hidden_size)
+c0 = torch.randn(num_layers * num_directions, batch_size, hidden_size)
+output, (hn, cn) = rnn(input, (h0, c0))
+
+assert hn.shape == cn.shape == torch.Size([num_layers * num_directions, batch_size, hidden_size])
+reshaped_hn = hn.view(num_layers, num_directions, batch_size, hidden_size)
+#+end_src
+
+* DataLoader collate_fn
+https://discuss.pytorch.org/t/how-to-use-collate-fn/27181

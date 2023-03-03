@@ -119,7 +119,7 @@ the square brackets can be skipped.
 ** multiple .bib files
 https://tex.stackexchange.com/questions/84099/bibliographies-from-multiple-bib-files
 
-* Commands
+* Note
 ** setcitestyle
 https://tex.stackexchange.com/a/367402
 it changes citation style
@@ -179,6 +179,13 @@ https://tex.stackexchange.com/a/373064
 \creflabelformat{equation}{#2\textup{#1}#3}
 
 \cref{eq:formula1,eq:formula2,eq:formula3}
+#+end_src
+** Mixing colors
+https://en.m.wikibooks.org/wiki/LaTeX/Colors
+#+begin_src latex
+\color{blue!20}                 % blue * 0.2 + white 0.8
+\color{blue!20!black}           % blue * 0.2 + black 0.8
+\color{blue!20!black!30!green}  % (blue * 0.2 + black 0.8) * 0.3 + green * 0.7
 #+end_src
 
 * Custum commands

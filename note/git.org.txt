@@ -303,3 +303,10 @@ git lfs track "Assets/*"
 ** .gitattributes
 https://huggingface.co/docs/hub/repositories-getting-started
 git-lfs uses ".gitattributes" to efficiently track changes to large files.
+
+* Error fix
+** error: unable to read askpass response from '/usr/libexec/openssh/gnome-ssh-askpass'
+https://stackoverflow.com/a/62173247
+#+begin_src sh
+unset SSH_ASKPASS
+#+end_src
