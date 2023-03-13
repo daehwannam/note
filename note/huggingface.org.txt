@@ -81,3 +81,7 @@ tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
 encoded_input = tokenizer("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
 tokenizer.decode(encoded_input["input_ids"])
 #+end_src
+** tokenizer example
+https://huggingface.co/transformers/v3.0.2/preprocessing.html
+** PreTrainedTokenizer.convert_ids_to_tokens
+it maps token ids to tokens

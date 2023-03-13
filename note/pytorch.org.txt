@@ -50,3 +50,17 @@ reshaped_hn = hn.view(num_layers, num_directions, batch_size, hidden_size)
 
 * DataLoader collate_fn
 https://discuss.pytorch.org/t/how-to-use-collate-fn/27181
+
+* ~lr_scheduler~
+- when an ~_LRScheduler~ instance is created, ~__init__~ calls ~self.step~
+- ~self.step~ executes ~self.last_epoch += 1~ every time
+- the default value of ~last_epoch~ of ~__init__~ is -1
+- when -1 is passed as ~last_epoch~, ~self.last_epoch~ becomes -1 and changes to 0 as ~self.step~ is executed
+- you can call ~lr_scheduler.step~ not only for epoch but also for every step
+- usually, ~optimizer.step~ is called first, then ~lr_scheduler.step~ is called
+- ~LambdaLR.__init__~ requires a function named ~lr_lambda~ that takes ~LambdaLR.last_epoch~
+
+* tokenizer
+** clean_up_tokenization_spaces of PreTrainedTokenizerBase.decode
+~clean_up_tokenization_spaces~, an argument of ~PreTrainedTokenizerBase.decode~, modifies output text.
+~decode~ exploits ~PreTrainedTokenizerBase.clean_up_tokenization~.

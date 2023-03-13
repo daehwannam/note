@@ -31,3 +31,7 @@ WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.C
 #+end_src
 
 Therefore, the above code has the same effect with a query with (INNER) JOIN.
+
+* SPARQL
+** Wikidata tutorial
+https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial

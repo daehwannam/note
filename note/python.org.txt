@@ -86,6 +86,55 @@ import os
 os.chdir('/path/to/other/dir')
 #+end_src
 
+** String formatting
+*** align
+https://stackoverflow.com/a/7771978
+#+begin_src python :results output drawer
+print("Formatting with modulo (%) operator:")
+print(" - <before>%20s<after>" % "<inserted>")
+print(" - <before>%+20s<after>" % "<inserted>")
+print(" - <before>%-20s<after>" % "<inserted>")
+print()
+print("Formatting with 'str.format' function:")
+print(" - <before>{:20}<after>".format("<inserted>"))
+print(" - <before>{:>20}<after>".format("<inserted>"))
+print(" - <before>{:<20}<after>".format("<inserted>"))
+#+end_src
+
+#+RESULTS:
+:results:
+Formatting with modulo (%) operator:
+ - <before>          <inserted><after>
+ - <before>          <inserted><after>
+ - <before><inserted>          <after>
+
+Formatting with 'str.format' function:
+ - <before><inserted>          <after>
+ - <before>          <inserted><after>
+ - <before><inserted>          <after>
+:end:
+
+where the number of characgers between <before> and <after> is 20.
+*** formatting for logging
+https://stackoverflow.com/a/7771978
+~logging.Formatter~ uses the formatting method with modulo operator.
+
+** print
+*** simple progress bar example
+#+begin_src python
+import time
+
+print(f'\r[Processing] 0/3 [...]', end='')
+time.sleep(1)
+print(f'\r[Processing] 1/3 [=..]', end='')
+time.sleep(1)
+print(f'\r[Processing] 2/3 [==.]', end='')
+time.sleep(1)
+print(f'\r[Processing] 3/3 [===]', end='')
+
+print('\nDone')
+#+end_src
+
 * Hy language
 ** emacs hy-mode
 https://github.com/hylang/hy-mode

@@ -26,13 +26,13 @@ https://eungbean.github.io/2018/08/08/Ubuntu-Installation2-1/
    For example,
    - Install cuda 11.6 to a local directory
      #+begin_src sh
-     sh cuda_11.6.0_510.39.01_linux.run --silent --toolkit --toolkitpath=/home/user/usr/local/cuda-11.6
+     sh cuda_11.6.0_510.39.01_linux.run --silent --toolkit --toolkitpath=/home/$USER/usr/local/cuda-11.6
      #+end_src
    - Install cuda 10.1 to a shared directory
      #+begin_src sh
      sudo sh cuda-10.1.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
      # You can also install cuda toolkit in your home directory without sudo priviledge
-     # e.g. sh cuda-10.1.run --silent --toolkit --toolkitpath=/home/some-user/usr/local/cuda-10.1
+     # e.g. sh cuda-10.1.run --silent --toolkit --toolkitpath=/home/$USER/usr/local/cuda-10.1
      #+end_src
 3. cuDNN
    download page: https://developer.nvidia.com/rdp/cudnn-download
@@ -136,8 +136,13 @@ e.g.
   sudo apt-get update
   sudo apt-get install nvidia-430
   #+end_src
-- minimum driver version
+*** CUDA Toolkit and Minimum Required Driver Version for CUDA Minor Version Compatibility
+  https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#id4
   https://stackoverflow.com/a/30820690
+*** CUDA Toolkit and Corresponding Driver Versions
+https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#id5
+A NVIDIA driver is included in a CUDA toolkit package.
+The driver version is different with the minimum required driver version for a CUDA toolkit.
 *** manual install
 - download .run file from NVIDIA site
 - remove existing nvidia drivers

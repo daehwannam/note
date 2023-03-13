@@ -18,17 +18,17 @@
   conda create -n default python=3
   #+end_src
 - Update ~/.bashrc to replace "base" with "default"
- e.g.
- #+begin_src bash
- CONDA=miniconda3  # anaconda3 or miniconda3 or ...
- export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
- conda activate default
- #+end_src
+  e.g.
+  #+begin_src bash
+  CONDA=miniconda3  # anaconda3 or miniconda3 or ...
+  export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
+  conda activate default
+  #+end_src
 - (optional) Update ~/.profile
- #+begin_src bash
- CONDA=miniconda3  # anaconda3 or miniconda3 or ...
- export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
- #+end_src
+  #+begin_src bash
+  CONDA=miniconda3  # anaconda3 or miniconda3 or ...
+  export PATH="/home/dhnam/program/$CONDA/envs/default/bin:$PATH"
+  #+end_src
 
 ** Install packages
 - install pip
