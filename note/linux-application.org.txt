@@ -180,7 +180,18 @@ http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
   #+end_src
 
 * Video player
+** vlc
+*** AB loop repeat
+- View -> Advanced Controls
+- Shif-L or "AB" button to set a region
 ** MPlayer
+
+* Music player
+** vlc
+** rhythmbox
+#+begin_src sh
+sudo apt-get install rhythmbox
+#+end_src
 
 * KakaoTalk
 ** install
