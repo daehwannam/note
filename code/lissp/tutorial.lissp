@@ -1,0 +1,61 @@
+;;; Hissp & Lissp tutorial
+;;; https://hissp.readthedocs.io/en/latest/tutorial.html
+
+;;; prelude objects from itertools and make basic macros accessible
+(hissp.basic.._macro_.prelude)
+
+(progn
+  (print "Raw string")
+  (print (len "\n\n")))  ; 4
+
+(progn
+  (print "Hash string")
+  (print (len #"\n\n")))  ; 2
+
+(progn
+  (print "Import")
+  (print itertools.)
+  (print itertools..chain)
+  (print package.subpackage.module.)
+  (print package.subpackage.module..func))
+
+(progn
+  (print "Munging")
+  (print 'a->b)
+
+  ;; Hissp package includes the following functions
+  ;; - hissp.munger.munge
+  ;; - hissp.munger.demunge
+  )
+
+(progn
+  ;; https://hissp.readthedocs.io/en/latest/tutorial.html#inject
+  ;;
+  ;; ".#" evalutes the next form and injects into the expression
+  (print "inject")
+  ;; inject the result of a lissp expression
+  (print '.#(.title "hello, world!"))
+  ;; inject the result of a python code
+  (print .#"'hello, world!'.title()"))
+
+(progn
+  (print "Discard")
+  (print 1 _#"this text is ignored" 3) _#(it's ignored too))
+
+(progn
+  (print "Templates")
+  (print `(1 2 ,(operator..add 1 2)))
+  (print `(:a ,@"bcd" :e))
+  (print `(:a ,@'(b c d) :e)))
+
+
+(progn
+  (print "Gensym")
+  (print `($#hiss $#hiss)))
+
+(progn
+  (print "Compiling Packages")
+
+  ;; convert "package/subpackage/module_in_lissp.lissp" into
+  ;; "package/subpackage/module_in_lissp.py".
+  (hissp.reader..transpile __package__ "package/subpackage/module_in_lissp"))
