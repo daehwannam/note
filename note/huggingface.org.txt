@@ -55,6 +55,50 @@ https://huggingface.co/docs/transformers/preprocessing
   type(AutoProcessor.from_pretrained("bert-base-cased")) is type(AutoTokenizer.from_pretrained("bert-base-cased"))
   #+end_src
 
+* Tokenizer
+** tokenize and decode
+#+begin_src python
+from transformers import AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+encoded_input = tokenizer("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
+tokenizer.decode(encoded_input["input_ids"])
+#+end_src
+** "add_prefix_space" options
+RobertaTokenizer (and its subclass BartTokenizer) has ~add_prefix_space~ parameter for ~__init__~ and ~__call__~.
+The option add an additional space character to the beginning of the input sentence.
+
+- Example 1
+  #+begin_src python
+  from transformers import RobertaTokenizer
+  tokenizer1 = RobertaTokenizer.from_pretrained("roberta-base")
+  print(tokenizer1("Hello world"))
+  # {'input_ids': [0, 31414, 232, 2], 'attention_mask': [1, 1, 1, 1]}
+  print(tokenizer1("Hello world", add_prefix_space=True))
+  # {'input_ids': [0, 20920, 232, 2], 'attention_mask': [1, 1, 1, 1]}
+  print(tokenizer1(" Hello world"))
+  # {'input_ids': [0, 20920, 232, 2], 'attention_mask': [1, 1, 1, 1]}
+  #+end_src
+- Example 2
+  #+begin_src python
+  from transformers import RobertaTokenizer
+  tokenizer2 = RobertaTokenizer.from_pretrained("roberta-base", add_prefix_space=True)
+  print(tokenizer2("Hello world"))
+  # {'input_ids': [0, 20920, 232, 2], 'attention_mask': [1, 1, 1, 1]}
+  print(tokenizer2("Hello world", add_prefix_space=False))
+  # {'input_ids': [0, 31414, 232, 2], 'attention_mask': [1, 1, 1, 1]}
+  #+end_src
+** PreTrainedTokenizer.convert_ids_to_tokens
+it maps token ids to tokens
+#+begin_src python
+from transformers import BartTokenizer
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+encoded_input = tokenizer('Hello World!')
+print(tokenizer.convert_ids_to_tokens(encoded_input['input_ids']))
+# ['<s>', 'Hello', 'ĠWorld', '!', '</s>']
+#+end_src
+** tokenizer example
+https://huggingface.co/transformers/v3.0.2/preprocessing.html
+
 * Examples
 ** running with scripts
 https://huggingface.co/docs/transformers/run_scripts
@@ -74,14 +118,3 @@ pt_outputs = pt_model(**pt_batch)
 from transformers import pipeline
 generator = pipeline(task="text-generation", model=model, tokenizer=tokenizer)
 #+end_src
-** tokenize and decode
-#+begin_src python
-from transformers import AutoTokenizer
-tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
-encoded_input = tokenizer("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
-tokenizer.decode(encoded_input["input_ids"])
-#+end_src
-** tokenizer example
-https://huggingface.co/transformers/v3.0.2/preprocessing.html
-** PreTrainedTokenizer.convert_ids_to_tokens
-it maps token ids to tokens

@@ -346,3 +346,19 @@ https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-us
   - check "Reconnect" and "Use different credentials"
   - go next
   - type ID/PW and check "Remember credentials"
+
+* Miscellaneous
+** Comparison between remote access protocols
+- https://www.reddit.com/r/emacs/comments/ht0n0b/comment/fyfjw3o/?utm_source=share&utm_medium=web2x&context=3
+  - NoMachine is fast
+  - Xpra is not supported for old machines
+- https://www.reddit.com/r/linuxquestions/comments/g7frrb/whats_the_difference_between_vnc_tigervnc_nx_x2go/
+  - NoMachine is fast
+  - TigerVNC is faster than NoMachine
+- https://www.reddit.com/r/cloudygamer/comments/bzx0mg/has_anyone_tried_nomachine_or_x2go_for_remote/
+  - NoMachine is faster than x2go
+  - NoMachine is closed-source and x2go is open-source
+- https://www.saashub.com/compare-nomachine-vs-x2go
+  - NoMachine is free for individual use
+- https://www.reddit.com/r/emacs/comments/r2txoe/comment/hm7n8ys/?utm_source=share&utm_medium=web2x&context=3
+  - NoMachine is better than x2go

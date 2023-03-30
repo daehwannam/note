@@ -341,8 +341,8 @@ https://en.wikipedia.org/wiki/Chmod
   chmod a+x ./path/to/file
   #+end_src
 - you may need shebang(#!) at the top line to indicate a program to run the script
-  e.g. #!/bin/bash
-  e.g. #!/home/user/program/miniconda3/envs/default/bin/python
+  e.g. ~#!/bin/bash~
+  e.g. ~#!/home/user/program/miniconda3/envs/default/bin/python~
   CAUTION: no space is needed between shebang and the program path
 
 ** wget

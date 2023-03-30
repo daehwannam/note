@@ -29,10 +29,38 @@
   )
 
 (progn
+  (print "Lambda")
+  (lambda (a                ; positional only arguments
+           :/               ; [end of positional only arguments]
+           b                ; normal arguments
+           :                ; [begin of pairs of argument and values]
+           e 1  f 2         ; arguments with default values
+           :* args          ; rest positional arguments
+           h 4  i :?  j 1   ; keyword-only arguments
+           :** kwargs       ; rest keyword arguments
+           )
+    42)
+
+  (lambda (:                ; arguments are paired
+           :* :?            ; rest positional arguments are not allowed
+           h 4  i :?  j 1   ; keyword-only arguments
+           )
+    42)
+
+  (lambda (:*               ; rest positional arguments are not allowed
+           :                ; arguments are paired
+           h 4  i :?  j 1   ; keyword-only arguments
+           )
+    42)
+
+  (lambda (: :* :? a 10) 10)
+  )
+
+(progn
   ;; https://hissp.readthedocs.io/en/latest/tutorial.html#inject
   ;;
   ;; ".#" evalutes the next form and injects into the expression
-  (print "inject")
+  (Print "inject")
   ;; inject the result of a lissp expression
   (print '.#(.title "hello, world!"))
   ;; inject the result of a python code

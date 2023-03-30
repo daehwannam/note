@@ -143,6 +143,11 @@ also, typing 'alt' makes the right-click menu disappears
 ** search start from middle point
 https://www.reddit.com/r/qutebrowser/comments/lld84t/comment/gnowqzu/?utm_source=share&utm_medium=web2x&context=3
 click some text then search
+** passthrough mode
+https://www.reddit.com/r/qutebrowser/comments/9r8msp/comment/e8ezlz2/?utm_source=share&utm_medium=web2x&context=3
+Run ~:enter-mode passthroug~ to disable shortcuts
+- shortcut to enter: <Ctrl-V>
+- shortcut to escape: <Shift-Escape>
 
 * Firefox
 ** userChrome.css
@@ -351,7 +356,7 @@ https://github.com/atlas-engineer/nyxt/blob/master/source/manual.lisp
 mouseless text selection
 - run command 'visual-mode
 - back to the normal mode by ESC or C-g (only for emacs-mode)
-*** passthrough-mode
+*** passthrough-mode (or application-mode)
 *** nyxt open a new window from command-line
 **** using eval
 https://github.com/atlas-engineer/nyxt/issues/1478#issuecomment-855752985
