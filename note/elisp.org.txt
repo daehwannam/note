@@ -70,7 +70,7 @@ Then, following expressions are evaluated when the file is loaded:
 ** executable-find
 check if an executable exists
 e.g.
-#+begin_src sh
+#+begin_src elisp
 (executable-find "pdfgrep")
 #+end_src
 ** key-description
@@ -83,18 +83,19 @@ key-description is the reverse of kbd
 ** shell-command-to-string
 https://stackoverflow.com/a/12292714
 shell-command-to-string makes the output of a bash command as string
-#+begin_src sh
+#+begin_src elisp
 (shell-command-to-string "ls -a")
 #+end_src
 ** string-to-*
 convert a string to a list, a vector, or a character
-#+begin_src sh
+#+begin_src elisp
 (string-to-list (kbd "C-n C-n"))
 (string-to-vector (kbd "C-n C-n"))
 (string-to-char (kbd "C-n"))
 #+end_src
 
-* path of emacs lisp script file
+* paths and directories
+** path of emacs lisp script file
 https://stackoverflow.com/a/26991492/6710003
 
 when an elisp file is loaded, the value of ~load-file-name~ variable is the path to the loaded elisp file
@@ -103,8 +104,16 @@ when an elisp file is loaded, the value of ~load-file-name~ variable is the path
 (defconst path-to-script-file load-file-name)
 (defconst path-to-directory-of-script (file-name-directory load-file-name))
 #+end_src
+** path of parent directory
+https://stackoverflow.com/a/71040711
+#+begin_src elisp
+;; the path of the directory of a loaded file
+(defconst path-to-directory (file-name-directory (file-name-directory load-file-name)))
 
-* finding a directory path containing a specific file name
+;; the path of the parent directory of a directory
+(defconst path-to-parent-directory (file-name-directory (directory-file-name path-to-directory
+#+end_src
+** finding a directory path containing a specific file name
 https://stackoverflow.com/a/64020275/6710003
 
 - ~locate-dominating-file~: starting at FILE, look up directory hierarchy for directory containing NAME.
@@ -116,6 +125,11 @@ https://stackoverflow.com/a/64020275/6710003
 
 ;; return the directory path containing ".git"
 (locate-dominating-file default-directory ".git")
+#+end_src
+** find a path of a file that defines a symbol
+#+begin_src elisp
+(symbol-file 'some-symbol)
+(symbol-file 'find-file)
 #+end_src
 
 * font-lock-mode

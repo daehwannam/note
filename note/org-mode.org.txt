@@ -189,6 +189,41 @@ https://orgmode.org/manual/Handling-links.html
     # or
     [[file:./org-mode.org.txt::113][Link to line 113]]
     #+end_example
+** Inline images
+https://orgmode.org/manual/Images.html
+- You can insert an image like: ~[[~/path/to/image]]~
+- Related commands
+  - C-c C-x C-v (org-toggle-inline-images)
+  - C-c C-x C-M-v (org-redisplay-inline-images)
+- to visualize image when load org-mode:
+  #+begin_src elisp
+  (setq org-startup-with-inline-images t)
+  #+end_src
+*** resizing an image's width
+https://stackoverflow.com/a/38477233
+
+By default, org-mode displays images as actual sizes
+
+To disable actual size display:
+#+begin_src elisp
+(setq org-image-actual-width nil)
+#+end_src
+
+Once ~org-image-actual-width~ set to nil, you can specify the size of image.
+#+begin_src org-mode
+Specifying a width:
+#+ATTR_ORG: :width 100
+[[~/path/to/image.png]]
+
+Using an actual width:
+#+ORG-IMAGE-ACTUAL-WIDTH
+[[~/path/to/image.png]]
+
+Set widths for exporting:
+#+ATTR_HTML: :width 100px
+#+ATTR_LATEX: :width 100px
+[[~/path/to/image.png]]
+#+end_src
 
 * Table
 ** Install Inconsolata font for org-mode tables with CJK characters

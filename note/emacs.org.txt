@@ -226,6 +226,20 @@ clone the current buffer to the other window
 ** xah-open-in-external-app
 it opens a file with an external program within dired-mode.
 
+* Command-line
+** Running emacs with a different emacs config
+https://stackoverflow.com/a/56716125
+https://stackoverflow.com/questions/17483598/maintaining-multiple-emacs-configurations-at-the-same-time
+
+You can specify emacs configuration directory:
+#+begin_src sh
+emacs -q --eval '(progn (let ((config-dir "~/some-emacs.d/")) (setq user-emacs-directory config-dir) (load-file (concat config-dir "init.el"))))'
+#+end_src
+where
+- the configuration directory is changed to "~/temp-emacs/"
+- ~-q~ means skipping the default =~/.emacs.d/init.el=
+- ~-l~ means loading an elisp script
+
 * Customize
 ** Emacs terminal key translation
 In terminal, some keystroke is translated as another one.
