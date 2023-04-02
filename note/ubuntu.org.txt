@@ -337,6 +337,11 @@ The command print all installed package whose name contain "libwebkit2gtk"
 #+begin_src sh
 apt list --installed | grep libwebkit2gtk
 #+end_src
+
+To filter result, use grep:
+#+begin_src sh
+apt list --installed | grep emacs
+#+end_src
 ** Enable touch pad
 https://askubuntu.com/a/624929
 https://askubuntu.com/a/1308399/820403
