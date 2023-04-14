@@ -1,5 +1,12 @@
 
 * python
+** jedi-language-server
+https://github.com/pappasam/jedi-language-server
+*** setup
+#+begin_src sh
+pip install -U jedi-language-server
+#+end_src
+
 ** pylsp
 https://github.com/python-lsp/python-lsp-server
 *** setup
@@ -49,13 +56,6 @@ pyright-langserver
 ***** Error: 
 #+begin_src sh
 conda install -c rmg glibc
-#+end_src
-
-** jedi-language-server
-https://github.com/pappasam/jedi-language-server
-*** setup
-#+begin_src sh
-pip install -U jedi-language-server
 #+end_src
 
 * digedtif
