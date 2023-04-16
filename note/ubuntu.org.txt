@@ -517,6 +517,20 @@ drivers such as nvidia-driver are installed
 #+begin_src sh
 sudo ubuntu-drivers autoinstall
 #+end_src
+** run a script when gnome starts up
+https://stackoverflow.com/a/8290652
+Add a .desktop file that executes a script on "~/.config/autostart".
+#+begin_src sh
+[Desktop Entry]
+Name=Desktop Initialization
+GenericName=Desktop initializer
+Comment=It runs a script to initialize desktop environment
+Exec=/home/${USER}/.config/autostart/desktop-init/run.sh
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true
+#+end_src
+where path of "Exec" should be an absolute path.
 
 * error fix
 ** /sbin/init: No such file or directory
