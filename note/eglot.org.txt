@@ -1,4 +1,17 @@
 
+* Common
+** configuration
+https://github.com/joaotavora/eglot/discussions/709#discussioncomment-921594
+#+begin_src elisp
+;; pylsp (python-lsp-server) example
+;; https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+(setq-default eglot-workspace-configuration
+ '((pylsp
+    (plugins
+     (jedi_completion (fuzzy . t))
+     (pydocstyle (enabled . t))))))
+#+end_src
+
 * python
 ** jedi-language-server
 https://github.com/pappasam/jedi-language-server
@@ -53,7 +66,7 @@ pip install pyright
 #+begin_src sh
 pyright-langserver
 #+end_src
-***** Error: 
+***** Error:
 #+begin_src sh
 conda install -c rmg glibc
 #+end_src

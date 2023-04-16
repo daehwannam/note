@@ -257,9 +257,17 @@ e.g.
 #+begin_src sh
 pip install "transformers[sentencepiece]"
 #+end_src
-*** install a package with a version and an extra option
+**** install a package with a version and an extra option
 #+begin_src sh
 pip install "transformers[sentencepiece]==4.23.1"
+#+end_src
+**** multiple extra options
+https://stackoverflow.com/a/65542716
+#+begin_src sh :results output drawer
+# https://github.com/python-lsp/python-lsp-server
+pip install python-lsp-server[yapf,rope]
+# or
+pip install "python-lsp-server[yapf, rope]"
 #+end_src
 *** install packages from a file of a package list
 https://stackoverflow.com/a/15593865/6710003
