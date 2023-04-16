@@ -24,6 +24,12 @@ otherwise, setq-default and setq have no difference
 - 'setq' assigns a variable a local value for the current buffer
 - 'setq-local' assigns ...
 
+* current-local-map
+It returns the current local map
+#+begin_src sh
+(current-local-map)
+#+end_src
+
 * package
 ** define-package
 "define-package" declare a package
@@ -92,6 +98,18 @@ convert a string to a list, a vector, or a character
 (string-to-list (kbd "C-n C-n"))
 (string-to-vector (kbd "C-n C-n"))
 (string-to-char (kbd "C-n"))
+#+end_src
+** substring-no-properties
+https://emacs.stackexchange.com/a/31226
+https://stackoverflow.com/a/8377127
+
+Both ~set-text-properties~ and ~remove-text-properties~ change the value of the input object as a side effect.
+On the other hand, ~substring-no-properties~ return a new string wihtout properties
+
+#+begin_src elisp
+(let* ((foo #("some text" 0 3 (fontified t face font-lock-function-name-face)))
+       (bar (substring-no-properties foo)))
+  (list foo bar))
 #+end_src
 
 * paths and directories
@@ -172,6 +190,20 @@ https://www.gnu.org/software/emacs/manual/html_node/elisp/Functions-for-Key-Look
 (lookup-key text-mode-map (kbd "TAB")) ; => nil
 (lookup-key isearch-mode-map (kbd "TAB")) ; => isearch-printing-char
 #+end_src
+
+* call a interactive function with ignoring a specific mode
+e.g. it ignores paredit mode
+#+begin_src elisp
+(let ((paredit-mode-map nil)
+      (func nil))
+  (paredit-mode 0)
+  (setq func (key-binding (kbd "(")))
+  (paredit-mode 1)
+
+  (call-interactively func))
+#+end_src
+where "(" is mapped to "paredit-open-round" in "paredit-mode-map"
+and "(" is mapped to "self-insert-command" in "global-map"
 
 * unbind global commands
 #+begin_src elisp

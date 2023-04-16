@@ -572,6 +572,9 @@ M-x desktop-change-dir
 ** Hydra
 - examples:
   https://github.com/abo-abo/hydra/wiki/Emacs
+*** nil and body
+- <hydra-name>/nil : exit a hydra
+- <hydra-name>/body : activate a hydra
 ** ansi-term
 - M-x ansi-term
 - C-u M-x ansi-term  # for another ansi-term
