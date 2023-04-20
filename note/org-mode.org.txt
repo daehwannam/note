@@ -154,6 +154,18 @@ src_<language>[<header arguments>]{<body>}
 e.g.
 - src_sh{echo 'hello world!'}
 - src_python[:results output]{print("hello world!")}
+** asynchronous execution
+https://github.com/astahlman/ob-async
+
+Use ~:async~ keyword
+
+#+begin_src python :results output drawer :async
+import time
+
+print ("Sleep 5 seconds from now on...")
+time.sleep(5)
+print("wake up!")
+#+end_src
 
 * Export
 - C-c C-e: org-export-dispatch
