@@ -247,15 +247,15 @@ map <a-q>s LinkHints.activateModeToSelect
 # f -> w
 mapkey f w
 
-# movement in visual mode
-# https://github.com/philc/vimium/issues/3248#issuecomment-464564492
-# https://github.com/philc/vimium/wiki/Tips-and-Tricks#key-mapping
-mapkey <up> k
-mapkey <down> j
-mapkey <left> h
-mapkey <right> l
-# mapkey u b
-# mapkey o e
+# # movement in visual mode
+# # https://github.com/philc/vimium/issues/3248#issuecomment-464564492
+# # https://github.com/philc/vimium/wiki/Tips-and-Tricks#key-mapping
+# mapkey <up> k
+# mapkey <down> j
+# mapkey <left> h
+# mapkey <right> l
+# # mapkey u b
+# # mapkey o e
 
 # # jkl; -> hkjl
 # # mapkey k k

@@ -135,6 +135,32 @@ print(f'\r[Processing] 3/3 [===]', end='')
 print('\nDone')
 #+end_src
 
+** regular expressions
+*** re.compile
+#+begin_src python
+# https://docs.python.org/3/library/re.html#re.compile
+
+# match with compiled regex object
+prog = re.compile(pattern)
+result = prog.match(string)
+
+# match without compiled regex object
+result = re.match(pattern, string)
+#+end_src
+*** Match.group
+#+begin_src python
+# https://docs.python.org/3/library/re.html#re.Match.group
+m = re.match(r"(\w+) (\w+)", "Isaac Newton, physicist")
+m.group(0)       # The entire match
+# 'Isaac Newton'
+m.group(1)       # The first parenthesized subgroup.
+# 'Isaac'
+m.group(2)       # The second parenthesized subgroup.
+# 'Newton'
+m.group(1, 2)    # Multiple arguments give us a tuple.
+# ('Isaac', 'Newton')
+#+end_src
+
 * Hy language
 ** emacs hy-mode
 https://github.com/hylang/hy-mode

@@ -13,13 +13,6 @@ https://github.com/joaotavora/eglot/discussions/709#discussioncomment-921594
 #+end_src
 
 * python
-** jedi-language-server
-https://github.com/pappasam/jedi-language-server
-*** setup
-#+begin_src sh
-pip install -U jedi-language-server
-#+end_src
-
 ** pylsp
 https://github.com/python-lsp/python-lsp-server
 *** setup
@@ -33,6 +26,13 @@ https://github.com/python-lsp/python-lsp-server
   #+begin_src sh
   pip uninstall "python-lsp-server[all]"
   #+end_src
+
+** jedi-language-server
+https://github.com/pappasam/jedi-language-server
+*** setup
+#+begin_src sh
+pip install -U jedi-language-server
+#+end_src
 
 ** pyls (not updated for long time)
 *** setup
