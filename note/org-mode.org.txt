@@ -131,9 +131,9 @@ echo $SOME_VAR
 ** running python with a conda environment
 https://www.reddit.com/r/emacs/comments/9jg58b/comment/e6sg3st/?utm_source=share&utm_medium=web2x&context=3
 #+begin_src emacs-lisp
-;; (pyvenv-activate "~/path/to/.venv")
+;; (pyvenv-activate "~/path/to/.venv")  ; a virtual environment
 ;; or
-(pyvenv-workon "some-env")
+(pyvenv-workon "some-env")  ; a conda environment
 #+end_src
 
 #+begin_src python :results output
