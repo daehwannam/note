@@ -104,18 +104,20 @@ set -e  # stop the bash script when an error occurs
 #+end_src
 ** choosing a working directory
 https://orgmode.org/manual/Environment-of-a-Code-Block.html
-- local
+- Local
+  to save the plot file in the ‘Work/’ folder of the home directory:
   #+BEGIN_SRC R :file myplot.png :dir ~/Work
-    matplot(matrix(rnorm(100), 10), type="l")
+  matplot(matrix(rnorm(100), 10), type="l")
   #+END_SRC
-- remote
+- Remote
+  To evaluate the code block on a remote machine with tramp
   #+BEGIN_SRC R :file plot.png :dir /scp:dand@yakuba.princeton.edu:
-    plot(1:10, main=system("hostname", intern=TRUE))
+  plot(1:10, main=system("hostname", intern=TRUE))
   #+END_SRC
-- referencing a remote file
-  #+begin_example
+- Referencing a remote file
+  #+begin_src org
   [[file:/scp:dand@yakuba.princeton.edu:/home/dand/plot.png][plot.png]]
-  #+end_example
+  #+end_src
 ** session
 - babel with a session keep the process
 - name of session is optional
@@ -207,10 +209,17 @@ https://orgmode.org/manual/Images.html
 - Related commands
   - C-c C-x C-v (org-toggle-inline-images)
   - C-c C-x C-M-v (org-redisplay-inline-images)
-- to visualize image when load org-mode:
+*** Visualizing images when loading org-mode
+https://stackoverflow.com/a/27130349
+- Global emacs config
   #+begin_src elisp
   (setq org-startup-with-inline-images t)
   #+end_src
+- In-buffer config
+  Add the below line in an org-mode file:
+  #+begin_example
+  #+STARTUP: inlineimages
+  #+end_example
 *** resizing an image's width
 https://stackoverflow.com/a/38477233
 
