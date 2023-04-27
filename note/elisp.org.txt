@@ -72,6 +72,27 @@ Then, following expressions are evaluated when the file is loaded:
   (comment do something))
 #+end_src
 
+* autoload
+** autoload comment (autoload cookie)
+- doc. https://www.gnu.org/software/emacs/manual/html_node/elisp/Autoload.html
+- e.g. https://emacs.stackexchange.com/questions/8023/how-to-use-autoload
+- tutorial: https://swsnr.de/archive/2014/07/02/autoloads-in-emacs-lisp.html
+
+~;;;###autoload~ is the autoload comment (~;###autoload~ or ~;;###autoload~ are NOT also working)
+
+e.g.
+#+begin_src elisp
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Autoload.html
+;;;###autoload
+(defun doctor ()
+  "Switch to *doctor* buffer and start giving psychotherapy."
+  (interactive)
+  (switch-to-buffer "*doctor*")
+  (doctor-mode))
+#+end_src
+
+once autoload is declared, ~update-file-autoloads~ can makes a buffer ~loaddefs.el~.
+
 * functions
 ** executable-find
 check if an executable exists

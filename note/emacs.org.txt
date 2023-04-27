@@ -34,6 +34,17 @@ https://stackoverflow.com/questions/10909738/emacs-custom-command-line-arguments
 ** help commands
 *** apropos-command (C-h a)
 it shows commands (interactively callable functions) that match a pattern
+** info command
+- ~info~ is globally mapped to "C-h i".
+*** reading a topic
+https://www.gnu.org/software/emacs/manual/html_node/efaq/Emacs-manual.html
+- ~Info-menu~ (m): select a menu item
+- ~Info-index~ (i)
+
+e.g. ~C-h i m emacs RET m topic RET m subtopic RET~
+*** GNU Emacs Manual
+**** When "GNU Emacs Manual" does not exist
+https://emacs.stackexchange.com/questions/48211/emacs-manuals-are-missing-on-debian-ubuntu
 ** Esc-=: count lines
 *** Be careful of Alt-= in Putty
 It changes the default character set to some weird character set.
@@ -76,7 +87,7 @@ https://stackoverflow.com/a/20119400
 - align muliple lines within a region with respect strings
   which are matched with a regular expression.
 - the matched strings become columns
-** Example
+*** Example
 - before processing
   #+begin_example
   row 1 & is & here
