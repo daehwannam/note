@@ -531,6 +531,9 @@ Type=Application
 X-GNOME-Autostart-enabled=true
 #+end_src
 where path of "Exec" should be an absolute path.
+** disable file history
+https://askubuntu.com/a/992337
+Settings -> Privacy -> File History & Trash
 
 * error fix
 ** /sbin/init: No such file or directory
