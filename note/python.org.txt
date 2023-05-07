@@ -161,6 +161,106 @@ m.group(1, 2)    # Multiple arguments give us a tuple.
 # ('Isaac', 'Newton')
 #+end_src
 
+** context manager
+https://realpython.com/python-with-statement/
+- class-based: https://realpython.com/python-with-statement/#coding-class-based-context-managers
+- function-based: https://realpython.com/python-with-statement/#creating-function-based-context-managers
+
+** doctest
+https://docs.python.org/3/library/doctest.html
+
+An example file with doctest:
+#+begin_src python
+# module/package.py
+
+def test():
+    '''
+    Example:
+
+    >>> test()
+    hi
+    '''
+    print('hi')
+
+
+if __name__ == "__main__":
+    import doctest
+    # doctest.testmod(verbose=True)
+    doctest.testmod()
+#+end_src
+
+Run:
+#+begin_src sh
+python -m module.package
+#+end_src
+
+** docstring
+*** sphinx
+**** tutorial
+https://www.sphinx-doc.org/en/master/tutorial/index.html
+**** install
+#+begin_src sh
+pip install Sphinx
+#+end_src
+**** quick start
+#+begin_src sh
+PROJECT_PATH=path/to/project
+DOC_PATH=$PROJECT_PATH/doc
+sphinx-quickstart $DOC_PATH
+#+end_src
+- "Separate source and build directories (y/n) [n]:" -> y
+**** build
+#+begin_src sh
+SOURCE=$DOC_PATH/source
+BUILD=$DOC_PATH/build
+sphinx-build -b html $SOURCE $BUILD/html
+#+end_src
+
+or
+#+begin_src sh
+cd $DOC_PATH
+make html
+#+end_src
+**** doctest
+***** running
+#+begin_src sh
+make doctest
+#+end_src
+***** skipping an example
+https://stackoverflow.com/a/7622355
+Use ~# doctest: +SKIP~ to skip a function call:
+#+begin_src rst
+>>> example() # doctest: +SKIP
+'Hello world!'
+#+end_src
+**** automatic generation
+https://www.sphinx-doc.org/en/master/tutorial/automatic-doc-generation.html
+'autodoc' and 'autosummary extensions are required
+
+To read source code, ~conf.py~ should add the path to the project:
+#+begin_src sh
+# https://www.sphinx-doc.org/en/master/tutorial/describing-code.html#including-doctests-in-your-documentation
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here.
+import pathlib
+import sys
+sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
+#+end_src
+
+Similarly:
+#+begin_src python
+# https://stackoverflow.com/a/44980548
+import sys
+from pathlib import Path
+
+# project_path = Path(__file__).parents[2]
+project_path = Path(__file__).parent.parent
+sys.path.insert(0, str(project_path))
+#+end_src
+**** code block example
+https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block
+
 * Hy language
 ** emacs hy-mode
 https://github.com/hylang/hy-mode
