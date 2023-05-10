@@ -5,6 +5,13 @@ def test():
 
     >>> test()
     hi
+
+    >>> total = 0
+    >>> for x in range(1, 6):
+    ...     total += x
+    >>>
+    >>> print(total)
+    15
     '''
     print('hi')
 

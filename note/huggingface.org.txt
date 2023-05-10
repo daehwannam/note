@@ -98,6 +98,23 @@ print(tokenizer.convert_ids_to_tokens(encoded_input['input_ids']))
 #+end_src
 ** tokenizer example
 https://huggingface.co/transformers/v3.0.2/preprocessing.html
+** iterate tokens
+#+begin_src python
+from transformers import BartTokenizer
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+all_token_values = tuple(map(tokenizer.convert_ids_to_tokens, range(tokenizer.vocab_size)))
+#+end_src
+*** iterate non-special tokens
+#+begin_src python
+from transformers import BartTokenizer
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+all_special_ids = set(tokenizer.all_special_ids)
+all_non_special_tokens = tuple(
+    tokenizer.convert_ids_to_tokens(token_id)
+    for token_id in range(tokenizer.vocab_size)
+    if token_id not in all_special_ids)
+return all_non_special_tokens
+#+end_src
 
 * Examples
 ** running with scripts
