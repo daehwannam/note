@@ -222,7 +222,7 @@ https://askubuntu.com/questions/222984/can-i-log-in-with-other-users-account
 - =su username=
 - =login username=
 - =sudo -u username=
-** unicode output setting
+** unicode output setting (changing locale)
 https://emacs.stackexchange.com/questions/10223/how-to-display-unicode-utf-8-as-unicode
 
 in ~/.basrc:
