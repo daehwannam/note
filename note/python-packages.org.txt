@@ -66,3 +66,16 @@ nltk.data.path
 
 * unicode
 https://stackoverflow.com/a/35536228
+
+* cProfile
+** Sorting output w.r.t a column
+https://stackoverflow.com/questions/72953104/python-sort-profile-report-by-tottime
+
+#+begin_src python
+import cProfile
+
+def some_func():
+    print('This is some_func')
+
+cProfile.run('some_func()', sort='cumtime')
+#+end_src

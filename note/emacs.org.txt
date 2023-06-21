@@ -233,6 +233,8 @@ clone the current buffer to the other window
 - ibuffer-mark-by-name-regexp (% n) to mark buffers by their name, using a regexp.
 - ibuffer-do-eval (E) to evaluate a lisp expression
 - ibuffer-do-save (S)
+** unhighlight-regexp
+To unhighlight all regexp, type ~C-u M-x unhighlight-regexp~ .
 * My command
 ** xah-open-in-external-app
 it opens a file with an external program within dired-mode.
