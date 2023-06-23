@@ -27,8 +27,10 @@ unmapAll # Use Emacs-style bindings only.
 ## Similar to Emacs `(next|previous)-line`.
 # map <c-v> scrollDown  # map <c-n> scrollDown
 # map <a-v> scrollUp  # map <c-p> scrollUp
-map k scrollUp  # map <c-p> scrollUp
-map l scrollDown  # map <c-n> scrollDown
+# map k scrollUp  # map <c-p> scrollUp
+# map l scrollDown  # map <c-n> scrollDown
+# map i scrollUp  # map <c-p> scrollUp
+# map o scrollDown  # map <c-n> scrollDown
 
 # Similar to Emacs `(backward|forward)-char`.
 # map j scrollLeft
@@ -37,8 +39,8 @@ map l scrollDown  # map <c-n> scrollDown
 # Similar to Emacs `(beginning|end)-of-buffer`.
 # map <a-<> scrollToTop
 # map <a->> scrollToBottom
-map z scrollToTop
-map x scrollToBottom
+# map z scrollToTop
+# map x scrollToBottom
 
 # Identical to Emacs `scroll-(left|right)`.
 map <c-x>< scrollToLeft
@@ -47,15 +49,15 @@ map <c-x>> scrollToRight
 # Identical to `scroll-(down|up)-command`.
 # map <a-v> scrollFullPageUp  # similar to down-arrow
 # map <c-v> scrollFullPageDown  # similar to up-arrow
-map q scrollFullPageUp  # similar to down-arrow
-map w scrollFullPageDown  # similar to up-arrow
+# map q scrollFullPageUp  # similar to down-arrow
+# map w scrollFullPageDown  # similar to up-arrow
 
 # Identical to Emacs `scroll-(up|down)-line`
 # No KBD shortcut in Emacs by default.
 map <a-}> scrollPageDown
 map <a-{> scrollPageUp
-map a scrollPageUp
-map s scrollPageDown
+# map a scrollPageUp
+# map s scrollPageDown
 
 # Identical to Emacs `find-alternate-file`.
 map <c-x><c-v> reload
@@ -162,9 +164,9 @@ map <c-x><c-@> Marks.activateGotoMode
 # NOTE: Vimium requires that you press the `<enter>` key
 # before shortcuts `<c-S>` and `<c-R>` will actually work.
 #------------------------------------------------------------------
-map / enterFindMode  # map <c-s> enterFindMode  # similar to F3 or Ctrl-f
-map n performFind  # map <c-S> performFind  # similar to F3 or Enter
-map p performBackwardsFind  # map <c-r> performBackwardsFind  # similar to Shift-F3 or Shift-Enter
+# map / enterFindMode  # map <c-s> enterFindMode  # similar to F3 or Ctrl-f
+# map n performFind  # map <c-S> performFind  # similar to F3 or Enter
+# map p performBackwardsFind  # map <c-r> performBackwardsFind  # similar to Shift-F3 or Shift-Enter
 # map <c-s-r> performBackwardsFind
 
 # Not implemented in Emacs.
@@ -235,8 +237,9 @@ map <a-q><a-k>( closeTabsOnLeft
 map <a-q><a-k>) closeTabsOnRight
 
 # visual mode
-map v enterVisualMode
-map V enterVisualLineMode
+map <a-q>v enterVisualMode
+# map v enterVisualMode
+# map V enterVisualLineMode
 map <a-q>s LinkHints.activateModeToSelect
 # map <a-q>e LinkHints.activateCopyLinkText
 # c is mapped to caret mode
