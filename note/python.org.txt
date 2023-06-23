@@ -260,6 +260,36 @@ sys.path.insert(0, str(project_path))
 #+end_src
 **** code block example
 https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block
+** Type hints
+*** Type hints with types that are not defined yet
+https://stackoverflow.com/a/39757388
+**** Using ~str~
+#+begin_src python
+def func(x: 'SomeTypeNotDefined'):
+    pass
+#+end_src
+
+**** Using ~from __future__ import annotations~
+This makes the types in type hints as ~str~ objects.
+
+#+begin_src python
+from __future__ import annotations
+
+def func(x: SomeTypeNotDefined):
+    pass
+#+end_src
+*** Conditional importing for type hints
+https://stackoverflow.com/a/39757388
+#+begin_src python
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    # This block is not evaluated by default,
+    # but 'mypy' will evaluate this import statement
+    from torch import Tensor
+
+def func(tensor: 'Tensor'):
+    pass
+#+end_src
 
 * Hy language
 ** emacs hy-mode

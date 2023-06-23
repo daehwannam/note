@@ -94,6 +94,13 @@ e.g.
 once autoload is declared, ~update-file-autoloads~ can makes a buffer ~loaddefs.el~.
 
 * functions
+** add-to-list
+~add-to-list~ adds an item to a list, but doesn't add the item if it already exists in the list.
+
+e.g. Adding a string to a list named "yas-snippet-dirs"
+#+begin_src elisp
+(add-to-list 'yas-snippet-dirs "some/path/to/snippets")
+#+end_src
 ** executable-find
 check if an executable exists
 e.g.

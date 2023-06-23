@@ -60,8 +60,21 @@ https://huggingface.co/docs/transformers/preprocessing
 #+begin_src python
 from transformers import AutoTokenizer
 tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
-encoded_input = tokenizer("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
-tokenizer.decode(encoded_input["input_ids"])
+tokens = tokenizer.tokenize("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
+encoded = tokenizer("Do not meddle in the affairs of wizards, for they are subtle and quick to anger.")
+tokenizer.decode(encoded["input_ids"])
+#+end_src
+*** decoding without special tokens
+Use ~skip_special_tokens~ option
+#+begin_src python
+from transformers import BartTokenizer
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+encoded = tokenizer("Hello World")
+# {'input_ids': [0, 725, 33796, 623, 2], 'attention_mask': [1, 1, 1, 1, 1]}
+print(tokenizer.decode(encoded['input_ids']))
+# '<s>Hello World</s>'
+print(tokenizer.decode(encoded['input_ids'], skip_special_tokens=True))
+# 'Hello World'
 #+end_src
 ** "add_prefix_space" options
 RobertaTokenizer (and its subclass BartTokenizer) has ~add_prefix_space~ parameter for ~__init__~ and ~__call__~.
@@ -75,7 +88,7 @@ The option add an additional space character to the beginning of the input sente
   # {'input_ids': [0, 31414, 232, 2], 'attention_mask': [1, 1, 1, 1]}
   print(tokenizer1("Hello world", add_prefix_space=True))
   # {'input_ids': [0, 20920, 232, 2], 'attention_mask': [1, 1, 1, 1]}
-  print(tokenizer1(" Hello world"))
+  print(tokenizer1(" Hello world")) # input text includes a space character at the beginning
   # {'input_ids': [0, 20920, 232, 2], 'attention_mask': [1, 1, 1, 1]}
   #+end_src
 - Example 2
@@ -92,9 +105,38 @@ it maps token ids to tokens
 #+begin_src python
 from transformers import BartTokenizer
 tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
-encoded_input = tokenizer('Hello World!')
-print(tokenizer.convert_ids_to_tokens(encoded_input['input_ids']))
+encoded = tokenizer('Hello World!')
+print(tokenizer.convert_ids_to_tokens(encoded['input_ids']))
 # ['<s>', 'Hello', 'ĠWorld', '!', '</s>']
+#+end_src
+** convert functions
+#+begin_src python
+tokenizer.convert_ids_to_tokens([1,2])
+# ['<pad>', '</s>']
+tokenizer.convert_ids_to_tokens([1,2,-1])
+# ['<pad>', '</s>', None]
+tokenizer.convert_ids_to_tokens([1,2,100000000000000])
+# ['<pad>', '</s>', None]
+tokenizer.convert_ids_to_tokens([1,2])
+# ['<pad>', '</s>']
+tokenizer.convert_ids_to_tokens(1)
+# '<pad>'
+tokenizer.convert_tokens_to_ids(['<pad>', '</s>'])
+# [1, 2]
+tokenizer.convert_tokens_to_ids('<pad>')
+# 1
+tokenizer.convert_tokens_to_string(['<pad>', '</s>'])
+# '<pad></s>'
+#+end_src
+** batch-decoding
+#+begin_src python
+from transformers import BartTokenizer
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+
+encoded = tokenizer(['I like an apple.', 'A bird flies.'])
+# {'input_ids': [[0, 100, 101, 41, 15162, 4, 2], [0, 250, 5103, 16016, 4, 2]], 'attention_mask': [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]]}
+utteances = tokenizer.batch_decode(encoded['input_ids'], skip_special_tokens=True)
+# ['I like an apple.', 'A bird flies.']
 #+end_src
 ** tokenizer example
 https://huggingface.co/transformers/v3.0.2/preprocessing.html
@@ -114,6 +156,24 @@ all_non_special_tokens = tuple(
     for token_id in range(tokenizer.vocab_size)
     if token_id not in all_special_ids)
 return all_non_special_tokens
+#+end_src
+** GPT2Tokenizer
+- BartTokenizer is a subclass of GPT2Tokenizer
+*** ~_convert_id_to_token~
+~GPT2Tokenizer~ has has attributes named as ~encoder~ and ~decoder~ which are dictionaries
+that map tokens to ids and ids to tokens respectively.
+~GPT2Tokenizer._convert_id_to_token~ exploits ~encoder~ and ~decoder~.
+
+* PreTrainedModel
+** resize_token_embeddings
+e.g.
+#+begin_src python
+from transformers import BartTokenizer
+
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+new_tokens = ['<special-1>', '<special-2>']
+added_tokens_num = tokenizer.add_tokens(new_tokens, special_tokens=True)
+model.resize_token_embeddings(len(tokenizer))
 #+end_src
 
 * Examples
