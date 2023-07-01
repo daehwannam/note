@@ -261,6 +261,10 @@ https://movment.tistory.com/5
 - Noto Sans CJK KR Medium
 - 백묵 돋음
 
+* wine
+** patch
+- https://afterthenumber.com/2019/02/14/installing-adobe-reader-for-dc-under-wine-on-ubuntu-18-04/
+
 * lutris
 - Gaming platform
 - It can be combined with wine
