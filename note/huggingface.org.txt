@@ -100,6 +100,12 @@ The option add an additional space character to the beginning of the input sente
   print(tokenizer2("Hello world", add_prefix_space=False))
   # {'input_ids': [0, 31414, 232, 2], 'attention_mask': [1, 1, 1, 1]}
   #+end_src
+** tensors as results
+#+begin_src python
+from transformers import BartTokenizer
+tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
+encoded = tokenizer(['Hello World!', 'My mother likes flowers.'], padding=True, return_tensors="pt")
+#+end_src
 ** PreTrainedTokenizer.convert_ids_to_tokens
 it maps token ids to tokens
 #+begin_src python
