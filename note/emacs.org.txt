@@ -300,9 +300,14 @@ The variables are defined in ".dir-locals.el"
    (some-mode-2 . ((some-varible-4 . some-value-4)
                    (some-varible-5 . some-value-5)
                    (some-varible-6 . some-value-6)
-                   (eval . (some-expression-2)))))
+                   (eval . (some-expression-2))))
+   (nil         . ((some-varible-7 . some-value-7)
+                   (some-varible-8 . some-value-8)
+                   (eval . (some-expression-3)))))
   #+end_src
-  directory-local variables are buffer-local, so the variables' values are not affected outside of the directory.
+  - directory-local variables are buffer-local, so the variables' values are not affected outside of the directory.
+  - 'nil' could be used instead of a specific mode to apply the variable for all modes.
+    https://www.emacswiki.org/emacs/DirectoryVariables
 
 - eval statement with setq
   #+begin_src elisp
@@ -311,9 +316,6 @@ The variables are defined in ".dir-locals.el"
            (eval . (setq-local CCC 200)))))
   #+end_src
   wherer ~AAA~ and ~CCC~ are buffer-local and ~BBB~ is _NOT_ buffer-local
-
-- 'nil' could be used instead of a specific mode to apply the variable for all modes.
-  https://www.emacswiki.org/emacs/DirectoryVariables
 
 **** add-dir-local-variable
 e.g. add a new variable to ".dir-locals.el"
@@ -348,8 +350,14 @@ https://www.linuxtopia.org/online_books/linux_tool_guides/gnu_emacs_manual/File-
 Example of local varaible setup for org-mode:
 - With the first line:
   #+begin_example
+  # -*- mode: Lisp; fill-column: 75; comment-column: 50; -*-
+  #+end_example
+
+  #+begin_example
   # -*- eval: (message "foo"); -*-
   #+end_example
+
+  where # is comment character, which is changed depending on the major mode for the file.
 
 - Or starts with "Local Variables"
 
@@ -401,6 +409,32 @@ BASH_ENV=~/.bashrc emacs
 ** cursor color
 - check and change the current cursor color
   ~M-x customize-face cursor~
+** Programming language customizations
+*** Python
+**** python-shell-interpreter
+You can set the python interpreter path.
+The default value is "python".
+The python path doesn't need to include tramp base path such as ~/ssh:user@address:~.
+If the ~default-directory~ is a tramp path, Tramp automatically find ~python-shell-interpreter~ in the tramp path.
+
+For example, if the ~default-directory~ is ~/ssh:user@some-address:~,
+~run-python~ executes ~/ssh:user@address:/home/user/program/miniconda3/envs/env-name/bin/python~
+with the following configuration:
+#+begin_src elisp
+(setq python-shell-interpreter "/home/USER/program/miniconda3/envs/ENV_NAME/bin/python")
+#+end_src
+***** python-shell-interpreter with tramp (not working)
+https://emacs.stackexchange.com/q/37843
+#+begin_src elisp
+;; ssh
+(setq python-shell-interpreter "/ssh:user@some-address:/home/user/miniconda3/envs/some-env/bin/python")
+;; docker
+(setq python-shell-interpreter "/docker:root@django_web_1:/usr/local/bin/python")
+#+end_src
+**** python-shell-with-environment
+https://www.reddit.com/r/emacs/comments/lvg6ip/comment/gpcdnhe/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+Emacs exploits "python-shell-with-environment" for python interpreters in remote environments.
 
 * Install Emacs
 ** Emacs 25
@@ -601,6 +635,41 @@ https://stackoverflow.com/questions/2177687/open-file-via-ssh-and-sudo-with-emac
 /rclone:storage:/path/to/file
 **** ftp
 /ftp:user@remotehost:/path/to/file
+*** Enable directory local variables in remote environments
+#+begin_src elisp
+(setq enable-remote-dir-locals t)
+#+end_src>
+*** Shorted tramp paths
+- Reference: How to shorten long file names when typing in TRAMP?
+  https://www.gnu.org/software/tramp/#Frequently-Asked-Questions
+  https://emacs.stackexchange.com/a/48931
+**** Use environment variables to expand long strings
+#+begin_src elisp
+(setenv "xy" "/ssh:news@news.my.domain:/opt/news/etc/")
+#+end_src>
+The reduced typing: C-x C-f $xy RET.
+**** Define abbreviations
+#+begin_src elisp
+(add-to-list 'directory-abbrev-alist
+             '("^/xy" . "/ssh:news@news.my.domain:/opt/news/etc/"))
+#+end_src
+The reduced typing: C-x C-f /xy RET.
+**** Define abbreviations with ~abbrev-mode~
+#+begin_src elisp
+(define-abbrev-table 'my-tramp-abbrev-table
+  '(("xy" "/ssh:news@news.my.domain:/opt/news/etc/")))
+
+(add-hook
+ 'minibuffer-setup-hook
+ (lambda ()
+   (abbrev-mode 1)
+   (setq local-abbrev-table my-tramp-abbrev-table)))
+
+(defadvice minibuffer-complete
+    (before my-minibuffer-complete activate)
+  (expand-abbrev))
+#+end_src
+The reduced typing: C-x C-f xy TAB.
 ** Desktop mode & window register
 https://stackoverflow.com/a/46146046
 https://stackoverflow.com/a/2575269

@@ -133,10 +133,10 @@ exit  # exit from queue
 1) Write script with SBATCH options
 2) run the script with sbatch commands
    #+begin_src sh
-   sbatch tf-2gpu.slurm.sh
+   sbatch example-slurm.sh
    #+end_src
 
-[Example script]
+[example-slurm.sh]
 #+begin_src sh
 #!/bin/sh
 
@@ -190,6 +190,53 @@ date
 squeue  --job  $SLURM_JOBID
 
 echo  "##### END #####"
+#+end_src
+**** sbatch script that executes another bash script
+***** sbatch script: sbatch-3090.sh
+#+begin_src bash
+#!/usr/bin/bash
+
+# Configuration for sbatch
+
+#SBATCH -J  sp               # job name
+#SBATCH -o  sp.%j.out        # name of stdout output file (%j expands to %jobId)
+#_SBATCH -e  sp.%j.err       # (optional) name of stderr file. If it's not specified, stadout(-o) includes stderr.
+#SBATCH -t 3-00:00:00        # run time (d-hh:mm:ss) - day/hour/minute/second
+
+#### Resource
+#SBATCH -p 3090              # queue name or partiton
+#SBATCH --gres=gpu:1         # gpus per node
+#_SBATCH -q nogpu
+#SBATCH --cpus-per-task=1
+
+##  node
+#_SBATCH --nodelist=n14
+#SBATCH --nodes=1            # number of nodes 
+#SBATCH --ntasks-per-node=1
+
+
+# Note
+#
+# The above cofnig uses 1 gpu and 1 cpu
+
+# Add the following source and conda commands in your bash script,
+# which are represented as arguments "$@"
+#
+# source $(conda info --base)/etc/profile.d/conda.sh  # if it's not working, use the actual path instead
+# conda activate some-env
+
+srun "$@"
+#+end_src
+***** bash script: run-train.sh
+#+begin_src bash
+source $(conda info --base)/etc/profile.d/conda.sh  # if it's not working, use the real path instead
+conda activate some-env
+
+python -m run.train "$@"
+#+end_src
+***** execution
+#+begin_src bash
+sbatch sbatch-3090.sh run-train.sh arg1 arg2 arg3
 #+end_src
 
 ** Stop jobs

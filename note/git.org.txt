@@ -258,6 +258,17 @@ git config --global credential.helper 'cache --timeout=3600'
 git config --list
 #+end_src
 
+** pushing an amended commit when the commit was already pushed
+https://stackoverflow.com/a/41513487
+
+use ~--force~ option.
+
+e.g.
+#+begin_src sh
+git commit --amend
+git push --force origin master
+#+end_src
+
 * Git for Windows
 ** Using linux utility
 add "C:\Program Files\Git\usr\bin" to 'Path' variable

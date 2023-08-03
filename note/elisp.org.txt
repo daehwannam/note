@@ -82,6 +82,11 @@ Then, following expressions are evaluated when the file is loaded:
 
 e.g.
 #+begin_src elisp
+(autoload 'anaconda-mode-find-definitions "anaconda-mode" "Find definitions for thing at point." t nil)
+#+end_src
+
+e.g.
+#+begin_src elisp
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Autoload.html
 ;;;###autoload
 (defun doctor ()

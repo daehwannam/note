@@ -25,6 +25,25 @@ https://tex.stackexchange.com/a/232739
    \def\pgfsys@svg@newline{\Hnewline}
 3. Replace the line with:
    \def\pgfsys@svg@newline{^^J}
+** BAD BOX: Overfull \hbox (0.68098pt too wide) in paragraph at lines 157--260
+
+#+begin_example
+BAD BOX: Overfull \hbox (0.68098pt too wide) in paragraph at lines 157--260
+
+--- TeX said ---
+ [][] 
+--- HELP ---
+Because it couldn't find a good place for a line break, TeX put more
+on this line than it should.
+#+end_example
+*** Finding where overfull occurs
+https://tex.stackexchange.com/a/689200
+
+Use ~draft~ option:
+
+#+begin_src latex
+\documentclass[draft]{article}.
+#+end_src
 
 * TikZ
 ** Manual

@@ -578,3 +578,24 @@ unset DBUS_SESSION_BUS_ADDRESS
 ** Emacs doesn't receive C-M-p key
 - "Setting" -> "Keyboard" -> "Input Sources"
 - make "English (US)" has higher priority than "Korean"
+** W: Failed to fetch
+*** Error example
+When "apt update"
+#+begin_example
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://xpra.org focal InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 73254CAD17978FAF
+W: Failed to fetch https://xpra.org/dists/focal/InRelease  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 73254CAD17978FAF
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+#+end_example
+
+When "apt upgrade"
+#+begin_example
+E: Failed to fetch https://xpra.org/dists/focal/main/binary-amd64/xserver-xorg-video-dummy_0.3.8-6+xpra1_amd64.deb  404  Not Found [IP: 78.129.163.65 443]
+E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+#+end_example
+/var/lib/apt/lists
+*** Fix
+- goto "/etc/apt/sources.list.d/""
+- remove the files that raise errors or move them to other location
+**** optional
+- goto "/var/lib/apt/lists"
+- remove the files that raise errors or move them to other location

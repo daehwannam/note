@@ -320,6 +320,34 @@ if [[ -d $DIR_PATH  &&  ! -n "$(find $DIR_PATH -maxdepth 0 -empty)" ]]; then
     exit 1
 fi
 #+end_src
+** finding a file in ancestors
+https://unix.stackexchange.com/a/22215
+#+begin_src bash
+find-up () {
+    path=$(pwd)
+    while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+        path=${path%/*}
+    done
+    echo "$path"
+}
+
+BASHRC_DIR_PATH=$(find-up .bashrc)
+echo $BASHRC_DIR_PATH
+#+end_src
+*** activate conda locally
+#+begin_src bash
+CONDA_ENV_NAME_FILE_NAME='.conda-env'
+CONDA_ENV_NAME_DIR_PATH=$(find-up $CONDA_ENV_NAME_FILE_NAME)
+if [ ! -z $CONDA_ENV_NAME_DIR_PATH ]; then
+    CONDA_ENV_NAME=$(cat $CONDA_ENV_NAME_DIR_PATH/$CONDA_ENV_NAME_FILE_NAME)
+    conda activate $CONDA_ENV_NAME
+else
+    conda activate default
+fi
+#+end_src
+
+where we assume that ".conda-env" exists in teh ancestors,
+and ".conda-env" contains a conda environment name, such as "base".
 
 * Configuration of ~/.bashrc
 #+begin_src bash

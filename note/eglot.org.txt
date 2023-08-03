@@ -17,15 +17,15 @@ https://github.com/joaotavora/eglot/discussions/709#discussioncomment-921594
 https://github.com/python-lsp/python-lsp-server
 *** setup
 **** python-lsp-server
-- install
-  https://github.com/python-lsp/python-lsp-server#installation
-  #+begin_src sh
-  pip install "python-lsp-server[all]"
-  #+end_src
-- uninstall
-  #+begin_src sh
-  pip uninstall "python-lsp-server[all]"
-  #+end_src
+***** install
+https://github.com/python-lsp/python-lsp-server#installation
+#+begin_src sh
+pip install "python-lsp-server[all]"
+#+end_src
+***** uninstall
+#+begin_src sh
+pip uninstall "python-lsp-server[all]"
+#+end_src
 
 ** jedi-language-server
 https://github.com/pappasam/jedi-language-server
@@ -59,16 +59,21 @@ ignore = E226,E302,E41
 ** pyright
 *** setup
 https://github.com/microsoft/pyright
+**** install
 #+begin_src python
 pip install pyright
 #+end_src
-**** check the installed pyright
+***** check the installed pyright
 #+begin_src sh
 pyright-langserver
 #+end_src
-***** Error:
+****** error fix when dependency is required
 #+begin_src sh
 conda install -c rmg glibc
+#+end_src
+**** uninstall
+#+begin_src sh
+pip uninstall pyright
 #+end_src
 
 * digedtif

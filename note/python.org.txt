@@ -32,7 +32,7 @@ Then, python in virtualenv is now used:
 which python
 #+end_src
 
-such as "/home/<user>/some-dir/.venv/bin/python".
+such as "/home/<user>/some-dir//.venv/bin/python".
 ** deactivate
 #+begin_src sh
 deactivate
