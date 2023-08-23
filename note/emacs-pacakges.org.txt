@@ -29,3 +29,47 @@ git clone https://github.com/mhayashi1120/Emacs-langtool.git langtool
 cd ~/program/LanguageTool
 java -jar languagetool-server.jar --port <port> --config <file>
 #+end_src
+
+* AUCTeX
+** TeX-expand-list-builtin
+This variable has pairs of symbol and functions, which require no argument.
+The pairs used to replace symbols in a pattern, such as ~LaTeX-command-style~ , as the result of function call.
+
+e.g. A subset of the pairs looks like:
+#+begin_src elisp
+(defvar TeX-expand-list-builtin
+  '(("%l" (lambda ()
+            (TeX-style-check LaTeX-command-style)))
+    ("%(PDF)" (lambda ()
+                (if (and (eq TeX-engine 'default)
+                         (if TeX-PDF-mode
+                             (not (TeX-PDF-from-DVI))
+                           TeX-DVI-via-PDFTeX))
+                    "pdf"
+                  "")))))
+#+end_src
+*** How does TeX-expand-list-builtin work?
+- ~TeX-expand-list-builtin~ expands ~LaTeX-command-style~ to a real command
+  - it replaces "%(PDF)" with "pdf"
+  - it replaces "%(latex)" with latex
+  - Therefore, "%(PDF)%(latex)" becomes "pdflatex"
+- ~TeX-expand-list-builtin~ maps a command "LaTeX" in ~TeX-command-list~
+  to a real shell command by replacing "%l" with ~LaTeX-command-style~.
+** LaTeX-command-style
+A template for the latex commmand
+
+e.g.
+#+begin_src elisp
+(defcustom LaTeX-command-style
+  '(("" "%(PDF)%(latex) %(file-line-error) %(extraopts) %(output-dir) %S%(PDFout)")))
+#+end_src
+
+** TeX-command-list
+It list the available commands when running ~TeX-command-master~.
+
+#+begin_src elisp
+(defcustom TeX-command-list
+  '(("LaTeX" "%`%l%(mode)%' %T"
+     TeX-run-TeX nil
+     (latex-mode doctex-mode) :help "Run LaTeX")))
+#+end_src

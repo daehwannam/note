@@ -1,12 +1,13 @@
 
-* Setup (texlive)
-** Install
+* texlive
+** Setup
+*** Install
 https://www.how2shout.com/linux/install-tex-live-on-ubuntu-20-04-lts-a-free-typesetting-system/
 #+begin_src bash
 sudo apt update
 sudo apt install texlive-full
 #+end_src
-** Bash update examples (if necessary)
+*** Bash update examples (if necessary)
 - /usr/local/texlive
   #+begin_src bash
   TEXLIVE_VERSION=2018
@@ -15,6 +16,22 @@ sudo apt install texlive-full
 - /usr/share/texlive
   (It may be installed by "apt install texlive-full")
   ==> No need for path setting?
+** Update
+#+begin_src sh
+tlmgr init-usertree
+tlmgr update --self --all
+#+end_sr
+** Error fix
+*** /usr/bin/tlmgr: unexpected return value from verify_checksum: -5
+**** not working ...
+https://tex.stackexchange.com/a/537810
+
+#+begin_src sh
+wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+chmod +x update-tlmgr-latest.sh
+sudo kpsewhich --var-value=SELFAUTOPARENT
+sudo env PATH="$PATH" ./update-tlmgr-latest.sh
+#+end_src
 
 * Error fix
 ** ! Undefined control sequence. \pgfsys@svg@newline ->\Hnewline
@@ -206,8 +223,31 @@ https://en.m.wikibooks.org/wiki/LaTeX/Colors
 \color{blue!20!black}           % blue * 0.2 + black 0.8
 \color{blue!20!black!30!green}  % (blue * 0.2 + black 0.8) * 0.3 + green * 0.7
 #+end_src
+** center environment vs. \centering
+- =\centering= doesn't leave vertical space before and after it
+- =\begin{center}...\end{center}= is defined in terms of trivlist.
+** mathematical fonts
+https://www.overleaf.com/learn/latex/Mathematical_fonts
+** author names and affiliations
+https://www.overleaf.com/learn/latex/Questions/How_do_I_add_additional_author_names_and_affiliations_to_my_paper%3F
+** unset italic or unset bold
+https://tex.stackexchange.com/questions/225267/how-to-set-not-italic-or-not-bold
+#+begin_src latex
+\documentclass{book}
+\begin{document}
+ \textit{Some italic and {\normalfont non italic} text}
 
-* Custum commands
+ \textbf{Some bold and {\normalfont non bold} text}
+
+ \emph{Some italic and {\normalfont non italic} text}
+\end{document}
+#+end_src
+** text superscript outside math mode
+https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode
+#+begin_src latex
+\textsuperscript{th}
+#+end_src
+* Custom commands
 ** denotation definition
 % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
 #+begin_src latex

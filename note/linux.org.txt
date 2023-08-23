@@ -208,6 +208,58 @@ https://www.youtube.com/watch?v=Ukqs5M5Fthg
   scp -v -P 60001 user@domain.name.com:/home/user/some_file ./copied_file
   #+end_src
 
+** rsync
+*** copy files with specifying the max size
+https://askubuntu.com/a/935868
+
+#+begin_src sh
+rsync -rv --max-size=100m /path/to/source user@address:/path/to/target
+#+end_src
+
+where -r means recursive-copy and -v means verbose.
+**** units for sizes
+https://serverfault.com/a/105208
+k / m / g
+*** change ssh port
+Use option ~-e 'ssh -p [port]'~.
+
+e.g.
+#+begin_src sh
+# change ssh port to 777
+rsync -rv --max-size=100m -e 'ssh -p 777' /path/to/source user@address:/path/to/target
+#+end_src
+*** archive option (-a)
+https://www.baeldung.com/linux/rsync-archive-mode
+
+The archive mode equals with -rlptgoD (no -H,-A,-X) .
+
+-r option is for copying directories recursively
+-l option is for copying symlinks
+-p option is for preserving the file permissions from the source directory
+-t option keep the modification time of the file from the source directory
+-g option preserves group
+-o option is for preserving the owner of the source file
+-D option is the combination of the –devices and —specials options.
+
+**** -rlpt option
+The option -rlpt is removed -goD from -a (-rlptgoD)
+since -goD may require root privilege.
+*** progress bar
+https://serverfault.com/a/441724
+
+- use "--info=progress2" option
+- additionally use "--no-i-r" for accurate progress bar
+  - "--no-i-r" finds all files to transfer before starting transfer
+  - therefore, it has delay
+- "--info=progress2" doesn't consider "--info=progress2" "--max-size=..." option
+  when you use the two options together, maximum progress could be less than 100%.
+
+e.g.
+#+begin_src sh
+rsync -rlpt --info=progress2 --no-i-r -e 'ssh -p 22' path/to/source user@address:/path/to/destination
+#+end_src
+*** automatic synchronization with rsync
+https://stackoverflow.com/questions/12460279/how-to-keep-two-folders-automatically-synchronized
 ** ps
 - list all options
   #+begin_src sh
