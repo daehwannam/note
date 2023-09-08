@@ -228,6 +228,8 @@ https://en.m.wikibooks.org/wiki/LaTeX/Colors
 - =\begin{center}...\end{center}= is defined in terms of trivlist.
 ** mathematical fonts
 https://www.overleaf.com/learn/latex/Mathematical_fonts
+** mathematical symbols
+https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
 ** author names and affiliations
 https://www.overleaf.com/learn/latex/Questions/How_do_I_add_additional_author_names_and_affiliations_to_my_paper%3F
 ** unset italic or unset bold
@@ -247,6 +249,46 @@ https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode
 #+begin_src latex
 \textsuperscript{th}
 #+end_src
+** command scope
+https://tex.stackexchange.com/a/74083
+
+command definitions have scopes.
+
+- Example 1:
+  #+begin_src latex
+  \documentclass[12pt]{article}
+  \newcommand{\func}[2][\xi]{\sup_{#1\in\mathcal{A}}\sum_{k=1}^\infty \phi_k(#2,#1)}
+  \begin{document}
+  $\func{x}$ \par% Default definition
+  $\renewcommand{\func}[1]{f(#1)} \func{x}$ \par% Entire redefinition (localized)
+  $\func[\psi]{x}$% Localized "redefinition"
+  \end{document}
+  #+end_src
+
+- Example 2:
+  #+begin_src latex
+  \documentclass{article}
+  \newcommand{\func}[2][\xi]{\sup_{#1\in\mathcal{A}}\sum_{k=1}^\infty \phi_k(#2,#1)}
+  \begin{document}
+  $\func{x}$% Default definition
+
+  \begingroup
+  \renewcommand{\func}[1]{f(#1)}%
+  $\func{x}$% Entire redefinition (localized)
+  \endgroup
+
+  $\func[\psi]{x}$% Localized "redefinition"
+  \end{document}
+  #+end_src
+** begingroup and endgroup vs. bgroup and egroup
+https://tex.stackexchange.com/a/1932
+** Preventing from breaking a text or equation
+https://stackoverflow.com/a/1014261
+
+#+begin_src latex
+\mbox{\(A \rightarrow B\)}
+#+end_src
+
 * Custom commands
 ** denotation definition
 % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics

@@ -260,6 +260,15 @@ rsync -rlpt --info=progress2 --no-i-r -e 'ssh -p 22' path/to/source user@address
 #+end_src
 *** automatic synchronization with rsync
 https://stackoverflow.com/questions/12460279/how-to-keep-two-folders-automatically-synchronized
+*** --partial (-P) to keep incomplete files
+https://stackoverflow.com/a/26412021
+https://stackoverflow.com/q/17772448
+
+When you use --partial (-P) option, and the transmision is canceled during running,
+you can resume the transmision since --partial save the incomplete transferred file.
+
+**** rsync use checksum by default after transmision
+https://stackoverflow.com/q/17772448
 ** ps
 - list all options
   #+begin_src sh
@@ -430,20 +439,35 @@ free -h
 #+end_src
 
 ** date
-- changing current time manually (sudo is required)
-  https://www.sharedit.co.kr/posts/2504
+*** date formating
+https://www.lesstif.com/lpt/linux-date-40436076.html
 
-  the format is "월일시간년도.초"
+- 24 hours: %H
+- 12 hours: %I
+- minutes: %M
+- seconds: %S
+- am/pm: %p
+- unix time stamp: %s (lowercase s)
 
-  e.g.
-  #+begin_src sh
-  date 031211572018.00
-  #+end_src
-  ==> Mon Mar 12 11:57:00 KST 2018
-  #+begin_src sh
-  date
-  #+end_src
-  ==> Mon Mar 12 11:57:02 KST 2018
+#+begin_src sh
+date "+%Y-%m-%d %H:%M:%S"  # 2023-09-06 03:56:09
+date "+%Y-%m-%d %I:%M:%S %p"  # 2023-09-06 03:55:38 AM
+data +%s  # 1693940155
+#+end_src
+*** changing current time manually (sudo is required)
+https://www.sharedit.co.kr/posts/2504
+
+the format is "월일시간년도.초"
+
+e.g.
+#+begin_src sh
+date 031211572018.00
+#+end_src
+==> Mon Mar 12 11:57:00 KST 2018
+#+begin_src sh
+date
+#+end_src
+==> Mon Mar 12 11:57:02 KST 2018
 
 ** mkdir
 - mkdir "all directories in the path" when "directories don't exist"

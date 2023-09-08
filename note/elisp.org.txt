@@ -144,6 +144,15 @@ On the other hand, ~substring-no-properties~ return a new string wihtout propert
        (bar (substring-no-properties foo)))
   (list foo bar))
 #+end_src
+** symbol-file
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Where-Defined.html
+
+Return the name of the file that defined SYMBOL.
+#+begin_src elisp
+(symbol-file 'defun)
+(symbol-file 'eglot)
+(symbol-file 'dhnam/window-navigation/other-window)
+#+end_src
 
 * paths and directories
 ** path of emacs lisp script file
