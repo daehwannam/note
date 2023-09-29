@@ -297,15 +297,21 @@ sudo apt install evince
 #+end_src
 
 * PDF split
-** qdpf
+** qpdf
 - install
   #+begin_src sh
   sudo apt-get install qpdf
   #+end_src
 - example
+  https://askubuntu.com/a/672001
   #+begin_src sh
   qpdf input.pdf --pages . 1-10 -- output.pdf
   #+end_src
+*** qpdf vs. pdftk
+https://en.wikipedia.org/wiki/QPDF
+https://en.wikipedia.org/wiki/PDFtk
+
+qpdf is newer than pdftk, and qpdf is updated frequently.
 
 * terminal emulator
 ** xterm-256color
