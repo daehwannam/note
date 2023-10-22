@@ -249,7 +249,7 @@ a special variable ~*package*~ indicate the current package
 *** initial package
 common-lisp-user is the inital package
 *** making a package
-a new package cange defined by 'defpackage'.
+a new package can be defined by 'defpackage'.
 however, the command doesn't switch to the new package.
 #+begin_src lisp
 (defpackage :my-package
