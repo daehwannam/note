@@ -406,6 +406,18 @@ https://en.wikipedia.org/wiki/Chmod
   e.g. ~#!/home/user/program/miniconda3/envs/default/bin/python~
   CAUTION: no space is needed between shebang and the program path
 
+** env
+"env" runs a program in the current environment.
+#+begin_example
+env <command> <arg1> <arg2> ...
+#+end_example
+*** Changing the program for shebang dynamically
+https://unix.stackexchange.com/a/406904
+
+#+begin_src sh
+#!/usr/bin/env python
+#+end_src
+
 ** wget
 *** download a file to a specific directory
 https://www.tecmint.com/wget-download-file-to-specific-directory/

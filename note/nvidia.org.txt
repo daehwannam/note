@@ -323,6 +323,13 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=0,2 python main.py  # gpu #0 #
   conda install -c conda-forge gpustat
   #+end_src
 - Show GPU usage with users and process IDs
+  #+begin_src sh
+  gpustat -p
+  #+end_src
+- Without colored output
+  #+begin_src sh
+  gpustat --no-color
+  #+end_src
 
 * monitoring GPUs of remote servers
 https://github.com/mseitzer/gpu-monitor

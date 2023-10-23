@@ -311,6 +311,8 @@ https://dwm.suckless.org/patches/single_tagset/
 ** DWL: DWM for Wayland
 https://github.com/djpohly/dwl
 
+* Openbox
+
 * Common
 ** winndow manager comparisons
 *** StumpWM vs EXWM
