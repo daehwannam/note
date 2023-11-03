@@ -391,6 +391,73 @@ a package can export symbols which are imported from other packages
 #+begin_src lisp
 (defpackage :test-hwp (:use :cl :alexandria) (:export :copy-array))
 #+end_src
+** systems
+https://lispcookbook.github.io/cl-cookbook/systems.html
+
+A system is a collection of Lisp files that together constitute an application or a library,
+and that should therefore be managed as a whole.
+*** ASDF
+**** system locations
+https://lispcookbook.github.io/cl-cookbook/getting-started.html#how-to-load-an-existing-project
+A Lisp interpreter can detect systems in default system locations.
+
+You can find the default system locations by:
+#+begin_src lisp
+;; System locations
+(asdf/source-registry:default-user-source-registry)
+
+;; Another location
+asdf:*central-registry*
+#+end_src
+
+The default system locations usually are:
+#+begin_example
+~/common-lisp
+~/.local/share/common-lisp/source
+~/quicklisp/local-projects
+#+end_example
+
+You can change the list of system locations
+#+begin_src lisp
+(pushnew "~/path-to-project/root/" asdf:*central-registry* :test #'equal)
+#+end_src
+**** loading an .asd file
+If a system is not located in the default system locations, you should first load its .asd file.
+#+begin_src lisp
+(asdf:load-asd #P"/home/dhnam/data/study/on-lisp-with-note/on-lisp.asd")
+#+end_src
+
+In Emacs, you can instead run "M-x slime-compile-and-load-file" in the buffer of .asd file.
+**** loading systems
+https://lispcookbook.github.io/cl-cookbook/getting-started.html#advanced-dependencies-management
+
+Before loading a system,
+- its .asd file should be loaded beforehand or
+- the system (or symbolic link to the system) should be located in the default system locations
+  - such as "~/common-lisp"
+
+
+You can load a system by executing "asdf:load-system" or "ql:quickload":
+#+begin_src lisp
+;; Load a system
+(asdf:load-system "alexandria")
+
+;; If a system does not exists, install it from the Internent,
+;; then load the system
+(ql:quickload "alexandria")
+#+end_src
+***** locations for systems installed by ql:quickload
+https://stackoverflow.com/a/29544905
+
+#+begin_example
+~/quicklisp/dists/quicklisp/software
+#+end_example
+**** switching to a package defined by a system
+Change the current package by "in-package" macro:
+#+begin_src lisp
+(in-package :alexandria)
+(in-package :alexandria-2)
+#+end_src
 ** symbol
 *** interning a symbol
 http://www.flownet.com/gat/packages.pdf
