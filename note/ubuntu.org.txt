@@ -88,6 +88,35 @@ https://github.com/fcitx/fcitx-hangul/issues/4#issuecomment-282241511
 #+begin_src sh
 gsettings set org.gnome.settings-daemon.plugins.keyboard active false
 #+end_src
+** configuration
+*** configuration command
+#+begin_src sh
+fcitx-configtool
+#+end_src
+*** clipboard
+**** clipboard configuration
+https://askubuntu.com/a/1118996
+
+- Entering configuration:
+  "Addon" -> "Clipboard (Fcitx Clipboard access)"
+- Disabling clipboard trigger shortcuts:
+  "Trigger key for clipboard history list" -> Click and hit "Esc" to clear the setting
+  (The default value is "Ctrl-;")
+- Disabling to save clipboard:
+  Uncheck "Save Clipboard History To File"
+**** clipboard history path
+https://forums.linuxmint.com/viewtopic.php?t=374026#top
+#+begin_example
+~/.config/fcitx/clipboard/history.dat
+~/.config/fcitx/conf/fcitx-clipboard.config
+#+end_example
+*** QuickPhrase
+- Entering configuration:
+  "Addon" -> "Quickphrase"
+- Disabling QuickPhrase:
+  "Trigger Key for QuickPhrase" -> "None"
+  (The default value is "Semicolon")
+
 ** shortcuts change
 Settings -> Keyboard Shortcuts
 - Alt+Space -> Disabled (needed to be disabled for emacs)
