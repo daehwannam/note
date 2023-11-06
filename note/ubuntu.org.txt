@@ -1,121 +1,12 @@
 * Initial Ubuntu setup
-** optimize linux laptop battery life with 'tlp'
-https://pstudio411.tistory.com/entry/Ubuntu-2004-%EB%85%B8%ED%8A%B8%EB%B6%81%EC%97%94-%ED%95%84%EC%88%98-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC
-*** tlp
-power managerment tool
-- install
-  #+begin_src sh
-  sudo add-apt-repository ppa:linrunner/tlp
-  sudo apt update
-  sudo apt install tlp tlp-rdw
+** power management
+- [[file:linux-application.org.txt::*Power management][Power management]]
 
-  sudo tlp start
-  #+end_src
-- configuration file path
-  /etc/tlp.conf
-- check status
-  #+begin_src sh
-  tlp-stat -s
-  #+end_src
-*** Slimbook Battery
-https://itlearningcenter.tistory.com/entry/%E3%80%90Ubuntu-2004-LTS%E3%80%91%EB%85%B8%ED%8A%B8%EB%B6%81-%EC%A0%84%EC%9B%90-%EA%B4%80%EB%A6%AC-%EB%8F%84%EA%B5%AC-%EC%84%A4%EC%B9%98
-"Slimbook Battery" is tlp-based GUI tool
-
-*** install
-#+begin_src bash
-sudo add-apt-repository ppa:slimbook/slimbook
-sudo apt-get update
-sudo apt-get install slimbookbattery
-#+end_src
-*** bug fix
-**** <ModuleNotFoundError: No module named 'gi'>
-#+begin_src sh
-conda install -c conda-forge pygobject
-#+end_src
-**** ValueError: Namespace Gtk not available
-#+begin_src sh
-conda install -c conda-forge gtk3
-#+end_src
-*** usage
-- run "Slimbook Battery" application
-- enable the option "Autostart application"
-- modify screen brightness for Saving/Balanced/Maximum modes
 ** swap CapsLock with Ctrl
-[[file:emacs.org.txt::*Keyboard configuration with XKBOPTIONS][Keyboard configuration with XKBOPTIONS]]
-** ibus korean keyboard setting
-https://pstudio411.tistory.com/entry/Ubuntu-2004-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%EB%B0%A9%EB%B2%95
-remove "Korean" from "Installed Languages" and reinstall it
-if "Hangul" cannot be added to ibus's Input Method
-** fcitx korean settting
-https://velog.io/@yujo/Ubuntu-20.04%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5%EA%B8%B0-%EC%84%A4%EC%B9%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
-- install
-  #+begin_src sh
-  sudo apt-get update
-  sudo apt-get install fcitx-hangul
-  #+end_src
-- "Setting" -> "Region & Language" -> "Manage installed Languages"
-  - if a prompt for update occurs, execute the update
-  - "Keyboard input method system" -> "fcitx"
-- reboot
-*** disable fcitx shortcuts
-https://askubuntu.com/a/884288
-- edit "/usr/share/fcitx/addon/fcitx-vk.conf"
-- add "Enable=False"
-*** fcitx config
-#+begin_src sh
-fcitx-configtool
-#+end_src
-*** add Hangul input method
-- Input Method
-- click "+"
-- search "Hangul" and press "OK"
-- Make "Hangul" has the highest priority
-*** Change hot key
-- Global Config
-- Trigger Input Method
-- press <Hangul> key
-*** set default language
-- open config
-  #+begin_src sh
-  fcitx-configtool
-  #+end_src
-- Global Config
-- Show Advanced Options (at the left bottom corner)
-- Program
-- Default Input Method State -> Active
-** error fix for typing korean in gnome
-https://github.com/fcitx/fcitx-hangul/issues/4#issuecomment-282241511
-#+begin_src sh
-gsettings set org.gnome.settings-daemon.plugins.keyboard active false
-#+end_src
-** configuration
-*** configuration command
-#+begin_src sh
-fcitx-configtool
-#+end_src
-*** clipboard
-**** clipboard configuration
-https://askubuntu.com/a/1118996
+- [[file:emacs.org.txt::*Keyboard configuration with XKBOPTIONS][Keyboard configuration with XKBOPTIONS]]
 
-- Entering configuration:
-  "Addon" -> "Clipboard (Fcitx Clipboard access)"
-- Disabling clipboard trigger shortcuts:
-  "Trigger key for clipboard history list" -> Click and hit "Esc" to clear the setting
-  (The default value is "Ctrl-;")
-- Disabling to save clipboard:
-  Uncheck "Save Clipboard History To File"
-**** clipboard history path
-https://forums.linuxmint.com/viewtopic.php?t=374026#top
-#+begin_example
-~/.config/fcitx/clipboard/history.dat
-~/.config/fcitx/conf/fcitx-clipboard.config
-#+end_example
-*** QuickPhrase
-- Entering configuration:
-  "Addon" -> "Quickphrase"
-- Disabling QuickPhrase:
-  "Trigger Key for QuickPhrase" -> "None"
-  (The default value is "Semicolon")
+** Input method
+- [[file:linux-application.org.txt::*fcitx][fcitx]]
 
 ** shortcuts change
 Settings -> Keyboard Shortcuts
