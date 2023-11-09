@@ -14,3 +14,31 @@ print("hello world!")
 </p>
 </details>
 #+end_src
+
+* Blockquote
+#+begin_src markdown
+>Some previous text
+#+end_src
+
+* List
+#+begin_src markdown
+1. item 1
+2. item 2
+   - nested item 1
+     - nested item 2
+
+#+end_src
+
+* Table
+#+begin_src markdown
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| git status   | git status     | git status    |
+| git diff     | git diff       | git diff      |
+#+end_src
+
+* Material
+** GitHub
+- [[https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/quickstart-for-writing-on-github][Quickstart for writing on GitHub]]
+- [[https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables][Organizing information with tables]]
+- [[https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax][Basic writing and formatting syntax]]
