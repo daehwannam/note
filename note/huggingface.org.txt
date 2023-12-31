@@ -201,3 +201,116 @@ pt_outputs = pt_model(**pt_batch)
 from transformers import pipeline
 generator = pipeline(task="text-generation", model=model, tokenizer=tokenizer)
 #+end_src
+
+* Accelerate
+** Install
+#+begin_src sh
+pip install accelerate
+#+end_src
+
+** Make a config file
+#+begin_src sh
+CONFIG_FILE=path/to/config.yaml
+mkdir -p $(dirname $CONFIG_FILE)
+accelerate config --config_file $CONFIG_FILE
+#+end_src
+
+** Accelerator
+*** ~__init__~
+**** split_batches (default = False)
+- When it's True, the size of batch of a data loader is divided by the number of processes.
+  Therefore, the number of examples in batches in all processes is the batch size of the data loader.
+  (In other words, The batch size of each process is 1/#processes of the batch size of the data loader.)
+- When it's False, the batch of each process has the same batch size of the data loader.
+**** even_batches (default = True)
+- When it's True, each process has exactly the same number of batches for each epoch.
+  To make the even number of batches, some processes have batches that include examples that are already used in some processes.
+- When it's False, each process can have different numbers of batches.
+  The difference the numbers of batches between two processes is up to 1 batch.
+  However, the difference can raises a deadlock condition when computing Accelerator.backward.
+
+** split_between_processes
+The function "split_between_processes" is included in Accelerator, AcceleratorState or PartialState
+
+#+begin_src python
+# Usage:
+# $ accelerate launch --num_processes 2 example.py
+#
+# Prerequisites:
+# - To use N processes, CUDA_VISIBLE_DEVICES should contain N GPU numbers
+
+# Assume there are two processes
+from accelerate import PartialState
+
+state = PartialState()
+with state.split_between_processes(["A", "B", "C"]) as inputs:
+    print(inputs)
+
+# # Process 0
+# ["A", "B"]
+# # Process 1
+# ["C"]
+
+with state.split_between_processes(["D", "E", "F"], apply_padding=True) as inputs:
+    print(inputs)
+
+# # Process 0
+# ["D", "E"]
+# # Process 1
+# ["F", "F"]
+#+end_src
+
+** AcceleratedOptimizer
+by default, AcceleratedOptimizer adds the number of processes to self.optimizer.last_epoch for each synchronized epoch.
+
+** Examples
+*** Accelerator.backward
+Accelerator.backward assumes that loss values on a batch is averaged rather than summed.
+
+#+begin_src python
+# Usage:
+# CUDA_VISIBLE_DEVICES=0,1 accelerate launch --num_processes 2 accelerate_backward.py
+
+from accelerate import Accelerator
+import torch
+
+
+accelerator = Accelerator(split_batches=True, even_batches=False)
+
+class Model(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.params = torch.nn.Parameter(torch.tensor([1, 2, 3, 4, 5], dtype=torch.float))
+
+    def forward(self, batch):
+        # Note: compute the mean of loss values from examples rather than sum of the values
+
+        # loss = (self.params * batch).sum(dim=1).sum(dim=0)
+        loss = (self.params * batch).sum(dim=1).mean()
+        return loss
+
+
+model = Model()
+
+tensor = torch.tensor([2, 2, 2, 2, 2], dtype=torch.float)
+data_loader = torch.utils.data.DataLoader([tensor] * 20, batch_size=4, shuffle=False)
+optimizer = torch.optim.SGD(model.parameters(), lr=1.0)
+
+model, data_loader, optimizer = accelerator.prepare(model, data_loader, optimizer)
+
+for batch in data_loader:
+    loss = model(batch)
+    print('Batch-size: ', batch.shape[0])
+    print('Loss: ', loss)
+
+    optimizer.zero_grad()
+    accelerator.backward(loss)
+    # loss.backward()
+
+    print('Gradients: ', tuple(model.parameters())[0].grad)
+
+    optimizer.step()
+    print('Parameters: ', tuple(model.parameters()))
+
+    break
+#+end_src

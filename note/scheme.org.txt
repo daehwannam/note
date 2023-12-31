@@ -1,0 +1,7 @@
+
+* Guile
+** Install (Ubuntu)
+#+begin_src sh
+# https://www.gnu.org/software/guile/download/
+sudo apt-get install guile-3.0
+#+end_src

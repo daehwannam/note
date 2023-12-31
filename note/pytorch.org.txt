@@ -64,3 +64,18 @@ https://discuss.pytorch.org/t/how-to-use-collate-fn/27181
 ** clean_up_tokenization_spaces of PreTrainedTokenizerBase.decode
 ~clean_up_tokenization_spaces~, an argument of ~PreTrainedTokenizerBase.decode~, modifies output text.
 ~decode~ exploits ~PreTrainedTokenizerBase.clean_up_tokenization~.
+
+* the number of GPUs
+#+begin_src python
+import torch
+
+print(torch.cuda.device_count())
+#+end_src
+
+* torch.optim.LRScheduler (or torch.optim._LRScheduler)
+** ~self.last_epoch~
+- ~__init__~ includes ~last_epoch~ as a paremeter, whose default value is -1
+- ~self.last_epoch~ is initialized as the argument for ~last_epoch~
+- ~self.step~ increases ~self.last_epoch~ when it's called
+- In ~__init__~, ~self.step()~ is called;
+  therefore, ~self.last_epoch~ is increased as soon as ~_LRScheduler~ is created

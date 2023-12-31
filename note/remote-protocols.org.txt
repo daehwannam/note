@@ -362,3 +362,5 @@ https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-us
   - NoMachine is free for individual use
 - https://www.reddit.com/r/emacs/comments/r2txoe/comment/hm7n8ys/?utm_source=share&utm_medium=web2x&context=3
   - NoMachine is better than x2go
+** usage of x2go
+- https://www.reddit.com/r/emacs/comments/176bzg1/comment/k4nmmjw/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button

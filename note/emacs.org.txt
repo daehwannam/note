@@ -198,6 +198,9 @@ enable/disable menu-bar
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Regexp-Replace.html
 - '\&': the entire match
 - '\d': the 'd'th parenthesized group in regex. the number starts from 1
+- '\#&': the entire match as a number
+- '\#d': the 'd'th parenthesized group as a number
+- \,(expr): the evaluation of "expr" as the replacemented text
 *** replace numbers with rounded numbers
 https://stackoverflow.com/a/23644015
 #+begin_example
@@ -207,6 +210,16 @@ https://stackoverflow.com/a/23644015
 https://stackoverflow.com/a/23644015
 #+begin_example
 <C-M-%> [0-9]+\.[0-9]+ <RET> \,(format "%0.1f" (* \#& 100)) <RET>
+#+end_example
+*** replace calls of specific functions
+#+begin_example
+Original:     config.accelerator.to_device(model)
+Replacement:  model.to(config.accelerator.device)
+#+end_example
+
+#+begin_example
+<C-M-%> config.accelerator.to_device(\(.*\)) <RET> \,(format "%s.to(config.accelerator.device)" \1) <RET>
+<C-M-%> config.accelerator.to_device(\(.*\)) <RET> \1.to(config.accelerator.device) <RET>
 #+end_example
 *** swap the order of two expressions
 #+begin_example

@@ -99,6 +99,12 @@ print("Formatting with 'str.format' function:")
 print(" - <before>{:20}<after>".format("<inserted>"))
 print(" - <before>{:>20}<after>".format("<inserted>"))
 print(" - <before>{:<20}<after>".format("<inserted>"))
+print()
+print("Formatting with f-string")
+var = '<inserted>'
+print(f" - <before>{var:20}<after>")
+print(f" - <before>{var:>20}<after>")
+print(f" - <before>{var:<20}<after>")
 #+end_src
 
 #+RESULTS:
@@ -109,6 +115,11 @@ Formatting with modulo (%) operator:
  - <before><inserted>          <after>
 
 Formatting with 'str.format' function:
+ - <before><inserted>          <after>
+ - <before>          <inserted><after>
+ - <before><inserted>          <after>
+
+Formatting with f-string
  - <before><inserted>          <after>
  - <before>          <inserted><after>
  - <before><inserted>          <after>

@@ -348,6 +348,40 @@ fi
 
 where we assume that ".conda-env" exists in teh ancestors,
 and ".conda-env" contains a conda environment name, such as "base".
+** counter the number of items separated by commas
+https://stackoverflow.com/a/10817516
+#+begin_src sh
+ITEMS='foo, bar, baz'
+NUM_ITEMS=$(($(echo $ITEMS | tr -cd , | wc -c) + 1))
+echo $NUM_ITEMS
+#+end_src
+
+#+RESULTS:
+: 3
+
+- ~tr -cd ,~ : remove characters except commas (,)
+  - ~-c~ means set complement
+  - ~-d~ means deletion
+- ~wc -c~ : count characters
+  - ~-c~ option means characters
+- ~$((num-of-commas + 1))~ : adding the number of commas and 1
+*** counter the number of items separated by commas
+#+begin_src sh
+ITEMS='foo, bar, baz'
+echo $ITEMS | tr -cd , | wc -c
+#+end_src
+** making comma separated numbers
+https://superuser.com/a/1213183
+#+begin_src bash :results output drawer
+seq -s , 7 12
+#+end_src
+
+#+RESULTS:
+:results:
+7,8,9,10,11,12
+:end:
+
+The ~-s~ option means a separator.
 
 * Configuration of ~/.bashrc
 #+begin_src bash
