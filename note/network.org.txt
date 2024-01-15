@@ -1,4 +1,7 @@
 
+* Port range
+https://superuser.com/a/956238
+
 * Wi-fi (wifi)
 https://blog.rottenwifi.com/ubuntu-connect-to-wifi-terminal/
 ** wifi

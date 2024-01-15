@@ -101,7 +101,12 @@ scontrol show node [running_node_name]
 - n, --ntasks : 실행할 task 개수
 - t, -time : 최대 실행시간
 --gres=gpu : 노드별 gpu 개수
---cpus-per-task 
+--cpus-per-task=n : number of cpus required per task
+--cpus-per-gpu=n : number of CPUs required per allocated GPU
+**** task
+https://stackoverflow.com/a/53759961
+A task in slurm is a process that is executed by srun.
+
 **** srun only
 2 nodes, 2 gpu per node
 

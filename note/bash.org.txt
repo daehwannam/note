@@ -383,6 +383,15 @@ seq -s , 7 12
 
 The ~-s~ option means a separator.
 
+** random number in a range
+https://stackoverflow.com/a/2556282
+
+#+begin_src sh
+# It's an inclusive range, which so contains 49152 and 65535.
+# 49152-65535 is the range of dynamic ports.
+PORT=$(shuf -i 49152-65535 -n 1)
+#+end_src
+
 * Configuration of ~/.bashrc
 #+begin_src bash
 # added by Anaconda3 4.4.0 installer

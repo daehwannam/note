@@ -263,6 +263,13 @@ with state.split_between_processes(["D", "E", "F"], apply_padding=True) as input
 ** AcceleratedOptimizer
 by default, AcceleratedOptimizer adds the number of processes to self.optimizer.last_epoch for each synchronized epoch.
 
+** accelerate.data_loader.prepare_data_loader
+~prepare_data_loader~ returns a replacement of ~torch.utils.data.DataLoader~.
+For example, ~DataLoaderShard~ can replace ~DataLoader~.
+~prepare_data_loader~ calls ~DataLoaderShard.__init__~ which takes ~BatchSamplerShard~ object as the argument for the ~batch_sampler~ parameter for ~DataLoader~, since ~DataLoader~ is the super class of ~DataLoaderShard~.
+The ~BatchSamplerShard.__iter__~ yields indices of examples for batches depending on the ~process_index~.
+Therefore, each process receives different batches of examples.
+
 ** Examples
 *** Accelerator.backward
 Accelerator.backward assumes that loss values on a batch is averaged rather than summed.
@@ -313,4 +320,94 @@ for batch in data_loader:
     print('Parameters: ', tuple(model.parameters()))
 
     break
+#+end_src
+
+*** split_batches
+In the following example, the value of split_batches doesn't change the result.
+
+#+begin_src python
+# CUDA_VISIBLE_DEVICES=0,1 accelerate launch --num_processes 2 accelerate_batch.py
+
+from accelerate import Accelerator
+import torch
+
+
+SPLIT_BATCHES = False
+# SPLIT_BATCHES = True
+accelerator = Accelerator(split_batches=SPLIT_BATCHES, even_batches=False)
+print = accelerator.print
+BATCH_SIZE = accelerator.num_processes * 4 if SPLIT_BATCHES else 4
+
+print('split-batches: ', SPLIT_BATCHES)
+print('batch size: ', BATCH_SIZE)
+
+
+class Model(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.params = torch.nn.Parameter(torch.tensor([1, 2, 3, 4, 5], dtype=torch.float))
+
+    def forward(self, batch):
+        # Note: compute the mean of loss values from examples rather than sum of the values
+
+        # loss = (self.params * batch).sum(dim=1).sum(dim=0)
+        loss = (self.params * batch).sum(dim=1).mean()
+        return loss
+
+
+model = Model()
+
+tensor = torch.tensor([2, 2, 2, 2, 2], dtype=torch.float)
+data_loader = torch.utils.data.DataLoader([tensor] * 32, batch_size=BATCH_SIZE, shuffle=False)
+optimizer = torch.optim.SGD(model.parameters(), lr=1.0)
+
+class PrintingMultiplicativeLR(torch.optim.lr_scheduler.MultiplicativeLR):
+    def get_lr(self):
+        return_value = super().get_lr()
+        print('get_lr :', return_value)
+        return return_value
+
+
+scheduler = PrintingMultiplicativeLR(optimizer, lambda epoch: 0.9)
+
+model, data_loader, optimizer = accelerator.prepare(model, data_loader, optimizer)
+
+for batch in data_loader:
+    loss = model(batch)
+    # print('Batch-size: ', batch.shape[0])
+    # print('Loss: ', loss)
+
+    optimizer.zero_grad()
+    accelerator.backward(loss)
+
+    # print('Gradients: ', tuple(model.parameters())[0].grad)
+
+    optimizer.step()
+    scheduler.step()
+    print('lr: ', scheduler._last_lr)
+    # print('Parameters: ', tuple(model.parameters()))
+
+    # break
+
+print('Parameters: ', tuple(model.parameters()))
+#+end_src
+
+* Error fix
+** Accelerator
+*** RuntimeError: NCCL communicator was aborted on rank 2
+**** Error message
+#+begin_example
+RuntimeError: NCCL communicator was aborted on rank 2.  Original reason for failure was: [Rank 2] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=9, OpType=ALLREDUCE, Timeout(ms)=1800000) ran for 1801740 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:414] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data. To avoid this inconsistency, we are taking the entire process down.
+terminate called after throwing an instance of 'std::runtime_error'
+#+end_example
+
+The error occured when ~accelerate.utils.operations.gather_object~ is called.
+
+**** Solution
+https://github.com/huggingface/accelerate/issues/314#issuecomment-1565259831
+https://stackoverflow.com/a/69695109
+
+#+begin_src bash
+export NCCL_P2P_LEVEL=NVL
 #+end_src
