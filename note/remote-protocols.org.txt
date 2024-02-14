@@ -7,7 +7,7 @@ There are a few linux clients of RDP:
 - freerdp: it's been developed from 2015
 
 Both clients support seamless mode
-*** Windows 10
+** Windows 10 setup
 https://varins.com/library/server/virtual-machine-qemu-kvm/
 Windows 10 should enable "Remote Desktop"
 설정 -> 시스템 -> 원격 데스크톱 -> 원격 데스크톱 활성화
@@ -305,9 +305,11 @@ sudo apt-get install sshfs
   #+end_src
 - mount to server's directory
   #+begin_src sh
-  sshfs -o reconnect user@x.x.x.x:/path/to/server/remote/dir path/to/local/dir
+  sshfs -o reconnect -p 22 user@x.x.x.x:/path/to/server/remote/dir path/to/local/dir
   #+end_src
-  where the option "-o reconnect" reconnects to the server when it's disconnected
+  where
+  - the option "-o reconnect" reconnects to the server when it's disconnected
+  - the option "-p 22" indicates that the port number is 22
 ** enable option 'allow_other'
 https://askubuntu.com/a/309242
 update "/etc/fuse.conf"
@@ -347,6 +349,12 @@ https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-us
   - go next
   - type ID/PW and check "Remember credentials"
 
+* sshfsexec
+https://github.com/ericpruitt/sshfsexec
+** Reference
+- https://www.reddit.com/r/emacs/comments/f29z8b/comment/fhbl70k/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+- https://umarahmad.xyz/blog/editing-remote-code-with-emacs/
+
 * Miscellaneous
 ** Comparison between remote access protocols
 - https://www.reddit.com/r/emacs/comments/ht0n0b/comment/fyfjw3o/?utm_source=share&utm_medium=web2x&context=3
@@ -364,3 +372,4 @@ https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-us
   - NoMachine is better than x2go
 ** usage of x2go
 - https://www.reddit.com/r/emacs/comments/176bzg1/comment/k4nmmjw/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+- https://www.reddit.com/r/emacs/comments/jywdiz/comment/gd9g8gm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button

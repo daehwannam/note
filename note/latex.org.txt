@@ -55,6 +55,7 @@ on this line than it should.
 #+end_example
 *** Finding where overfull occurs
 https://tex.stackexchange.com/a/689200
+https://ubuntudigest.blogspot.com/2013/02/how-to-solve-warnings-and-badboxes-in.html
 
 Use ~draft~ option:
 
@@ -108,6 +109,10 @@ https://www.canterbury.ac.nz/media/documents/research/latex_figures.pdf
   \draw[help lines, blue] (-5, -2) grid (5, 2);
 \end{tikzpicture}
 #+end_src
+
+** Reference
+*** pgfplots gallery
+https://pgfplots.sourceforge.net/gallery.html
 
 * latexmk
 http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkflow
@@ -287,6 +292,79 @@ https://stackoverflow.com/a/1014261
 
 #+begin_src latex
 \mbox{\(A \rightarrow B\)}
+#+end_src
+** \RequirePackage vs. \usepackage
+https://tex.stackexchange.com/a/19929
+
+"The only difference is that \usepackage cannot be used before \documentclass.
+Otherwise there is no functional difference."
+** Check a command is defined or not
+https://tex.stackexchange.com/a/30486
+
+#+begin_src latex
+\@ifundefined{foo}
+{
+  % \foo not defined
+}
+{
+  % \foo defined
+}
+#+end_src
+** Change the subscript size
+*** Entire font
+https://tex.stackexchange.com/a/8448
+https://tex.stackexchange.com/a/341725
+#+begin_src latex
+\RequirePackage{fix-cm}
+% \usepackage{fix-cm}
+\DeclareMathSizes{10}{10}{7}{4}
+#+end_src
+*** Specific text only
+https://tex.stackexchange.com/a/341722
+#+begin_src latex
+\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+$a_{b_c}$
+$a_{b_{\scalebox{.7}{c}}}$
+\end{document}
+#+end_src
+** Computing a math expression
+*** using xfp package
+https://tex.stackexchange.com/a/492915
+#+begin_src latex
+\documentclass{article}
+\usepackage{xfp}
+\begin{document}
+\fpeval{((1 + 2) * 3) / 2}            % 4.5
+\inteval{((1 + 2) * 3) / 2}           % 4
+\end{document}
+#+end_src
+*** using ~\numexpr~
+https://tex.stackexchange.com/a/206801
+#+begin_src latex
+\documentclass{article}
+\begin{document}
+\the\numexpr 10 * (20 + 1) / 2 \relax
+\end{document}
+#+end_src
+** number comparison
+#+begin_src latex
+% Example of using \foreach and \ifnum :
+% https://tex.stackexchange.com/a/16352
+
+\documentclass{minimal}
+\usepackage{pgffor}
+
+\begin{document}
+\foreach \n [count=\ni] in {a,...,e} {% Comment signs at end of line to avoid
+    \ifnum\ni=1%                        unwanted whitespace.
+        \n%
+    \else%
+        --\n%
+    \fi%
+}
+\end{document}
 #+end_src
 
 * Custom commands

@@ -184,7 +184,10 @@ https://www.gnu.org/software/emacs/manual/html_node/elisp/Breakpoints.html
   - type C-M-x, then debugger starts inside a function evaluated by "C-u C-M-x"
   - or type C-u C-M-x, then debugger starts from the s-expression, rather then inside the function
 *** error: Don’t know where ‘some-function’ is defined
-to debug the inside of a function, the function should be evaluated with C-M-x
+- to debug the inside of a function, the function should be evaluated with C-u C-M-x,
+- you can also automatically [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Instrumenting.html][instrument]] a definition by calling the function "edebug-all-defs"
+  to set the variable "edebug-all-defs" as "t", then you can use C-M-x instead of C-u C-M-x.
+- C-u C-M-x does not work for functions, which is defined by "defun", inside "progn".
 *** edebug-all-defs
 - M-x edebug-all-defs toggles the value of the variable edebug-all-defs
 - when edebug-all-defs is true, you can debug an interactive command by M-x some-command
