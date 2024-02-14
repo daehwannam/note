@@ -310,9 +310,14 @@ sudo apt-get install sshfs
   where
   - the option "-o reconnect" reconnects to the server when it's disconnected
   - the option "-p 22" indicates that the port number is 22
-** enable option 'allow_other'
+** enable the option 'allow_other'
 https://askubuntu.com/a/309242
-update "/etc/fuse.conf"
+https://superuser.com/a/262800
+https://velog.io/@tkfrn4799/Ubuntu-sshfs-%EC%84%9C%EB%B2%84-%EA%B0%84-%EA%B3%B5%EC%9C%A0-%ED%8F%B4%EB%8D%94-%EC%84%A4%EC%A0%95
+
+sshfs has the option "-o allow_other" for allowing other users to access the mounted directory.
+To use the option, you should update "/etc/fuse.conf" by adding "user_allow_other"; otherwise, "fusermount" error can occur.
+
 #+begin_src sh
 user_allow_other
 #+end_src
