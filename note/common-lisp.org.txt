@@ -425,6 +425,7 @@ You can change the list of system locations
 If a system is not located in the default system locations, you should first load its .asd file.
 #+begin_src lisp
 (asdf:load-asd #P"/home/dhnam/data/study/on-lisp-with-note/on-lisp.asd")
+;; (load #P"/home/dhnam/data/study/on-lisp-with-note/on-lisp.asd")
 #+end_src
 
 In Emacs, you can instead run "M-x slime-compile-and-load-file" in the buffer of .asd file.
@@ -432,7 +433,7 @@ In Emacs, you can instead run "M-x slime-compile-and-load-file" in the buffer of
 https://lispcookbook.github.io/cl-cookbook/getting-started.html#advanced-dependencies-management
 
 Before loading a system,
-- its .asd file should be loaded beforehand or
+- its .asd file should be loaded beforehand by using ~asdf:load-asd~ or
 - the system (or symbolic link to the system) should be located in the default system locations
   - such as "~/common-lisp"
 
@@ -452,6 +453,15 @@ https://stackoverflow.com/a/29544905
 #+begin_example
 ~/quicklisp/dists/quicklisp/software
 #+end_example
+***** install & uninstall a system
+https://www.quicklisp.org/beta/
+#+begin_src lisp
+(let ((system-name "alexandria"))
+  ;; install
+  (ql:quickload system-name)
+  ;; uninstall
+  (ql:uninstall system-name))
+#+end_src
 **** switching to a package defined by a system
 Change the current package by "in-package" macro:
 #+begin_src lisp
