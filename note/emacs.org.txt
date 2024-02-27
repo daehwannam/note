@@ -476,6 +476,9 @@ cd /tmp
 wget https://github.com/emacs-mirror/emacs/archive/emacs-25.3.zip
 unzip emacs-25.3.zip
 cp -R emacs-emacs-25.3/lisp/* /usr/share/emacs/25.3/lisp
+*** Emacs 29 for X-support
+https://emacs.stackexchange.com/a/76609
+X-support is important for EXWM
 ** Install emacs with snap
 it's compiled with native-comp option
 https://www.reddit.com/r/emacs/comments/ob5pzw/comment/h3ne358/?utm_source=share&utm_medium=web2x&context=3

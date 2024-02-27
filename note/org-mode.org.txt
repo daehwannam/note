@@ -349,6 +349,9 @@ Start the org file with the following in-buffer settings
 - #+STARTUP: indent
 - #+STARTUP: noindent
 
+* Citation
+https://amerygration.com/Blog/citation_handling_in_emacs.html
+
 * Beamer
 ** Example
 https://orgmode.org/manual/A-Beamer-example.html
