@@ -522,3 +522,50 @@ Use "-z" option or GDK_SCALE variable
 ** Android x86
 *** example
 https://hamonikr.org/board_bFBk25/105775
+
+** Waydroid
+*** Session start stop
+#+begin_src sh
+waydroid session start
+waydroid session stop
+#+end_src
+*** Google PlayStore setup
+https://www.youtube.com/watch?v=vERltPrX2PQ
+
+Install an image:
+#+begin_src sh
+sudo waydroid init -s GAPPS -f
+waydroid session start
+#+end_src
+
+Get the android ID:
+#+begin_src sh
+sudo waydroid shell
+ANDROID_RUNTIME_ROOT=/apex/com.android.runtime sqlite3 /data/data/com.google.android.gsf/databases/gservices.db "select * from main where name = \"android_id\";"
+#+end_src
+
+You can see ~android_id~ .
+Register the id in the [[https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbWdYTUQ0UTNDekY2bzR3d2pBQk1qNHZyR1dId3xBQ3Jtc0tteHpSOVFaZXM4cldhM3ZQTW9yeC1FVTQ2S3pqS2p3Sk83QWdrV0VPUGtCbmdLM0hqR0l1MWcwYVpYeWJVQzNoclRBVkp0MW9mdk5VTzRUR3E5ZDNnRTI2SzFuSWpaTzFROVZEbG15V29PSV9acXl6Zw&q=https%3A%2F%2Fwww.google.com%2Fandroid%2Funcertified%2F&v=vERltPrX2PQ][android certificate site]]
+
+Restart waydroid:
+#+begin_src sh
+waydroid session stop
+waydroid session start
+#+end_src
+
+*** Error fix: This app won't work on your device
+https://github.com/waydroid/waydroid/issues/1057
+
+- Setup the script
+  https://github.com/casualsnek/waydroid_script?tab=readme-ov-file#interactive-terminal-interface
+  #+begin_src sh
+  git clone https://github.com/casualsnek/waydroid_script
+  cd waydroid_script
+  python3 -m venv venv
+  venv/bin/pip install -r requirements.txt
+  #+end_src
+- Install
+  https://github.com/casualsnek/waydroid_script#install-libndk-arm-translation
+  #+begin_src sh
+  sudo venv/bin/python3 main.py install libndk
+  #+end_src

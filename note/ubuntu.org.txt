@@ -455,6 +455,13 @@ where path of "Exec" should be an absolute path.
 https://askubuntu.com/a/992337
 Settings -> Privacy -> File History & Trash
 
+** run gnome in wayland
+https://stackoverflow.com/a/38546347
+
+#+begin_src sh
+dbus-run-session -- gnome-shell --display-server --wayland
+#+end_src
+
 * error fix
 ** /sbin/init: No such file or directory
 /etc/init: Permission denied
