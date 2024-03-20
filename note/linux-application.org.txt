@@ -266,6 +266,14 @@ Windows key + CTRL + Q = Quit recording.
 sudo apt install peek
 #+end_src
 
+** obs
+*** running in wayland
+https://bbs.archlinux.org/viewtopic.php?pid=2077236#p2077236
+
+#+begin_src sh
+QT_QPA_PLATFORM=xcb obs
+#+end_src
+
 * Video editing
 ** kdenlive
 *** install
