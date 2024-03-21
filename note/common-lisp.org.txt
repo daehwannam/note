@@ -515,7 +515,7 @@ definition of intern like:
         s)))
 #+end_src
 ***** find-symbol
-It finds a symbol is intered in a package
+It finds a symbol is interned in a package
 
 #+begin_src lisp
 ;; (find-symbol "symbol-name" :package-name)

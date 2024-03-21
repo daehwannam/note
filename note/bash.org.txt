@@ -283,6 +283,13 @@ realpath --relative-to=/usr/bin/nmap /tmp/testing
 #+RESULTS:
 : ../../../tmp/testing
 
+** get an absolute path
+https://stackoverflow.com/a/26727223
+
+#+begin_src sh
+realpath -s path/to/file
+#+end_src
+
 ** exit bash script
 https://stackoverflow.com/a/1378284
 

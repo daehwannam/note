@@ -31,19 +31,27 @@
   #+end_src
 
 ** Install packages
-- install pip
-  https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
-  #+begin_src sh
-  conda install pip
-  #+end_src
-- search specific version
-  #+begin_src sh
-  conda search spacy
-  #+end_src
-- install specific package
-  #+begin_src sh
-  conda install spacy=2.2.3
-  #+end_src
+*** install pip
+https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
+#+begin_src sh
+conda install pip
+#+end_src
+*** search specific version
+#+begin_src sh
+conda search spacy
+#+end_src
+*** install specific package
+#+begin_src sh
+conda install spacy=2.2.3
+#+end_src
+*** install a specific package via conda-forge
+#+begin_src sh
+conda install conda-forge::emacs=27.2
+#+end_src
+**** remove a package installed via conda-forge
+#+begin_src sh
+conda remove emacs=27.2
+#+end_src
 
 * Conda environment
 ** install / delete / update

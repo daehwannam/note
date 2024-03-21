@@ -271,6 +271,7 @@ sys.path.insert(0, str(project_path))
 #+end_src
 **** code block example
 https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block
+
 ** Type hints
 *** Type hints with types that are not defined yet
 https://stackoverflow.com/a/39757388
@@ -301,6 +302,12 @@ if TYPE_CHECKING:
 def func(tensor: 'Tensor'):
     pass
 #+end_src
+
+** decorator
+*** class as an decorator
+https://stackoverflow.com/a/17705456
+
+Use ~functools.update_wrapper~.
 
 * Hy language
 ** emacs hy-mode
