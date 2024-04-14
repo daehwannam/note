@@ -493,6 +493,10 @@ pip uninstall "transformers[sentencepiece]==4.23.1"
 #+begin_src sh
 pip freeze > requirements.txt
 #+end_src
+** show the information of an installed package
+#+begin_src sh
+pip show tqdm
+#+end_src
 
 * pdb
 ** pdb command
