@@ -1000,3 +1000,11 @@ tar -xvf archive.tar.gz
 #+begin_src sh
 tar -xf archive.tar.gz -C some/path/to/a/diredctory
 #+end_src
+
+** quota
+#+begin_src sh
+quota -s
+#+end_src
+
+- space: the amount of remaining disk space
+- quota: the amount of maximum allowed disk space
