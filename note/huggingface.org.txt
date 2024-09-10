@@ -169,6 +169,13 @@ return all_non_special_tokens
 ~GPT2Tokenizer~ has has attributes named as ~encoder~ and ~decoder~ which are dictionaries
 that map tokens to ids and ids to tokens respectively.
 ~GPT2Tokenizer._convert_id_to_token~ exploits ~encoder~ and ~decoder~.
+** T5Tokenizer example
+#+begin_src python
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+tokenizer = T5Tokenizer.from_pretrained("google-t5/t5-small")
+tokenizer.tokenize("I like an apple and want to eat it.")
+# ['▁I', '▁like', '▁an', '▁apple', '▁and', '▁want', '▁to', '▁', 'eat', '▁it', '.']
+#+end_src
 
 * PreTrainedModel
 ** resize_token_embeddings

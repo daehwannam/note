@@ -467,6 +467,8 @@ https://github.com/kovidgoyal/kitty
 *** shortcuts
 - Copy: ctrl + shift + c
 - Paste: ctrl + shift + v / shift + insert
+- Font size increase: ctrl + shift + "+"
+- Font size decrease: ctrl + shift + "-"
 *** config
 update "~/.config/kitty/kitty.conf"
 **** font
