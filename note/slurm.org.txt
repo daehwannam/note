@@ -96,10 +96,10 @@ scontrol show node [running_node_name]
 - batch: run batch script with resources
 *** Interactive run
 [srun/salloc options]
-- p : partition 지정
-- N : 총 할당받을 노드개수
-- n, --ntasks : 실행할 task 개수
-- t, -time : 최대 실행시간
+-p : partition 지정
+-N : 총 할당받을 노드개수
+-n, --ntasks : 실행할 task 개수
+-t, -time : 최대 실행시간
 --gres=gpu : 노드별 gpu 개수
 --cpus-per-task=n : number of cpus required per task
 --cpus-per-gpu=n : number of CPUs required per allocated GPU
@@ -242,6 +242,16 @@ python -m run.train "$@"
 ***** execution
 #+begin_src bash
 sbatch sbatch-3090.sh run-train.sh arg1 arg2 arg3
+#+end_src
+
+*** Options
+**** --exclude
+https://stackoverflow.com/a/26246348
+
+#+begin_src sh
+sbatch --exclude=myCluster[01-05] myScript.sh
+sbatch --exclude=myCluster01,myCluster02,myCluster03,myCluster04,myCluster05 myScript.sh
+sbatch --exclude=myCluster[01-02],myCluster[03-05] myScript.sh
 #+end_src
 
 ** Stop jobs

@@ -310,6 +310,13 @@ source ~/.bashrc
 ln -s /path/to/file /path/to/link
 #+end_src
 
+*** relative symbolic link
+https://superuser.com/a/837935
+
+#+begin_src sh
+ln -rs path/to/file path/to/new/link
+#+end_src
+
 ** simple commands
 - <ls -lh> to see the detail sizes of files
 
@@ -405,6 +412,20 @@ https://en.wikipedia.org/wiki/Chmod
   e.g. ~#!/bin/bash~
   e.g. ~#!/home/user/program/miniconda3/envs/default/bin/python~
   CAUTION: no space is needed between shebang and the program path
+*** ugoa
+
+The explanation of "ugoa" options from "man chmod"
+
+#+begin_example
+A  combination  of the letters ugoa controls which users' access to the file will be changed:
+the user who owns it  (u),
+other  users  in  the file's group (g),
+other users not in the file's group (o),
+or all users (a).
+
+If none of these are given, the effect is as if (a)  were  given,
+but bits that are set in the umask are not affected.
+#+end_example
 
 ** env
 "env" runs a program in the current environment.
@@ -999,4 +1020,26 @@ tar -xvf archive.tar.gz
 *** extracta a file into a specific location
 #+begin_src sh
 tar -xf archive.tar.gz -C some/path/to/a/diredctory
+#+end_src
+
+** quota
+#+begin_src sh
+quota -s
+#+end_src
+
+- space: the amount of remaining disk space
+- quota: the amount of maximum allowed disk space
+
+** /proc/cpuinfo
+To find the CPU information, print =/proc/cpuinfo=
+#+begin_src sh
+cat /proc/cpuinfo
+#+end_src
+
+** nvidia-smi -q
+https://askubuntu.com/a/929163
+
+To print GPU information,
+#+begin_src 
+nvidia-smi -q
 #+end_src

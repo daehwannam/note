@@ -316,7 +316,28 @@ http://xahlee.info/linux/linux_feh_image_viewer_keyboard_shortcuts.html
 *** AB loop repeat
 - View -> Advanced Controls
 - Shif-L or "AB" button to set a region
+*** Jump time configuration
+https://askubuntu.com/a/618391
+
+- Menu -> Tools -> Preferences
+- Click "All" in "Show settings" located in the bottom left corner
+- Interface -> Hotkeys settings
+- You can change "jump sizes"
 ** MPlayer
+** mpv
+https://mpv.io/manual/master/
+*** user-specific config location
+https://mpv.io/manual/master/#files-~/-config/mpv/input-conf
+
+- ~/.config/mpv/mpv.conf
+- ~/.config/mpv/input.conf
+*** example config for seek time
+https://github.com/mpv-player/mpv/blob/master/etc/input.conf#L47-L57
+https://github.com/mpv-player/mpv/issues/4396#issuecomment-1252020397
+*** ab-loop
+https://www.reddit.com/r/mpv/comments/jt0aho/comment/gc3pwfr/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+The default key is "l"
 
 * Music player
 ** vlc
@@ -437,7 +458,8 @@ sudo apt install evince
 - example
   https://askubuntu.com/a/672001
   #+begin_src sh
-  qpdf input.pdf --pages . 1-10 -- output.pdf
+  qpdf input.pdf --pages . 1-20,26-32 -- output.pdf
+  # Pages from 1 to 20 and 26 to 32
   #+end_src
 *** qpdf vs. pdftk
 https://en.wikipedia.org/wiki/QPDF

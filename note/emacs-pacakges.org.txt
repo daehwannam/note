@@ -73,3 +73,15 @@ It list the available commands when running ~TeX-command-master~.
      TeX-run-TeX nil
      (latex-mode doctex-mode) :help "Run LaTeX")))
 #+end_src
+
+* Ivy Posframe
+** post-command-hook
+When typing a character in an ivy buffer, which is a mini-buffer, the buffer is updated by ivy functions that are registered in "post-command-hook".
+However, CJK characters by the input method do not call "self-insert-command", so an ivy buffer is not updated while typing CJK characters.
+
+*** Related
+**** Problem of CJK
+https://github.com/tumashu/ivy-posframe/issues/120#issuecomment-1014601764
+https://www.reddit.com/r/emacs/comments/17p5mqe/comment/k88c8vi/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+**** Emacs with fcitx
+https://www.reddit.com/r/emacs/comments/mtk3av/comment/gv363l2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button

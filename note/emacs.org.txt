@@ -251,6 +251,21 @@ clone the current buffer to the other window
 - ibuffer-do-save (S)
 ** unhighlight-regexp
 To unhighlight all regexp, type ~C-u M-x unhighlight-regexp~ .
+** key events
+https://emacs.stackexchange.com/a/2626
+#+begin_src elisp :results drawer
+(list
+ (kbd "C-v")                              ; ^V
+ (aref (kbd "C-v") 0)                     ; 22
+ (help-key-description [22] nil)          ; C-v
+ (help-key-description (kbd "C-v") nil))  ; C-v
+#+end_src
+
+#+RESULTS:
+:results:
+( 22 C-v C-v)
+:end:
+
 * My command
 ** xah-open-in-external-app
 it opens a file with an external program within dired-mode.

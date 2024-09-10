@@ -277,6 +277,11 @@ For example, ~DataLoaderShard~ can replace ~DataLoader~.
 The ~BatchSamplerShard.__iter__~ yields indices of examples for batches depending on the ~process_index~.
 Therefore, each process receives different batches of examples.
 
+** process_index
+=Accelerator= and =PartialState= has =process_index= as an property,
+which can be considered as an identifier.
+=process_index= ranges from 0 to (N - 1) where N is the number of processes.
+
 ** Examples
 *** Accelerator.backward
 Accelerator.backward assumes that loss values on a batch is averaged rather than summed.
