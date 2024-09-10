@@ -27,3 +27,13 @@ https://www.howtogeek.com/715691/the-fastest-way-to-free-up-space-in-gmail/
 - search mails with "size:XXmb"
   e.g. size:100MB
 - then remove the mails
+
+** All Mail as Inbox
+https://webapps.stackexchange.com/a/27228
+
+- Settings
+- Inbox
+- Inbox type: Multiple Inboxes
+- Section 1: (-in:trash OR in:spam) AND -in:sent AND -in:draft
+
+where "-in:trash -in:sent" means emails that are not in Trash and not in Sent.

@@ -325,6 +325,15 @@ user_allow_other
 #+begin_src sh
 umount path/to/local/dir
 #+end_src
+** multi-hop
+https://unix.stackexchange.com/a/495851
+
+#+begin_src sh
+sshfs -o reconnect -o ssh_command='ssh -J first-user@first.host:60001,second-user@second.host:60002' -p 60003 final-user@final.host:remote/path/to/dir local/path/to/dir
+#+end_src
+
+where 60001, 60002 and 60003 are the ports to the first host, the second host and the final host.
+
 ** sshfs for Windows
 https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-using-sshfs-e29c7ca81c87
 
@@ -353,6 +362,25 @@ https://medium.com/@danielmarinomirallestaset/mounting-linux-fs-in-windows-10-us
   - check "Reconnect" and "Use different credentials"
   - go next
   - type ID/PW and check "Remember credentials"
+
+** rm -R command
+When "rm -R some-dir" is executed and "some-dir" contains a directory mounted to a remote location via sshfs,
+the "rm -R" command removes all files in the remote location.
+
+To prevent removing the remote files mistakenly,
+Make a write-protected directory and locates a mount position in the directory.
+For example,
+#+begin_src sh
+mkdir -p path/to/protected
+chmod -w path/to/protected
+mkdir -p path/to/protected/local-dir
+
+sshfs -o reconnect -p 22 user@x.x.x.x:/path/to/server/remote-dir path/to/protected/local-dir
+#+end_src
+
+when you mistakenly run =rm -R path/to/protected=, you can see the following message:
+"rm: descend into write-protected directory 'model-info'?",
+then type "n" not to remove the directory.
 
 * sshfsexec
 https://github.com/ericpruitt/sshfsexec

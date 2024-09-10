@@ -367,6 +367,27 @@ https://tex.stackexchange.com/a/206801
 \end{document}
 #+end_src
 
+** Specifying the minimum width of a colum for tabular
+https://tex.stackexchange.com/a/478055
+
+** Centering X columns for tabularx
+https://tex.stackexchange.com/a/89932
+
+** \newcommand in a definition of \newcommand
+https://tex.stackexchange.com/a/416775
+
+In an inner definition, ## is used instead of #
+
+** Math symbol list
+https://www.math.toronto.edu/mathit/symbols-letter.pdf
+
+** short captions for figures in \listoffigures
+https://tex.stackexchange.com/a/11580
+
+#+begin_src latex
+\caption[Short version for LoF]{Long version to appear next to the figure}
+#+end_src
+
 * Custom commands
 ** denotation definition
 % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
