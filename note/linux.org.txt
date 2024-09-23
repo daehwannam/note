@@ -269,6 +269,7 @@ you can resume the transmision since --partial save the incomplete transferred f
 
 **** rsync use checksum by default after transmision
 https://stackoverflow.com/q/17772448
+
 ** ps
 - list all options
   #+begin_src sh
@@ -291,6 +292,13 @@ https://stackoverflow.com/q/17772448
   note:
   - NR>1 : skip the first row
   - {print $1} : print the first field
+
+** awk
+*** Replacing space between columns
+https://stackoverflow.com/a/69221718
+#+begin_src sh
+ps |  awk '{printf "%s|%s|%s|%s\n",$1,$2,$3,$4}'
+#+end_src
 
 ** alias
 ex)
@@ -828,6 +836,48 @@ udisksctl unmount -b /dev/sdb1
 #+begin_src bash
 udisksctl info -b /dev/sdb
 #+end_src
+** mkfs
+*** initializing a disk
+#+begin_src sh
+# List disk partitions
+lsblk -o name,mountpoint,label,size,uuid | grep -v loop
+
+# Formatting a disk partition into Ext4
+mkfs.ntfs /dev/sdd1
+mkfs.ext4 /dev/sdd1
+#+end_src
+
+For exFAT, you may need to install some package
+#+begin_src sh
+sudo apt install exfat-utils
+
+mkfs.exfat /dev/sdd1
+#+end_src
+
+**** Error fix when being stuck at "Creating journal (262144 blocks)"
+https://serverfault.com/a/965428
+
+#+begin_example
+sudo fdisk /dev/sda
+n
+p
+*defaults. Press enter all the way through*
+w
+#+end_example
+** gparted
+Managing partitions in GUI
+
+*** install
+#+begin_src sh
+sudo apt-get install gparted
+#+end_src
+
+*** run
+#+begin_src sh
+sudo gparted
+#+end_src
+** labeling disks
+https://askubuntu.com/a/1103592
 ** xte
 *** toggle Caps Lock
 https://askubuntu.com/a/607915

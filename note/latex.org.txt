@@ -388,6 +388,34 @@ https://tex.stackexchange.com/a/11580
 \caption[Short version for LoF]{Long version to appear next to the figure}
 #+end_src
 
+** Finding the current font
+https://www.reddit.com/r/LaTeX/comments/11nrgyj/comment/jbp6khu/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+#+begin_src latex
+\documentclass{article}
+
+\makeatletter
+\newcommand{\showfont}{
+  \begin{itemize}
+  \item encoding: \f@encoding{}
+  \item family: \f@family{}
+  \item series: \f@series{}
+  \item shape: \f@shape{}
+  \item size: \f@size{}
+  \end{itemize}
+}
+\makeatother
+
+\begin{document}
+
+Current font: \showfont
+
+\end{document}
+#+end_src
+
+You can also check the "family" to find the full name of a font:
+https://www.overleaf.com/learn/latex/Font_typefaces
+
 * Custom commands
 ** denotation definition
 % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
