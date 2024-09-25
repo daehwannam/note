@@ -843,22 +843,24 @@ udisksctl info -b /dev/sdb
 lsblk -o name,mountpoint,label,size,uuid | grep -v loop
 
 # Formatting a disk partition into Ext4
-mkfs.ntfs /dev/sdd1
-mkfs.ext4 /dev/sdd1
+mkfs.ntfs /dev/sdx1
+mkfs.ext4 /dev/sdx1
 #+end_src
 
 For exFAT, you may need to install some package
 #+begin_src sh
 sudo apt install exfat-utils
+# or
+sudo apt install exfatprogs
 
-mkfs.exfat /dev/sdd1
+mkfs.exfat /dev/sdx1
 #+end_src
 
 **** Error fix when being stuck at "Creating journal (262144 blocks)"
 https://serverfault.com/a/965428
 
 #+begin_example
-sudo fdisk /dev/sda
+sudo fdisk /dev/sdx
 n
 p
 *defaults. Press enter all the way through*
