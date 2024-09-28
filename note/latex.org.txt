@@ -416,6 +416,15 @@ Current font: \showfont
 You can also check the "family" to find the full name of a font:
 https://www.overleaf.com/learn/latex/Font_typefaces
 
+** providecommand
+https://latexref.xyz/_005cprovidecommand.html
+https://tex.stackexchange.com/a/2435
+
+providecommand defines command when it's not defined yet.
+
+** TeX-toggle-debug-bad-boxes
+It enables or disables to show BAD BOX errors.
+
 * Custom commands
 ** denotation definition
 % https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
