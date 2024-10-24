@@ -128,7 +128,14 @@ conda install -c conda-forge gtk3
 - install HWP from .deb file
   https://nooree.com/74
   - download .deb file
-    https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
+    - https://drive.google.com/file/d/1aZCLTv8HVPIWRXFtNx8X1xx-AoI9TwSH/view?usp=sharing
+    - https://gall.dcinside.com/mgallery/board/view/?id=github&no=15657
+      - deb package:
+        - 한글: https://yadi.sk/d/G4vRRdsLZznPng
+        - 한글, 한셀, 한쇼 뷰어: https://yadi.sk/d/Oc2w9aWgwF-I7g
+      - 아치:
+        - 한글: https://yadi.sk/d/5FOOnQCv_5ittw
+        - 한글, 한셀, 한쇼 뷰어: https://yadi.sk/d/OUqRxYDh5LLlnQ
   - install .deb file
     #+begin_src sh
     sudo dpkg -i hoffice-hwp_11.20.0.989_amd64.deb
