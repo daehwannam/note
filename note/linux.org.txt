@@ -843,8 +843,8 @@ udisksctl info -b /dev/sdb
 lsblk -o name,mountpoint,label,size,uuid | grep -v loop
 
 # Formatting a disk partition into Ext4
-mkfs.ntfs /dev/sdx1
-mkfs.ext4 /dev/sdx1
+mkfs.ntfs -L <LABEL> /dev/sdx1
+mkfs.ext4 -L <LABEL> /dev/sdx1
 #+end_src
 
 For exFAT, you may need to install some package
@@ -853,7 +853,7 @@ sudo apt install exfat-utils
 # or
 sudo apt install exfatprogs
 
-mkfs.exfat /dev/sdx1
+mkfs.exfat -n <LABEL> /dev/sdx1
 #+end_src
 
 **** Error fix when being stuck at "Creating journal (262144 blocks)"
@@ -1060,16 +1060,32 @@ https://modules.readthedocs.io/en/latest/cookbook/modulepaths-persist-over-sudo.
 echo $MODULEPATH
 #+end_src
 ** tar
-*** extract .xz , .gz , ...
+*** compress
+https://www.howtogeek.com/248780/how-to-compress-and-extract-files-using-the-tar-command-on-linux/
+**** compress with gzip
+#+begin_src sh
+tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+#+end_src
+
+-c: Create an archive.
+-z: Compress the archive with gzip.
+-v: Display progress in the terminal while creating the archive, also known as "verbose" mode. The v is always optional in these commands, but it's helpful.
+-f: Allows you to specify the filename of the archive.
+**** compress with bzip2
+#+begin_src sh
+tar -cjvf archive.tar.bz2 /path/to/directory-or-file
+#+end_src
+*** extract
+**** extract .xz , .gz , ...
 #+begin_src sh
 tar -xf archive.tar.xz
 tar -xf archive.tar.gz
 #+end_src
-*** extract a file with verbose option
+**** extract a file with verbose option
 #+begin_src sh
 tar -xvf archive.tar.gz
 #+end_src
-*** extracta a file into a specific location
+**** extracta a file into a specific location
 #+begin_src sh
 tar -xf archive.tar.gz -C some/path/to/a/diredctory
 #+end_src
