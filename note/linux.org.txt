@@ -1108,6 +1108,29 @@ cat /proc/cpuinfo
 https://askubuntu.com/a/929163
 
 To print GPU information,
-#+begin_src 
+#+begin_src sh
 nvidia-smi -q
 #+end_src
+
+** lsusb
+https://winterbloooom.github.io/computer%20science/linux/2022/01/10/symbolic_link.html
+
+#+begin_src sh :results drawer
+lsusb
+#+end_src
+
+#+RESULTS:
+:results:
+Bus 002 Device 002: ID 0bda:8153 Realtek Semiconductor Corp. RTL8153 Gigabit Ethernet Adapter
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 032: ID 1c7a:0570 LighTuning Technology Inc. EgisTec Touch Fingerprint Sensor
+Bus 001 Device 006: ID 0bda:0129 Realtek Semiconductor Corp. RTS5129 Card Reader Controller
+Bus 001 Device 005: ID 0bda:5621 Realtek Semiconductor Corp. HD WebCam
+Bus 001 Device 004: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Bus 001 Device 003: ID 05af:0802 Jing-Mold Enterprise Co., Ltd USB Keyboard
+Bus 001 Device 002: ID 046d:c542 Logitech, Inc. Wireless Receiver
+Bus 001 Device 033: ID 04e8:1f06 Samsung Electronics Co., Ltd HX-MU064DA portable harddisk
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+:end:
+
+where 04e8:1f06 means <vendor-id>:<product-id>.

@@ -90,6 +90,13 @@ xfreerdp /f /u:USERNAME /v:HOST[:PORT]  # without passwd in the command
 *** usage
 - toogle between client and server
   Ctrl+Alt+Enter
+*** usb redirection
+#+begin_src sh
+sudo xfreerdp /dynamic-resolution /u:user /v:ip.adress.com:22 /usb:id,dev:02a8:1b03
+sudo xfreerdp /dynamic-resolution /u:user /v:ip.adress.com:22 /usb:auto
+#+end_src
+
+The usb id "02a8:1b03" can be aquired from "lsusb".
 ** xrdp
 https://ko.linux-console.net/?p=393
 xrdp is a server program for rdp

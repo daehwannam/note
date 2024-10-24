@@ -472,11 +472,13 @@ https://www.youtube.com/watch?v=SSQxrgE_rjg
 https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest
 
 - shutdown VM
-- click "Show virtual hardware details"
+- run virt-manager
+- select a virtual image
+- click "Show virtual hardware details" (a button with "i" surounded by a blue circle)
 - click "Add Hardware" at the left bottom
 - click "USB Host Device" and select your device
 - run VM
-- clic "Virtual Machine" -> "Redirect USB device" -> select device
+- click "Virtual Machine" -> "Redirect USB device" -> select device
 *** find guest's IP
 https://www.cyberciti.biz/faq/find-ip-address-of-linux-kvm-guest-virtual-machine/
 #+begin_src sh
