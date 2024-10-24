@@ -467,6 +467,20 @@ https://en.wikipedia.org/wiki/PDFtk
 
 qpdf is newer than pdftk, and qpdf is updated frequently.
 
+* Image to PDF
+** img2pdf
+*** Install
+#+begin_src sh
+sudo apt install img2pdf
+#+end_src
+
+*** Usage
+https://stackoverflow.com/a/8955457
+#+begin_src sh
+img2pdf img1.png img2.jpg -o out.pdf
+img2pdf img*.jpg -o out.pdf
+#+end_src
+
 * terminal emulator
 ** xterm-256color
 you can update "~/.bashrc" for xterm-256color but it may cause trouble with "M-x shell" or "M-x ansi-term"
