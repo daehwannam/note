@@ -103,6 +103,9 @@ It's a GUI tool for managing virtual machines, although kvm commands can do too
 *** install guest Windows
 https://www.youtube.com/watch?v=RLy1zozJ9W0
 https://dennisnotes.com/note/20180614-ubuntu-18.04-qemu-setup/
+https://linuxhint.com/install_virtio_drivers_kvm_qemu_windows_vm/
+
+- "virtio-win.iso" from Fedora is needed to install Virtio Drivers.
 - qcow2 vs. rwa(.img)
   - qcow2 support features like live snapshots
   - raw format is faster
