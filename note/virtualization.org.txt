@@ -474,14 +474,16 @@ https://superuser.com/a/1452377
 https://www.youtube.com/watch?v=SSQxrgE_rjg
 https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest
 
-- shutdown VM
-- run virt-manager
-- select a virtual image
-- click "Show virtual hardware details" (a button with "i" surounded by a blue circle)
-- click "Add Hardware" at the left bottom
-- click "USB Host Device" and select your device
-- run VM
-- click "Virtual Machine" -> "Redirect USB device" -> select device
+- Method 1
+  - shutdown VM
+  - run virt-manager
+  - select a virtual image
+  - click "Show virtual hardware details" (a button with "i" surounded by a blue circle)
+  - click "Add Hardware" at the left bottom
+  - click "USB Host Device" and select your device
+  - run VM
+- Method 2
+  - click "Virtual Machine" -> "Redirect USB device" -> select a device
 *** find guest's IP
 https://www.cyberciti.biz/faq/find-ip-address-of-linux-kvm-guest-virtual-machine/
 #+begin_src sh
@@ -522,6 +524,24 @@ Use "-z" option or GDK_SCALE variable
   # GDK_SCALE=2 virt-viewer --domain-name my-vn
   # GDK_DPI_SCALE=1.5 virt-viewer --domain-name my-vn
   #+end_src
+
+* Virtual USB Device
+** Copy a USB
+https://velog.io/@mythos/Linux-dd-명령어를-통한-USB-복제하기-Clone-USB-Stick-through-dd-command
+
+#+begin_src sh
+sudo dd if=/dev/sdX of=/path/to/backup.img bs=4KiB status=progress
+#+end_src
+
+** Mount a virtual USB device
+#+begin_src sh
+# Creat a mount point
+mkdir /media/usb_mount_point
+
+# Mount
+mkdir -p /media/usb_mount_point
+mount -t auto -o loop /path/to/virtual_usb.img /media/usb_mount_point
+#+end_src
 
 * Android
 ** Android x86
