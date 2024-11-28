@@ -157,7 +157,7 @@ Run ~:enter-mode passthroug~ to disable shortcuts
     - or you can open the page by
       menu (3-bar) button -> "Help" -> "More Troubleshooting Information"
   - open the path displayed in "Profile Directory"
-    e.g. /home/dhnam/.mozilla/firefox/t6ziesp7.default-release
+    e.g. /home/dhnam//.mozilla/firefox/t6ziesp7.default-release
   - make directory chrome and userChrome.css in it
     #+begin_src sh
     mkdir chrome

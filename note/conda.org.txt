@@ -89,6 +89,8 @@ conda config --show envs_dirs
 #+begin_src sh
 conda install anaconda
 #+end_src
+*** conda remove with --all vs. conda env remove
+https://stackoverflow.com/questions/69682414/what-does-the-all-flag-do-for-conda-env-remove
 ** Check conda version
 #+begin_src sh
 conda --version
