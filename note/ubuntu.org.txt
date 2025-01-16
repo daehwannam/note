@@ -526,3 +526,12 @@ E: Unable to fetch some archives, maybe run apt-get update or try with --fix-mis
 **** optional
 - goto "/var/lib/apt/lists"
 - remove the files that raise errors or move them to other location
+
+** System freezes after suspend
+https://askubuntu.com/a/1091064
+
+Replace gdm with lightdm.
+
+#+begin_src sh
+sudo apt install lightdm
+#+end_src
